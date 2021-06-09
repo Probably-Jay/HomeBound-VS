@@ -63,7 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Tests\EditModeTests\DialogueLoadingTests.cs" />
+    <Compile Include="Assets\Tests\EditModeTests\DialogueLoadingSystemTests.cs" />
     <None Include="Assets\Tests\EditModeTests\EditModeTests.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/UnityEditors/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -640,6 +640,10 @@
     <ProjectReference Include="~Game.csproj">
       <Project>{41F7CEBF-7F01-D2DE-B85B-182DCD0C801B}</Project>
       <Name>~Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="~Core.csproj">
+      <Project>{52E0881F-85E4-2E6E-65A3-865A275E851A}</Project>
+      <Name>~Core</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{11EBBDD7-E2FD-F626-966F-35718B89FB30}</Project>

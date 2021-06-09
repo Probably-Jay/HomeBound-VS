@@ -9,12 +9,12 @@ namespace Dialogue
 {
     public class DialogueLoader
     {
-        public string ResourcesPath => Path.Combine("Assets", "Resources");
-        public string DialogueFilePath => Path.Combine(ResourcesPath, "DialogueFiles");
+        public static string ResourcesPath => Path.Combine("Assets", "Resources");
+        public static string DialogueFilePath => Path.Combine(ResourcesPath, "DialogueFiles");
 
-        private Dictionary<string, string> RawFileData = new Dictionary<string, string>();
+        public Dictionary<string, string> RawFileData = new Dictionary<string, string>();
 
-        public string GetRawData(TextAssetFolders folder, string file) => RawFileData[Combine(folder.ToString(), file)];
+        public string GetRawData(TextAssetFolders folder, string file) => RawFileData[Combine(folder, file)];
 
         public void UnloadAll()
         {
@@ -23,9 +23,9 @@ namespace Dialogue
 
         public void Load(Game.TextAssetFolders folder)
         {
-            string folderName = folder.ToString();
+           // string folderName = folder.ToString();
 
-            string path = GetFileDirectory(folderName);
+            string path = GetFileDirectory(folder);
 
 
             foreach (string filePath in Directory.EnumerateFiles(path, "*.txt"))
@@ -33,7 +33,7 @@ namespace Dialogue
                 string fileName;
 
                 fileName = GetFileName(filePath);
-                fileName = Combine(folderName, fileName);
+                fileName = Combine(folder, fileName);
 
                 string contents = File.ReadAllText(filePath);
 
@@ -42,7 +42,7 @@ namespace Dialogue
 
         }
 
-        private static string Combine(string folderName, string fileName) => $"{folderName}_{fileName}";
+        public static string Combine(Game.TextAssetFolders folderName, string fileName) => $"{folderName}_{fileName}";
 
         private static string GetFileName(string filePath)
         {
@@ -52,6 +52,6 @@ namespace Dialogue
             return filePath.Substring(begin + 1, (end - begin) -1);
         }
 
-        private string GetFileDirectory(string folder) => Path.Combine(DialogueFilePath, folder);
+        public static string GetFileDirectory(Game.TextAssetFolders folder) => Path.Combine(DialogueFilePath, folder.ToString());
     }
 }
