@@ -43,7 +43,7 @@ namespace Dialogue
                 return null;
             }
 
-            Match headerGroup = Regex.Match(line, @"^\s*\[([\w\s]+)\]:\s");     
+            Match headerGroup = Regex.Match(line, @"^\s*\[([\w\s]+)\]:\s");     // wrong space?
 
             if (!headerGroup.Success)
             {
@@ -69,8 +69,9 @@ namespace Dialogue
 
             line = line.Substring(header.Length);
 
+            // todo find \r manually and remove it
 
-            Match bodyGroup = Regex.Match(line, @"^[ \w]+");
+            Match bodyGroup = Regex.Match(line, @"^[ \w]+"); // this will fail silently if does not reach end
 
             if (!bodyGroup.Success)
             {
