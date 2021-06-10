@@ -17,15 +17,16 @@ namespace Dialogue
         public bool OnLeft { get => onLeft; private set => onLeft = value; }
         public string Trigger { get => trigger; set => trigger = value; }
 
+        public readonly long conversationID;
         public readonly long phraseContextID;
 
 
-        public DialoguePhrase(string phrase, string speaker, bool onLeft, string trigger)
+        public DialoguePhrase(string phrase, string speaker)
         {
             this.phrase = phrase;
             this.speaker = speaker;
-            this.onLeft = onLeft;
-            this.trigger = trigger;
+
+           // this.conversationID = conversationID;
 
             phraseContextID = GlobalPhraseContextID++;
         }
