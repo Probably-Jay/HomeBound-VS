@@ -88,18 +88,5 @@ namespace Tests
 
     }
 
-    public class DialogueLoadingSpecificTests
-    {
-        DialogueLoader dialogueLoader;
 
-        [SetUp]
-        public void SetUp()
-        {
-            dialogueLoader = new DialogueLoader();
-        }
-
-
-
-        
-    }
 }

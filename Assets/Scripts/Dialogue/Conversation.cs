@@ -70,6 +70,6 @@ namespace Dialogue
     [CreateAssetMenu(fileName = "Conversation", menuName = "ScriptableObjects/Conversation", order = 1)]
     public class Conversation : ScriptableObject
     {
-        public List<DialoguePhrase> dialoguePhrases;
+        public List<DialoguePhrase> dialoguePhrases = new List<DialoguePhrase>();
     }
 }
