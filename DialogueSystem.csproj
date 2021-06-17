@@ -64,7 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Dialogue\Conversation.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\ConversationHandler.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueContextController.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueParsingException.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialoguePhrase.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialoguePhraseObject.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueTyper.cs" />

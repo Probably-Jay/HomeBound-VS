@@ -38,6 +38,7 @@ namespace Dialogue
         public bool HasDialougeQueued => dialogueQueue.Count > 0;
         public bool StillFillingInBox => liveString.Length < bufferString.Length;
 
+        public event Action OnReachedEndOfQueue;
       
 
         public bool OnBeat { get => onBeat; set => onBeat = value; }
@@ -51,8 +52,11 @@ namespace Dialogue
 
         public float SpaceWordByCharacterFillsInBeat { get => spaceWordByCharacterFillsInBeat; set => spaceWordByCharacterFillsInBeat = value; }
         [SerializeField, Range(0,1)] float spaceWordByCharacterFillsInBeat = 0.3f;
+      
         private string nameString;
         private Coroutine fillingCoroutine;
+
+        bool beenQueuedThisConversation = false;
 
         public long Context { get; private set; } = 0;
 
@@ -67,8 +71,7 @@ namespace Dialogue
         // Start is called before the first frame update
         void Start()
         {
-            textCoroutine = StartCoroutine(UpdateBufferedPhrase());
-            typingCoroutine = StartCoroutine(MoveBufferToLive());
+           // StartNew();
 
             //QueueNewPhrase("What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, " +
             //    "and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with " +
@@ -80,6 +83,13 @@ namespace Dialogue
             //    " and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.");
         }
 
+        public void StartNew()
+        {
+            
+            textCoroutine = StartCoroutine(UpdateBufferedPhrase());
+            typingCoroutine = StartCoroutine(MoveBufferToLive());
+        }
+
 
         // Update is called once per frame
         void Update()
@@ -88,13 +98,39 @@ namespace Dialogue
 
         }
 
+        public void StopCurrent()
+        {
+            if(typingCoroutine != null)
+                StopCoroutine(typingCoroutine);
+            if(fillingCoroutine != null)
+                StopCoroutine(fillingCoroutine);
+            if(textCoroutine != null)
+                StopCoroutine(textCoroutine);
+
+            dialogueQueue.Clear();
+            bufferString.Clear();
+            liveString.Clear();
+            nameString = "";
+
+            display.text = "";
+            nameOutdisplay.text = "";
+
+            beenQueuedThisConversation = false;
+
+            IncrimentContext();
+        }
+
         /// <summary>
         /// Queue a phrase to be shown in the box as the user progresses thorough, will enter the queue on a beat
         /// </summary>
         /// <param name="phrase"></param>
         /// <param name="onBeat">The beat this phrase will enter the queue</param>
+        /// <param name="forceContext">Experimental, will only allow the word to be added within this instance of conversation</param>
         public void QueueNewPhrase(DialoguePhrase phrase, float? onBeat = null, bool forceContext = false)
         {
+            beenQueuedThisConversation = true;
+            phrase.SetIsQueued();
+
             if ((RythmEngine.TryInstance?.InRythmSection ?? false) && onBeat.HasValue)
             {
                 QueuePhraseOnBeat(phrase, onBeat.Value, forceContext);
@@ -107,9 +143,9 @@ namespace Dialogue
         /// <summary>
         /// Adds a new word directly to the buffer, optionally with a beat specified. *WARNING* this may result in unwanted beheaviour if beat is too far in the future
         /// </summary>
-        /// <param name="word"></param>
-        /// <param name="onBeat"></param>
-        /// <param name="forceContext"></param>
+        /// <param name="word">string to be added</param>
+        /// <param name="onBeat">The beat this will happen on</param>
+        /// <param name="forceContext">Experimental, will only allow the word to be added within this instance of conversation</param>
         public void AddNewWordDirectly(string word, float? onBeat = null, bool forceContext = false)
         {
             if ((RythmEngine.TryInstance?.InRythmSection ?? false) && onBeat.HasValue)
@@ -188,16 +224,18 @@ namespace Dialogue
             bufferString.Clear();
             if (!HasDialougeQueued)
             {
+                if(beenQueuedThisConversation)
+                    OnReachedEndOfQueue?.Invoke();
                 yield return WaitForDialogueEnqueue();
             }
 
             var phrase = DequeueNextPhrase();
+            InvokePhraseOnTrigger(phrase);
             bufferString.Append(phrase.Phrase);
             nameString = phrase.Speaker;
         }
 
-     
-
+        private void InvokePhraseOnTrigger(DialoguePhrase phrase) => phrase.TriggerActions();
 
         private void UpdateDisplay()
         {
@@ -217,8 +255,7 @@ namespace Dialogue
             return dialogueQueue.Dequeue();     
         }
 
-     
-
+    
         
         IEnumerator MoveBufferToLive()
         {
@@ -231,8 +268,6 @@ namespace Dialogue
                 yield return new WaitUntil(() => !StillFillingInBox);
             }
         }
-
-      
 
         IEnumerator FillDialogeBox(string text)
         {

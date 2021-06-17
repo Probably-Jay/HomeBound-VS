@@ -13,13 +13,16 @@ namespace Dialogue
         [SerializeField] private bool onLeft;
         [SerializeField] private string trigger;
 
-        [SerializeField] private event Action onTrigger;
+        [SerializeField] public event Action onTrigger;
 
         public string Phrase { get => phrase; private set => phrase = value; }
         public string Speaker { get => speaker; private set => speaker = value; }
         public bool OnLeft { get => onLeft; private set => onLeft = value; }
-        public string Trigger { get => trigger; set => trigger = value; }
-        public Action OnTrigger { get => onTrigger; set => onTrigger = value; }
+
+        public bool Queued { get; private set; } = false;
+
+       // public string Trigger { get => trigger; set => trigger = value; }
+      //  public Action OnTrigger { get => onTrigger; set => onTrigger = value; }
 
         public readonly long conversationID;
         public readonly long phraseContextID;
@@ -38,7 +41,13 @@ namespace Dialogue
             phraseContextID = GlobalPhraseContextID++;
         }
 
+        public void TriggerActions() => onTrigger?.Invoke();
+
         static long GlobalPhraseContextID = 0;
 
+        internal void SetIsQueued()
+        {
+            Queued = true;
+        }
     }
 }

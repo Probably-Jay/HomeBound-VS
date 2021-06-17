@@ -6,8 +6,8 @@ namespace Game
 {
     public enum TextAssetFolders
     {
-        Test
-        ,All // this should be broken up later
+        None
+        ,Test
     }
 
 

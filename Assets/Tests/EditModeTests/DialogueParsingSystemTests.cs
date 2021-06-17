@@ -45,7 +45,7 @@ namespace Tests
             rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
 
 
-            var conversation = dialogueParser.Parse(rawTestText);
+            var conversation = dialogueParser.TryParse(rawTestText);
 
             var id = conversation.conversationID;
 
@@ -58,7 +58,7 @@ namespace Tests
             rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
 
 
-            var conversation = dialogueParser.Parse(rawTestText);
+            var conversation = dialogueParser.TryParse(rawTestText);
 
             var speaker = conversation.dialoguePhrases[0].Speaker;
 
@@ -71,9 +71,9 @@ namespace Tests
             rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
 
 
-            var conversation = dialogueParser.Parse(rawTestText);
+            var conversation = dialogueParser.TryParse(rawTestText);
 
-            var mode = conversation.dialogueMode;
+            var mode = conversation.initialMode;
 
             Assert.AreEqual(defaultMode, mode);
         }  
@@ -84,9 +84,9 @@ namespace Tests
             rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName4);
 
 
-            var conversation = dialogueParser.Parse(rawTestText);
+            var conversation = dialogueParser.TryParse(rawTestText);
 
-            var mode = conversation.dialogueMode;
+            var mode = conversation.initialMode;
 
             Assert.AreEqual(modeTest4, mode);
         }        
@@ -97,7 +97,7 @@ namespace Tests
             rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
 
 
-            var conversation = dialogueParser.Parse(rawTestText);
+            var conversation = dialogueParser.TryParse(rawTestText);
 
             var body = conversation.dialoguePhrases[0].Phrase;
 

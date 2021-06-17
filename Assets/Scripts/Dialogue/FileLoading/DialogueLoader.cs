@@ -12,18 +12,26 @@ namespace Dialogue
         public static string ResourcesPath => Path.Combine("Assets", "Resources");
         public static string DialogueFilePath => Path.Combine(ResourcesPath, "DialogueFiles");
 
-        public Dictionary<string, string> RawFileData = new Dictionary<string, string>();
+        public readonly Dictionary<string, string> RawFileData = new Dictionary<string, string>();
 
         public string GetRawData(TextAssetFolders folder, string file) => RawFileData[Combine(folder, file)];
 
         public void UnloadAll()
         {
-            RawFileData = new Dictionary<string, string>();
+            RawFileData.Clear();
+        }
+
+        public void Unload(string folder)
+        {
+            if (!RawFileData.ContainsKey(folder))
+            {
+                return;
+            }
+            RawFileData.Remove(folder);
         }
 
         public void Load(Game.TextAssetFolders folder)
         {
-           // string folderName = folder.ToString();
 
             string path = GetFileDirectory(folder);
 
@@ -42,10 +50,10 @@ namespace Dialogue
 
         }
 
-        public void Load(TextAssetFolders textAssetFolders, object folder)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Load(TextAssetFolders textAssetFolders, object folder)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public static string Combine(Game.TextAssetFolders folderName, string fileName) => $"{folderName}_{fileName}";
 
