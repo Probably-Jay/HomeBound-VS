@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NoteSystem;
 
 namespace HitDetection {
     public enum HitQuality
@@ -27,9 +28,9 @@ namespace HitDetection {
         {
             if (Input.GetKeyDown(button))
             {
-                //Debug.Log("bam!");
+                Debug.Log("bam!");
                 Rythm.RythmEngine.Instance.QueueActionNextBeat(() => {
-                    Debug.Log("beat");
+                    //Debug.Log("beat");
                 }
                     );
                 float tempCurrentBeat = Rythm.RythmEngine.Instance.CurrentBeat;
@@ -63,7 +64,7 @@ namespace HitDetection {
                 {
                     //process miss here
                     Debug.Log("Miss!");
-                    //Debug.Log(tempCurrentBeat +", "+ notesInChannel[0].GetClimaxBeat());
+                    Debug.Log(tempCurrentBeat +", "+ notesInChannel[0].GetClimaxBeat());
                     return;
                 }
                 else
@@ -76,7 +77,7 @@ namespace HitDetection {
         }
         void ProcessHitOnNote(WordNote note, HitQuality quality)
         {
-            note.gameObject.SetActive(false);
+            note.Remove();
         }
 
 

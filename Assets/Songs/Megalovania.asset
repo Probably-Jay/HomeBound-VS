@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:Rythm:RythmSong
   audioClip: {fileID: 8300000, guid: 38e513fb385083b4ba433e6f74290538, type: 3}
   BPM: 120
-  offset: 0.3
+  offset: 0.983
   beginAtTime: 10

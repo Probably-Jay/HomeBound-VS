@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Zap\NoteSpawner.cs" />
     <Compile Include="Assets\Scripts\Zap\RhythmInitialise.cs" />
     <Compile Include="Assets\Scripts\Zap\WordNote.cs" />
+    <Compile Include="Assets\Scripts\Zap\WordUI.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
