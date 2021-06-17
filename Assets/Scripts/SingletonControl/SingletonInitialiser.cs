@@ -14,6 +14,7 @@ namespace SingletonManagement
       
         //[SerializeField] GameObject eventsManager;
         [SerializeField] GameObject rythmEngine;
+        [SerializeField] bool intialiseRythmEngine;
 
         private void Awake()
         {
@@ -25,7 +26,8 @@ namespace SingletonManagement
             if (!instantiateSingletonsInThisScene) return;
 
             // create all singletons
-            CreateSingleon<Rythm.RythmEngine>(rythmEngine);
+            if(intialiseRythmEngine)
+                CreateSingleon<Rythm.RythmEngine>(rythmEngine);
         }
 
         private void CreateSingleon<T>(GameObject singletonPrefab) where T : Singleton<T>

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,8 +72,13 @@ namespace Dialogue
     public class Conversation : ScriptableObject
     {
         public string conversationID;
-        public DialogueMode dialogueMode;
+        public DialogueMode initialMode;
         public readonly List<DialoguePhrase> dialoguePhrases = new List<DialoguePhrase>();
+        public long context;
+
+        public event Action<DialogueMode> OnSetDialogueMode;
+
+        public void SetDialougeMode(DialogueMode mode) => OnSetDialogueMode?.Invoke(mode);
     }
 
 
