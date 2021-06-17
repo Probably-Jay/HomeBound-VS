@@ -11,7 +11,8 @@ public class WordNote : MonoBehaviour
     float beatsOfExistence = 0;
     float spawningBeat = 0;
     [SerializeField] private float climaxBeat;
-    [SerializeField] HitZone myLane;
+    HitZone myHitZone;
+    [SerializeField] Lane lane;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class WordNote : MonoBehaviour
         spawningBeat = Rythm.RythmEngine.Instance.CurrentBeat;
         //end code for testing
         absoluteBeatsToHit = climaxBeat - Rythm.RythmEngine.Instance.CurrentBeat;
-        myLane.Join(this);
+        lane.hitZone.Join(this);
         beatsOfExistence = 0f;
         this.transform.position = startPos.position;
         
@@ -33,7 +34,7 @@ public class WordNote : MonoBehaviour
        // Debug.Log(Rythm.RythmEngine.Instance.CurrentBeat);
         this.transform.position = Vector3.LerpUnclamped(startPos.position, endPos.position, (float) ((Rythm.RythmEngine.Instance.CurrentBeat-spawningBeat) / absoluteBeatsToHit));
     }
-    public void initialise (float hitBeat, HitZone lane, float? spawnBeat = null)
+    public void initialise (float hitBeat, Lane passedLane, float? spawnBeat = null)
     {
         
         if (spawnBeat.HasValue)
@@ -45,7 +46,7 @@ public class WordNote : MonoBehaviour
             spawningBeat = Rythm.RythmEngine.Instance.CurrentBeat;
         }
         absoluteBeatsToHit = (float)hitBeat-spawningBeat;
-        myLane = lane;
+        lane = passedLane;
     }
     public float TargetBeat()
     {

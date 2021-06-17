@@ -172,7 +172,7 @@ namespace Rythm
 
         void AddEvent(Action action, float beat)
         {
-            Debug.Log($"Queued event for beat {beat}");
+            //Debug.Log($"Queued event for beat {beat}");
 
             Action newEvent;
             if (queuedActions.TryGetValue(beat, out newEvent))
