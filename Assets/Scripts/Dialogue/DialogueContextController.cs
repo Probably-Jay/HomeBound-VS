@@ -12,10 +12,10 @@ namespace Dialogue
         ,Encounter_PlayerSpeak
     }
 
-    [RequireComponent(typeof(DialogueController))]
+    [RequireComponent(typeof(DialogueTyper))]
     public class DialogueContextController : MonoBehaviour
     {
-        DialogueController dialogueController;
+        DialogueTyper dialogueController;
 
         [SerializeField] Conversation currentConversation;
 
@@ -23,7 +23,7 @@ namespace Dialogue
 
         private void Awake()
         {
-            dialogueController = GetComponent<DialogueController>();
+            dialogueController = GetComponent<DialogueTyper>();
         }
 
         public void SetDialougeMode(DialogueMode mode)

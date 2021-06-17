@@ -15,8 +15,9 @@ namespace Dialogue
           , WordByCharacter
           , Character
     }
+
     [RequireComponent(typeof(TMP_Text))]
-    public class DialogueController : MonoBehaviour
+    public class DialogueTyper : MonoBehaviour
     {
         TMP_Text display;
         [SerializeField] TMP_Text nameOutdisplay;

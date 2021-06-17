@@ -221,7 +221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -342, y: 18}
+  m_AnchoredPosition: {x: -216, y: -8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &543761674
@@ -353,10 +353,10 @@ RectTransform:
   m_Father: {fileID: 1705002235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.7000122, y: 153}
-  m_SizeDelta: {x: -80.00903, y: -510.31082}
+  m_AnchoredPosition: {x: 0, y: -85}
+  m_SizeDelta: {x: -70, y: 115.92653}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &992505126
 MonoBehaviour:
@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 1039773020}
   - component: {fileID: 1039773022}
   - component: {fileID: 1039773023}
+  - component: {fileID: 1039773024}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -566,6 +567,18 @@ MonoBehaviour:
   currentConversation: {fileID: 11400000, guid: a5e3c832baaddce48879df3775ad1f83,
     type: 2}
   dialogueMode: 0
+--- !u!114 &1039773024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039773018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9623052b6ba18774db62ea415867ade0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1705002231
 GameObject:
   m_ObjectHideFlags: 0

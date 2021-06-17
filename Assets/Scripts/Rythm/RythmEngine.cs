@@ -209,7 +209,7 @@ namespace Rythm
         {
             bool beat = false;
 
-            Instance.QueueActionAfterBeats(() => beat = true, beatsTime:beatsFromNow, beatResolution: resolution);
+            Instance.QueueActionAfterBeats(() => beat = true, beatsTime: beatsFromNow, beatResolution: resolution);
 
             yield return new WaitUntil(() => beat);
         }

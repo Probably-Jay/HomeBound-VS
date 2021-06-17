@@ -42,6 +42,11 @@ namespace Dialogue
 
         }
 
+        public void Load(TextAssetFolders textAssetFolders, object folder)
+        {
+            throw new NotImplementedException();
+        }
+
         public static string Combine(Game.TextAssetFolders folderName, string fileName) => $"{folderName}_{fileName}";
 
         private static string GetFileName(string filePath)

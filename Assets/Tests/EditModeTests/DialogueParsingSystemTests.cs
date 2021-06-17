@@ -15,42 +15,95 @@ namespace Tests
         string rawTestText;
 
         const string TestName3 = "TestFile3";
+        const string TestName4 = "TestFile4";
+
+        const string id1 = "test_3";
 
         const string speaker1 = "person 1";
         const string body1 = "test 1";
 
+        const Dialogue.DialogueMode defaultMode = DialogueMode.Normal;
+        const Dialogue.DialogueMode modeTest4 = DialogueMode.Encounter_OpponentSpeak;
+
+        
 
         [SetUp]
         public void SetUp()
         {
             dialogueLoader = new DialogueLoader();
+
             dialogueLoader.Load(Game.TextAssetFolders.Test);
 
-            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
 
             dialogueParser = new DialogueParser();
 
         }
 
         [Test]
-        public void ParseTestFileHeaderCorrectly()
+        public void ParseMetadataCorrectly()
         {
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
+
+
             var conversation = dialogueParser.Parse(rawTestText);
 
-            var header = conversation.dialoguePhrases[0].Speaker;
+            var id = conversation.conversationID;
 
-            Assert.AreEqual(speaker1, header);
+            Assert.AreEqual(id1, id);
+        }
+
+        [Test]
+        public void ParseTestFileHeaderSpeakerCorrectly()
+        {
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
+
+
+            var conversation = dialogueParser.Parse(rawTestText);
+
+            var speaker = conversation.dialoguePhrases[0].Speaker;
+
+            Assert.AreEqual(speaker1, speaker);
+        }        
+        
+        [Test]
+        public void ParseTestFileHeaderDefaultModeCorrectly()
+        {
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
+
+
+            var conversation = dialogueParser.Parse(rawTestText);
+
+            var mode = conversation.dialogueMode;
+
+            Assert.AreEqual(defaultMode, mode);
+        }  
+        
+        [Test]
+        public void ParseTestFileHeaderExplicitModeCorrectly()
+        {
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName4);
+
+
+            var conversation = dialogueParser.Parse(rawTestText);
+
+            var mode = conversation.dialogueMode;
+
+            Assert.AreEqual(modeTest4, mode);
         }        
         
         [Test]
         public void ParseTestFileBodyCorrectly()
         {
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
+
+
             var conversation = dialogueParser.Parse(rawTestText);
 
             var body = conversation.dialoguePhrases[0].Phrase;
 
             Assert.AreEqual(body1, body);
         }
+
 
         [TearDown]
         public void CleanUp()

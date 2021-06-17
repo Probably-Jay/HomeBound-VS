@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System;
+using System.Linq;
 
 namespace Dialogue
 {
@@ -10,10 +11,24 @@ namespace Dialogue
     {
         public Conversation Parse(string text)
         {
-            string[] lines = text.Split('\n');
-
             var conversation = ScriptableObject.CreateInstance<Conversation>();
-       
+
+            string[] allLines = text.Split('\n');
+
+
+            string metadataLine = allLines[0];
+
+            var metadata = ParseMetadata(metadataLine);
+
+            conversation.conversationID = metadata[1].Value;
+
+            var mode = GetMode(metadata[3].Value);
+
+            conversation.dialogueMode = mode;
+                
+
+            string[] lines = allLines.Skip(1).Take(allLines.Length).ToArray();
+
 
             foreach (var line in lines)
             {
@@ -27,6 +42,9 @@ namespace Dialogue
                 string body = ParseBody(line);
 
                 string headerContent = header[1].Value;
+
+                
+
                 var phrase = new DialoguePhrase(body, headerContent);
 
                 conversation.dialoguePhrases.Add(phrase);
@@ -35,6 +53,40 @@ namespace Dialogue
             return conversation;
         }
 
+        private DialogueMode GetMode(string value)
+        {
+            switch (value)
+            {
+                case "":
+                    return DialogueMode.Normal;
+                case "0":
+                    return DialogueMode.Normal;
+                case "1":
+                    return DialogueMode.Encounter_OpponentSpeak;
+                case "2":
+                    return DialogueMode.Encounter_PlayerSpeak;
+                default:
+                    throw new Exception("Mode provided not valid");
+            }
+        }
+
+        private GroupCollection ParseMetadata(string line)
+        {
+            Match group = Regex.Match(line, @"^\s*id: ([ \w]+)(|, mode: ([ \w]+))\s?$");
+
+            if (!group.Success)
+            {
+                throw new System.Exception("Metadata malformed");
+            }
+
+            if (!group.Groups[1].Success)
+            {
+                throw new System.Exception("Does not have starting instructions");
+            }
+
+            return group.Groups;
+
+        }
 
         public GroupCollection ParseHeader(string line)
         {
@@ -43,7 +95,7 @@ namespace Dialogue
                 return null;
             }
 
-            Match headerGroup = Regex.Match(line, @"^\s*\[([\w\s]+)\]:\s");     // wrong space?
+            Match headerGroup = Regex.Match(line, @"^\s*\[([ \w]+)\]: ");
 
             if (!headerGroup.Success)
             {
