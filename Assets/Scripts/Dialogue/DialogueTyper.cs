@@ -41,8 +41,8 @@ namespace Dialogue
         public event Action OnReachedEndOfQueue;
       
 
-        public bool OnBeat { get => onBeat; set => onBeat = value; }
-        [SerializeField] bool onBeat = true; 
+        public bool OnBeat { get => onBeat && RythmEngine.InstanceExists; set => onBeat = value; }
+        [SerializeField] bool onBeat = false; 
 
         public TypingMode TypingMode { get => typingMode; set => typingMode = value; }
         [SerializeField] TypingMode typingMode;
@@ -83,10 +83,16 @@ namespace Dialogue
             //    " and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.");
         }
 
-        public void StartNew()
+       
+
+        public void StartNewNormal()
         {
-            
             textCoroutine = StartCoroutine(UpdateBufferedPhrase());
+            typingCoroutine = StartCoroutine(MoveBufferToLive());
+        }        
+        
+        public void StartNewRythm()
+        {
             typingCoroutine = StartCoroutine(MoveBufferToLive());
         }
 
@@ -100,14 +106,14 @@ namespace Dialogue
 
         public void StopCurrent()
         {
-            if(typingCoroutine != null)
+            if (typingCoroutine != null)
                 StopCoroutine(typingCoroutine);
-            if(fillingCoroutine != null)
+            if (fillingCoroutine != null)
                 StopCoroutine(fillingCoroutine);
-            if(textCoroutine != null)
+            if (textCoroutine != null)
                 StopCoroutine(textCoroutine);
 
-            dialogueQueue.Clear();
+            ClearQueuedPhrases();
             bufferString.Clear();
             liveString.Clear();
             nameString = "";
@@ -120,6 +126,15 @@ namespace Dialogue
             IncrimentContext();
         }
 
+        private void ClearQueuedPhrases()
+        {
+            foreach (var phrase in dialogueQueue)
+            {
+                phrase.UnQueue();
+            }
+            dialogueQueue.Clear();
+        }
+
         /// <summary>
         /// Queue a phrase to be shown in the box as the user progresses thorough, will enter the queue on a beat
         /// </summary>
@@ -129,7 +144,7 @@ namespace Dialogue
         public void QueueNewPhrase(DialoguePhrase phrase, float? onBeat = null, bool forceContext = false)
         {
             beenQueuedThisConversation = true;
-            phrase.SetIsQueued();
+            phrase.SetQueued();
 
             if ((RythmEngine.TryInstance?.InRythmSection ?? false) && onBeat.HasValue)
             {
@@ -138,6 +153,35 @@ namespace Dialogue
             }
 
             QueuePhrase(phrase);
+        }
+
+
+        public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false)
+        {
+            if ((RythmEngine.TryInstance?.InRythmSection ?? false) && onBeat.HasValue)
+            {
+                ProgressPhraseDirectlyOnbeat(speaker, onBeat.Value, forceContext);
+                return;
+            }
+
+            ProgressPhraseDirectly(speaker);
+        }
+
+        private void ProgressPhraseDirectly(string speaker, long? _context = null)
+        {
+            if (_context.HasValue && _context != Context)
+            {
+                return;
+            }
+            ClearCurrentPhrase();
+            SetSpeaker(speaker);
+        }
+
+        private void ProgressPhraseDirectlyOnbeat(string speaker, float beat, bool forceContext)
+        {
+            long? _context = forceContext ? (long?)Context : null;
+            RythmEngine.Instance.QueueActionAtExplicitBeat(() => ProgressPhraseDirectly(speaker, _context), beat);
+
         }
 
         /// <summary>
@@ -220,22 +264,34 @@ namespace Dialogue
 
         private IEnumerator BufferNextPhrase()
         {
-            liveString.Clear();
-            bufferString.Clear();
+            ClearCurrentPhrase();
+
             if (!HasDialougeQueued)
             {
-                if(beenQueuedThisConversation)
+                if (beenQueuedThisConversation) // do not do this before begining
                     OnReachedEndOfQueue?.Invoke();
+
                 yield return WaitForDialogueEnqueue();
             }
 
             var phrase = DequeueNextPhrase();
-            InvokePhraseOnTrigger(phrase);
+            InvokePhraseActions(phrase);
             bufferString.Append(phrase.Phrase);
-            nameString = phrase.Speaker;
+            SetSpeaker(phrase.Speaker);
         }
 
-        private void InvokePhraseOnTrigger(DialoguePhrase phrase) => phrase.TriggerActions();
+        private void SetSpeaker(string speaker)
+        {
+            nameString = speaker;
+        }
+
+        private void ClearCurrentPhrase()
+        {
+            liveString.Clear();
+            bufferString.Clear();
+        }
+
+        private void InvokePhraseActions(DialoguePhrase phrase) => phrase.TriggerActions();
 
         private void UpdateDisplay()
         {
@@ -372,7 +428,7 @@ namespace Dialogue
             var index = currentIndex;
             char character = default;
 
-            while (character != ' ' && currentIndex + index < text.Length)
+            while (character != ' ' && currentIndex + word.Length < text.Length)
             {
                 index = currentIndex + word.Length;
                 character = text[index];

@@ -16,7 +16,7 @@ namespace Dialogue
     [RequireComponent(typeof(DialogueTyper))]
     public class DialogueContextController : MonoBehaviour
     {
-        DialogueTyper dialogueController;
+        DialogueTyper dialogueTyper;
 
         public event Action OnReachedEndOfQueue;
 
@@ -24,18 +24,18 @@ namespace Dialogue
 
         private void Awake()
         {
-            dialogueController = GetComponent<DialogueTyper>();
+            dialogueTyper = GetComponent<DialogueTyper>();
            
         }
 
         private void OnEnable()
         {
-            dialogueController.OnReachedEndOfQueue += InvokeReachedEndOfQueue;
+            dialogueTyper.OnReachedEndOfQueue += InvokeReachedEndOfQueue;
         }
 
         private void OnDisable()
         {
-            dialogueController.OnReachedEndOfQueue -= InvokeReachedEndOfQueue;
+            dialogueTyper.OnReachedEndOfQueue -= InvokeReachedEndOfQueue;
         }
     
 
@@ -47,40 +47,50 @@ namespace Dialogue
             switch (mode)
             {
                 case DialogueMode.Normal:
-                    dialogueController.OnBeat = false;
-                    dialogueController.TypingMode = TypingMode.Character;
-                    dialogueController.StandardTypingDelay = 0.04f;
-                    dialogueController.RandomTypingDelayDelta = 0.02f;
+                    dialogueTyper.OnBeat = false;
+                    dialogueTyper.TypingMode = TypingMode.Character;
+                    dialogueTyper.StandardTypingDelay = 0.04f;
+                    dialogueTyper.RandomTypingDelayDelta = 0.02f;
 
                     break;
                 case DialogueMode.Encounter_OpponentSpeak:
-                    dialogueController.OnBeat = true;
-                    dialogueController.TypingMode = TypingMode.WordByCharacter;
-                    dialogueController.DisplayActionsPerBeat = 2;
+                    dialogueTyper.OnBeat = true;
+                    dialogueTyper.TypingMode = TypingMode.WordByCharacter;
+                    dialogueTyper.DisplayActionsPerBeat = 2;
 
                     break;
                 case DialogueMode.Encounter_PlayerSpeak:
-                    dialogueController.OnBeat = true;
-                    dialogueController.TypingMode = TypingMode.WordByCharacter;
-                    dialogueController.DisplayActionsPerBeat = 2;
+                    dialogueTyper.OnBeat = true;
+                    dialogueTyper.TypingMode = TypingMode.WordByCharacter;
+                    dialogueTyper.DisplayActionsPerBeat = 2;
 
                     break;
                 default: throw new System.ArgumentException($"{mode} not handled dialogue mode");
             }
         }
 
-        public void QueuePhrase(DialoguePhrase phrase) => dialogueController.QueueNewPhrase(phrase);
-        public void EnterArgument() => SetDialougeMode(DialogueMode.Encounter_OpponentSpeak);
+        public void QueuePhrase(DialoguePhrase phrase, float? onBeat = null, bool forceContext = false) => dialogueTyper.QueueNewPhrase(phrase, onBeat, forceContext);
+
+
+        public void EnterArgument()
+        {
+            SetDialougeMode(DialogueMode.Encounter_OpponentSpeak);
+            dialogueTyper.StopCurrent();
+            dialogueTyper.StartNewNormal();
+        }
 
         public void StopConversation()
         {
-            dialogueController.StopCurrent();
+            dialogueTyper.StopCurrent();
         }
 
         public void StartNewConversation()
         {
-            dialogueController.StartNew();
+            dialogueTyper.StartNewNormal();
         }
+
+        public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false) => dialogueTyper.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
+        public void AddWordDirectly(string text, float? onBeat = null, bool forceContext = false) => dialogueTyper.AddNewWordDirectly(text, onBeat, forceContext);
 
         //// Start is called before the first frame update
         //void Start()
