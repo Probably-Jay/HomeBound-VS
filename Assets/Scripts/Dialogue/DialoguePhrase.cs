@@ -9,6 +9,8 @@ namespace Dialogue
     public class DialoguePhrase
     {
         [SerializeField] [TextArea(1,4)] private string phrase;
+
+
         [SerializeField] private string speaker; // will be replaced with speaker object
         [SerializeField] private bool onLeft;
     //    [SerializeField] private string trigger;

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Dialogue
 {
     [Serializable]
-    internal class DialogueParsingException : Exception
+    public class DialogueParsingException : Exception
     {
         public DialogueParsingException()
         {

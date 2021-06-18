@@ -4,3 +4,4 @@ id: test_5
 [Me]: what's your name?
 [Stranger]: it's <color="red">James</color>, pleased to meet you
 [James]: will you be staying long?
+[end]

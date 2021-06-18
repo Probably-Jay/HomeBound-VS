@@ -50,27 +50,32 @@ namespace Dialogue
             {
                 string line = lines[i];
 
-                var header = ParseHeader(line,lineNumber: i); 
+                var header = ParseHeader(line, lineNumber: i);
 
                 if (header == null)
                 {
                     break;
                 }
 
-                string body = ParseBody(line, lineNumber: i);
-
-                string speaker = header["name"].Value;
-
-                var phrase = new DialoguePhrase(body, speaker);
-
-                SetActions(header, phrase, conversation);
-
-                conversation.dialoguePhrases.Add(phrase);
+                ParseLineBody(conversation, i, line, header);
             }
 
             return conversation;
 
 
+        }
+
+        private void ParseLineBody(Conversation conversation, int i, string line, GroupCollection header)
+        {
+            string body = ParseBody(line, lineNumber: i + 1);
+
+            string speaker = header["name"].Value;
+
+            var phrase = new DialoguePhrase(body, speaker);
+
+            SetActions(header, phrase, conversation);
+
+            conversation.dialoguePhrases.Add(phrase);
         }
 
         private void SetActions(GroupCollection header, DialoguePhrase phrase, Conversation conversation)
@@ -131,6 +136,11 @@ namespace Dialogue
                 return null;
             }
 
+            if (Regex.IsMatch(line, @"^\[end\].*"))
+            {
+                return null;
+            }
+
             Match headerGroup = Regex.Match(line, @"^\s*\[(?<name>[ \w]+)(|, mode: (?<mode>[ \w]+))\]: ");
 
             if (!headerGroup.Success)
@@ -165,14 +175,21 @@ namespace Dialogue
 
             // todo find \r manually and remove it
 
-            Match bodyGroup = Regex.Match(line, @"^[ \w',\.\?\!<>=""/]+"); // this will fail silently if does not reach end
+            Match bodyGroup = Regex.Match(line, @"^(?<body>[ \w',\.\?\!<>=""\/\(\)]+)\r$");  
 
             if (!bodyGroup.Success)
             {
                 throw new System.Exception($"Phrase {lineNumber} body malformed");
             }
 
-            return bodyGroup.Value;
+            if (!bodyGroup.Groups["body"].Success)
+            {
+                throw new System.Exception($"Phrase {lineNumber} body cannot be parsed");
+            }
+
+
+
+            return bodyGroup.Groups["body"].Value;
         }
 
 
