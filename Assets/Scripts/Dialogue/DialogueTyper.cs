@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using TMPro;
 using Rythm;
+using System.Text.RegularExpressions;
 
 namespace Dialogue
 {
@@ -23,7 +24,11 @@ namespace Dialogue
         [SerializeField] TMP_Text nameOutdisplay;
 
         StringBuilder liveString = new StringBuilder();
-        StringBuilder bufferString = new StringBuilder();
+
+        // StringBuilder bufferString = new StringBuilder();
+
+        DialoguePhrase bufferPhrase = new DialoguePhrase();
+
         Queue<DialoguePhrase> dialogueQueue = new Queue<DialoguePhrase>();
 
         public float StandardTypingDelay { get => standardDelay; set => standardDelay = value; }
@@ -36,7 +41,7 @@ namespace Dialogue
         Coroutine typingCoroutine;
 
         public bool HasDialougeQueued => dialogueQueue.Count > 0;
-        public bool StillFillingInBox => liveString.Length < bufferString.Length;
+        public bool StillFillingInBox => liveString.Length < bufferPhrase.Phrase.Length;
 
         public event Action OnReachedEndOfQueue;
       
@@ -114,7 +119,7 @@ namespace Dialogue
                 StopCoroutine(textCoroutine);
 
             ClearQueuedPhrases();
-            bufferString.Clear();
+            bufferPhrase = new DialoguePhrase();
             liveString.Clear();
             nameString = "";
 
@@ -154,6 +159,7 @@ namespace Dialogue
 
             QueuePhrase(phrase);
         }
+
 
 
         public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false)
@@ -201,6 +207,14 @@ namespace Dialogue
             AddWordDirectly(word);
         }
 
+        /// <summary>
+        /// "WARNING: Will add a string directly to the output and will bypass typing mode*
+        /// </summary>
+        /// <param name="tag"></param>
+        public void AddRichTextTag(string tag)
+        {
+            liveString.Append(tag);
+        }
     
         private void QueuePhrase(DialoguePhrase phrase, long? _context = null)
         {
@@ -223,7 +237,7 @@ namespace Dialogue
             {
                 return;
             }
-            bufferString.Append(word);
+            bufferPhrase.Phrase.Append(word);
         }
 
         private void AddWordDirectlyOnbeat(string word, float beat, bool forceContext)
@@ -274,9 +288,14 @@ namespace Dialogue
                 yield return WaitForDialogueEnqueue();
             }
 
-            var phrase = DequeueNextPhrase();
+            DialoguePhrase phrase = DequeueNextPhrase();
             InvokePhraseActions(phrase);
-            bufferString.Append(phrase.Phrase);
+
+            bufferPhrase.Phrase.Append(phrase.Phrase);
+            foreach (var item in phrase.inlineInstructions)
+            {
+                bufferPhrase.inlineInstructions.Add(item.Key,item.Value);
+            }
             SetSpeaker(phrase.Speaker);
         }
 
@@ -288,7 +307,8 @@ namespace Dialogue
         private void ClearCurrentPhrase()
         {
             liveString.Clear();
-            bufferString.Clear();
+            bufferPhrase.Phrase.Clear();
+            bufferPhrase.inlineInstructions.Clear();
         }
 
         private void InvokePhraseActions(DialoguePhrase phrase) => phrase.TriggerActions();
@@ -317,15 +337,13 @@ namespace Dialogue
         {
             while (true)
             {
-                string text = bufferString.ToString();
-
-                fillingCoroutine = StartCoroutine(FillDialogeBox(text));
+                fillingCoroutine = StartCoroutine(FillDialogeBox(bufferPhrase));
 
                 yield return new WaitUntil(() => !StillFillingInBox);
             }
         }
 
-        IEnumerator FillDialogeBox(string text)
+        IEnumerator FillDialogeBox(DialoguePhrase phrase)
         {
             while (StillFillingInBox)
             {
@@ -343,16 +361,16 @@ namespace Dialogue
                 switch (TypingMode)
                 {
                     case TypingMode.Instant:
-                        FillInstant(text);
+                        FillInstant(phrase);
                         break;
                     case TypingMode.Word:
-                        FlowWordWhole(text);
+                        FlowWordWhole(phrase);
                         break;
                     case TypingMode.WordByCharacter:
-                        yield return FlowWordByCharacter(text);
+                        yield return FlowWordByCharacter(phrase);
                         break;
                     case TypingMode.Character:
-                        FlowCharacterWhole(text);
+                        FlowCharacterWhole(phrase);
                         break;
                 }
             }
@@ -361,15 +379,49 @@ namespace Dialogue
         void SkipToInstantFill()
         {
             StopCoroutine(fillingCoroutine);
-            liveString.Clear();
-            FillInstant(bufferString.ToString());
+            // liveString.Clear();
+            FillInstant(bufferPhrase);
+           // FillRestInstant(bufferPhrase);
         }
 
-        void FillInstant(string text) => liveString.Append(text);
-
-        void FlowWordWhole(string text)
+        void FillInstant(DialoguePhrase phrase)
         {
-            string word = GetWord(text, currentIndex: liveString.Length);
+            //// remove any inline instructions
+            //var escapedPattern = new Regex(@"\[\d+\]");
+            //phrase = escapedPattern.Replace(phrase, "");
+
+            //// trigger all instructions
+            ///
+
+            bool inInstructionID = false;
+            string str = phrase.Phrase.ToString();
+            for (int i = 0; i < str.Length; i++)
+            {
+                char item = (char)str[i];
+                if (inInstructionID)
+                {
+
+                }
+                else
+                {
+                    if(item == '[')
+                    {
+                        inInstructionID = true;
+                        continue;
+                    }
+
+                   // if
+
+                }
+            //liveString.Append(phrase);
+            }
+
+
+        }
+
+        void FlowWordWhole(DialoguePhrase phrase)
+        {
+            string word = GetWord(phrase, currentIndex: liveString.Length);
             liveString.Append(word);
         }
 

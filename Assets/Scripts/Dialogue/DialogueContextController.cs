@@ -92,6 +92,13 @@ namespace Dialogue
         public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false) => dialogueTyper.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
         public void AddWordDirectly(string text, float? onBeat = null, bool forceContext = false) => dialogueTyper.AddNewWordDirectly(text, onBeat, forceContext);
 
+        public void AddColourRTT(int colour)
+        {
+            string hex = colour.ToString("X");
+            string tag = $"<color = #{hex}>";
+            dialogueTyper.AddRichTextTag(tag);
+        }
+
         //// Start is called before the first frame update
         //void Start()
         //{

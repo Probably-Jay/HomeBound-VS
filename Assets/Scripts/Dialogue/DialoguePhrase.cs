@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace Dialogue
@@ -8,17 +9,22 @@ namespace Dialogue
     [System.Serializable]
     public class DialoguePhrase
     {
-        [SerializeField] [TextArea(1,4)] private string phrase;
+        [SerializeField] [TextArea(1,4)] private StringBuilder phrase = new StringBuilder();
 
 
         [SerializeField] private string speaker; // will be replaced with speaker object
         [SerializeField] private bool onLeft;
+
+        
     //    [SerializeField] private string trigger;
 
         [SerializeField] public event Action onTrigger;
 
-        public string Phrase { get => phrase; private set => phrase = value; }
-        public string Speaker { get => speaker; private set => speaker = value; }
+        public Dictionary<string, Action> inlineInstructions = new Dictionary<string, Action>();
+
+        public string PhraseID { get; set; }
+        public StringBuilder Phrase { get => phrase;  set => phrase = value; }
+        public string Speaker { get => speaker;  set => speaker = value; }
         public bool OnLeft { get => onLeft; private set => onLeft = value; }
 
         public bool Queued { get; private set; } = false;
@@ -29,15 +35,15 @@ namespace Dialogue
         public readonly long phraseContextID;
 
 
-        public DialoguePhrase(string phrase, string speaker, Action onTrigger = null)
+        public DialoguePhrase()
         {
-            this.phrase = phrase;
-            this.speaker = speaker;
+            //this.phrase = phrase;
+            //this.speaker = speaker;
 
-            // this.conversationID = conversationID;
+            //// this.conversationID = conversationID;
 
-            if(onTrigger != null)
-                this.onTrigger += onTrigger;
+            //if(onTrigger != null)
+            //    this.onTrigger += onTrigger;
 
             phraseContextID = GlobalPhraseContextID++;
         }
@@ -48,5 +54,8 @@ namespace Dialogue
 
         public void SetQueued() => Queued = true;
         public void UnQueue() => Queued = false;
+        
+
+
     }
 }

@@ -90,6 +90,7 @@ namespace Dialogue
         private IEnumerator QueueConversation(Conversation conversation)
         {
             conversation.OnSetDialogueMode += (mode) => dialogueContextController.SetDialougeMode(mode); // add changing mode events
+            conversation.OnSetColour += (colour) => dialogueContextController.AddColourRTT(colour);
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)
             {
