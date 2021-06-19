@@ -35,7 +35,7 @@ namespace NoteSystem
         {
             if (Input.GetKeyDown(button))
             {
-                Debug.Log("bam!");
+            //    Debug.Log("bam!");
                 Rythm.RythmEngine.Instance.QueueActionNextBeat(() =>
                 {
                     //Debug.Log("beat");
@@ -70,13 +70,13 @@ namespace NoteSystem
                 if (nextNoteHitQuality == HitQuality.Miss)
                 {
                     //process miss here
-                    Debug.Log("Miss!");
-                    Debug.Log(tempCurrentBeat + ", " + notesInChannel[0].GetClimaxBeat());
+                    //Debug.Log("Miss!");
+                  //  Debug.Log(tempCurrentBeat + ", " + notesInChannel[0].GetClimaxBeat());
                     return;
                 }
                 else
                 {
-                    Debug.Log(nextNoteHitQuality);
+                 //   Debug.Log(nextNoteHitQuality);
                     ProcessHitOnNote(notesInChannel[0], nextNoteHitQuality);
                 }
 
@@ -84,7 +84,7 @@ namespace NoteSystem
         }
         void ProcessHitOnNote(WordNote note, HitQuality quality)
         {
-            Debug.Log(note.word);
+          //  Debug.Log(note.word);
             if (note.GetClimaxBeat() < Rythm.RythmEngine.Instance.CurrentBeat)
             {
                 NDI.AddWord(note.word, note.GetClimaxBeat());

@@ -884,6 +884,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 313503892}
     m_Modifications:
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: onBeat
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2533711652668772420, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: m_Name
@@ -1239,6 +1244,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 313503892}
     m_Modifications:
+    - target: {fileID: 7354923957171318923, guid: 8dc8e4501112b84478cfbb8dbe3412f6,
+        type: 3}
+      propertyPath: intialiseRythmEngine
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1180302354614811286, guid: e26c1c22dc37bc345a27b441bca6f4fc,
         type: 3}
       propertyPath: m_Name
@@ -1353,11 +1363,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354923957171318923, guid: 8dc8e4501112b84478cfbb8dbe3412f6,
-        type: 3}
-      propertyPath: intialiseRythmEngine
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e26c1c22dc37bc345a27b441bca6f4fc, type: 3}

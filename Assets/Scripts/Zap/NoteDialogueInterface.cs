@@ -11,8 +11,8 @@ public class NoteDialogueInterface : MonoBehaviour
     {
         //DialogueBox.BeginConversation("");
         DialogueBox.EnterRythmEncounter();
-        Rythm.RythmEngine.Instance.InRythmSection = true;
-        DialogueBox.SetTypingMode(Dialogue.DialogueMode.Encounter_PlayerSpeak);
+       //Rythm.RythmEngine.Instance.InRythmSection = true;
+        //DialogueBox.SetTypingMode(Dialogue.DialogueMode.Encounter_PlayerSpeak);
     }
 
     // Update is called once per frame
@@ -22,6 +22,7 @@ public class NoteDialogueInterface : MonoBehaviour
     }
     public void AddWord(string word, float? hitBeat=null)
     {
+        word += ' ';
         if (hitBeat != null)
         {
             DialogueBox.AddWordDirectly(word, hitBeat);

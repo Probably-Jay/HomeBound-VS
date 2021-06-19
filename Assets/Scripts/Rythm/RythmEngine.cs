@@ -14,7 +14,7 @@ namespace Rythm
     {
         new public static RythmEngine Instance => Singleton<Rythm.RythmEngine>.Instance;
 
-        public bool InRythmSection { get; set; } = false;
+        public bool InRythmSection { get; private set; } = false;
 
         private AudioSource AudioSource { get; set; }
 
@@ -93,11 +93,12 @@ namespace Rythm
         private void InvokeQueue()
         {
             List<float> ToRemoveCache = new List<float>();
+            float frameCurrentBeat = CurrentBeat;
             foreach (var action in queuedActions)
             {
-                if (CurrentBeat < action.Key)
+                if (action.Key > frameCurrentBeat)
                 {
-                    break;
+                    continue; // break may be more efficient
                 }
                 action.Value?.Invoke();
                 ToRemoveCache.Add(action.Key);
@@ -177,8 +178,9 @@ namespace Rythm
             Action newEvent;
             if (queuedActions.TryGetValue(beat, out newEvent))
             {
-                newEvent += action;
-                queuedActions[beat] = newEvent;
+               // newEvent += action;
+                //queuedActions[beat] += newEvent;
+                queuedActions[beat] += action;
             }
             else
             {
