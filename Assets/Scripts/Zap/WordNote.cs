@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using HitDetection;
 using NoteSystem;
 
 namespace NoteSystem {
@@ -15,7 +14,7 @@ namespace NoteSystem {
         [SerializeField] private float climaxBeat;
         HitZone myHitZone;
         [SerializeField] Lane lane;
-        [SerializeField] string word;
+        [SerializeField] public string word { get; private set; }
         private GameObject canvas;
         [SerializeField] GameObject wordUIPrefab;
         WordUI wordUI;
@@ -65,7 +64,7 @@ namespace NoteSystem {
             lane = passedLane;
             word = passedWord;
             climaxBeat = hitBeat;
-            lane.hitZone.Join(this);
+            lane.Join(this);
             beatsOfExistence = 0f;
             startPos = lane.spawnPoint.transform;
             endPos = lane.hitZone.transform;

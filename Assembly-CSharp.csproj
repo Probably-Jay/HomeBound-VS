@@ -64,8 +64,10 @@
   <ItemGroup>
     <Compile Include="Assets\DialogueBoxOpener.cs" />
     <Compile Include="Assets\DialogueBoxTester.cs" />
+    <Compile Include="Assets\Scripts\Zap\HitDetection.cs" />
     <Compile Include="Assets\Scripts\Zap\HitZone.cs" />
     <Compile Include="Assets\Scripts\Zap\Lane.cs" />
+    <Compile Include="Assets\Scripts\Zap\NoteDialogueInterface.cs" />
     <Compile Include="Assets\Scripts\Zap\NoteSpawner.cs" />
     <Compile Include="Assets\Scripts\Zap\RhythmInitialise.cs" />
     <Compile Include="Assets\Scripts\Zap\WordNote.cs" />
