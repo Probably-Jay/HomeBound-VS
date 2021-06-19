@@ -496,5 +496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SingletonInitialiser
       objectReference: {fileID: 0}
+    - target: {fileID: 7354923957171318923, guid: 8dc8e4501112b84478cfbb8dbe3412f6,
+        type: 3}
+      propertyPath: intialiseRythmEngine
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dc8e4501112b84478cfbb8dbe3412f6, type: 3}
