@@ -24,7 +24,7 @@ public class DialogueBoxOpener : MonoBehaviour
 
     private void CloseBox()
     {
-        dialogeBoxParent.SetActive(false);
+        dialogeBox.Close();
     }
 
     private void Awake()

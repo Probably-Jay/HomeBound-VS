@@ -11,7 +11,7 @@ namespace Dialogue
         [SerializeField] [TextArea(1,4)] private string phrase;
         [SerializeField] private string speaker; // will be replaced with speaker object
         [SerializeField] private bool onLeft;
-        [SerializeField] private string trigger;
+    //    [SerializeField] private string trigger;
 
         [SerializeField] public event Action onTrigger;
 
@@ -22,7 +22,6 @@ namespace Dialogue
         public bool Queued { get; private set; } = false;
 
        // public string Trigger { get => trigger; set => trigger = value; }
-      //  public Action OnTrigger { get => onTrigger; set => onTrigger = value; }
 
         public readonly long conversationID;
         public readonly long phraseContextID;
@@ -45,9 +44,7 @@ namespace Dialogue
 
         static long GlobalPhraseContextID = 0;
 
-        internal void SetIsQueued()
-        {
-            Queued = true;
-        }
+        public void SetQueued() => Queued = true;
+        public void UnQueue() => Queued = false;
     }
 }
