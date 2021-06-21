@@ -337,13 +337,16 @@ namespace Dialogue
         {
             while (true)
             {
-                fillingCoroutine = StartCoroutine(FillDialogeBox(bufferPhrase));
+                yield return  StartCoroutine(FillDialogeBox());
 
-                yield return new WaitUntil(() => !StillFillingInBox);
+                if(!StillFillingInBox)
+                {
+                    yield return new WaitUntil(() => !StillFillingInBox);
+                }
             }
         }
 
-        IEnumerator FillDialogeBox(DialoguePhrase phrase)
+        IEnumerator FillDialogeBox()
         {
             while (StillFillingInBox)
             {
@@ -361,16 +364,16 @@ namespace Dialogue
                 switch (TypingMode)
                 {
                     case TypingMode.Instant:
-                        FillInstant(phrase);
+                        FillInstant();
                         break;
                     case TypingMode.Word:
-                        FlowWordWhole(phrase);
+                        FlowWordWhole();
                         break;
                     case TypingMode.WordByCharacter:
-                        yield return FlowWordByCharacter(phrase);
+                        yield return FlowWordByCharacter();
                         break;
                     case TypingMode.Character:
-                        FlowCharacterWhole(phrase);
+                        FlowCharacterWhole();
                         break;
                 }
             }
@@ -380,11 +383,11 @@ namespace Dialogue
         {
             StopCoroutine(fillingCoroutine);
             // liveString.Clear();
-            FillInstant(bufferPhrase);
+            FillInstant();
            // FillRestInstant(bufferPhrase);
         }
 
-        void FillInstant(DialoguePhrase phrase)
+        void FillInstant()
         {
             //// remove any inline instructions
             //var escapedPattern = new Regex(@"\[\d+\]");
@@ -394,7 +397,7 @@ namespace Dialogue
             ///
 
             bool inInstructionID = false;
-            string str = phrase.Phrase.ToString();
+            string str = bufferPhrase.Phrase.ToString();
             for (int i = 0; i < str.Length; i++)
             {
                 char item = (char)str[i];
@@ -419,15 +422,16 @@ namespace Dialogue
 
         }
 
-        void FlowWordWhole(DialoguePhrase phrase)
+        void FlowWordWhole()
         {
-            string word = GetWord(phrase, currentIndex: liveString.Length);
+            string word = GetWord(bufferPhrase.Phrase.ToString(), currentIndex: liveString.Length);
+            // check for cmd
             liveString.Append(word);
         }
 
-        IEnumerator FlowWordByCharacter(string text)
+        IEnumerator FlowWordByCharacter()
         {
-            string word = GetWord(text, currentIndex: liveString.Length);
+            string word = GetWord(bufferPhrase.phraseContextID.ToString(), currentIndex: liveString.Length);
             yield return FlowCharacterOnbeat(word, beatsToFill: 1/DisplayActionsPerBeat, spaceWordFillsInBeat: SpaceWordByCharacterFillsInBeat);
         }
 
@@ -466,9 +470,9 @@ namespace Dialogue
             }
         }
 
-        void FlowCharacterWhole(string text)
+        void FlowCharacterWhole()
         {
-            char character = GetCharacter(text, currentIndex: liveString.Length);
+            char character = GetCharacter(bufferPhrase.Phrase.ToString(), currentIndex: liveString.Length);
             liveString.Append(character);
         }
 
@@ -491,13 +495,13 @@ namespace Dialogue
         }
         private char GetCharacter(string text, int currentIndex) => text[currentIndex];
 
-        IEnumerator AddWords()
-        {
-            var index = liveString.Length;
-            liveString.Append(bufferString[index]);
-            var waitTime = StandardTypingDelay + UnityEngine.Random.Range(0, RandomTypingDelayDelta);
-            yield return new WaitForSeconds(waitTime);
-        }
+        //IEnumerator AddWords()
+        //{
+        //    var index = liveString.Length;
+        //    liveString.Append(bufferString[index]);
+        //    var waitTime = StandardTypingDelay + UnityEngine.Random.Range(0, RandomTypingDelayDelta);
+        //    yield return new WaitForSeconds(waitTime);
+        //}
 
     }
 }
