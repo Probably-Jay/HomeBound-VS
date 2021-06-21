@@ -103,25 +103,19 @@ namespace Dialogue
 
         private DialogueMode GetMode(string value)
         {
-            switch (value)
+            if(value == "")
             {
-                case "":
-                    return DialogueMode.None;
-                case "0":
-                    return DialogueMode.Normal;
-                case "1":
-                    return DialogueMode.Encounter_OpponentSpeak;
-                case "2":
-                    return DialogueMode.Encounter_PlayerSpeak;
-                default:
-                    throw new Exception("Mode provided not valid");
+                return DialogueMode.None;
             }
+
+            return (DialogueMode)int.Parse(value);  
+           
         }
 
         private GroupCollection ParseMetadata(string line)
         {
 
-            Match group = Regex.Match(line, @"^\s*id: (?<id>[ \w]+)(|, mode: (?<mode>[ \w]+))\s?$");
+            Match group = Regex.Match(line, @"^\s*id: (?<id>[ _\w]+)(|, mode: (?<mode>[\d]+))\s?$");
 
             if (!group.Success)
             {
@@ -234,16 +228,17 @@ namespace Dialogue
                 }
 
 
-               
-                // \[(|mode: (\d))(|, *colour: (\d))\]
 
+                // \[(|mode: (\d))(|, *colour: (\d))\]
+                bool found = false;
                 foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
                 {
-                    var instruction = Regex.Match(match.Value, $@"\[(|{iName}: (?<{iName}>[\d\w]+))\]");
+                    var instruction = Regex.Match(match.Value, $@"\[(|{iName}: (?<{iName}>[\d]+))\]");
 
                     if (!instruction.Success)
                     {
-                        throw new Exception($"Phrase {lineNumber} instruction group {matchIndex} cannot be parsed");
+                        continue;
+                        //throw new Exception($"Phrase {lineNumber} instruction group {matchIndex} cannot be parsed");
                     }
 
                     if (instruction.Groups[(int)iName].Value != "")
@@ -251,11 +246,15 @@ namespace Dialogue
                         Action instructionAction = GetInstruction(conversation, iName, instruction);
 
                         phrase.inlineInstructions.Add(phrase.PhraseID + "." + matchIndex, instructionAction);
-
-
+                        found = true;
+                        break;
                     }
                 }
-            
+
+                if (!found)
+                {
+                    throw new Exception($"Phrase {lineNumber} instruction group {matchIndex} cannot be parsed");
+                }
 
                 var escapedPattern = new Regex(Regex.Escape(match.Value));
                 body = escapedPattern.Replace(body, $"[{matchIndex}]", 1);
@@ -273,13 +272,15 @@ namespace Dialogue
             {
                 case Instructions.mode:
                     {
-                        var v = int.Parse(instruction.Groups[(int)iName].Value);
+                        string value = instruction.Groups[iName.ToString()].Value;
+                        var v = int.Parse(value);
                         Action changeMode = () => conversation.SetDialougeMode((DialogueMode)v);
                         return changeMode;
                     }
                 case Instructions.colour:
                     {
-                        var v = int.Parse(instruction.Groups[(int)iName].Value, System.Globalization.NumberStyles.HexNumber);
+                        string value = instruction.Groups[iName.ToString()].Value;
+                        var v = int.Parse(value, System.Globalization.NumberStyles.HexNumber);
                         Action changeColour = () => conversation.SetColour(v);
                         return changeColour;
                     }

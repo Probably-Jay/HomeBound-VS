@@ -23,11 +23,13 @@ namespace Dialogue
         TMP_Text display;
         [SerializeField] TMP_Text nameOutdisplay;
 
-        StringBuilder liveString = new StringBuilder();
+        //StringBuilder liveString = new StringBuilder();
+
+        BufferPhrase bufferLivePhrase = new BufferPhrase();
 
         // StringBuilder bufferString = new StringBuilder();
 
-        DialoguePhrase bufferPhrase = new DialoguePhrase();
+      //  DialoguePhrase bufferPhrase = new DialoguePhrase();
 
         Queue<DialoguePhrase> dialogueQueue = new Queue<DialoguePhrase>();
 
@@ -41,7 +43,9 @@ namespace Dialogue
         Coroutine typingCoroutine;
 
         public bool HasDialougeQueued => dialogueQueue.Count > 0;
-        public bool StillFillingInBox => liveString.Length < bufferPhrase.Phrase.Length;
+
+
+       
 
         public event Action OnReachedEndOfQueue;
       
@@ -59,6 +63,7 @@ namespace Dialogue
         [SerializeField, Range(0,1)] float spaceWordByCharacterFillsInBeat = 0.3f;
       
         private string nameString;
+
         private Coroutine fillingCoroutine;
 
         bool beenQueuedThisConversation = false;
@@ -119,8 +124,12 @@ namespace Dialogue
                 StopCoroutine(textCoroutine);
 
             ClearQueuedPhrases();
-            bufferPhrase = new DialoguePhrase();
-            liveString.Clear();
+
+          //  bufferPhrase = new DialoguePhrase();
+            //liveString.Clear();
+
+            bufferLivePhrase.Reset();
+
             nameString = "";
 
             display.text = "";
@@ -213,7 +222,8 @@ namespace Dialogue
         /// <param name="tag"></param>
         public void AddRichTextTag(string tag)
         {
-            liveString.Append(tag);
+            bufferLivePhrase.AddToLiveDirectly(tag);
+           // liveString.Append(tag);
         }
     
         private void QueuePhrase(DialoguePhrase phrase, long? _context = null)
@@ -237,7 +247,8 @@ namespace Dialogue
             {
                 return;
             }
-            bufferPhrase.Phrase.Append(word);
+            bufferLivePhrase.Add(word);
+           // bufferPhrase.Phrase.Append(word);
         }
 
         private void AddWordDirectlyOnbeat(string word, float beat, bool forceContext)
@@ -256,7 +267,7 @@ namespace Dialogue
                 yield return null; // wait at least one frame
                 yield return WaitForInput();
 
-                if (StillFillingInBox)
+                if (bufferLivePhrase.StillMovingBufferToLive)
                 {
                     SkipToInstantFill();
 
@@ -282,20 +293,18 @@ namespace Dialogue
 
             if (!HasDialougeQueued)
             {
-                if (beenQueuedThisConversation) // do not do this before begining
+                if (beenQueuedThisConversation) // prevents this from invoking before any phrases queued
                     OnReachedEndOfQueue?.Invoke();
 
                 yield return WaitForDialogueEnqueue();
             }
 
             DialoguePhrase phrase = DequeueNextPhrase();
-            InvokePhraseActions(phrase);
 
-            bufferPhrase.Phrase.Append(phrase.Phrase);
-            foreach (var item in phrase.inlineInstructions)
-            {
-                bufferPhrase.inlineInstructions.Add(item.Key,item.Value);
-            }
+            InvokePhraseInitialActions(phrase);
+
+            bufferLivePhrase.SetPhrase(phrase);
+            
             SetSpeaker(phrase.Speaker);
         }
 
@@ -306,16 +315,14 @@ namespace Dialogue
 
         private void ClearCurrentPhrase()
         {
-            liveString.Clear();
-            bufferPhrase.Phrase.Clear();
-            bufferPhrase.inlineInstructions.Clear();
+            bufferLivePhrase.Reset();
         }
 
-        private void InvokePhraseActions(DialoguePhrase phrase) => phrase.TriggerActions();
+        private void InvokePhraseInitialActions(DialoguePhrase phrase) => phrase.TriggerActions();
 
         private void UpdateDisplay()
         {
-            display.text = liveString.ToString();
+            display.text = bufferLivePhrase.liveText;
             nameOutdisplay.text = nameString;
         }
 
@@ -339,16 +346,16 @@ namespace Dialogue
             {
                 yield return  StartCoroutine(FillDialogeBox());
 
-                if(!StillFillingInBox)
+                if(!bufferLivePhrase.StillMovingBufferToLive)
                 {
-                    yield return new WaitUntil(() => !StillFillingInBox);
+                    yield return new WaitUntil(() => !bufferLivePhrase.StillMovingBufferToLive);
                 }
             }
         }
 
         IEnumerator FillDialogeBox()
         {
-            while (StillFillingInBox)
+            while (bufferLivePhrase.StillMovingBufferToLive)
             {
 
                 if (OnBeat)
@@ -373,7 +380,7 @@ namespace Dialogue
                         yield return FlowWordByCharacter();
                         break;
                     case TypingMode.Character:
-                        FlowCharacterWhole();
+                        FlowCharacterBeatless();
                         break;
                 }
             }
@@ -389,49 +396,22 @@ namespace Dialogue
 
         void FillInstant()
         {
-            //// remove any inline instructions
-            //var escapedPattern = new Regex(@"\[\d+\]");
-            //phrase = escapedPattern.Replace(phrase, "");
-
-            //// trigger all instructions
-            ///
-
-            bool inInstructionID = false;
-            string str = bufferPhrase.Phrase.ToString();
-            for (int i = 0; i < str.Length; i++)
-            {
-                char item = (char)str[i];
-                if (inInstructionID)
-                {
-
-                }
-                else
-                {
-                    if(item == '[')
-                    {
-                        inInstructionID = true;
-                        continue;
-                    }
-
-                   // if
-
-                }
-            //liveString.Append(phrase);
-            }
-
-
-        }
+            bufferLivePhrase.ReplaceAllToLive();
+        }     
 
         void FlowWordWhole()
         {
-            string word = GetWord(bufferPhrase.Phrase.ToString(), currentIndex: liveString.Length);
-            // check for cmd
-            liveString.Append(word);
+            bufferLivePhrase.MoveNextWordToLive();
+        }
+
+        void FlowCharacterBeatless()
+        {
+            bufferLivePhrase.MoveNextCharacterToLive();
         }
 
         IEnumerator FlowWordByCharacter()
         {
-            string word = GetWord(bufferPhrase.phraseContextID.ToString(), currentIndex: liveString.Length);
+            string word = bufferLivePhrase.GetNextWord();
             yield return FlowCharacterOnbeat(word, beatsToFill: 1/DisplayActionsPerBeat, spaceWordFillsInBeat: SpaceWordByCharacterFillsInBeat);
         }
 
@@ -457,7 +437,9 @@ namespace Dialogue
                     durationOfCharacter *= 4; // longer delay after sentence end
                 }
 
-                liveString.Append(character);
+                // todo parse instructions
+
+                bufferLivePhrase.AddToLiveDirectly(character);
 
                 if ((dt -= durationOfCharacter) > 0)
                 {
@@ -466,34 +448,16 @@ namespace Dialogue
 
                 dt = Time.deltaTime;
                 if (!OnBeat) durationOfCharacter += UnityEngine.Random.Range(0, spaceWordFillsInBeat * RandomTypingDelayDelta);
+
                 yield return new WaitForSeconds(durationOfCharacter);
             }
         }
 
-        void FlowCharacterWhole()
-        {
-            char character = GetCharacter(bufferPhrase.Phrase.ToString(), currentIndex: liveString.Length);
-            liveString.Append(character);
-        }
+    
 
        
 
-        private string GetWord(string text, int currentIndex)
-        {
-            StringBuilder word = new StringBuilder();
-            var index = currentIndex;
-            char character = default;
-
-            while (character != ' ' && currentIndex + word.Length < text.Length)
-            {
-                index = currentIndex + word.Length;
-                character = text[index];
-                word.Append(character);
-            }
-
-            return word.ToString();
-        }
-        private char GetCharacter(string text, int currentIndex) => text[currentIndex];
+       
 
         //IEnumerator AddWords()
         //{
@@ -504,4 +468,120 @@ namespace Dialogue
         //}
 
     }
+
+
+    class BufferPhrase
+    {
+        int bufferPhraseNextCharacterIndex = 0;
+        DialoguePhrase bufferPhrase = new DialoguePhrase();
+//        string BufferString { get { return bufferPhrase.Phrase.ToString(); } };
+
+        StringBuilder livePhrase = new StringBuilder();
+
+        internal string liveText => livePhrase.ToString();
+
+       // public bool StillMovingBufferToLive => livePhrase.Length < bufferPhrase.Phrase.Length;
+        public bool StillMovingBufferToLive => bufferPhraseNextCharacterIndex < bufferPhrase.Phrase.Length;
+
+        internal void Add(string word) => bufferPhrase.Phrase.Append(word);
+
+        internal void AddToLiveDirectly(string str) => livePhrase.Append(str);
+        internal void AddToLiveDirectly(char c) => livePhrase.Append(c);
+
+        private char? NextCharacter
+        {
+            get
+            {
+                if (!StillMovingBufferToLive)
+                    return null;
+                return bufferPhrase.Phrase[bufferPhraseNextCharacterIndex];
+            }
+        }
+
+        internal void Reset()
+        {
+            bufferPhrase = new DialoguePhrase();
+            livePhrase.Clear();
+
+            bufferPhraseNextCharacterIndex = 0;
+        }
+
+        internal void SetPhrase(DialoguePhrase phrase)
+        {
+            Add(phrase.Phrase.ToString());
+
+            foreach (var item in phrase.inlineInstructions)
+            {
+                bufferPhrase.inlineInstructions.Add(item.Key, item.Value);
+            }
+        }
+
+
+        internal string GetNextWord()
+        {
+            if (!NextCharacter.HasValue)
+            {
+                return "";
+            }
+
+            if(NextCharacter.Value == '[')
+            {
+                throw new NotImplementedException();
+            }
+
+            StringBuilder word = new StringBuilder();
+
+           // var index = bufferPhraseIndex;
+            char character = default;
+
+            while (character != ' ' && bufferPhraseNextCharacterIndex < bufferPhrase.Phrase.Length)
+            {
+                character = NextCharacter.Value;
+                bufferPhraseNextCharacterIndex++;
+
+                if (character == '[')
+                {
+                   // break;
+                }
+
+                word.Append(character);
+            }
+
+            // = index;
+            return word.ToString();
+        }
+
+        internal void MoveNextCharacterToLive()
+        {
+            char? c = NextCharacter;
+            if (c.HasValue)
+            {
+                livePhrase.Append(c);
+                bufferPhraseNextCharacterIndex++;
+            }
+        }
+
+        internal void MoveNextWordToLive()
+        {
+            string word = GetNextWord();
+            livePhrase.Append(word);
+        }
+
+        internal void ReplaceAllToLive()
+        {
+            string text = bufferPhrase.Phrase.ToString();
+            livePhrase.Clear().Append(text);
+            bufferPhraseNextCharacterIndex = bufferPhrase.Phrase.Length + 1;
+        }
+
+       // internal v
+
+
+        //private char GetCharacter()
+        //{
+        //    char c = text[currentIndex];
+        //    return c;
+        //}
+    }
+
 }
