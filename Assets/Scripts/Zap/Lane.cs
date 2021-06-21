@@ -78,13 +78,16 @@ namespace NoteSystem
                 {
                  //   Debug.Log(nextNoteHitQuality);
                     ProcessHitOnNote(notesInChannel[0], nextNoteHitQuality);
+                    notesInChannel.RemoveAt(0);
+                    Debug.Log("processed hit on:" + notesInChannel[0].word);
                 }
 
             }
         }
         void ProcessHitOnNote(WordNote note, HitQuality quality)
         {
-          //  Debug.Log(note.word);
+            //  Debug.Log(note.word);
+            
             if (note.GetClimaxBeat() < Rythm.RythmEngine.Instance.CurrentBeat)
             {
                 NDI.AddWord(note.word, note.GetClimaxBeat());
@@ -94,6 +97,7 @@ namespace NoteSystem
                 NDI.AddWord(note.word);
             }
             note.Remove();
+
         }
 
     }

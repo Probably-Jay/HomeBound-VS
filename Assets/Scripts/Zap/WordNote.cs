@@ -37,8 +37,8 @@ namespace NoteSystem {
             {
                 this.transform.position = startPos.position;
             }
-            canvas = GameObject.Find("Canvas");
-            InitialiseWordUI();
+            //canvas = GameObject.Find("Canvas");
+            //InitialiseWordUI();
 
         }
 
@@ -69,7 +69,7 @@ namespace NoteSystem {
             startPos = lane.spawnPoint.transform;
             endPos = lane.hitZone.transform;
             this.transform.position = startPos.position;
-            canvas = GameObject.Find("Canvas");
+            canvas = GameObject.Find("CoolCanvas");
             InitialiseWordUI();
         }
         public float TargetBeat()

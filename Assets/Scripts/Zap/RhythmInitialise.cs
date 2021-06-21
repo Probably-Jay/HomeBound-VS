@@ -83,19 +83,20 @@ namespace RhythmSectionLoading {
             noteSheetLines = text.text.Split('\n');
             foreach(string line in noteSheetLines)
             {
-                Debug.Log(line);
-                string hitbeatString = line.Split(',')[0];
-                
-                string laneString = line.Split(',')[1];
-                string temp1 = line.Remove(0, line.IndexOf(',')+1);
-                Debug.Log(temp1);
-                string word = temp1.Remove(0, temp1.IndexOf(',')+1);
+                //Debug.Log(line); //40,1,hello
+                string hitbeatString = line.Split(',')[0]; //40
+                string laneString = line.Split(',')[1];//1
+                string temp1 = line.Remove(0, line.IndexOf(',')+1);//1,hello
+                //Debug.Log(temp1);
+                string word = temp1.Remove(0, temp1.IndexOf(',')+1);//hello
+                word = word.Replace("\r", "");
+                //Debug.Log(word);
                 notes.Add(new Note());
                 float hitBeat = float.Parse(hitbeatString);
                 int lane = int.Parse(laneString);
                 notes[notes.Count - 1].Initialise(hitBeat, lane, word);
-                Debug.Log(word);
-                Debug.Log("Note Read: "+hitbeatString + "," + laneString + "," + word);
+                //Debug.Log(word);
+                //Debug.Log("Note Read: "+hitbeatString + "," + laneString + "," + word);
             }
 
         }
