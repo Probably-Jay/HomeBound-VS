@@ -1,0 +1,11 @@
+38,0,It's
+38.25,1,a
+38.5,2,beautiful
+39,0,day
+39.75,0,outside
+40.25,1,birds
+40.5,2,are
+41,0,singing
+41.25,1,flowers
+41.5,2,are
+41.75,0,blooming

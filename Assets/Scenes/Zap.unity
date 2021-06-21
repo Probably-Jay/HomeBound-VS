@@ -570,12 +570,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc5aee1dfad89b48af60340c2f45699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notes: {fileID: 0}
+  noteSheet: {fileID: 4900000, guid: 67b5e05f04cfd6d4db6f137c05f4e246, type: 3}
   song: {fileID: 0}
   lanes:
   - {fileID: 652919171}
   - {fileID: 2105153621}
   - {fileID: 1179561617}
+  leadTime: 5
 --- !u!114 &1085155048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,11 +1245,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 313503892}
     m_Modifications:
-    - target: {fileID: 7354923957171318923, guid: 8dc8e4501112b84478cfbb8dbe3412f6,
-        type: 3}
-      propertyPath: intialiseRythmEngine
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1180302354614811286, guid: e26c1c22dc37bc345a27b441bca6f4fc,
         type: 3}
       propertyPath: m_Name
@@ -1363,6 +1359,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354923957171318923, guid: 8dc8e4501112b84478cfbb8dbe3412f6,
+        type: 3}
+      propertyPath: intialiseRythmEngine
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e26c1c22dc37bc345a27b441bca6f4fc, type: 3}
