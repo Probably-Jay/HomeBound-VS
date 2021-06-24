@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\DialogueBoxOpener.cs" />
     <Compile Include="Assets\DialogueBoxTester.cs" />
+    <Compile Include="Assets\Scripts\Interactables\Interactable.cs" />
     <Compile Include="Assets\Scripts\Zap\HitZone.cs" />
     <Compile Include="Assets\Scripts\Zap\WordNote.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
