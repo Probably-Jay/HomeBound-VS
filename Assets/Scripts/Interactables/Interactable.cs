@@ -116,11 +116,11 @@ namespace Interactables
 
             Vector2 usToPlayer = (playerObject.transform.position - transform.position).normalized;
 
-            Vector2 playerFacing = player.Forward;
+            Vector2 playerFacing = player.FacingDirection;
 
             var allignment = Vector2.Dot(usToPlayer, playerFacing);
 
-            return allignment < -0.75; // if us to player is oposite direction to player is facing
+            return allignment < -0.9f; // if us to player is oposite direction to player is facing
         }
 
     }
@@ -128,5 +128,5 @@ namespace Interactables
 
 class PlayerFaker 
 {
-    public Vector2 Forward;
+    public Vector2 FacingDirection { get; } 
 }
