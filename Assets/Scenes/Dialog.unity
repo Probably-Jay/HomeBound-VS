@@ -545,7 +545,7 @@ PrefabInstance:
     - target: {fileID: 2533711652668772420, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: m_Name
-      value: Panel
+      value: DialogueBox
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652668772421, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}

@@ -9,12 +9,18 @@ namespace SingletonManagement
     /// </summary>
     public class SingletonInitialiser : MonoBehaviour
     {
-        [Header("Prefabs of singleton objects")]
         [SerializeField] bool instantiateSingletonsInThisScene = true;
       
+        [Header("Prefabs of singleton objects")]
         //[SerializeField] GameObject eventsManager;
+        [Header("Rythm")]
         [SerializeField] GameObject rythmEngine;
-        [SerializeField] bool intialiseRythmEngine;
+        [SerializeField] bool initaliseRythmEngine;
+
+        [Header("Context")]
+        [SerializeField] GameObject contextController;
+        [SerializeField] bool initaliseContextController;
+
 
         private void Awake()
         {
@@ -26,8 +32,12 @@ namespace SingletonManagement
             if (!instantiateSingletonsInThisScene) return;
 
             // create all singletons
-            if(intialiseRythmEngine)
+
+            if(initaliseRythmEngine)
                 CreateSingleon<Rythm.RythmEngine>(rythmEngine);
+
+            if (initaliseContextController)
+                CreateSingleon<Game.GameContextController>(contextController);
         }
 
         private void CreateSingleon<T>(GameObject singletonPrefab) where T : Singleton<T>

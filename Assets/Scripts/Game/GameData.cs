@@ -10,6 +10,7 @@ namespace Game
         ,Test
     }
 
+    
 
     public class GameData : MonoBehaviour
     {

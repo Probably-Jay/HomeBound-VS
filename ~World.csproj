@@ -626,6 +626,10 @@
       <Project>{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
+    <ProjectReference Include="~Game.csproj">
+      <Project>{7D78C81D-0FD2-D4F7-4933-6287F7CF5652}</Project>
+      <Name>~Game</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>

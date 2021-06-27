@@ -25,6 +25,8 @@ public class DialogueBoxOpener : MonoBehaviour
     private void CloseBox()
     {
         dialogeBox.Close();
+        Game.GameContextController.Instance.ReturnToPreviousContext();
+
     }
 
     private void Awake()
@@ -43,5 +45,6 @@ public class DialogueBoxOpener : MonoBehaviour
     {
         dialogeBoxParent.SetActive(true);
         dialogeBox.BeginConversation(id);
+        Game.GameContextController.Instance.PushContext(Game.Context.Dialogue);
     }
 }

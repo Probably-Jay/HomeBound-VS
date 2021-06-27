@@ -146,7 +146,7 @@ namespace Dialogue
             beenQueuedThisConversation = true;
             phrase.SetQueued();
 
-            if ((RythmEngine.TryInstance?.InRythmSection ?? false) && onBeat.HasValue)
+            if ((RythmEngine.TryInstance?.PlayingMusic ?? false) && onBeat.HasValue)
             {
                 QueuePhraseOnBeat(phrase, onBeat.Value, forceContext);
                 return;
@@ -158,7 +158,7 @@ namespace Dialogue
 
         public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false)
         {
-            if ((RythmEngine.TryInstance?.InRythmSection ?? false) && onBeat.HasValue)
+            if ((RythmEngine.TryInstance?.PlayingMusic ?? false) && onBeat.HasValue)
             {
                 ProgressPhraseDirectlyOnbeat(speaker, onBeat.Value, forceContext);
                 return;
@@ -192,7 +192,7 @@ namespace Dialogue
         /// <param name="forceContext">Experimental, will only allow the word to be added within this instance of conversation</param>
         public void AddNewWordDirectly(string word, float? onBeat = null, bool forceContext = false)
         {
-            if ((RythmEngine.TryInstance?.InRythmSection ?? false) && onBeat.HasValue)
+            if ((RythmEngine.TryInstance?.PlayingMusic ?? false) && onBeat.HasValue)
             {
                 AddWordDirectlyOnbeat(word, onBeat.Value, forceContext);
                 return;
@@ -377,7 +377,8 @@ namespace Dialogue
 
         void SkipToInstantFill()
         {
-            StopCoroutine(fillingCoroutine);
+            if(fillingCoroutine != null)
+                StopCoroutine(fillingCoroutine);
             liveString.Clear();
             FillInstant();
         }

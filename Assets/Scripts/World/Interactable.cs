@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using System;
+using Game;
 
 namespace Interactables
 {
@@ -19,10 +20,12 @@ namespace Interactables
 
 
         TMP_Text UIDisplay;
+      // private bool keyPressed;
 
         public bool HasEvents => interactAction.GetPersistentEventCount() > 0;
         GameObject UIParentObject => UIDisplay.transform.parent.gameObject;
-        
+
+        bool canBeInteracted = true;
 
         private void Awake()
         {
@@ -32,25 +35,44 @@ namespace Interactables
             UIParentObject.SetActive(false);
         }
 
-        /*
-        private void OnTriggerEnter2D(Collider2D collision)
+
+        private void OnEnable()
         {
-            if (!collision.CompareTag("Player"))
-            {
-                return;
-            }
-
-            if (!PlayerFacingUs(collision.gameObject))
-            {
-                return;
-            }
-
-            ActivateUI();
+            Game.GameContextController.Instance.OnContextChange += HandleGameContextChange;
         }
 
+        private void OnDisable()
+        {
+            if (GameContextController.InstanceExists)
+            {
+                Game.GameContextController.Instance.OnContextChange -= HandleGameContextChange;
+            }
+        }
 
+        private void HandleGameContextChange(Context current, Context _)
+        {
+            switch (current)
+            {
+                case Context.Explore:
+                    ActivateInteractable();
+                    break;
+                case Context.Dialogue:
+                    DeactivateInteractable();
+                    break;
+                case Context.Rythm:
+                    DeactivateInteractable();
+                    break;
+            }
+        }
 
-    */
+        private void ActivateInteractable() => canBeInteracted = true;
+
+        private void DeactivateInteractable()
+        {
+            DeactivateUI();
+            canBeInteracted = false;
+        }
+
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (!collision.CompareTag("Player"))
@@ -60,9 +82,22 @@ namespace Interactables
             DeactivateUI();
         }
 
+        private void Update()
+        {
+            if (canBeInteracted && Input.GetKeyDown(interactKey))
+            {
+                HandleInteraction();
+            }
+        }
 
         private void OnTriggerStay2D(Collider2D collision)
         {
+            if (!canBeInteracted)
+            {
+                return;
+            }
+
+
             if (!collision.CompareTag("Player"))
             {
                 return;
@@ -76,11 +111,6 @@ namespace Interactables
 
             ActivateUI();
 
-            if (Input.GetKeyDown(interactKey))
-            {
-                HandleInteraction();
-            }
-
         }
 
         private void HandleInteraction()
@@ -90,6 +120,8 @@ namespace Interactables
                 Debug.LogWarning("Cannot invoke interactable as it has no interactions associated with it");
                 return;
             }
+
+
             interactAction.Invoke();
             DeactivateUI();
         }
@@ -107,6 +139,7 @@ namespace Interactables
 
         private void DeactivateUI()
         {
+          //  Debug.Log("deactivated");
             UIParentObject.SetActive(false);
         }
 

@@ -14,7 +14,7 @@ namespace Rythm
     {
         new public static RythmEngine Instance => Singleton<Rythm.RythmEngine>.Instance;
 
-        public bool InRythmSection { get; private set; } = false;
+        public bool PlayingMusic { get; private set; } = false;
 
         private AudioSource AudioSource { get; set; }
 
@@ -31,7 +31,7 @@ namespace Rythm
             AudioSource = GetComponent<AudioSource>();
             SetTrack();
 
-            DebugDetails();
+           
             if (playImediatley)
             {
                 Play();
@@ -40,9 +40,10 @@ namespace Rythm
 
         private void Play()
         {
+            DebugDetails();
             AudioSource.Play();
             AudioSource.timeSamples = music.beginAtSample;
-            InRythmSection = true;
+            PlayingMusic = true;
         }
 
         private void SetTrack()

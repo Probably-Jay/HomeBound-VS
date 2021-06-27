@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Game\GameContextController.cs" />
     <Compile Include="Assets\Scripts\Game\GameData.cs" />
     <None Include="Assets\Scripts\Game\~Game.asmdef" />
     <Reference Include="UnityEngine">
@@ -617,6 +618,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="~Core.csproj">
+      <Project>{354EAF47-F608-D8B1-D75E-1AFE6B6D692A}</Project>
+      <Name>~Core</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>

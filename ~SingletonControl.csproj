@@ -629,6 +629,10 @@
       <Project>{A405DFF5-69F4-D895-29C6-2000F8AF12A1}</Project>
       <Name>Rythm</Name>
     </ProjectReference>
+    <ProjectReference Include="~Game.csproj">
+      <Project>{7D78C81D-0FD2-D4F7-4933-6287F7CF5652}</Project>
+      <Name>~Game</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>

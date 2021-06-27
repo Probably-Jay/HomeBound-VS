@@ -54,6 +54,8 @@ namespace Dialogue
 
         public void BeginConversation(string conversationID)
         {
+            Debug.Log($"StartingConversation { conversationID}");
+
             if (!conversationHandler.Conversations.ContainsKey(conversationID))
             {
                 throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}");

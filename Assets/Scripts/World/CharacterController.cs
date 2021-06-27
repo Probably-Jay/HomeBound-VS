@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Game;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +14,8 @@ namespace Overworld {
     }
     public class CharacterController : MonoBehaviour
     {
+        [SerializeField] bool canWalk = true;
+
         bool isWalking = false;
         WalkingDirection direction;
         [SerializeField] bool gridBasedMovement;
@@ -48,6 +52,40 @@ namespace Overworld {
         // === TWO KEYBOARD EDGECASE EXPLANATION END ====
 
         // lots of love, Zap xx
+
+        private void OnEnable()
+        {
+            Game.GameContextController.Instance.OnContextChange += HandleGameContextChange;
+        }
+
+        private void OnDisable()
+        {
+            if (GameContextController.InstanceExists)
+            {
+                Game.GameContextController.Instance.OnContextChange -= HandleGameContextChange;
+            }
+        }
+
+        private void HandleGameContextChange(Context current, Context _)
+        {
+            switch (current)
+            {
+                case Context.Explore:
+                    ActivateMovement();
+                    break;
+                case Context.Dialogue:
+                    DeactivateMovement();
+                    break;
+                case Context.Rythm:
+                    DeactivateMovement();
+                    break;
+            }
+        }
+
+        private void ActivateMovement() => canWalk = true;
+
+        private void DeactivateMovement() => canWalk = false;
+
         void Start()
         {
             movementKeys.Clear();
@@ -62,6 +100,13 @@ namespace Overworld {
         // Update is called twice per frame
         void Update()
         {
+            if (!canWalk)
+            {
+                dirStack.Clear();
+                isWalking = false;
+                return;
+            }
+
             //check and update the dirStack based on keys pressed/released
             CheckKey(WalkingDirection.Up);
             CheckKey(WalkingDirection.Down);
