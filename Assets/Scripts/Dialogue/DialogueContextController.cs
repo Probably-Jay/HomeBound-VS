@@ -111,8 +111,8 @@ namespace Dialogue
 
         public void AddColourRTT(int colour)
         {
-            string hex = colour.ToString("X");
-            string tag = $"<color = #{hex}>";
+            string hex = colour.ToString("X6");
+            string tag = $"<color=#{hex}>";
             dialogueTyper.AddRichTextTag(tag);
         }
 
