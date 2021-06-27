@@ -1,6 +1,7 @@
-id: test_5
+id: test_5, mode: 2
 [Me]: hello there
 [Stranger]: hi...
 [Me]: what's your name?
-[Stranger]: it's <color="red">James</color>, pleased to meet you
+[Stranger]: it's [mode: 1]<color="red">James</color>, pleased to meet you
 [James]: will you be staying long?
+[end]

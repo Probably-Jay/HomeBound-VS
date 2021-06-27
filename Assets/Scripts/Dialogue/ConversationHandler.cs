@@ -50,7 +50,7 @@ namespace Dialogue {
                 }
                 catch (System.Exception e)
                 {
-                    throw new DialogueParsingException($"In folder: {folder}, file: {conversationText.Key}: {e.Message}");
+                    throw new DialogueParsingException($"In folder: {folder}, file: {conversationText.Key}: {e.Message}: {e.StackTrace}");
                 }
 
                 Conversations.Add(conversation.conversationID, conversation);

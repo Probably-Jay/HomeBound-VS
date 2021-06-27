@@ -9,6 +9,8 @@ namespace Dialogue
     { 
         None
         ,Normal
+        ,Word
+        ,Instant
         ,Encounter_OpponentSpeak
         ,Encounter_PlayerSpeak
     }
@@ -46,11 +48,26 @@ namespace Dialogue
             dialogueMode = mode;
             switch (mode)
             {
+                case DialogueMode.None:
+                    Debug.LogWarning($"{nameof(SetDialougeMode)} called with {DialogueMode.None}, no changes made");
+                    break;
                 case DialogueMode.Normal:
                     dialogueTyper.OnBeat = false;
                     dialogueTyper.TypingMode = TypingMode.Character;
                     dialogueTyper.StandardTypingDelay = 0.04f;
                     dialogueTyper.RandomTypingDelayDelta = 0.02f;
+
+                    break;
+                case DialogueMode.Word:
+                    dialogueTyper.OnBeat = false;
+                    dialogueTyper.TypingMode = TypingMode.Word;
+                    dialogueTyper.DisplayActionsPerBeat = 2;
+
+                    break;
+                case DialogueMode.Instant:
+                    dialogueTyper.OnBeat = false;
+                    dialogueTyper.TypingMode = TypingMode.Instant;
+                    dialogueTyper.DisplayActionsPerBeat = 1;
 
                     break;
                 case DialogueMode.Encounter_OpponentSpeak:
@@ -91,6 +108,13 @@ namespace Dialogue
 
         public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false) => dialogueTyper.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
         public void AddWordDirectly(string text, float? onBeat = null, bool forceContext = false) => dialogueTyper.AddNewWordDirectly(text, onBeat, forceContext);
+
+        public void AddColourRTT(int colour)
+        {
+            string hex = colour.ToString("X");
+            string tag = $"<color = #{hex}>";
+            dialogueTyper.AddRichTextTag(tag);
+        }
 
         //// Start is called before the first frame update
         //void Start()

@@ -104,6 +104,37 @@ namespace Tests
             Assert.AreEqual(body1, body);
         }
 
+        [Test]
+        public void ParseAll()
+        {
+            foreach (var folder in Helper.Utility.GetEnumValues<Game.TextAssetFolders>())
+            {
+
+                dialogueLoader.UnloadAll();
+
+                if(folder == Game.TextAssetFolders.None)
+                {
+                    continue;
+                }
+
+                dialogueLoader.Load(folder);
+
+                foreach (var conversationText in dialogueLoader.RawFileData)
+                {
+                    Conversation conversation;
+                    try
+                    {
+                        conversation = dialogueParser.TryParse(conversationText.Value);
+
+                    }
+                    catch (System.Exception e)
+                    {
+                        throw new DialogueParsingException($"In folder: {folder}, file: {conversationText.Key}: {e.Message}");
+                    }
+
+                }
+            }
+        }
 
         [TearDown]
         public void CleanUp()

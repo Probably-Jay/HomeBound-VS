@@ -50,28 +50,47 @@ namespace Dialogue
             {
                 string line = lines[i];
 
-                var header = ParseHeader(line,lineNumber: i); 
+                var header = ParseHeader(line, lineNumber: i);
 
                 if (header == null)
                 {
                     break;
                 }
 
-                string body = ParseBody(line, lineNumber: i);
-
-                string speaker = header["name"].Value;
-
-                var phrase = new DialoguePhrase(body, speaker);
-
-                SetActions(header, phrase, conversation);
-
-                conversation.dialoguePhrases.Add(phrase);
+                ParseLineBody(conversation, i, line, header);
             }
 
             return conversation;
 
 
         }
+
+        private void ParseLineBody(Conversation conversation, int i, string line, GroupCollection header)
+        {
+            string body = ParseBody(line, lineNumber: i + 1);
+
+            var phrase = new DialoguePhrase();
+
+            if (body.Contains('['))
+            {
+                body = ParseInlineInstructions(conversation, phrase, body, i, header);
+            }
+
+            string speaker = header["name"].Value;
+
+
+            phrase.PhraseID = conversation.conversationID +"."+ i.ToString();
+            phrase.Speaker = speaker;
+            phrase.Phrase = new System.Text.StringBuilder(body);
+
+
+
+            SetActions(header, phrase, conversation);
+
+            conversation.dialoguePhrases.Add(phrase);
+        }
+
+    
 
         private void SetActions(GroupCollection header, DialoguePhrase phrase, Conversation conversation)
         {
@@ -84,25 +103,19 @@ namespace Dialogue
 
         private DialogueMode GetMode(string value)
         {
-            switch (value)
+            if(value == "")
             {
-                case "":
-                    return DialogueMode.None;
-                case "0":
-                    return DialogueMode.Normal;
-                case "1":
-                    return DialogueMode.Encounter_OpponentSpeak;
-                case "2":
-                    return DialogueMode.Encounter_PlayerSpeak;
-                default:
-                    throw new Exception("Mode provided not valid");
+                return DialogueMode.None;
             }
+
+            return (DialogueMode)int.Parse(value);  
+           
         }
 
         private GroupCollection ParseMetadata(string line)
         {
 
-            Match group = Regex.Match(line, @"^\s*id: (?<id>[ \w]+)(|, mode: (?<mode>[ \w]+))\s?$");
+            Match group = Regex.Match(line, @"^\s*id: (?<id>[ _\w]+)(|, mode: (?<mode>[\d]+))\s?$");
 
             if (!group.Success)
             {
@@ -127,6 +140,11 @@ namespace Dialogue
         private GroupCollection ParseHeader(string line, int lineNumber)
         {
             if(line == "")
+            {
+                return null;
+            }
+
+            if (Regex.IsMatch(line, @"^\[end\].*"))
             {
                 return null;
             }
@@ -163,18 +181,112 @@ namespace Dialogue
 
             line = line.Substring(header.Length);
 
-            // todo find \r manually and remove it
-
-            Match bodyGroup = Regex.Match(line, @"^[ \w',\.\?\!<>=""/]+"); // this will fail silently if does not reach end
+            Match bodyGroup = Regex.Match(line, @"^(?<body>[ \w',\.\?\!<>=""\/\(\)\[\]\:]+)\r$");  
 
             if (!bodyGroup.Success)
             {
                 throw new System.Exception($"Phrase {lineNumber} body malformed");
             }
 
-            return bodyGroup.Value;
+            if (!bodyGroup.Groups["body"].Success)
+            {
+                throw new System.Exception($"Phrase {lineNumber} body cannot be parsed");
+            }
+
+            string body = bodyGroup.Groups["body"].Value;
+           
+
+
+            return body;
         }
 
 
+        // public readonly string[] instructions = { "mode", "colour" };
+
+        enum Instructions
+        {
+            mode
+            ,colour
+        }
+
+        private string ParseInlineInstructions(Conversation conversation, DialoguePhrase phrase, string body, int lineNumber, GroupCollection header)
+        {
+            if (body.Count((c) => c == '[') != body.Count((c) => c == ']'))
+            {
+                throw new Exception($"Phrase {lineNumber} inline instructions malformed");
+            }
+
+            MatchCollection instructionsGroups = Regex.Matches(body, @"\[([ \w\:]+)\]");
+
+
+            int matchIndex = 0;
+            foreach (Match match in instructionsGroups)
+            {
+                if (!match.Success)
+                {
+                    throw new Exception($"Phrase {lineNumber} instruction group {matchIndex} is malformed");
+                }
+
+
+
+                // \[(|mode: (\d))(|, *colour: (\d))\]
+                bool found = false;
+                foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
+                {
+                    var instruction = Regex.Match(match.Value, $@"\[(|{iName}: (?<{iName}>[\d]+))\]");
+
+                    if (!instruction.Success)
+                    {
+                        continue;
+                        //throw new Exception($"Phrase {lineNumber} instruction group {matchIndex} cannot be parsed");
+                    }
+
+                    if (instruction.Groups[(int)iName].Value != "")
+                    {
+                        Action instructionAction = GetInstruction(conversation, iName, instruction);
+
+                        phrase.inlineInstructions.Add(phrase.PhraseID + "." + matchIndex, instructionAction);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    throw new Exception($"Phrase {lineNumber} instruction group {matchIndex} cannot be parsed");
+                }
+
+                var escapedPattern = new Regex(Regex.Escape(match.Value));
+                body = escapedPattern.Replace(body, $"[{matchIndex}]", 1);
+
+                matchIndex++;
+            } 
+
+            return body;
+
+        }
+
+        private Action GetInstruction(Conversation conversation, Instructions iName, Match instruction)
+        {
+            switch (iName)
+            {
+                case Instructions.mode:
+                    {
+                        string value = instruction.Groups[iName.ToString()].Value;
+                        var v = int.Parse(value);
+                        Action changeMode = () => conversation.SetDialougeMode((DialogueMode)v);
+                        return changeMode;
+                    }
+                case Instructions.colour:
+                    {
+                        string value = instruction.Groups[iName.ToString()].Value;
+                        var v = int.Parse(value, System.Globalization.NumberStyles.HexNumber);
+                        Action changeColour = () => conversation.SetColour(v);
+                        return changeColour;
+                    }
+                default: throw new Exception("how did we get here");
+            }
+
+        }
     }
 }

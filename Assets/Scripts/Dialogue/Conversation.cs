@@ -77,8 +77,12 @@ namespace Dialogue
         public long context;
 
         public event Action<DialogueMode> OnSetDialogueMode;
-
         public void SetDialougeMode(DialogueMode mode) => OnSetDialogueMode?.Invoke(mode);
+
+        public event Action<int> OnSetColour;
+        public void SetColour(int colour) => OnSetColour?.Invoke(colour);
+
+        
     }
 
 
