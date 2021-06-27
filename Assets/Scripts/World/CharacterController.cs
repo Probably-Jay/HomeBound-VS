@@ -26,6 +26,8 @@ namespace Overworld {
         List<WalkingDirection> dirStack = new List<WalkingDirection> { };
         WalkingDirection currentDirection;
 
+        public Vector2 FacingDirection => DirectionToVector(direction);
+
 
         // This character controller handles both grid based and non grid based movements for a top-down 2d game.
         // It's very long, most of this is for handling multiple inputs, as our game is a little explorey, I thought I'd try to handle
@@ -166,7 +168,7 @@ namespace Overworld {
             }
 
         }
-#
+
         //this function checks if the player has passed the centre of a given cell, in a given direction.
         private bool HasPassedGridCentre(WalkingDirection direction,Vector3Int cell)
         {
