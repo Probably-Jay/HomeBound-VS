@@ -394,7 +394,10 @@ namespace Dialogue
 
         void SkipToInstantFill()
         {
-            StopCoroutine(fillingCoroutine);
+            if(fillingCoroutine != null)
+            {
+                StopCoroutine(fillingCoroutine);
+            }
             // liveString.Clear();
             FillInstant();
            // FillRestInstant(bufferPhrase);

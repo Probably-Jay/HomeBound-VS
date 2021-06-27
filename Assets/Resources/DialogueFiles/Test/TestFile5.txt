@@ -1,4 +1,4 @@
-id: test_5, mode: 2
+id: test_5, mode: 1
 [Me]: hello there
 [Stranger]: hi...
 [Me]: what's your name?
