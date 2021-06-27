@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c2713ecfcccf74d8d7dfce2b25c4f1, type: 3}
   m_Name: Meg
   m_EditorClassIdentifier: 
-  song: {fileID: 0}
-  notes: {fileID: 0}
+  song: {fileID: 11400000, guid: 01f67dc8816eb8c46a869c67b9826ab8, type: 2}
+  notes: {fileID: 4900000, guid: 67b5e05f04cfd6d4db6f137c05f4e246, type: 3}

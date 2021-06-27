@@ -630,13 +630,20 @@
   <ItemGroup>
     <Compile Include="Assets\DialogueBoxOpener.cs" />
     <Compile Include="Assets\DialogueBoxTester.cs" />
+    <Compile Include="Assets\Scripts\Zap\HitDetection.cs" />
     <Compile Include="Assets\Scripts\Zap\HitZone.cs" />
+    <Compile Include="Assets\Scripts\Zap\Lane.cs" />
+    <Compile Include="Assets\Scripts\Zap\NoteDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Zap\NoteSpawner.cs" />
+    <Compile Include="Assets\Scripts\Zap\RhythmInitialise.cs" />
     <Compile Include="Assets\Scripts\Zap\WordNote.cs" />
+    <Compile Include="Assets\Scripts\Zap\WordUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\DialogueFiles\Test\TestFile3.txt" />
     <None Include="Assets\Resources\DialogueFiles\Test\TestFile4.txt" />
     <None Include="Assets\Resources\DialogueFiles\Test\TestFile5.txt" />
+    <None Include="Assets\Scripts\Zap\notesheet.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

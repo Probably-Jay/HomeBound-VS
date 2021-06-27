@@ -67,6 +67,7 @@ namespace NoteSystem
             if (notesInChannel.Count > 0)
             {
                 HitQuality nextNoteHitQuality = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat);
+
                 if (nextNoteHitQuality == HitQuality.Miss)
                 {
                     //process miss here
@@ -78,8 +79,8 @@ namespace NoteSystem
                 {
                  //   Debug.Log(nextNoteHitQuality);
                     ProcessHitOnNote(notesInChannel[0], nextNoteHitQuality);
+                 //   Debug.Log("processed hit on:" + notesInChannel[0].word);
                     notesInChannel.RemoveAt(0);
-                    Debug.Log("processed hit on:" + notesInChannel[0].word);
                 }
 
             }

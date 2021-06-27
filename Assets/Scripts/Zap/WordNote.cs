@@ -15,7 +15,7 @@ namespace NoteSystem {
         HitZone myHitZone;
         [SerializeField] Lane lane;
         [SerializeField] public string word { get; private set; }
-        private GameObject canvas;
+        private Canvas canvas;
         [SerializeField] GameObject wordUIPrefab;
         WordUI wordUI;
 
@@ -49,7 +49,7 @@ namespace NoteSystem {
             // Debug.Log(Rythm.RythmEngine.Instance.CurrentBeat);
             this.transform.position = Vector3.LerpUnclamped(startPos.position, endPos.position, (float)((Rythm.RythmEngine.Instance.CurrentBeat - spawningBeat) / absoluteBeatsToHit));
         }
-        public void initialise(string passedWord, float hitBeat, Lane passedLane, float? spawnBeat = null)
+        public void Initialise(string passedWord, float hitBeat, Lane passedLane, Canvas canvas, float? spawnBeat = null)
         {
 
             if (spawnBeat.HasValue)
@@ -69,7 +69,7 @@ namespace NoteSystem {
             startPos = lane.spawnPoint.transform;
             endPos = lane.hitZone.transform;
             this.transform.position = startPos.position;
-            canvas = GameObject.Find("CoolCanvas");
+            this.canvas = canvas;
             InitialiseWordUI();
         }
         public float TargetBeat()
@@ -82,7 +82,7 @@ namespace NoteSystem {
         }
         private void InitialiseWordUI()
         {
-            GameObject tempWordUI = GameObject.Instantiate(wordUIPrefab, canvas.transform);
+            GameObject tempWordUI = GameObject.Instantiate(wordUIPrefab, canvas.gameObject.transform);
             wordUI = tempWordUI.GetComponent<WordUI>();
             wordUI.Initialise(word, this);
         }

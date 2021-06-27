@@ -175,6 +175,11 @@ namespace Rythm
         {
             //Debug.Log($"Queued event for beat {beat}");
 
+            if(beat < CurrentBeat)
+            {
+                Debug.LogError("Beat queued for the past");
+            }
+
             Action newEvent;
             if (queuedActions.TryGetValue(beat, out newEvent))
             {
