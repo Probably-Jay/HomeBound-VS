@@ -355,6 +355,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
+      propertyPath: typingMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
       propertyPath: nextPhraseKey
       value: 101
       objectReference: {fileID: 0}

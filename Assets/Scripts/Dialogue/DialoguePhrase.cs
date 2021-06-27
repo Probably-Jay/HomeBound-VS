@@ -20,7 +20,7 @@ namespace Dialogue
 
         [SerializeField] public event Action onTrigger;
 
-        public Dictionary<string, Action> inlineInstructions = new Dictionary<string, Action>();
+        private Dictionary<string, Action> InlineInstructions { get; } = new Dictionary<string, Action>();
 
         public string PhraseID { get; set; }
         public StringBuilder Phrase { get => phrase;  set => phrase = value; }
@@ -47,6 +47,27 @@ namespace Dialogue
 
             phraseContextID = GlobalPhraseContextID++;
         }
+        private string GetKey(int matchIndex) => PhraseID + "." + matchIndex;
+
+        public void AddInstruction(int matchIndex, Action instructionAction)
+        {
+            InlineInstructions.Add(GetKey(matchIndex), instructionAction);
+        }
+
+
+        public void InvokeInstrunction(int index)
+        {
+            string key = GetKey(index);
+            if (!InlineInstructions.ContainsKey(key))
+            {
+                Debug.LogError($"Phrase {PhraseID} does not contain key {key}");
+                return;
+            }
+
+            InlineInstructions[key]?.Invoke();
+        }
+
+
 
         public void TriggerActions() => onTrigger?.Invoke();
 
@@ -54,8 +75,13 @@ namespace Dialogue
 
         public void SetQueued() => Queued = true;
         public void UnQueue() => Queued = false;
-        
 
-
+        public void CopyInstructions(DialoguePhrase otherPhrase)
+        {
+            foreach (var item in otherPhrase.InlineInstructions)
+            {
+                InlineInstructions.Add(item.Key, item.Value);
+            }
+        }
     }
 }

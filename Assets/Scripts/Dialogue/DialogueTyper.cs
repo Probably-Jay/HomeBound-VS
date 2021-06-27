@@ -23,13 +23,9 @@ namespace Dialogue
         TMP_Text display;
         [SerializeField] TMP_Text nameOutdisplay;
 
-        //StringBuilder liveString = new StringBuilder();
 
-        BufferPhrase bufferLivePhrase = new BufferPhrase();
+        BufferAndLivePhrase bufferAndLivePhrase = new BufferAndLivePhrase();
 
-        // StringBuilder bufferString = new StringBuilder();
-
-      //  DialoguePhrase bufferPhrase = new DialoguePhrase();
 
         Queue<DialoguePhrase> dialogueQueue = new Queue<DialoguePhrase>();
 
@@ -128,7 +124,7 @@ namespace Dialogue
           //  bufferPhrase = new DialoguePhrase();
             //liveString.Clear();
 
-            bufferLivePhrase.Reset();
+            bufferAndLivePhrase.Reset();
 
             nameString = "";
 
@@ -222,8 +218,7 @@ namespace Dialogue
         /// <param name="tag"></param>
         public void AddRichTextTag(string tag)
         {
-            bufferLivePhrase.AddToLiveDirectly(tag);
-           // liveString.Append(tag);
+            bufferAndLivePhrase.AddToLiveDirectly(tag);
         }
     
         private void QueuePhrase(DialoguePhrase phrase, long? _context = null)
@@ -248,8 +243,8 @@ namespace Dialogue
                 Debug.LogWarning($"Word {word} out of context ({_context} vs {Context})");
                 return;
             }
-            bufferLivePhrase.Add(word);
-           // bufferPhrase.Phrase.Append(word);
+            bufferAndLivePhrase.bufferPhrase.AddDirectly(word);
+
         }
 
         private void AddWordDirectlyOnbeat(string word, float beat, bool forceContext)
@@ -271,7 +266,7 @@ namespace Dialogue
                 yield return null; // wait at least one frame
                 yield return WaitForInput();
 
-                if (bufferLivePhrase.StillMovingBufferToLive)
+                if (bufferAndLivePhrase.bufferPhrase.StillMovingBufferToLive)
                 {
                     SkipToInstantFill();
 
@@ -307,7 +302,7 @@ namespace Dialogue
 
             InvokePhraseInitialActions(phrase);
 
-            bufferLivePhrase.SetPhrase(phrase);
+            bufferAndLivePhrase.bufferPhrase.SetPhrase(phrase);
             
             SetSpeaker(phrase.Speaker);
         }
@@ -319,14 +314,14 @@ namespace Dialogue
 
         private void ClearCurrentPhrase()
         {
-            bufferLivePhrase.Reset();
+            bufferAndLivePhrase.Reset();
         }
 
         private void InvokePhraseInitialActions(DialoguePhrase phrase) => phrase.TriggerActions();
 
         private void UpdateDisplay()
         {
-            display.text = bufferLivePhrase.liveText;
+            display.text = bufferAndLivePhrase.liveText;
             nameOutdisplay.text = nameString;
         }
 
@@ -352,16 +347,16 @@ namespace Dialogue
             {
                 yield return  StartCoroutine(FillDialogeBox());
 
-                if(!bufferLivePhrase.StillMovingBufferToLive)
+                if(!bufferAndLivePhrase.bufferPhrase.StillMovingBufferToLive)
                 {
-                    yield return new WaitUntil(() => !bufferLivePhrase.StillMovingBufferToLive);
+                    yield return new WaitUntil(() => !bufferAndLivePhrase.bufferPhrase.StillMovingBufferToLive);
                 }
             }
         }
 
         IEnumerator FillDialogeBox()
         {
-            while (bufferLivePhrase.StillMovingBufferToLive)
+            while (bufferAndLivePhrase.bufferPhrase.StillMovingBufferToLive)
             {
 
                 if (OnBeat)
@@ -398,29 +393,29 @@ namespace Dialogue
             {
                 StopCoroutine(fillingCoroutine);
             }
-            // liveString.Clear();
+        
             FillInstant();
            // FillRestInstant(bufferPhrase);
         }
 
         void FillInstant()
         {
-            bufferLivePhrase.ReplaceAllToLive();
+            bufferAndLivePhrase.MoveAllRemainingTextToLive();
         }     
 
         void FlowWordWhole()
         {
-            bufferLivePhrase.MoveNextWordToLive();
+            bufferAndLivePhrase.MoveNextWordToLive();
         }
 
         void FlowCharacterBeatless()
         {
-            bufferLivePhrase.MoveNextCharacterToLive();
+            bufferAndLivePhrase.MoveNextCharacterToLive();
         }
 
         IEnumerator FlowWordByCharacter()
         {
-            string word = bufferLivePhrase.GetNextWord();
+            string word = bufferAndLivePhrase.bufferPhrase.GetNextWord();
             yield return FlowCharacterOnbeat(word, beatsToFill: 1/DisplayActionsPerBeat, spaceWordFillsInBeat: SpaceWordByCharacterFillsInBeat);
         }
 
@@ -448,7 +443,7 @@ namespace Dialogue
 
                 // todo parse instructions
 
-                bufferLivePhrase.AddToLiveDirectly(character);
+                bufferAndLivePhrase.AddToLiveDirectly(character);
 
                 if ((dt -= durationOfCharacter) > 0)
                 {
@@ -479,118 +474,156 @@ namespace Dialogue
     }
 
 
-    class BufferPhrase
+    internal class BufferAndLivePhrase
     {
-        int bufferPhraseNextCharacterIndex = 0;
-        DialoguePhrase bufferPhrase = new DialoguePhrase();
-//        string BufferString { get { return bufferPhrase.Phrase.ToString(); } };
+        public readonly BufferPhrase bufferPhrase =  new BufferPhrase();
+        public string liveText => livePhrase.ToString(); 
 
-        StringBuilder livePhrase = new StringBuilder();
+        readonly StringBuilder livePhrase = new StringBuilder();
 
-        internal string liveText => livePhrase.ToString();
 
-       // public bool StillMovingBufferToLive => livePhrase.Length < bufferPhrase.Phrase.Length;
-        public bool StillMovingBufferToLive => bufferPhraseNextCharacterIndex < bufferPhrase.Phrase.Length;
+        public void AddToLiveDirectly(string str) => livePhrase.Append(str);
+        public void AddToLiveDirectly(char c) => livePhrase.Append(c);
 
-        internal void Add(string word) => bufferPhrase.Phrase.Append(word);
 
-        internal void AddToLiveDirectly(string str) => livePhrase.Append(str);
-        internal void AddToLiveDirectly(char c) => livePhrase.Append(c);
 
-        private char? NextCharacter
+        public void Reset()
         {
-            get
-            {
-                if (!StillMovingBufferToLive)
-                    return null;
-                return bufferPhrase.Phrase[bufferPhraseNextCharacterIndex];
-            }
-        }
-
-        internal void Reset()
-        {
-            bufferPhrase = new DialoguePhrase();
+            bufferPhrase.Reset();
             livePhrase.Clear();
-
-            bufferPhraseNextCharacterIndex = 0;
-        }
-
-        internal void SetPhrase(DialoguePhrase phrase)
-        {
-            Add(phrase.Phrase.ToString());
-
-            foreach (var item in phrase.inlineInstructions)
-            {
-                bufferPhrase.inlineInstructions.Add(item.Key, item.Value);
-            }
         }
 
 
-        internal string GetNextWord()
+        public void MoveNextCharacterToLive()
         {
-            if (!NextCharacter.HasValue)
+            char? character = bufferPhrase.GetNextCharacter();
+            if (character.HasValue)
             {
-                return "";
-            }
-
-            if(NextCharacter.Value == '[')
-            {
-                throw new NotImplementedException();
-            }
-
-            StringBuilder word = new StringBuilder();
-
-           // var index = bufferPhraseIndex;
-            char character = default;
-
-            while (character != ' ' && bufferPhraseNextCharacterIndex < bufferPhrase.Phrase.Length)
-            {
-                character = NextCharacter.Value;
-                bufferPhraseNextCharacterIndex++;
-
-                if (character == '[')
-                {
-                   // break;
-                }
-
-                word.Append(character);
-            }
-
-            // = index;
-            return word.ToString();
-        }
-
-        internal void MoveNextCharacterToLive()
-        {
-            char? c = NextCharacter;
-            if (c.HasValue)
-            {
-                livePhrase.Append(c);
-                bufferPhraseNextCharacterIndex++;
+                livePhrase.Append(character);
             }
         }
 
-        internal void MoveNextWordToLive()
+        public void MoveNextWordToLive()
         {
-            string word = GetNextWord();
+            string word = bufferPhrase.GetNextWord();
             livePhrase.Append(word);
         }
 
-        internal void ReplaceAllToLive()
+        public void MoveAllRemainingTextToLive()
         {
-            string text = bufferPhrase.Phrase.ToString();
-            livePhrase.Clear().Append(text);
-            bufferPhraseNextCharacterIndex = bufferPhrase.Phrase.Length + 1;
+            while (bufferPhrase.StillMovingBufferToLive)
+            {
+                MoveNextCharacterToLive();
+            }
+            
         }
 
-       // internal v
+
+        internal class BufferPhrase 
+        {
+            private DialoguePhrase dialoguePhrase = new DialoguePhrase();
+
+            public void AddDirectly(string word) => dialoguePhrase.Phrase.Append(word);
+
+            public void SetPhrase(DialoguePhrase phrase)
+            {
+                AddDirectly(phrase.Phrase.ToString());
+
+                this.dialoguePhrase.CopyInstructions(phrase);
+               
+            }
+
+            private char NextCharacter => dialoguePhrase.Phrase[nextCharacterIndex];
+            public int nextCharacterIndex { get; private set; } = 0;
+
+            public bool StillMovingBufferToLive => nextCharacterIndex < dialoguePhrase.Phrase.Length;
+
+            public char? GetNextCharacter()
+            {
+                if (!StillMovingBufferToLive)
+                {
+                    return null;
+                }
 
 
-        //private char GetCharacter()
-        //{
-        //    char c = text[currentIndex];
-        //    return c;
-        //}
+                if (NextCharacter != '[')
+                {
+                    
+                    char nextCharacter = NextCharacter;
+                    nextCharacterIndex++;
+                    return nextCharacter;
+                }
+
+                else
+                {
+                    HandleInlineInstruction();
+                    return GetNextCharacter();
+                }
+
+
+            }
+
+
+            private void HandleInlineInstruction()
+            {
+                if (!StillMovingBufferToLive)
+                    return;
+
+                if(NextCharacter == '[')
+                {
+                    string numberString = "";
+                    
+                    while(StillMovingBufferToLive)
+                    {
+                        nextCharacterIndex++;
+                        if(NextCharacter == ']')
+                        {
+                            break;
+                        }
+                        numberString += NextCharacter;
+                    }
+                    nextCharacterIndex++; // skip over trailing ']'
+
+                    int instructionIndex = int.Parse(numberString);
+
+
+                    dialoguePhrase.InvokeInstrunction(instructionIndex);   
+
+                    
+
+                }
+            }
+
+            public string GetNextWord()
+            {
+                if (!StillMovingBufferToLive)
+                {
+                    return null;
+                }
+
+                StringBuilder word = new StringBuilder();
+
+
+                bool foundSpace = false;
+                while (StillMovingBufferToLive && !foundSpace)
+                {
+                    var currentChar = GetNextCharacter();
+                    word.Append(currentChar);
+                    foundSpace = currentChar == ' ';
+                }
+
+                return word.ToString();
+            }
+
+
+            public void Reset()
+            {
+                dialoguePhrase = new DialoguePhrase();
+                nextCharacterIndex = 0;
+            }
+        }
+
+
     }
 
 }
