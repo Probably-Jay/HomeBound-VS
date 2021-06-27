@@ -20,7 +20,7 @@ namespace Interactables
 
         TMP_Text UIDisplay;
 
-        public bool HasEvents => interactAction.GetPersistentEventCount() == 0;
+        public bool HasEvents => interactAction.GetPersistentEventCount() > 0;
         GameObject UIParentObject => UIDisplay.transform.parent.gameObject;
         
 
@@ -50,6 +50,7 @@ namespace Interactables
 
 
 
+    */
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (!collision.CompareTag("Player"))
@@ -59,7 +60,6 @@ namespace Interactables
             DeactivateUI();
         }
 
-    */
 
         private void OnTriggerStay2D(Collider2D collision)
         {
@@ -85,7 +85,7 @@ namespace Interactables
 
         private void HandleInteraction()
         {
-            if (HasEvents)
+            if (!HasEvents)
             {
                 Debug.LogWarning("Cannot invoke interactable as it has no interactions associated with it");
                 return;
@@ -121,6 +121,11 @@ namespace Interactables
             var allignment = Vector2.Dot(usToPlayer, playerFacing);
 
             return allignment < facintDirectionSensitivity; // if us to player is oposite direction to player is facing
+        }
+
+        public void TestFunction()
+        {
+            Debug.Log("Test");
         }
 
     }

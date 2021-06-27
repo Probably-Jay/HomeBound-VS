@@ -71,7 +71,7 @@ namespace Overworld {
             {
                 isWalking = true;
                 direction = dirStack[dirStack.Count - 1];
-                Debug.Log(direction);
+               // Debug.Log(direction);
             }
             else
             {
@@ -139,10 +139,10 @@ namespace Overworld {
         {
             if (Input.GetKeyDown(movementKeys[walkingDirection]))
             {
-                Debug.Log(walkingDirection);
+               // Debug.Log(walkingDirection);
                 if (!dirStack.Contains(walkingDirection))
                 {
-                    Debug.Log("Added" + walkingDirection.ToString());
+                    //Debug.Log("Added" + walkingDirection.ToString());
                     dirStack.Add(walkingDirection);
                 }
             }

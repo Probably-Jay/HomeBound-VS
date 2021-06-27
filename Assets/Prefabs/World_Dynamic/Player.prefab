@@ -96,10 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947a45ed21c59d441ae284a3e03d4f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridBasedMovement: 1
+  grid: {fileID: 0}
   myRb: {fileID: 2510833938084673247}
   directions: 00000000010000000200000003000000
   buttons: 77000000640000007300000061000000
-  speed: 10
+  speed: 4
 --- !u!50 &2510833938084673247
 Rigidbody2D:
   serializedVersion: 4
@@ -120,7 +122,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6569488831994251738
 BoxCollider2D:
   m_ObjectHideFlags: 0

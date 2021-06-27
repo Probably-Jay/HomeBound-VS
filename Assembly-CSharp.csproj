@@ -682,6 +682,10 @@
       <Project>{2FC02305-3629-9C2F-DF84-BC25314168D0}</Project>
       <Name>~World</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Editor.csproj">
+      <Project>{7B937E82-E9C6-F4C2-6245-5E1063936C02}</Project>
+      <Name>Unity.2D.Tilemap.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
