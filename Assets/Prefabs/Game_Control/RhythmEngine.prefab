@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 11400000, guid: 01f67dc8816eb8c46a869c67b9826ab8, type: 2}
+  playImediatley: 1
 --- !u!82 &3173386520227777564
 AudioSource:
   m_ObjectHideFlags: 0

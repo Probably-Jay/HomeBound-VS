@@ -1,58 +1,96 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using HitDetection;
+using NoteSystem;
 
-public class WordNote : MonoBehaviour
-{
-    [SerializeField] Transform startPos;
-    [SerializeField] Transform endPos;
-    public float absoluteBeatsToHit;
-    float beatsOfExistence = 0;
-    float spawningBeat = 0;
-    [SerializeField] private float climaxBeat;
-    [SerializeField] HitZone myLane;
+namespace NoteSystem {
+    public class WordNote : MonoBehaviour
+    {
+        [SerializeField] Transform startPos;
+        [SerializeField] Transform endPos;
+        public float absoluteBeatsToHit;
+        float beatsOfExistence = 0;
+        float spawningBeat = 0;
+        [SerializeField] private float climaxBeat;
+        HitZone myHitZone;
+        [SerializeField] Lane lane;
+        [SerializeField] public string word { get; private set; }
+        private GameObject canvas;
+        [SerializeField] GameObject wordUIPrefab;
+        WordUI wordUI;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //code for testing, delete when initialising these from script
-        spawningBeat = Rythm.RythmEngine.Instance.CurrentBeat;
-        //end code for testing
-        absoluteBeatsToHit = climaxBeat - Rythm.RythmEngine.Instance.CurrentBeat;
-        myLane.Join(this);
-        beatsOfExistence = 0f;
-        this.transform.position = startPos.position;
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        beatsOfExistence += Time.deltaTime;
-       // Debug.Log(Rythm.RythmEngine.Instance.CurrentBeat);
-        this.transform.position = Vector3.LerpUnclamped(startPos.position, endPos.position, (float) ((Rythm.RythmEngine.Instance.CurrentBeat-spawningBeat) / absoluteBeatsToHit));
-    }
-    public void initialise (float hitBeat, HitZone lane, float? spawnBeat = null)
-    {
-        
-        if (spawnBeat.HasValue)
+        // Start is called before the first frame update
+        void Awake()
         {
-            spawningBeat = (float)spawnBeat.Value;
-        }
-        else
-        {
+            //code for testing, delete when initialising these from script
             spawningBeat = Rythm.RythmEngine.Instance.CurrentBeat;
+            //end code for testing
+            //absoluteBeatsToHit = climaxBeat - Rythm.RythmEngine.Instance.CurrentBeat;
+            //Debug.Log(lane.gameObject);
+            //Debug.Log(lane.hitZone);
+            if (lane != null)
+            {
+                //lane.hitZone.Join(this);
+            }
+            beatsOfExistence = 0f;
+            if (startPos != null)
+            {
+                this.transform.position = startPos.position;
+            }
+            //canvas = GameObject.Find("Canvas");
+            //InitialiseWordUI();
+
         }
-        absoluteBeatsToHit = (float)hitBeat-spawningBeat;
-        myLane = lane;
+
+        // Update is called once per frame
+        void Update()
+        {
+            beatsOfExistence += Time.deltaTime;
+            // Debug.Log(Rythm.RythmEngine.Instance.CurrentBeat);
+            this.transform.position = Vector3.LerpUnclamped(startPos.position, endPos.position, (float)((Rythm.RythmEngine.Instance.CurrentBeat - spawningBeat) / absoluteBeatsToHit));
+        }
+        public void initialise(string passedWord, float hitBeat, Lane passedLane, float? spawnBeat = null)
+        {
+
+            if (spawnBeat.HasValue)
+            {
+                spawningBeat = (float)spawnBeat.Value;
+            }
+            else
+            {
+                spawningBeat = Rythm.RythmEngine.Instance.CurrentBeat;
+            }
+            absoluteBeatsToHit = (float)hitBeat - spawningBeat;
+            lane = passedLane;
+            word = passedWord;
+            climaxBeat = hitBeat;
+            lane.Join(this);
+            beatsOfExistence = 0f;
+            startPos = lane.spawnPoint.transform;
+            endPos = lane.hitZone.transform;
+            this.transform.position = startPos.position;
+            canvas = GameObject.Find("CoolCanvas");
+            InitialiseWordUI();
+        }
+        public float TargetBeat()
+        {
+            return (float)climaxBeat;
+        }
+        public float GetClimaxBeat()
+        {
+            return climaxBeat;
+        }
+        private void InitialiseWordUI()
+        {
+            GameObject tempWordUI = GameObject.Instantiate(wordUIPrefab, canvas.transform);
+            wordUI = tempWordUI.GetComponent<WordUI>();
+            wordUI.Initialise(word, this);
+        }
+        public void Remove()
+        {
+            wordUI.Remove();
+            this.gameObject.SetActive(false);
+        }
     }
-    public float TargetBeat()
-    {
-        return (float) climaxBeat;
-    }
-    public float GetClimaxBeat()
-    {
-        return climaxBeat;
-    }
+
 }

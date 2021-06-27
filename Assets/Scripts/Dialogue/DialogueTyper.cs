@@ -221,6 +221,7 @@ namespace Dialogue
         {
             if(_context.HasValue && _context != Context)
             {
+                Debug.LogWarning($"Word {word} out of context ({_context} vs {Context})");
                 return;
             }
             bufferString.Append(word);
@@ -229,7 +230,10 @@ namespace Dialogue
         private void AddWordDirectlyOnbeat(string word, float beat, bool forceContext)
         {
             long? _context = forceContext ? (long?)Context : null;
-            RythmEngine.Instance.QueueActionAtExplicitBeat(() => AddWordDirectly(word, _context), beat);
+            RythmEngine.Instance.QueueActionAtExplicitBeat(() => { 
+            //    Debug.Log($"_{word} {beat}: {RythmEngine.Instance.CurrentBeat}"); 
+                AddWordDirectly(word, _context); 
+            }, beat); 
 
         }
 
@@ -313,19 +317,32 @@ namespace Dialogue
 
     
         
+       
+
         IEnumerator MoveBufferToLive()
         {
             while (true)
             {
-                string text = bufferString.ToString();
+               // string text = bufferString.ToString();
 
-                fillingCoroutine = StartCoroutine(FillDialogeBox(text));
+                // fillingCoroutine = StartCoroutine(FillDialogeBox(text));
 
-                yield return new WaitUntil(() => !StillFillingInBox);
+               // Debug.Log(bufferString.ToString());
+                yield return StartCoroutine(FillDialogeBox());
+
+
+
+                if (!StillFillingInBox)
+                {
+                    yield return new WaitUntil(() => !StillFillingInBox);
+                }
+                
             }
         }
 
-        IEnumerator FillDialogeBox(string text)
+        
+
+        IEnumerator FillDialogeBox()
         {
             while (StillFillingInBox)
             {
@@ -343,16 +360,16 @@ namespace Dialogue
                 switch (TypingMode)
                 {
                     case TypingMode.Instant:
-                        FillInstant(text);
+                        FillInstant();
                         break;
                     case TypingMode.Word:
-                        FlowWordWhole(text);
+                        FlowWordWhole();
                         break;
                     case TypingMode.WordByCharacter:
-                        yield return FlowWordByCharacter(text);
+                        yield return FlowWordByCharacter();
                         break;
                     case TypingMode.Character:
-                        FlowCharacterWhole(text);
+                        FlowCharacterWhole();
                         break;
                 }
             }
@@ -362,20 +379,21 @@ namespace Dialogue
         {
             StopCoroutine(fillingCoroutine);
             liveString.Clear();
-            FillInstant(bufferString.ToString());
+            FillInstant();
         }
 
-        void FillInstant(string text) => liveString.Append(text);
+        void FillInstant() => liveString.Append(bufferString);
 
-        void FlowWordWhole(string text)
+        void FlowWordWhole()
         {
-            string word = GetWord(text, currentIndex: liveString.Length);
+            string word = GetWord(currentIndex: liveString.Length);
             liveString.Append(word);
         }
 
-        IEnumerator FlowWordByCharacter(string text)
+        IEnumerator FlowWordByCharacter()
         {
-            string word = GetWord(text, currentIndex: liveString.Length);
+            string word = GetWord(currentIndex: liveString.Length);
+       
             yield return FlowCharacterOnbeat(word, beatsToFill: 1/DisplayActionsPerBeat, spaceWordFillsInBeat: SpaceWordByCharacterFillsInBeat);
         }
 
@@ -414,30 +432,30 @@ namespace Dialogue
             }
         }
 
-        void FlowCharacterWhole(string text)
+        void FlowCharacterWhole()
         {
-            char character = GetCharacter(text, currentIndex: liveString.Length);
+            char character = GetCharacter(currentIndex: liveString.Length);
             liveString.Append(character);
         }
 
        
 
-        private string GetWord(string text, int currentIndex)
+        private string GetWord(int currentIndex)
         {
-            StringBuilder word = new StringBuilder();
+            StringBuilder word = new StringBuilder("");
             var index = currentIndex;
             char character = default;
 
-            while (character != ' ' && currentIndex + word.Length < text.Length)
+            while (character != ' ' && currentIndex + word.Length < bufferString.Length)
             {
                 index = currentIndex + word.Length;
-                character = text[index];
+                character = bufferString[index];
                 word.Append(character);
             }
 
             return word.ToString();
         }
-        private char GetCharacter(string text, int currentIndex) => text[currentIndex];
+        private char GetCharacter(int currentIndex) => bufferString[currentIndex];
 
         IEnumerator AddWords()
         {
