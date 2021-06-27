@@ -32,14 +32,22 @@ namespace Interactables
             UIParentObject.SetActive(false);
         }
 
+        /*
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (!collision.CompareTag("Player"))
             {
                 return;
             }
+
+            if (!PlayerFacingUs(collision.gameObject))
+            {
+                return;
+            }
+
             ActivateUI();
         }
+
 
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -51,6 +59,7 @@ namespace Interactables
             DeactivateUI();
         }
 
+    */
 
         private void OnTriggerStay2D(Collider2D collision)
         {
@@ -58,6 +67,14 @@ namespace Interactables
             {
                 return;
             }
+
+            if (!PlayerFacingUs(collision.gameObject))
+            {
+                DeactivateUI();
+                return;
+            }
+
+            ActivateUI();
 
             if (Input.GetKeyDown(interactKey))
             {
@@ -82,15 +99,34 @@ namespace Interactables
         {
             if (!HasEvents)
             {
-                Debug.LogWarning("Interactable has no interactions associated with it");
                 return;
             }
             UIParentObject.SetActive(true);
         }
+
+
         private void DeactivateUI()
         {
             UIParentObject.SetActive(false);
         }
 
+        private bool PlayerFacingUs(GameObject playerObject)
+        {
+            var player = playerObject.GetComponent<PlayerFaker>();
+
+            Vector2 usToPlayer = (playerObject.transform.position - transform.position).normalized;
+
+            Vector2 playerFacing = player.FacingDirection;
+
+            var allignment = Vector2.Dot(usToPlayer, playerFacing);
+
+            return allignment < -0.9f; // if us to player is oposite direction to player is facing
+        }
+
     }
+}
+
+class PlayerFaker 
+{
+    public Vector2 FacingDirection { get; } 
 }
