@@ -5,9 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2140C8B1-4294-2FD5-0CDA-B18374DCABD8}</ProjectGuid>
+    <ProjectGuid>{BF027BDD-4DB0-291D-EEA2-190653B3F25E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>DialogueSystem</AssemblyName>
+    <AssemblyName>~World</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -53,17 +53,11 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="~Game">
-      <HintPath>Library/ScriptAssemblies/~Game.dll</HintPath>
-    </Reference>
-    <Reference Include="Rythm">
-      <HintPath>Library/ScriptAssemblies/Rythm.dll</HintPath>
-    </Reference>
     <Reference Include="~Core">
       <HintPath>Library/ScriptAssemblies/~Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
@@ -598,19 +592,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Dialogue\Conversation.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\ConversationHandler.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueContextController.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueParsingException.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialoguePhrase.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialoguePhraseObject.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueTyper.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\FileLoading\DialogueLoader.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\Parsing\DialogueParser.cs" />
+    <Compile Include="Assets\Scripts\World\CharacterController.cs" />
+    <Compile Include="Assets\Scripts\World\Interactable.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Dialogue\~DialogueSystem.asmdef" />
+    <None Include="Assets\Scripts\World\~World.asmdef" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

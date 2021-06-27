@@ -77,6 +77,9 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="~World">
+      <HintPath>Library/ScriptAssemblies/~World.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.dll</HintPath>
     </Reference>
@@ -274,6 +277,9 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.18f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -622,13 +628,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DialogueBoxOpener.cs" />
+    <Compile Include="Assets\DialogueBoxTester.cs" />
     <Compile Include="Assets\Scripts\Zap\HitZone.cs" />
     <Compile Include="Assets\Scripts\Zap\WordNote.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Resources\DialogueFiles\Test\TestFile1.txt" />
-    <None Include="Assets\Resources\DialogueFiles\Test\TestFile2.txt" />
     <None Include="Assets\Resources\DialogueFiles\Test\TestFile3.txt" />
+    <None Include="Assets\Resources\DialogueFiles\Test\TestFile4.txt" />
+    <None Include="Assets\Resources\DialogueFiles\Test\TestFile5.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
