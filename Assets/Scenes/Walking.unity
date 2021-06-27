@@ -353,6 +353,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1892879818}
     m_Modifications:
+    - target: {fileID: 2533711652629958716, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: typingMode
@@ -506,6 +511,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828829650089832393, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828829650089832393, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828829650089832393, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828829650089832393, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828829650089832393, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828829650089832393, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828829650089832393, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
@@ -1144,7 +1184,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
