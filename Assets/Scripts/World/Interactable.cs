@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using TMPro;
 using System;
 using Game;
+using UnityEngine.EventSystems;
 
 namespace Interactables
 {
@@ -14,19 +15,26 @@ namespace Interactables
         const float facintDirectionSensitivity = -0.9f;
         [SerializeField] string InteractionName = "Interact";
         [SerializeField] KeyCode interactKey = KeyCode.E;
-        
-        [SerializeField] UnityEvent interactAction;
 
+
+        // [SerializeField] UnityEvent simpleInteractions;
+
+        // event Action interactAction; 
+
+        [SerializeField] List<MonoBehaviour> interactableTriggers;
+       
+      //  readonly List<UnityEngine.Object> Othertriggers = new List<UnityEngine.Object>();
 
 
         TMP_Text UIDisplay;
       // private bool keyPressed;
 
-        public bool HasEvents => interactAction.GetPersistentEventCount() > 0;
+        public bool HasEvents => interactableTriggers.Count > 0;
         GameObject UIParentObject => UIDisplay.transform.parent.gameObject;
 
         bool canBeInteracted = true;
         private bool InInteractioinRange => UIParentObject.activeInHierarchy; // implicit state, defined by if "interact (E)" ui is visible
+
 
         private void Awake()
         {
@@ -34,19 +42,61 @@ namespace Interactables
             UIDisplay.text = $"{InteractionName} ({interactKey.ToString()})";
 
             UIParentObject.SetActive(false);
+
         }
 
+        private void OnValidate()
+        {
+            foreach (var item in interactableTriggers)
+            {
+                if (item!= null && !(item is IInteractableTriggered triggered))
+                {
+                    throw new Exception($"Triggers must be of type {typeof(IInteractableTriggered)}, {nameof(item)}:{item.ToString()} is type {item.GetType()}");
+                }
+            }
+        }
 
         private void OnEnable()
         {
             Game.GameContextController.Instance.OnContextChange += HandleGameContextChange;
+
+            foreach (var item in interactableTriggers)
+            {
+                if (item is IInteractableTriggered triggered)
+                {
+                    triggered.OnTriggered += Triggered_OnTriggered;
+                    triggered.OnPostTriggered += Triggered_OnPostTriggered;
+
+                    triggered.OnDisconnectFromInteractTrigger += DisconnectItem;
+                }
+                else
+                {
+                    throw new Exception($"Triggers must be of type {typeof(IInteractableTriggered)}");
+                }
+
+            }
+           
         }
+
+
+
 
         private void OnDisable()
         {
             if (GameContextController.InstanceExists)
             {
                 Game.GameContextController.Instance.OnContextChange -= HandleGameContextChange;
+            }
+
+            foreach (var item in interactableTriggers)
+            {
+                if (item is IInteractableTriggered triggered)
+                {
+                    triggered.OnTriggered -= Triggered_OnTriggered;
+                    triggered.OnPostTriggered -= Triggered_OnPostTriggered;
+
+                    triggered.OnDisconnectFromInteractTrigger -= DisconnectItem;
+                }
             }
         }
 
@@ -122,11 +172,23 @@ namespace Interactables
                 return;
             }
 
+            InvokeTriggers();
 
-            interactAction.Invoke();
             DeactivateUI();
         }
 
+        private void InvokeTriggers()
+        {
+            for (int i = interactableTriggers.Count-1; i >= 0; i--)
+            {
+                MonoBehaviour item = interactableTriggers[i];
+                if (!(item is IInteractableTriggered triggered))
+                {
+                    throw new Exception($"Triggers must be of type {typeof(IInteractableTriggered)}");
+                }
+                triggered.Trigger();
+            }
+        }
 
         private void ActivateUI()
         {
@@ -161,6 +223,28 @@ namespace Interactables
             Debug.Log("Test");
         }
 
+        private void DisconnectItem(MonoBehaviour obj)
+        {
+            interactableTriggers.Remove(obj);
+            if (!(obj is IInteractableTriggered triggered))
+            {
+                throw new Exception($"Triggers must be of type {typeof(IInteractableTriggered)}");
+
+            }
+            triggered.OnTriggered -= Triggered_OnTriggered;
+            triggered.OnPostTriggered -= Triggered_OnPostTriggered;
+
+        }
+
+        private void Triggered_OnTriggered()
+        {
+            canBeInteracted = false;
+        }
+
+        private void Triggered_OnPostTriggered()
+        {
+            canBeInteracted = true;
+        }
     }
 }
 

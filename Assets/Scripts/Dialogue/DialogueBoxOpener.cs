@@ -11,40 +11,45 @@ public class DialogueBoxOpener : MonoBehaviour
     [SerializeField] DialogueManager dialogeBox;
     GameObject dialogeBoxParent;
 
+    public event Action OnBoxOpen;
+    public event Action OnBoxClose;
+
+    public DialogueManager DialogeBox { get => dialogeBox; private set => dialogeBox = value; }
 
     private void OnEnable()
     {
-        dialogeBox.OnQueueDepleated += CloseBox;
+        DialogeBox.OnQueueDepleated += CloseBox;
     }
 
     private void OnDisable()
     {
-        dialogeBox.OnQueueDepleated -= CloseBox;
+        DialogeBox.OnQueueDepleated -= CloseBox;
     }
 
     private void CloseBox()
     {
-        dialogeBox.Close();
+        DialogeBox.Close();
         Game.GameContextController.Instance.ReturnToPreviousContext();
-
+        OnBoxClose?.Invoke();
     }
 
     private void Awake()
     {
-        dialogeBoxParent = dialogeBox.transform.parent.gameObject;
+        dialogeBoxParent = DialogeBox.transform.parent.gameObject;
     }
         
 
     private void Start()
     {
         dialogeBoxParent.SetActive(false);
-        dialogeBox.Load(Game.TextAssetFolders.Test);
+        DialogeBox.Load(Game.TextAssetFolders.Test);
     }
 
-    public void StartDialogue(string id)
+    internal void StartDialogue(string id)
     {
         dialogeBoxParent.SetActive(true);
-        dialogeBox.BeginConversation(id);
+        DialogeBox.BeginConversation(id);
         Game.GameContextController.Instance.PushContext(Game.Context.Dialogue);
+        OnBoxOpen?.Invoke();
     }
 }

@@ -626,6 +626,10 @@
       <Project>{41F7CEBF-7F01-D2DE-B85B-182DCD0C801B}</Project>
       <Name>~Game</Name>
     </ProjectReference>
+    <ProjectReference Include="~InteractableInterface.csproj">
+      <Project>{12254B1C-66B3-9ED5-14A2-2A80DA24795F}</Project>
+      <Name>~InteractableInterface</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{11EBBDD7-E2FD-F626-966F-35718B89FB30}</Project>
       <Name>UnityEditor.UI</Name>

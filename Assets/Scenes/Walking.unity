@@ -121,18 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &240718622 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2039999798959780917, guid: efce123f74830ec41a7296015e8460b9,
-    type: 3}
-  m_PrefabInstance: {fileID: 304205907}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f21f82c0569f4745acbf68e5f3dbb80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &262339617
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,19 +592,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
+      propertyPath: interactableTriggers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: interactableTriggers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1383698833}
+    - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
+      propertyPath: interactableTriggers.Array.data[1]
+      value: 
+      objectReference: {fileID: 832630524}
+    - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
+        type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 240718622}
+      objectReference: {fileID: 1383698833}
     - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -625,7 +628,7 @@ PrefabInstance:
     - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartDialogue
+      value: TriggerDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 8828829650089832395, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
@@ -644,6 +647,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efe6e47e411f8474c9072dd817056e1c, type: 3}
+--- !u!114 &832630524 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2039999797947862598, guid: efce123f74830ec41a7296015e8460b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 304205907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1046202752
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +980,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1383698833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383698827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83586deaff5f5847bf6983ddaae0f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainDialogueIDs:
+  - test_5
+  runMainOnlyOnce: 1
+  backupDialogeIDs: []
 --- !u!1 &1623419766
 GameObject:
   m_ObjectHideFlags: 0

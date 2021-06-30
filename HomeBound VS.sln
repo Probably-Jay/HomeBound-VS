@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~Game", "~Game.csproj", "{4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~SingletonControl", "~SingletonControl.csproj", "{D22C9057-4BBC-4A8F-B3CB-705D5602A925}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~InteractableInterface", "~InteractableInterface.csproj", "{12254B1C-66B3-9ED5-14A2-2A80DA24795F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEditor.TestRunner", "UnityEditor.TestRunner.csproj", "{5D72AE93-229B-8A96-2552-D0F6628A729C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro.Editor", "Unity.TextMeshPro.Editor.csproj", "{E65D7C90-708E-4520-E46F-39CF15504CE2}"
@@ -95,6 +97,10 @@ Global
 		{D22C9057-4BBC-4A8F-B3CB-705D5602A925}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D22C9057-4BBC-4A8F-B3CB-705D5602A925}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D22C9057-4BBC-4A8F-B3CB-705D5602A925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12254B1C-66B3-9ED5-14A2-2A80DA24795F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12254B1C-66B3-9ED5-14A2-2A80DA24795F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12254B1C-66B3-9ED5-14A2-2A80DA24795F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12254B1C-66B3-9ED5-14A2-2A80DA24795F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D72AE93-229B-8A96-2552-D0F6628A729C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D72AE93-229B-8A96-2552-D0F6628A729C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D72AE93-229B-8A96-2552-D0F6628A729C}.Release|Any CPU.ActiveCfg = Release|Any CPU

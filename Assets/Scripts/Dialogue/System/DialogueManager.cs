@@ -56,10 +56,7 @@ namespace Dialogue
         {
             Debug.Log($"StartingConversation { conversationID}");
 
-            if (!conversationHandler.Conversations.ContainsKey(conversationID))
-            {
-                throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}");
-            }
+            AssertContainsConversation(conversationID);
 
             var conversation = conversationHandler.Conversations[conversationID];
 
@@ -68,8 +65,18 @@ namespace Dialogue
             StartNewConversation(conversation);
 
 
-             
+
         }
+
+        public void AssertContainsConversation(string conversationID)
+        {
+            if (!ContainsConversation(conversationID))
+            {
+                throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}");
+            }
+        }
+
+        public bool ContainsConversation(string conversationID) => conversationHandler.Conversations.ContainsKey(conversationID);
 
         private void StartNewConversation(Conversation conversation) 
         {
