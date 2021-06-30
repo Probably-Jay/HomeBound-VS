@@ -20,19 +20,9 @@ namespace NoteSystem
         public class HitZone : MonoBehaviour
         {
             [SerializeField] List<WordNote> notesInChannel = new List<WordNote> { };
-            [SerializeField] KeyCode button = KeyCode.Space;
+           // [SerializeField] KeyCode button = KeyCode.Space;
             // Start is called before the first frame update
-            void Start()
-            {
-
-            }
-
-            // Update is called once per frame
-            void Update()
-            {
-                
-            }
-
+           
             
             void ProcessHitOnNote(WordNote note, HitQuality quality)
             {
