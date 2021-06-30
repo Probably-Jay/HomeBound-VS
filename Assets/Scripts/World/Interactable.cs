@@ -26,6 +26,7 @@ namespace Interactables
         GameObject UIParentObject => UIDisplay.transform.parent.gameObject;
 
         bool canBeInteracted = true;
+        private bool InInteractioinRange => UIParentObject.activeInHierarchy; // implicit state, defined by if "interact (E)" ui is visible
 
         private void Awake()
         {
@@ -84,7 +85,7 @@ namespace Interactables
 
         private void Update()
         {
-            if (canBeInteracted && Input.GetKeyDown(interactKey))
+            if (canBeInteracted && InInteractioinRange && Input.GetKeyDown(interactKey))
             {
                 HandleInteraction();
             }
@@ -133,14 +134,13 @@ namespace Interactables
             {
                 return;
             }
-            UIParentObject.SetActive(true);
+            UIParentObject.SetActive(true); // this sets InInteractionRange to true
         }
 
 
         private void DeactivateUI()
         {
-          //  Debug.Log("deactivated");
-            UIParentObject.SetActive(false);
+            UIParentObject.SetActive(false); // this sets InInteractionRange to false
         }
 
         private bool PlayerFacingUs(GameObject playerObject)

@@ -14,13 +14,13 @@ namespace Rythm
             r = GetComponent<SpriteRenderer>();
         }
 
-        int i = 0;
+       // int i = 0;
 
         // Update is called once per frame
         void Update()
         {
             float beat = (float)Rythm.RythmEngine.Instance.CurrentBeat;
-            int b = (int)beat;
+         //   int b = (int)beat;
 
           
             
