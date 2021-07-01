@@ -40,6 +40,7 @@ namespace RhythmSectionLoading {
         string[] noteSheetLines;
         //[SerializeField] Rythm.RythmSong song;
         NoteSpawner noteSpawner;
+        [SerializeField] RhythmSectionManager rSM;
         public List<Lane> lanes = new List<Lane> { };
         List<Note> notes = new List<Note> { };
         List<PassToDialogue> toDialogues = new List<PassToDialogue> { };
@@ -116,7 +117,7 @@ namespace RhythmSectionLoading {
         }
         void QueueDialoguePass(PassToDialogue toDialogue)
         {
-            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { /*dialoguepass*/ }, toDialogue.passBeat);
+            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.PassToDialogue(); }, toDialogue.passBeat);
         }
 
     }
