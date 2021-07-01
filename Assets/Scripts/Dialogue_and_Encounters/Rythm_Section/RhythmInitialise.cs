@@ -52,7 +52,7 @@ namespace RhythmSectionLoading {
         {
             noteSpawner = this.GetComponent<NoteSpawner>();
     
-            LoadSection(noteSheet);
+            //LoadSection(noteSheet);
         }
 
 
