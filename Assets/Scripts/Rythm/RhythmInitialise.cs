@@ -52,12 +52,13 @@ namespace RhythmSectionLoading {
         {
             noteSpawner = this.GetComponent<NoteSpawner>();
     
-            LoadSection();
+            LoadSection(noteSheet);
         }
 
 
-        void LoadSection()
+        public void LoadSection(TextAsset section)
         {
+            noteSheet = section;
             ReadSection(noteSheet);
             InitialiseSection();
 

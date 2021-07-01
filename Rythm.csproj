@@ -63,10 +63,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Rythm\BeatIndicator.cs" />
+    <Compile Include="Assets\Scripts\Rythm\HitDetection.cs" />
+    <Compile Include="Assets\Scripts\Rythm\HitZone.cs" />
+    <Compile Include="Assets\Scripts\Rythm\Lane.cs" />
+    <Compile Include="Assets\Scripts\Rythm\NoteDialogueInterface.cs" />
     <Compile Include="Assets\Scripts\Rythm\NoteSection.cs" />
+    <Compile Include="Assets\Scripts\Rythm\NoteSpawner.cs" />
+    <Compile Include="Assets\Scripts\Rythm\RhythmInitialise.cs" />
     <Compile Include="Assets\Scripts\Rythm\RhythmSectionManager.cs" />
     <Compile Include="Assets\Scripts\Rythm\RythmEngine.cs" />
     <Compile Include="Assets\Scripts\Rythm\RythmSong.cs" />
+    <Compile Include="Assets\Scripts\Rythm\WordNote.cs" />
+    <Compile Include="Assets\Scripts\Rythm\WordUI.cs" />
     <None Include="Assets\Scripts\Rythm\~Rythm.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

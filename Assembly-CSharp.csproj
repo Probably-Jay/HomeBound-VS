@@ -66,8 +66,6 @@
     <Compile Include="Assets\Scripts\Zap\HitZone.cs" />
     <Compile Include="Assets\Scripts\Zap\Lane.cs" />
     <Compile Include="Assets\Scripts\Zap\NoteDialogueInterface.cs" />
-    <Compile Include="Assets\Scripts\Zap\NoteSpawner.cs" />
-    <Compile Include="Assets\Scripts\Zap\RhythmInitialise.cs" />
     <Compile Include="Assets\Scripts\Zap\WordNote.cs" />
     <Compile Include="Assets\Scripts\Zap\WordUI.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
