@@ -67,8 +67,6 @@ namespace Dialogue
 
             StartNewConversation(conversation);
 
-
-
         }
 
         public void AssertContainsConversation(string conversationID)
@@ -91,8 +89,6 @@ namespace Dialogue
 
         internal void StopCurrentConversation()
         {
-            //InRythmSection = false;
-
             if(currentConversation != null)
                 StopCoroutine(currentConversation);
             dialogueContextController.StopConversation();

@@ -18,7 +18,7 @@ namespace Dialogue
     {
         public Controler InControl { get; private set; }
         DialogueManager dialogueManager;
-        RhythmInitialise rythmSystem;
+        RhythmSectionManager rythmManager;
 
         public bool InRythmSection { get; private set; } = false;
 
@@ -45,6 +45,7 @@ namespace Dialogue
         {
             InRythmSection = true;
             dialogueManager.StopCurrentConversation();
+            rythmManager.LoadSection(id);
             
         }
         public void PassControlToRythm()
