@@ -19,6 +19,10 @@ namespace Dialogue
 
         public bool InRythmSection => rythmInterface.InRythmSection;
 
+        public bool ThisHasControl { get => InRythmSection ? hasControl : true; set => hasControl = value; }
+
+        bool hasControl;
+
         private void Awake()
         {
             conversationHandler = GetComponent<ConversationHandler>();
@@ -37,6 +41,8 @@ namespace Dialogue
             transform.parent.gameObject.SetActive(false);
         }
 
+       
+
         private void OnEnable()
         {
             dialogueContextController.OnReachedEndOfQueue += InvokeQueuDepleated;
@@ -46,6 +52,9 @@ namespace Dialogue
         {
             dialogueContextController.OnReachedEndOfQueue -= InvokeQueuDepleated;
         }
+
+      
+
         void InvokeQueuDepleated() => OnQueueDepleated?.Invoke();
 
         internal void Load(Game.TextAssetFolders folder)
@@ -142,12 +151,22 @@ namespace Dialogue
 
         // These functions are intented to be used in rythm sections only
 
-        internal void RythmControlPass(float? passBack)
+        internal void EnterArgument()
         {
-            
-            throw new NotImplementedException();
+            dialogueContextController.EnterArgument();
         }
 
+        internal void RythmControlReceive()
+        {
+            ThisHasControl = true;
+            dialogueContextController.ProgressArgument();
+        }
+
+        internal void RythmControlRelease()
+        {
+            ThisHasControl = false;
+            dialogueContextController.SetDialougeMode(DialogueMode.Encounter_PlayerSpeak);
+        }
 
         /// <summary>
         /// Set the output mode. <see cref="Dialogue.DialogueMode.None"/> will leave the mode unchanged
@@ -171,7 +190,7 @@ namespace Dialogue
         /// <param name="forceContext">Experimental, will prevent this from triggering unexpectely far in the future</param>
         internal void ProgressNewPhraseDirectly(string speaker, DialogueMode newDialogueMode = DialogueMode.None, float? onBeat = null, bool forceContext = false)
         {
-            AssertInRythmSection();
+            AssertRythmSectionHasControl();
             SetTypingMode(newDialogueMode);
             dialogueContextController.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
         }
@@ -184,13 +203,13 @@ namespace Dialogue
         /// <param name="forceContext">Experimental, will prevent this from triggering unexpectely far in the future</param>
         internal void AddWordDirectly(string text, float? onBeat = null, bool forceContext = false)
         {
-            AssertInRythmSection();
+            AssertRythmSectionHasControl();
             dialogueContextController.AddWordDirectly(text, onBeat, forceContext);
         }
 
-        private void AssertInRythmSection()
+        private void AssertRythmSectionHasControl()
         {
-            if (!InRythmSection) throw new Exception("This function may only be called in a rythm section");
+            if (ThisHasControl) throw new Exception("This function may only be called in a rythm section");
         }
     }
 }

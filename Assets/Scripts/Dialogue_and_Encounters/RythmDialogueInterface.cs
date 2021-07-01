@@ -32,13 +32,21 @@ namespace Dialogue
 
         public void PassControlToDialogue()
         {
+            AssertInRythmSection();
             throw new System.NotImplementedException();
         }
 
         public void PassControlToDialogue(float passBack)
         {
-            dialogueManager.RythmControlPass(passBack);
+            AssertInRythmSection();
 
+            dialogueManager.RythmControlReceive();
+
+
+            throw new System.NotImplementedException(); // tell rythm to release
+
+
+            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(PassControlToRythm, passBack);
         }
 
 
@@ -48,12 +56,14 @@ namespace Dialogue
         {
             InRythmSection = true;
             dialogueManager.StopCurrentConversation();
+            dialogueManager.EnterArgument();
             rythmManager.LoadSection(id);
             
         }
+
         public void PassControlToRythm()
         {
-            throw new System.NotImplementedException();
+            dialogueManager.RythmControlRelease();
         }
 
         public void EndRythm()
@@ -63,7 +73,7 @@ namespace Dialogue
 
         private void AssertInRythmSection()
         {
-            if (!InRythmSection) throw new Exception("This function may only be called in a rythm section");
+            if (!InRythmSection) throw new System.Exception("This function may only be called in a rythm section");
         }
     }
 }

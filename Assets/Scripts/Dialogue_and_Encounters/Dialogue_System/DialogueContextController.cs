@@ -93,7 +93,13 @@ namespace Dialogue
         {
             SetDialougeMode(DialogueMode.Encounter_OpponentSpeak);
             dialogueTyper.StopCurrent();
-            dialogueTyper.StartNewRythm(); // bug?
+            dialogueTyper.StartNewRythm(); 
+        }
+
+        public void ProgressArgument()
+        {
+            SetDialougeMode(DialogueMode.Encounter_OpponentSpeak);
+            dialogueTyper.ProgressRythm();
         }
 
         public void StopConversation()
