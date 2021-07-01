@@ -38,7 +38,7 @@ namespace RhythmSectionLoading {
         }
         [SerializeField] TextAsset noteSheet;
         string[] noteSheetLines;
-        [SerializeField] Rythm.RythmSong song;
+        //[SerializeField] Rythm.RythmSong song;
         NoteSpawner noteSpawner;
         public List<Lane> lanes = new List<Lane> { };
         List<Note> notes = new List<Note> { };
@@ -116,7 +116,7 @@ namespace RhythmSectionLoading {
         }
         void QueueDialoguePass(PassToDialogue toDialogue)
         {
-            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { noteSpawner.SpawnNote(note.word, note.climaxBeat, lanes[note.lane]); }, toDialogue.passBeat);
+            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { /*dialoguepass*/ }, toDialogue.passBeat);
         }
 
     }
