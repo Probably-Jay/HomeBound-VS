@@ -1158,6 +1158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a7ce6b033909243aa1caf11f85995a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  identifications:
+  - SansScript
+  sheets:
+  - {fileID: 4900000, guid: 67b5e05f04cfd6d4db6f137c05f4e246, type: 3}
+  sectionLoader: {fileID: 0}
 --- !u!1 &1892879814
 GameObject:
   m_ObjectHideFlags: 0
