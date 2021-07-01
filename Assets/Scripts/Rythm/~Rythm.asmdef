@@ -1,7 +1,8 @@
 {
     "name": "Rythm",
     "references": [
-        "~Core"
+        "~Core",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

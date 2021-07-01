@@ -5,22 +5,25 @@ using UnityEngine;
 
 namespace Dialogue
 {
-    [RequireComponent(typeof(ConversationHandler),typeof(DialogueContextController))]
+    [RequireComponent(typeof(ConversationHandler),typeof(DialogueContextController),typeof(RythmDialogueInterface))]
     public class DialogueManager : MonoBehaviour
     {
 
         ConversationHandler conversationHandler;
         DialogueContextController dialogueContextController;
+        RythmDialogueInterface rythmInterface;
+
         private Coroutine currentConversation;
 
         public event Action OnQueueDepleated;
 
-        public bool InRythmSection { get; private set; } = false;
+        public bool InRythmSection => rythmInterface.InRythmSection;
 
         private void Awake()
         {
             conversationHandler = GetComponent<ConversationHandler>();
             dialogueContextController = GetComponent<DialogueContextController>();
+            rythmInterface = GetComponent<RythmDialogueInterface>();
         }
 
         /// <summary>
@@ -86,9 +89,10 @@ namespace Dialogue
 
         }
 
-        private void StopCurrentConversation()
+        internal void StopCurrentConversation()
         {
-            InRythmSection = false;
+            //InRythmSection = false;
+
             if(currentConversation != null)
                 StopCoroutine(currentConversation);
             dialogueContextController.StopConversation();
@@ -100,7 +104,7 @@ namespace Dialogue
         {
             conversation.OnSetDialogueMode += (mode) => dialogueContextController.SetDialougeMode(mode); // add changing mode events
             conversation.OnSetColour += (colour) => dialogueContextController.AddColourRTT(colour);
-            conversation.OnTriggerRythmSection += (id) => EnterRythmEncounter(id);
+            conversation.OnTriggerRythmSection += (id) => rythmInterface.StartNewRythm(id);
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)
             {
@@ -118,24 +122,24 @@ namespace Dialogue
         /// <summary>
         /// Start new rythm section
         /// </summary>
-        public void EnterRythmEncounter(string id)
-        {
-            StopCurrentConversation();
-            dialogueContextController.EnterArgument();
-            InRythmSection = true;
+        //public void EnterRythmEncounter(string id)
+        //{
+        //    StopCurrentConversation();
+        //    dialogueContextController.EnterArgument();
+        //    InRythmSection = true;
 
-            throw new NotImplementedException("Ryhtm start not implimented");
+        //    throw new NotImplementedException("Ryhtm start not implimented");
 
-        }
+        //}
 
         /// <summary>
         /// Stop a rythm section
         /// </summary>
-        public void ExitRythmEncounter()
-        {
-            StopCurrentConversation();
-            InRythmSection = false;
-        }
+        //public void ExitRythmEncounter()
+        //{
+        //    StopCurrentConversation();
+        //    InRythmSection = false;
+        //}
 
 
         // These functions are intented to be used in rythm sections only

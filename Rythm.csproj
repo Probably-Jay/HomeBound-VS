@@ -65,8 +65,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Rythm\BeatIndicator.cs" />
     <Compile Include="Assets\Scripts\Rythm\NoteSection.cs" />
+    <Compile Include="Assets\Scripts\Rythm\RhythmInitialise.cs" />
     <Compile Include="Assets\Scripts\Rythm\RythmEngine.cs" />
     <Compile Include="Assets\Scripts\Rythm\RythmSong.cs" />
+    <Compile Include="Assets\Scripts\Rythm\Rythm_Section\HitDetection.cs" />
+    <Compile Include="Assets\Scripts\Rythm\Rythm_Section\HitZone.cs" />
+    <Compile Include="Assets\Scripts\Rythm\Rythm_Section\Lane.cs" />
+    <Compile Include="Assets\Scripts\Rythm\Rythm_Section\NoteSpawner.cs" />
+    <Compile Include="Assets\Scripts\Rythm\Rythm_Section\WordNote.cs" />
+    <Compile Include="Assets\Scripts\Rythm\Rythm_Section\WordUI.cs" />
     <None Include="Assets\Scripts\Rythm\~Rythm.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/UnityEditors/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -619,6 +626,10 @@
     <ProjectReference Include="~Core.csproj">
       <Project>{52E0881F-85E4-2E6E-65A3-865A275E851A}</Project>
       <Name>~Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{9C8C14C4-A5F3-7F72-36ED-614AB85EA7F0}</Project>
+      <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{11EBBDD7-E2FD-F626-966F-35718B89FB30}</Project>

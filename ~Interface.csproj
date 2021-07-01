@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0527EC8D-3EA8-7CAB-C599-DB1516F5E7FB}</ProjectGuid>
+    <ProjectGuid>{7E521648-D13F-C32E-C1C0-0E91FB17D468}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>DialogueSystem</AssemblyName>
+    <AssemblyName>~Interface</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -63,21 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Dialogue\DialogueBoxOpener.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueInstance.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\Objects\Conversation.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\Objects\DialoguePhrase.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\Objects\DialoguePhraseObject.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\RythmDialogueInterface.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\System\ConversationHandler.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\System\DialogueBoxTester.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\System\DialogueContextController.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\System\DialogueManager.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\System\DialogueParsingException.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\System\DialogueTyper.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\System\FileLoading\DialogueLoader.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\System\Parsing\DialogueParser.cs" />
-    <None Include="Assets\Scripts\Dialogue\~DialogueSystem.asmdef" />
+    <Compile Include="Assets\Scripts\Interface\NoteDialogueInterface.cs" />
+    <None Include="Assets\Scripts\Interface\~Interface.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/UnityEditors/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -626,26 +613,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{9C8C14C4-A5F3-7F72-36ED-614AB85EA7F0}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Game.csproj">
-      <Project>{41F7CEBF-7F01-D2DE-B85B-182DCD0C801B}</Project>
-      <Name>~Game</Name>
-    </ProjectReference>
-    <ProjectReference Include="Rythm.csproj">
-      <Project>{12BA2B9B-F977-257D-A770-C239B2421B56}</Project>
-      <Name>Rythm</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Core.csproj">
-      <Project>{52E0881F-85E4-2E6E-65A3-865A275E851A}</Project>
-      <Name>~Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="~InteractableInterface.csproj">
-      <Project>{12254B1C-66B3-9ED5-14A2-2A80DA24795F}</Project>
-      <Name>~InteractableInterface</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{11EBBDD7-E2FD-F626-966F-35718B89FB30}</Project>
       <Name>UnityEditor.UI</Name>
