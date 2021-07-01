@@ -15,6 +15,17 @@ namespace RhythmSectionLoading {
             this.word = word;
         }
     }
+    class PassToDialogue
+    {
+        public float passBeat { get; private set; }
+        public float returnBeat { get; private set; }
+        public void Initialise(float passBeat, float returnBeat)
+        {
+            this.passBeat = passBeat;
+            this.returnBeat = returnBeat;
+        }
+    }
+
 
     public class RhythmInitialise : MonoBehaviour
     {
@@ -31,6 +42,7 @@ namespace RhythmSectionLoading {
         NoteSpawner noteSpawner;
         public List<Lane> lanes = new List<Lane> { };
         List<Note> notes = new List<Note> { };
+        List<PassToDialogue> toDialogues = new List<PassToDialogue> { };
         [SerializeField] float leadTime = 5f;
 
 
@@ -53,23 +65,36 @@ namespace RhythmSectionLoading {
         void ReadSection(TextAsset text)
         {
             notes.Clear();
+            toDialogues.Clear();
             noteSheetLines = text.text.Split('\n');
             foreach(string line in noteSheetLines)
             {
-                //Debug.Log(line); //40,1,hello
-                string hitbeatString = line.Split(',')[0]; //40
-                string laneString = line.Split(',')[1];//1
-                string temp1 = line.Remove(0, line.IndexOf(',')+1);//1,hello
-                //Debug.Log(temp1);
-                string word = temp1.Remove(0, temp1.IndexOf(',')+1);//hello
-                word = word.Replace("\r", "");
-                //Debug.Log(word);
-                notes.Add(new Note());
-                float hitBeat = float.Parse(hitbeatString);
-                int lane = int.Parse(laneString);
-                notes[notes.Count - 1].Initialise(hitBeat, lane, word);
-                //Debug.Log(word);
-                //Debug.Log("Note Read: "+hitbeatString + "," + laneString + "," + word);
+                if (line[0] == '>')
+                {
+                    string passBeatString = line.Split(',')[1];
+                    string returnBeatString = line.Split(',')[2];
+                    float passBeat = float.Parse(passBeatString);
+                    float returnBeat = float.Parse(returnBeatString);
+                    toDialogues.Add(new PassToDialogue());
+                    toDialogues[toDialogues.Count - 1].Initialise(passBeat, returnBeat);
+                }
+                else
+                {
+                    //Debug.Log(line); //40,1,hello
+                    string hitbeatString = line.Split(',')[0]; //40
+                    string laneString = line.Split(',')[1];//1
+                    string temp1 = line.Remove(0, line.IndexOf(',') + 1);//1,hello
+                                                                         //Debug.Log(temp1);
+                    string word = temp1.Remove(0, temp1.IndexOf(',') + 1);//hello
+                    word = word.Replace("\r", "");
+                    //Debug.Log(word);
+                    notes.Add(new Note());
+                    float hitBeat = float.Parse(hitbeatString);
+                    int lane = int.Parse(laneString);
+                    notes[notes.Count - 1].Initialise(hitBeat, lane, word);
+                    //Debug.Log(word);
+                    //Debug.Log("Note Read: "+hitbeatString + "," + laneString + "," + word);
+                }
             }
 
         }
@@ -79,10 +104,18 @@ namespace RhythmSectionLoading {
             {
                 QueueNote(note);
             }
+            foreach(PassToDialogue toDialogue in toDialogues)
+            {
+                
+            }
         }
         void QueueNote(Note note)
         {
             Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { noteSpawner.SpawnNote(note.word, note.climaxBeat, lanes[note.lane]); }, note.climaxBeat - leadTime);
+        }
+        void QueueDialoguePass(PassToDialogue toDialogue)
+        {
+            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { noteSpawner.SpawnNote(note.word, note.climaxBeat, lanes[note.lane]); }, toDialogue.passBeat);
         }
 
     }
