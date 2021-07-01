@@ -9,6 +9,7 @@ public class RhythmSectionManager : MonoBehaviour
     [SerializeField] List<string> identifications = new List<string> { };
     [SerializeField] List<TextAsset> sheets = new List<TextAsset> { };
     [SerializeField] RhythmInitialise sectionLoader;
+    [SerializeField] Dialogue.RythmDialogueInterface rDI;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,6 +34,10 @@ public class RhythmSectionManager : MonoBehaviour
     public void LoadSection(string iD)
     {
         sectionLoader.LoadSection(noteSheets[iD]);
+    }
+    public void PassToDialogue()
+    {
+        rDI.PassControlToDialogue();
     }
     
 }
