@@ -102,6 +102,14 @@ namespace Dialogue
             typingCoroutine = StartCoroutine(MoveBufferToLive());
         }
 
+        public void ProgressRythm()
+        {
+            if (textCoroutine != null)
+                StopCoroutine(textCoroutine);
+            textCoroutine = StartCoroutine(BufferNextPhrase());
+            
+        }
+
 
         // Update is called once per frame
         void Update()
