@@ -28,6 +28,8 @@ namespace Dialogue
             dialogueManager = GetComponent<DialogueManager>();
         }
 
+
+
         public void PassControlToDialogue()
         {
             throw new System.NotImplementedException();
@@ -35,7 +37,8 @@ namespace Dialogue
 
         public void PassControlToDialogue(float passBack)
         {
-            throw new System.NotImplementedException();
+            dialogueManager.RythmControlPass(passBack);
+
         }
 
 
@@ -57,7 +60,10 @@ namespace Dialogue
         {
             throw new System.NotImplementedException();
         }
-        
 
+        private void AssertInRythmSection()
+        {
+            if (!InRythmSection) throw new Exception("This function may only be called in a rythm section");
+        }
     }
 }
