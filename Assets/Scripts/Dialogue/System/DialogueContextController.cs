@@ -93,7 +93,7 @@ namespace Dialogue
         {
             SetDialougeMode(DialogueMode.Encounter_OpponentSpeak);
             dialogueTyper.StopCurrent();
-            dialogueTyper.StartNewNormal();
+            dialogueTyper.StartNewRythm(); // bug?
         }
 
         public void StopConversation()

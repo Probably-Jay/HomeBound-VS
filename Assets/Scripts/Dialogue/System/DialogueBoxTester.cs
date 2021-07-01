@@ -21,7 +21,7 @@ namespace TestScripts
         public void EnterRythm()
         {
             dm.transform.parent.gameObject.SetActive(true);
-            dm.EnterRythmEncounter();
+            dm.EnterRythmEncounter("");
             ProgressPhrase();
         }
 

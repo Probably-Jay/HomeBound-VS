@@ -4,4 +4,5 @@ id: test_5, mode: 1
 [Me]: what's your name?
 [Stranger]: it's [colour: FF0000]James[colour: FFFFFF], pleased to meet you
 [James]: will you be staying long?
+[a]: [rythm: hi]
 [end]

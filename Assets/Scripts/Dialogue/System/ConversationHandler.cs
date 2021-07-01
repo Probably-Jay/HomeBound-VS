@@ -10,10 +10,9 @@ namespace Dialogue {
         DialogueLoader dialogueLoader;
         DialogueParser dialogueParser;
 
-        readonly Dictionary<string, Conversation> conversations = new Dictionary<string, Conversation>();
-     //   readonly List<Game.TextAssetFolders> loadedConversations;
+        //   readonly List<Game.TextAssetFolders> loadedConversations;
 
-        public Dictionary<string, Conversation> Conversations { get => conversations; }
+        public Dictionary<string, Conversation> Conversations { get; } = new Dictionary<string, Conversation>();
 
         public TextAssetFolders LoadedConversationFolder { get; private set; } = TextAssetFolders.None;
 
@@ -26,7 +25,7 @@ namespace Dialogue {
 
         public void UnLoad()
         {
-            conversations.Clear();
+            Conversations.Clear();
             LoadedConversationFolder = TextAssetFolders.None;
             dialogueLoader.UnloadAll();
         }

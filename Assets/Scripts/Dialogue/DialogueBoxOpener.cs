@@ -14,7 +14,8 @@ public class DialogueBoxOpener : MonoBehaviour
     public event Action OnBoxOpen;
     public event Action OnBoxClose;
 
-    public DialogueManager DialogeBox { get => dialogeBox; private set => dialogeBox = value; }
+
+    public DialogueManager DialogeBox { get => dialogeBox; }
 
     private void OnEnable()
     {

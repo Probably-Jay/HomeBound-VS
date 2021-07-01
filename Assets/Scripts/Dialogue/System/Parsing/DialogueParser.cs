@@ -9,21 +9,7 @@ namespace Dialogue
 {
     public class DialogueParser
     {
-        //public Conversation Parse(string text)
-        //{
-        //    try
-        //    {
-
-        //        return TryParse(text);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-
-        //}
-
+       
         public Conversation TryParse(string text)
         {
 
@@ -205,9 +191,10 @@ namespace Dialogue
 
         enum Instructions
         {
-            mode
+            debug
+            ,mode
             ,colour
-            ,debug
+            ,rythm
         }
 
         private string ParseInlineInstructions(Conversation conversation, DialoguePhrase phrase, string body, int lineNumber, GroupCollection header)
@@ -229,8 +216,6 @@ namespace Dialogue
                 }
 
 
-
-                // \[(|mode: (\d))(|, *colour: (\d))\]
                 bool found = false;
                 foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
                 {
@@ -239,10 +224,9 @@ namespace Dialogue
                     if (!instruction.Success)
                     {
                         continue;
-                        //throw new Exception($"Phrase {lineNumber} instruction group {matchIndex} cannot be parsed");
                     }
 
-                    if (instruction.Groups[(int)iName].Value != "")
+                    if (instruction.Groups[iName.ToString()].Value != "")
                     {
                         Action instructionAction = GetInstruction(conversation, iName, instruction);
                         phrase.AddInstruction(matchIndex, instructionAction);
@@ -291,9 +275,18 @@ namespace Dialogue
                 case Instructions.debug:
                     {
                         string value = instruction.Groups[iName.ToString()].Value;
- 
+
                         Action changeMode = () => Debug.Log($"Inline debug: {value}. Conversation: {conversation.conversationID}");
                         return changeMode;
+                    }
+
+                case Instructions.rythm:
+                    {
+                        string value = instruction.Groups[iName.ToString()].Value;
+
+                        Action startRyhtmSection = () => conversation.StartRyhtmSection(value);
+
+                        return startRyhtmSection;
                     }
 
                 default: throw new Exception("Instruction name exists but no code handles this case");

@@ -82,7 +82,8 @@ namespace Dialogue
         public event Action<int> OnSetColour;
         public void SetColour(int colour) => OnSetColour?.Invoke(colour);
 
-        
+        public event Action<string> OnTriggerRythmSection;
+        public void StartRyhtmSection(string id) => OnTriggerRythmSection?.Invoke(id);
     }
 
 

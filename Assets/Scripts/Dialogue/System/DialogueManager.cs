@@ -100,6 +100,7 @@ namespace Dialogue
         {
             conversation.OnSetDialogueMode += (mode) => dialogueContextController.SetDialougeMode(mode); // add changing mode events
             conversation.OnSetColour += (colour) => dialogueContextController.AddColourRTT(colour);
+            conversation.OnTriggerRythmSection += (id) => EnterRythmEncounter(id);
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)
             {
@@ -117,11 +118,13 @@ namespace Dialogue
         /// <summary>
         /// Start new rythm section
         /// </summary>
-        public void EnterRythmEncounter()
+        public void EnterRythmEncounter(string id)
         {
             StopCurrentConversation();
             dialogueContextController.EnterArgument();
             InRythmSection = true;
+
+            throw new NotImplementedException("Ryhtm start not implimented");
 
         }
 

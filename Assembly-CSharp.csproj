@@ -646,6 +646,10 @@
       <Project>{12BA2B9B-F977-257D-A770-C239B2421B56}</Project>
       <Name>Rythm</Name>
     </ProjectReference>
+    <ProjectReference Include="~InteractableInterface.csproj">
+      <Project>{12254B1C-66B3-9ED5-14A2-2A80DA24795F}</Project>
+      <Name>~InteractableInterface</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{E65D7C90-708E-4520-E46F-39CF15504CE2}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
@@ -685,10 +689,6 @@
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{11EBBDD7-E2FD-F626-966F-35718B89FB30}</Project>
       <Name>UnityEditor.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="~InteractableInterface.csproj">
-      <Project>{12254B1C-66B3-9ED5-14A2-2A80DA24795F}</Project>
-      <Name>~InteractableInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
