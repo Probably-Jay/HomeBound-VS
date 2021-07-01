@@ -5,7 +5,8 @@
         "UnityEditor.TestRunner",
         "DialogueSystem",
         "~Game",
-        "~Core"
+        "~Core",
+        "~Dialogue_System"
     ],
     "includePlatforms": [
         "Editor"

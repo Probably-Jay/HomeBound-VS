@@ -10,7 +10,7 @@ public class NoteDialogueInterface : MonoBehaviour
     void Start()
     {
         //DialogueBox.BeginConversation("");
-        DialogueBox.EnterRythmEncounter("");
+       // DialogueBox.EnterRythmEncounter("");
        //Rythm.RythmEngine.Instance.InRythmSection = true;
         //DialogueBox.SetTypingMode(Dialogue.DialogueMode.Encounter_PlayerSpeak);
     }

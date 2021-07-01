@@ -646,6 +646,10 @@
       <Project>{52E0881F-85E4-2E6E-65A3-865A275E851A}</Project>
       <Name>~Core</Name>
     </ProjectReference>
+    <ProjectReference Include="~Dialogue_System.csproj">
+      <Project>{69CA9AF9-DA57-BA5B-FBED-99653188D271}</Project>
+      <Name>~Dialogue_System</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{11EBBDD7-E2FD-F626-966F-35718B89FB30}</Project>
       <Name>UnityEditor.UI</Name>

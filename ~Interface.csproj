@@ -63,7 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Interface\NoteDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Interface\RythmDialogueInterface.cs" />
     <None Include="Assets\Scripts\Interface\~Interface.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/UnityEditors/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
