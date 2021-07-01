@@ -31,6 +31,15 @@ public class RhythmSectionManager : MonoBehaviour
     {
         
     }
+    public void RecieveControl()
+    {
+        //recieve control
+    }
+    public void EndSection()
+    {
+        rDI.EndRythm();
+        
+    }
     public void LoadSection(string iD)
     {
         sectionLoader.LoadSection(noteSheets[iD]);

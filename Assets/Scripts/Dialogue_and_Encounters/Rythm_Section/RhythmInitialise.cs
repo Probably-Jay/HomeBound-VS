@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using NoteSystem;
 namespace RhythmSectionLoading {
+    enum CommandType
+    {
+        EndSection
+    }
     class Note
     {
         public float climaxBeat { get; private set; }
@@ -25,6 +29,16 @@ namespace RhythmSectionLoading {
             this.returnBeat = returnBeat;
         }
     }
+    class OtherCommand
+    {
+        public CommandType type { get; private set; }
+        public float onBeat { get; private set; }
+        public void Initialise(float onBeat, CommandType type)
+        {
+            this.onBeat = onBeat;
+            this.type = type;
+        }
+    }
 
 
     public class RhythmInitialise : MonoBehaviour
@@ -44,6 +58,7 @@ namespace RhythmSectionLoading {
         public List<Lane> lanes = new List<Lane> { };
         List<Note> notes = new List<Note> { };
         List<PassToDialogue> toDialogues = new List<PassToDialogue> { };
+        List<OtherCommand> otherCommands = new List<OtherCommand> { };
         [SerializeField] float leadTime = 5f;
 
 
@@ -68,8 +83,9 @@ namespace RhythmSectionLoading {
         {
             notes.Clear();
             toDialogues.Clear();
+            otherCommands.Clear();
             noteSheetLines = text.text.Split('\n');
-            foreach(string line in noteSheetLines)
+            foreach (string line in noteSheetLines)
             {
                 if (line[0] == '>')
                 {
@@ -79,6 +95,13 @@ namespace RhythmSectionLoading {
                     float returnBeat = float.Parse(returnBeatString);
                     toDialogues.Add(new PassToDialogue());
                     toDialogues[toDialogues.Count - 1].Initialise(passBeat, returnBeat);
+                }
+                else if (line[0] == ']')
+                {
+                    string onbeatString = line.Split(',')[1];
+                    float onBeat = float.Parse(onbeatString);
+                    otherCommands.Add(new OtherCommand());
+                    otherCommands[otherCommands.Count - 1].Initialise(onBeat, CommandType.EndSection);
                 }
                 else
                 {
@@ -118,6 +141,13 @@ namespace RhythmSectionLoading {
         void QueueDialoguePass(PassToDialogue toDialogue)
         {
             Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.PassToDialogue(); }, toDialogue.passBeat);
+        }
+        void QueueCommand(OtherCommand command)
+        {
+            if (command.type == CommandType.EndSection)
+            {
+                Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.EndSection(); }, command.onBeat);
+            }
         }
 
     }

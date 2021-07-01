@@ -63,7 +63,7 @@ namespace Dialogue
 
         private void AssertInRythmSection()
         {
-            if (!InRythmSection) throw new Exception("This function may only be called in a rythm section");
+            if (!InRythmSection) throw new System.Exception("This function may only be called in a rythm section");
         }
     }
 }
