@@ -92,7 +92,7 @@ namespace Dialogue
         public void EnterArgument()
         {
             SetDialougeMode(DialogueMode.Encounter_OpponentSpeak);
-            dialogueTyper.StopCurrent();
+           // dialogueTyper.Enter();
             dialogueTyper.StartNewRythm(); 
         }
 

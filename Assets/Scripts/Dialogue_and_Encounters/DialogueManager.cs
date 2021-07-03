@@ -11,23 +11,25 @@ namespace Dialogue
 
         ConversationHandler conversationHandler;
         DialogueContextController dialogueContextController;
-        RythmDialogueInterface rythmInterface;
+        //    RythmDialogueInterface rythmInterface;
+        IRythmDialogeControlInterface rythmDialogeControlInterface;
 
         private Coroutine currentConversation;
 
         public event Action OnQueueDepleated;
 
-        public bool InRythmSection => rythmInterface.InRythmSection;
+        public bool InRythmSection => rythmDialogeControlInterface.InRythmSection;
 
-        public bool ThisHasControl { get => InRythmSection ? hasControl : true; set => hasControl = value; }
+        public bool ThisHasControl { get => InRythmSection ? hasControl : true; }
+        public bool ReadyToPassToRythm { get; private set; }
 
-        bool hasControl;
+        bool hasControl => !rythmDialogeControlInterface.RythmHasControl;
 
         private void Awake()
         {
             conversationHandler = GetComponent<ConversationHandler>();
             dialogueContextController = GetComponent<DialogueContextController>();
-            rythmInterface = GetComponent<RythmDialogueInterface>();
+            rythmDialogeControlInterface = GetComponent<RythmDialogueInterface>();
         }
 
 
@@ -90,6 +92,11 @@ namespace Dialogue
 
         public bool ContainsConversation(string conversationID) => conversationHandler.Conversations.ContainsKey(conversationID);
 
+        internal void LeaveArgument()
+        {
+            throw new NotImplementedException();
+        }
+
         private void StartNewConversation(Conversation conversation) 
         {
             dialogueContextController.SetDialougeMode(conversation.initialMode);
@@ -111,7 +118,7 @@ namespace Dialogue
         {
             conversation.OnSetDialogueMode += (mode) => dialogueContextController.SetDialougeMode(mode); // add changing mode events
             conversation.OnSetColour += (colour) => dialogueContextController.AddColourRTT(colour);
-            conversation.OnTriggerRythmSection += (id) => rythmInterface.StartNewRythm(id);
+            conversation.OnTriggerRythmSection += (id) => rythmDialogeControlInterface.StartNewRythm(id);
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)
             {
@@ -156,16 +163,21 @@ namespace Dialogue
             dialogueContextController.EnterArgument();
         }
 
-        internal void RythmControlReceive()
+        internal void RythmControlReceived()
         {
-            ThisHasControl = true;
+            ReadyToPassToRythm = false;
             dialogueContextController.ProgressArgument();
         }
 
-        internal void RythmControlRelease()
+        internal void RythmControlYeilded()
         {
-            ThisHasControl = false;
             dialogueContextController.SetDialougeMode(DialogueMode.Encounter_PlayerSpeak);
+        }
+
+        internal void ReleaseControl()
+        {
+            ReadyToPassToRythm = true;
+            rythmDialogeControlInterface.PassControlToRythm();
         }
 
         /// <summary>

@@ -99,6 +99,11 @@ namespace Dialogue
         
         public void StartNewRythm()
         {
+            if (textCoroutine != null)
+                StopCoroutine(textCoroutine);
+            if (typingCoroutine != null)
+                StopCoroutine(typingCoroutine);
+
             typingCoroutine = StartCoroutine(MoveBufferToLive());
         }
 

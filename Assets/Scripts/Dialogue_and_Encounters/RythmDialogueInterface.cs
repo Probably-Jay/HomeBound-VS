@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rythm;
 using RhythmSectionLoading;
+using System;
 
 namespace Dialogue
 {
@@ -14,13 +15,16 @@ namespace Dialogue
     }
 
 
-    public class RythmDialogueInterface : MonoBehaviour
+    public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterface
     {
         public Controler InControl { get; private set; }
         DialogueManager dialogueManager;
         RhythmSectionManager rythmManager;
 
         public bool InRythmSection { get; private set; } = false;
+
+        bool passToRyrhmQueued = false;
+        public bool RythmHasControl { get; private set; } = false;
 
 
         private void Awake()
@@ -29,46 +33,76 @@ namespace Dialogue
         }
 
 
-
-        public void PassControlToDialogue()
-        {
-            AssertInRythmSection();
-            throw new System.NotImplementedException();
-        }
-
-        public void PassControlToDialogue(float passBack)
-        {
-            AssertInRythmSection();
-
-            dialogueManager.RythmControlReceive();
-
-
-            throw new System.NotImplementedException(); // tell rythm to release
-
-
-            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(PassControlToRythm, passBack);
-        }
-
-
-
-
         public void StartNewRythm(string id)
         {
             InRythmSection = true;
-            dialogueManager.StopCurrentConversation();
+           // dialogueManager.StopCurrentConversation();
             dialogueManager.EnterArgument();
+            PassControlToRythm();
             rythmManager.LoadSection(id);
             
         }
 
-        public void PassControlToRythm()
+        public void PassControlToDialogue()
         {
-            dialogueManager.RythmControlRelease();
+            AssertInRythmSection();
+            RythmHasControl = false;
+            rythmManager.RythmControlYeilded();
+            dialogueManager.RythmControlReceived();
         }
 
-        public void EndRythm()
+        public void PassControlToDialogue(float passBack)
         {
-            throw new System.NotImplementedException();
+            if (dialogueManager.ThisHasControl)
+            {
+                Debug.LogError("Dialogue already has control");
+            }
+            PassControlToDialogue();
+            QueuePassBackToRythm(passBack);
+        }
+
+        private void QueuePassBackToRythm(float passBack)
+        {
+            if (passToRyrhmQueued)
+            {
+                Debug.LogError("Already has pasback queued");
+            }
+            passToRyrhmQueued = true;
+            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(PassControlToRythmOnBeat, passBack);
+        }
+
+        private void PassControlToRythmOnBeat()
+        {
+            if (!dialogueManager.ReadyToPassToRythm)
+            {
+                Debug.LogError("Not ready to pass to rythm");
+            }
+            if (!passToRyrhmQueued)
+            {
+                Debug.LogError("This pass back was not queued!");
+            }
+            passToRyrhmQueued = false;
+            PassControlToRythm();
+        }
+
+
+        public void PassControlToRythm()
+        {
+            if (passToRyrhmQueued)
+            {
+                // we have this pass back queued for the future
+                Debug.Log("Pass back queued for the furure");
+                return;
+            }
+            RythmHasControl = true;
+            dialogueManager.RythmControlYeilded();
+            rythmManager.RythmControlReceived();
+        }
+
+        public void EndRythmSection()
+        {
+            InRythmSection = false; 
+            dialogueManager.LeaveArgument();
         }
 
         private void AssertInRythmSection()
