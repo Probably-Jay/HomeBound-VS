@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0c9c8e4f40c45a46a89ea0233f446c7, type: 3}
-  m_Name: DanceSong
+  m_Script: {fileID: 11500000, guid: c2c2713ecfcccf74d8d7dfce2b25c4f1, type: 3}
+  m_Name: DanceSection
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 0273cce0fc0d6d749ad0d7989698fab8, type: 3}
-  BPM: 120
-  offset: 0
-  beginAtTime: 0
+  song: {fileID: 11400000, guid: 6b84f0dbf325cf24694a873fbe7f6947, type: 2}
+  notes: {fileID: 0}
