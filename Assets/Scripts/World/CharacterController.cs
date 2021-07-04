@@ -28,6 +28,7 @@ namespace Overworld {
         [SerializeField] KeyCode[] buttons = new KeyCode[4];
         [SerializeField] float speed;
         [SerializeField] int layer = 0;
+        [SerializeField] Animator animator;
 
 
         [SerializeField] Dictionary<WalkingDirection, KeyCode> movementKeys = new Dictionary<WalkingDirection, KeyCode>();
@@ -126,6 +127,11 @@ namespace Overworld {
             {
                 isWalking = false;
             }
+            animator.SetBool("isWalking", isWalking||(myRb.velocity.magnitude!=0f));
+            Debug.Log(animator.GetBool("isWalking"));
+            animator.SetInteger("Direction", (int)currentDirection);
+            Debug.Log(animator.GetInteger("Direction"));
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(0));
         }
         private void FixedUpdate()
         {
