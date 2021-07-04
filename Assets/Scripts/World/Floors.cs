@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[System.Obsolete("Replaced with" + nameof(FloorHandler))]
 public class Floors : MonoBehaviour
 {
     Dictionary<int, Tilemap> floors = new Dictionary<int, Tilemap> { };
