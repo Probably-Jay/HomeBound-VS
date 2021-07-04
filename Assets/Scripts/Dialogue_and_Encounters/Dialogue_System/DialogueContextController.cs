@@ -21,8 +21,10 @@ namespace Dialogue
         DialogueTyper dialogueTyper;
 
         public event Action OnReachedEndOfQueue;
+        public event Action OnTypedPhrase;
+        
 
-        [SerializeField] private DialogueMode dialogueMode;
+        [SerializeField] private Stack<DialogueMode> dialogueMode = new Stack<DialogueMode>();
 
         private void Awake()
         {
@@ -33,23 +35,57 @@ namespace Dialogue
         private void OnEnable()
         {
             dialogueTyper.OnReachedEndOfQueue += InvokeReachedEndOfQueue;
+            dialogueTyper.OnTypedPhrase += InvokeTypedPhrase;
         }
 
         private void OnDisable()
         {
             dialogueTyper.OnReachedEndOfQueue -= InvokeReachedEndOfQueue;
+            dialogueTyper.OnTypedPhrase -= InvokeTypedPhrase;
         }
-    
+
 
         void InvokeReachedEndOfQueue() => OnReachedEndOfQueue?.Invoke();
+        void InvokeTypedPhrase() => OnTypedPhrase?.Invoke();
 
-        public void SetDialougeMode(DialogueMode mode)
+
+        public void ResetDialogeModeTo(DialogueMode initialMode)
         {
-            dialogueMode = mode;
+            dialogueMode.Clear();
+            PushDialogeMode(initialMode);
+        }
+
+        public void PushDialogeMode(DialogueMode mode)
+        {
+            dialogueMode.Push(mode);
+            ApplyMode();
+        }
+
+        public void MutateDialogeMode(DialogueMode mode)
+        {
+            dialogueMode.Pop();
+            PushDialogeMode(mode);
+        }
+
+        public void ReturnToPreviousMode()
+        {
+            if (dialogueMode.Count <= 1)
+            {
+                throw new Exception("Cannot return past initial mode");
+            }
+            dialogueMode.Pop();
+            ApplyMode();
+        }
+
+
+        private void ApplyMode()
+        {
+            var mode = dialogueMode.Peek();
+            Debug.Log($"Switching to {mode}");
             switch (mode)
             {
                 case DialogueMode.None:
-                    Debug.LogWarning($"{nameof(SetDialougeMode)} called with {DialogueMode.None}, no changes made");
+                    Debug.LogWarning($"{nameof(PushDialogeMode)} or {nameof(ReturnToPreviousMode)} called with {DialogueMode.None}, no changes made");
                     break;
                 case DialogueMode.Normal:
                     dialogueTyper.OnBeat = false;
@@ -78,7 +114,7 @@ namespace Dialogue
                     break;
                 case DialogueMode.Encounter_PlayerSpeak:
                     dialogueTyper.OnBeat = true;
-                    dialogueTyper.TypingMode = TypingMode.WordByCharacter;
+                    dialogueTyper.TypingMode = TypingMode.Instant;
                     dialogueTyper.DisplayActionsPerBeat = 2;
 
                     break;
@@ -86,20 +122,35 @@ namespace Dialogue
             }
         }
 
+       
+
         public void QueuePhrase(DialoguePhrase phrase, float? onBeat = null, bool forceContext = false) => dialogueTyper.QueueNewPhrase(phrase, onBeat, forceContext);
 
 
         public void EnterArgument()
         {
-            SetDialougeMode(DialogueMode.Encounter_OpponentSpeak);
-           // dialogueTyper.Enter();
+            PushDialogeMode(DialogueMode.Encounter_OpponentSpeak);
             dialogueTyper.StartNewRythm(); 
         }
 
         public void ProgressArgument()
         {
-            SetDialougeMode(DialogueMode.Encounter_OpponentSpeak);
+            MutateDialogeMode(DialogueMode.Encounter_OpponentSpeak);
             dialogueTyper.ProgressRythm();
+        }
+
+       
+
+        public void LeaveArgument()
+        {
+            ClearBox();
+            dialogueTyper.StartNewNormal();
+            ReturnToPreviousMode();
+        }
+
+        public void ClearBox()
+        {
+            dialogueTyper.ClearBox();
         }
 
         public void StopConversation()
@@ -121,6 +172,8 @@ namespace Dialogue
             string tag = $"<color=#{hex}>";
             dialogueTyper.AddRichTextTag(tag);
         }
+
+       
 
         //// Start is called before the first frame update
         //void Start()

@@ -44,6 +44,7 @@ namespace Dialogue
        
 
         public event Action OnReachedEndOfQueue;
+        public event Action OnTypedPhrase;
       
 
         public bool OnBeat { get => onBeat && RythmEngine.InstanceExists; set => onBeat = value; }
@@ -89,10 +90,32 @@ namespace Dialogue
             //    " and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.");
         }
 
-       
+        internal void ClearBox()
+        {
+            bufferAndLivePhrase.Reset();
+
+            nameString = "";
+
+            display.text = "";
+            nameOutdisplay.text = "";
+
+            beenQueuedThisConversation = false;
+
+            IncrimentContext();
+        }
+
+        void SetName(string name)
+        {
+            nameString = name;
+        }
 
         public void StartNewNormal()
         {
+            if (textCoroutine != null)
+                StopCoroutine(textCoroutine);
+            if (typingCoroutine != null)
+                StopCoroutine(typingCoroutine);
+
             textCoroutine = StartCoroutine(UpdateBufferedPhrase());
             typingCoroutine = StartCoroutine(MoveBufferToLive());
         }        
@@ -134,19 +157,10 @@ namespace Dialogue
 
             ClearQueuedPhrases();
 
-          //  bufferPhrase = new DialoguePhrase();
+            //  bufferPhrase = new DialoguePhrase();
             //liveString.Clear();
 
-            bufferAndLivePhrase.Reset();
-
-            nameString = "";
-
-            display.text = "";
-            nameOutdisplay.text = "";
-
-            beenQueuedThisConversation = false;
-
-            IncrimentContext();
+            ClearBox();
         }
 
         private void ClearQueuedPhrases()
@@ -358,11 +372,12 @@ namespace Dialogue
         {
             while (true)
             {
-                yield return  StartCoroutine(FillDialogeBox());
+                yield return StartCoroutine(FillDialogeBox());
 
                 if(!bufferAndLivePhrase.bufferPhrase.StillMovingBufferToLive)
                 {
-                    yield return new WaitUntil(() => !bufferAndLivePhrase.bufferPhrase.StillMovingBufferToLive);
+                    OnTypedPhrase?.Invoke();
+                    yield return new WaitUntil(() => bufferAndLivePhrase.bufferPhrase.StillMovingBufferToLive);
                 }
             }
         }

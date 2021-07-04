@@ -19,11 +19,32 @@ namespace Dialogue
     {
         public Controler InControl { get; private set; }
         DialogueManager dialogueManager;
-        [SerializeField]RhythmSectionManager rythmManager;
-
-        public bool InRythmSection { get; private set; } = false;
+        [SerializeField] RhythmSectionManager rythmManager;
 
         bool passToRyrhmQueued = false;
+        public bool InRythmSection
+        {
+            get
+            {
+                if (inRythmSection && !RythmEngine.Instance.PlayingMusic)
+                {
+                    throw new Exception("Cannot be in rhythm section if music is not playing");
+                }
+                return inRythmSection;
+            }
+
+            private set
+            {
+                if (value && !RythmEngine.Instance.PlayingMusic)
+                {
+                    throw new Exception("Cannot enter rhythm section if music is not playing");
+                }
+                inRythmSection = value;
+            }
+        }
+
+        private bool inRythmSection = false;
+
         public bool RythmHasControl { get; private set; } = false;
 
 
@@ -36,12 +57,10 @@ namespace Dialogue
         public void StartNewRythm(string id)
         {
             Game.GameContextController.Instance.PushContext(Game.Context.Rythm);
-            InRythmSection = true;
-           // dialogueManager.StopCurrentConversation();
             dialogueManager.EnterArgument();
             PassControlToRythm();
             rythmManager.LoadAndBeginSection(id);
-            
+            InRythmSection = true;
         }
 
 
@@ -60,7 +79,7 @@ namespace Dialogue
                 Debug.LogError("Dialogue already has control");
             }
             PassControlToDialogue();
-            if(passBack.HasValue)
+            if (passBack.HasValue)
                 QueuePassBackToRythm(passBack.Value);
         }
 
@@ -104,7 +123,8 @@ namespace Dialogue
 
         public void EndRythmSection()
         {
-            InRythmSection = false; 
+            RythmHasControl = false;
+            InRythmSection = false;
             dialogueManager.LeaveArgument();
             Game.GameContextController.Instance.ReturnToPreviousContext();
         }

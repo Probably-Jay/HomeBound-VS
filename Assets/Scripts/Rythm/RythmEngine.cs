@@ -35,7 +35,7 @@ namespace Rythm
 
         float BeatsInSong => (float)(DurationOfSong * BPS);
 
-        readonly SortedList<float, Action> queuedActions = new SortedList<float, Action>();
+        readonly SortedDictionary<float, Action> queuedActions = new SortedDictionary<float, Action>();
 
 
         int CurrentSample => AudioSource.timeSamples;
@@ -114,9 +114,13 @@ namespace Rythm
             {
                 return;
             }
+
             List<float> ToRemoveCache = new List<float>();
             float frameCurrentBeat = CurrentBeat;
-            foreach (var action in queuedActions)
+
+            var cacheofQueuedActions = new SortedDictionary<float, Action>(queuedActions);
+
+            foreach (var action in cacheofQueuedActions)
             {
                 if (action.Key > frameCurrentBeat)
                 {
