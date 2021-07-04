@@ -11,8 +11,8 @@ namespace Game
     {
         None
         ,Explore
-            ,Dialogue
-            ,Rythm
+        ,Dialogue
+        ,Rythm
     }
 
 

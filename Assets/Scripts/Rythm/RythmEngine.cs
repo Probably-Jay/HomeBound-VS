@@ -15,38 +15,57 @@ namespace Rythm
         new public static RythmEngine Instance => Singleton<Rythm.RythmEngine>.Instance;
 
         public bool PlayingMusic { get; private set; } = false;
+        public float CurrentBeat => sampleOffset + TimeInSong * BPS;
+        public float TimeInSong => (float)CurrentSample / (float)MusicClip.frequency;
+        public float DurationOfSong => MusicClip.samples / MusicClip.frequency;
+        public float PercentThroughSong => TimeInSong / DurationOfSong;
+        public float BPS => BPM / 60f;
 
-        private AudioSource AudioSource { get; set; }
-
-        [SerializeField] RythmSong music;
-        [SerializeField] bool playImediatley;
-        public AudioClip MusicClip { get => music.audioClip; }
+        RythmSong currentTrack = null;
+      //  [SerializeField] bool playImediatley;
+        public AudioClip MusicClip { get => currentTrack?.audioClip; }
         float BPM;
         float sampleOffset;
+
+        float BeatsInSong => (float)(DurationOfSong * BPS);
+
+
+        SortedList<float, Action> queuedActions = new SortedList<float, Action>();
+
+
+        int CurrentSample => AudioSource.timeSamples;
+
+
+        private AudioSource AudioSource { get; set; }
 
 
         public override void Initialise()
         {
             base.InitSingleton();
             AudioSource = GetComponent<AudioSource>();
-            SetTrack();
 
            
-            if (playImediatley)
-            {
-                Play();
-            }
+            //if (playImediatley)
+            //{
+            //    Play(new RythmSong());
+            //}
         }
 
-        private void Play()
+        private void Play(RythmSong music)
+        {
+            SetTrack(music);
+            BeginPlaying();
+        }
+
+        private void BeginPlaying()
         {
             DebugDetails();
             AudioSource.Play();
-            AudioSource.timeSamples = music.beginAtSample;
+            AudioSource.timeSamples = currentTrack.beginAtSample;
             PlayingMusic = true;
         }
 
-        private void SetTrack()
+        private void SetTrack(RythmSong music)
         {
             AudioSource.clip = MusicClip;
             BPM = music.BPM;
@@ -55,27 +74,15 @@ namespace Rythm
 
         private void DebugDetails()
         {
-            Debug.Log($"Track: {music.name}");
+            Debug.Log($"Track: {currentTrack.name}");
             Debug.Log($"Samples: { MusicClip.samples} at { MusicClip.frequency}Hz");
             Debug.Log($"BPM: {BPM} ({BPS}pbs)");
-            Debug.Log($"Duration: {TimeSpan.FromSeconds(Duration)}, {BeatsInSong} beats long");
+            Debug.Log($"Duration: {TimeSpan.FromSeconds(DurationOfSong)}, {BeatsInSong} beats long");
             Debug.Log($"Offset: {sampleOffset} samples");
 
         }
 
-        float BPS => BPM / 60f;
-        float BeatsInSong => (float)(Duration * BPS);
-
-
-        SortedList<float, Action> queuedActions = new SortedList<float, Action>();
-
-        float Duration => MusicClip.samples / MusicClip.frequency;
-
-        int CurrentSample => AudioSource.timeSamples;
-
-        float TimeInSong => (float)CurrentSample / (float)MusicClip.frequency;
-
-        public float CurrentBeat => sampleOffset + TimeInSong * BPS;
+      
 
         /// <summary>
         /// <see cref="Time.deltaTime"/> in beats
@@ -85,9 +92,7 @@ namespace Rythm
         public float DurationOfBeat => BeatToSeconds(1);
 
         private void Update()
-        {  
-            SetTrack();
-
+        {          
             InvokeQueue();
         }
 

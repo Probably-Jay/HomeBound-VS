@@ -55,7 +55,11 @@ public class RhythmSectionManager : MonoBehaviour
     }
     public void LoadSection(string iD)
     {
-        sectionLoader.LoadSection(noteSheets[iD]);
+        if (!noteSheets.ContainsKey(iD))
+        {
+            throw new System.Exception($"{nameof(noteSheets)} does not contain key {iD}");
+        }
+        sectionLoader.LoadAndBeginSection(noteSheets[iD]);
     }
    
 }

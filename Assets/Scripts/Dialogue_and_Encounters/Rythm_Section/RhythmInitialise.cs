@@ -33,13 +33,30 @@ namespace RhythmSectionLoading {
         void Start()
         {
             noteSpawner = this.GetComponent<NoteSpawner>();
-    
+            SwitchOffLanes();
+
             //LoadSection(noteSheet);
         }
 
-
-        public void LoadSection(TextAsset section)
+        private void SwitchOffLanes()
         {
+            foreach (var lane in lanes)
+            {
+                lane.gameObject.SetActive(false);
+            }
+        }
+
+        void SwitchOnLanes()
+        {
+            foreach (var lane in lanes)
+            {
+                lane.gameObject.SetActive(true);
+            }
+        }
+
+        public void LoadAndBeginSection(TextAsset section)
+        {
+            SwitchOnLanes();
             noteSheet = section;
             ReadSection(noteSheet);
             InitialiseSection();
@@ -53,7 +70,7 @@ namespace RhythmSectionLoading {
             noteSheetLines = text.text.Split('\n');
             foreach (string line in noteSheetLines)
             {
-                if (line[0] == '>')
+                if (line[0] == '>') // pass to dialogue
                 {
                     string passBeatString = line.Split(',')[1];
                     string returnBeatString = line.Split(',')[2];
@@ -62,7 +79,7 @@ namespace RhythmSectionLoading {
                     toDialogues.Add(new PassToDialogue());
                     toDialogues[toDialogues.Count - 1].Initialise(passBeat, returnBeat);
                 }
-                else if (line[0] == ']')
+                else if (line[0] == ']') // end section
                 {
                     string onbeatString = line.Split(',')[1];
                     float onBeat = float.Parse(onbeatString);
@@ -97,7 +114,11 @@ namespace RhythmSectionLoading {
             }
             foreach(PassToDialogue toDialogue in toDialogues)
             {
-                
+                QueueDialoguePass(toDialogue);
+            }
+            foreach (OtherCommand command in otherCommands)
+            {
+                QueueCommand(command);
             }
         }
         void QueueNote(Note note)

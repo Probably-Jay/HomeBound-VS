@@ -19,7 +19,7 @@ namespace Dialogue
     {
         public Controler InControl { get; private set; }
         DialogueManager dialogueManager;
-        RhythmSectionManager rythmManager;
+        [SerializeField]RhythmSectionManager rythmManager;
 
         public bool InRythmSection { get; private set; } = false;
 
@@ -35,6 +35,7 @@ namespace Dialogue
 
         public void StartNewRythm(string id)
         {
+            Game.GameContextController.Instance.PushContext(Game.Context.Rythm);
             InRythmSection = true;
            // dialogueManager.StopCurrentConversation();
             dialogueManager.EnterArgument();
@@ -103,6 +104,7 @@ namespace Dialogue
         {
             InRythmSection = false; 
             dialogueManager.LeaveArgument();
+            Game.GameContextController.Instance.ReturnToPreviousContext();
         }
 
         private void AssertInRythmSection()
