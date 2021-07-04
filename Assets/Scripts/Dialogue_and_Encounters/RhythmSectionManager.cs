@@ -5,9 +5,9 @@ using RhythmSectionLoading;
 
 public class RhythmSectionManager : MonoBehaviour
 {
-    Dictionary<string, TextAsset> noteSheets = new Dictionary<string, TextAsset> { };
+    Dictionary<string, Rythm.NoteSection> noteSheets = new Dictionary<string, Rythm.NoteSection> { };
     [SerializeField] List<string> identifications = new List<string> { };
-    [SerializeField] List<TextAsset> sheets = new List<TextAsset> { };
+    [SerializeField] List<Rythm.NoteSection> sheets = new List<Rythm.NoteSection> { };
     [SerializeField] RhythmInitialise sectionLoader;
     [SerializeField] Dialogue.RythmDialogueInterface rDI;
 
@@ -53,14 +53,13 @@ public class RhythmSectionManager : MonoBehaviour
     {
         rDI.EndRythmSection();
     }
-    public void LoadSection(string iD)
+    public void LoadAndBeginSection(string iD)
     {
         if (!noteSheets.ContainsKey(iD))
         {
             throw new System.Exception($"{nameof(noteSheets)} does not contain key {iD}");
         }
-        sectionLoader.LoadAndBeginSection(noteSheets[iD]);
-        
-    }
+        Rythm.RythmEngine.Instance.Play(noteSheets[iD].song);
+        sectionLoader.LoadAndBeginSectionNotes(noteSheets[iD].notes);    }
    
 }

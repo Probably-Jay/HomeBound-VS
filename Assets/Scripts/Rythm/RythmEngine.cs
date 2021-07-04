@@ -47,7 +47,7 @@ namespace Rythm
 
         }
 
-        private void Play(RythmSong music)
+        public void Play(RythmSong music)
         {
             ClearAnyQueuedActions();
             SetTrack(music);

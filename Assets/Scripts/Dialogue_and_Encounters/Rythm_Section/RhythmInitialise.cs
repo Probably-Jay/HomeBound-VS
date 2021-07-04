@@ -54,7 +54,7 @@ namespace RhythmSectionLoading {
             }
         }
 
-        public void LoadAndBeginSection(TextAsset section)
+        public void LoadAndBeginSectionNotes(TextAsset section)
         {
             SwitchOnLanes();
             noteSheet = section;

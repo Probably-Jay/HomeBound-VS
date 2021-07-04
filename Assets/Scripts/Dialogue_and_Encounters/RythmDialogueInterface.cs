@@ -40,7 +40,7 @@ namespace Dialogue
            // dialogueManager.StopCurrentConversation();
             dialogueManager.EnterArgument();
             PassControlToRythm();
-            rythmManager.LoadSection(id);
+            rythmManager.LoadAndBeginSection(id);
             
         }
 
