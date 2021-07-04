@@ -65,6 +65,12 @@
     <Reference Include="~Core">
       <HintPath>Library/ScriptAssemblies/~Core.dll</HintPath>
     </Reference>
+    <Reference Include="~InteractableInterface">
+      <HintPath>Library/ScriptAssemblies/~InteractableInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="~Dialogue_System">
+      <HintPath>Library/ScriptAssemblies/~Dialogue_System.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -598,19 +604,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Dialogue\Conversation.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\ConversationHandler.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueContextController.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueParsingException.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialoguePhrase.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialoguePhraseObject.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueTyper.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\FileLoading\DialogueLoader.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\Parsing\DialogueParser.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueBoxOpener.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueInstance.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RhythmSectionManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RythmDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitDetection.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitZone.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\Lane.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSection.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSpawner.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\RhythmInitialise.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordNote.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordUI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Dialogue\~DialogueSystem.asmdef" />
+    <None Include="Assets\Scripts\Dialogue_and_Encounters\~DialogueAndEncounters.asmdef" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
