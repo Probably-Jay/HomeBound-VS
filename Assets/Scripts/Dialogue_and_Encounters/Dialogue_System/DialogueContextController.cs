@@ -93,30 +93,35 @@ namespace Dialogue
                     dialogueTyper.TypingMode = TypingMode.Character;
                     dialogueTyper.StandardTypingDelay = 0.04f;
                     dialogueTyper.RandomTypingDelayDelta = 0.02f;
+                    dialogueTyper.SetContinueDisplayShow(true);
 
                     break;
                 case DialogueMode.Word:
                     dialogueTyper.OnBeat = false;
                     dialogueTyper.TypingMode = TypingMode.Word;
                     dialogueTyper.DisplayActionsPerBeat = 2;
+                    dialogueTyper.SetContinueDisplayShow(true);
 
                     break;
                 case DialogueMode.Instant:
                     dialogueTyper.OnBeat = false;
                     dialogueTyper.TypingMode = TypingMode.Instant;
                     dialogueTyper.DisplayActionsPerBeat = 1;
+                    dialogueTyper.SetContinueDisplayShow(true);
 
                     break;
                 case DialogueMode.Encounter_OpponentSpeak:
                     dialogueTyper.OnBeat = true;
                     dialogueTyper.TypingMode = TypingMode.WordByCharacter;
                     dialogueTyper.DisplayActionsPerBeat = 2;
+                    dialogueTyper.SetContinueDisplayShow(false);
 
                     break;
                 case DialogueMode.Encounter_PlayerSpeak:
                     dialogueTyper.OnBeat = true;
                     dialogueTyper.TypingMode = TypingMode.Instant;
                     dialogueTyper.DisplayActionsPerBeat = 2;
+                    dialogueTyper.SetContinueDisplayShow(false);
 
                     break;
                 default: throw new System.ArgumentException($"{mode} not handled dialogue mode");

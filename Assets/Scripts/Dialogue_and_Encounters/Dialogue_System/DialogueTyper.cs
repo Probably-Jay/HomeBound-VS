@@ -22,6 +22,7 @@ namespace Dialogue
     {
         TMP_Text display;
         [SerializeField] TMP_Text nameOutdisplay;
+        [SerializeField] TMP_Text continuedisplay;
 
 
         BufferAndLivePhrase bufferAndLivePhrase = new BufferAndLivePhrase();
@@ -93,15 +94,22 @@ namespace Dialogue
 
             display.text = "";
             nameOutdisplay.text = "";
+           
 
             beenQueuedThisConversation = false;
 
             IncrimentContext();
         }
 
-        void SetName(string name)
+        public void SetName(string name)
         {
             nameString = name;
+        }
+
+        public void SetContinueDisplayShow(bool show)
+        {
+            continuedisplay.gameObject.SetActive(show);
+            continuedisplay.text = show ? $"Press {nextPhraseKey}" : "";
         }
 
         public void StartNewNormal()
