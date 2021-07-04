@@ -47,7 +47,17 @@ namespace Dialogue
         public event Action OnTypedPhrase;
       
 
-        public bool OnBeat { get => onBeat && RythmEngine.InstanceExists; set => onBeat = value; }
+        public bool OnBeat { get 
+            {
+                if (onBeat && !RythmEngine.Instance.PlayingMusic)
+                {
+                    Debug.LogError("Cannot type on-beat when there is no beat!");
+                    return false;
+                }
+                return onBeat;
+            } 
+            set => onBeat = value; 
+        }
         [SerializeField] bool onBeat = false; 
 
         public TypingMode TypingMode { get => typingMode; set => typingMode = value; }
@@ -61,7 +71,7 @@ namespace Dialogue
       
         private string nameString;
 
-        private Coroutine fillingCoroutine;
+      //  private Coroutine fillingCoroutine;
 
         bool beenQueuedThisConversation = false;
 
@@ -74,21 +84,6 @@ namespace Dialogue
             display = GetComponent<TMP_Text>();
         }
 
-
-        // Start is called before the first frame update
-        void Start()
-        {
-           // StartNew();
-
-            //QueueNewPhrase("What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, " +
-            //    "and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with " +
-            //    "precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am " +
-            //    "contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes " +
-            //    "out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I " +
-            //    "extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, " +
-            //    "you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't," +
-            //    " and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.");
-        }
 
         internal void ClearBox()
         {
@@ -111,21 +106,28 @@ namespace Dialogue
 
         public void StartNewNormal()
         {
-            if (textCoroutine != null)
-                StopCoroutine(textCoroutine);
-            if (typingCoroutine != null)
-                StopCoroutine(typingCoroutine);
+            StopCurrent();
 
             textCoroutine = StartCoroutine(UpdateBufferedPhrase());
             typingCoroutine = StartCoroutine(MoveBufferToLive());
-        }        
+        }
+
+        public void ResumeNormal()
+        {
+            StopCoroutines();
+
+            if(dialogueQueue.Count > 0)
+            {
+                beenQueuedThisConversation = true;
+            }
+
+            textCoroutine = StartCoroutine(UpdateBufferedPhrase());
+            typingCoroutine = StartCoroutine(MoveBufferToLive());
+        }
         
         public void StartNewRythm()
         {
-            if (textCoroutine != null)
-                StopCoroutine(textCoroutine);
-            if (typingCoroutine != null)
-                StopCoroutine(typingCoroutine);
+            StopCoroutines();
 
             typingCoroutine = StartCoroutine(MoveBufferToLive());
         }
@@ -148,12 +150,7 @@ namespace Dialogue
 
         public void StopCurrent()
         {
-            if (typingCoroutine != null)
-                StopCoroutine(typingCoroutine);
-            if (fillingCoroutine != null)
-                StopCoroutine(fillingCoroutine);
-            if (textCoroutine != null)
-                StopCoroutine(textCoroutine);
+            StopCoroutines();
 
             ClearQueuedPhrases();
 
@@ -161,6 +158,20 @@ namespace Dialogue
             //liveString.Clear();
 
             ClearBox();
+        }
+
+        private void StopCoroutines()
+        {
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+                typingCoroutine = null;
+            }
+            if (textCoroutine != null)
+            {
+                StopCoroutine(textCoroutine);
+                textCoroutine = null;
+            }
         }
 
         private void ClearQueuedPhrases()
@@ -320,8 +331,9 @@ namespace Dialogue
             if (!HasDialougeQueued)
             {
                 if (beenQueuedThisConversation) // prevents this from invoking before any phrases queued
+                {
                     OnReachedEndOfQueue?.Invoke();
-
+                }
                 yield return WaitForDialogueEnqueue();
             }
 
@@ -417,10 +429,10 @@ namespace Dialogue
 
         void SkipToInstantFill()
         {
-            if(fillingCoroutine != null)
-            {
-                StopCoroutine(fillingCoroutine);
-            }
+            //if(fillingCoroutine != null)
+            //{
+            //    StopCoroutine(fillingCoroutine);
+            //}
         
             FillInstant();
            // FillRestInstant(bufferPhrase);

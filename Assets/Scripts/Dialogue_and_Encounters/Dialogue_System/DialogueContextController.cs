@@ -87,6 +87,7 @@ namespace Dialogue
                 case DialogueMode.None:
                     Debug.LogWarning($"{nameof(PushDialogeMode)} or {nameof(ReturnToPreviousMode)} called with {DialogueMode.None}, no changes made");
                     break;
+
                 case DialogueMode.Normal:
                     dialogueTyper.OnBeat = false;
                     dialogueTyper.TypingMode = TypingMode.Character;
@@ -144,8 +145,8 @@ namespace Dialogue
         public void LeaveArgument()
         {
             ClearBox();
-            dialogueTyper.StartNewNormal();
             ReturnToPreviousMode();
+            dialogueTyper.ResumeNormal();
         }
 
         public void ClearBox()

@@ -48,6 +48,7 @@ namespace NoteSystem {
             if (!Rythm.RythmEngine.Instance.PlayingMusic || Rythm.RythmEngine.Instance.CurrentBeat - 10 > climaxBeat)
             {
                 Remove();
+                return;
             }
 
             beatsOfExistence += Time.deltaTime;

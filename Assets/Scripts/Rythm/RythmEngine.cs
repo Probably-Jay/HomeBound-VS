@@ -15,7 +15,19 @@ namespace Rythm
         new public static RythmEngine Instance => Singleton<Rythm.RythmEngine>.Instance;
 
         public bool PlayingMusic => AudioSource.isPlaying;
-        public float CurrentBeat => sampleOffset + TimeInSong * BPS;
+        public float CurrentBeat
+        {
+            get
+            {
+                if (!PlayingMusic)
+                {
+                    Debug.LogError("Not playing music");
+                    return default;
+                }
+                return sampleOffset + (TimeInSong * BPS);
+            }
+        }
+
         public float TimeInSong => (float)CurrentSample / (float)MusicClip.frequency;
         public float DurationOfSong => MusicClip.samples / MusicClip.frequency;
         public float PercentThroughSong => TimeInSong / DurationOfSong;
