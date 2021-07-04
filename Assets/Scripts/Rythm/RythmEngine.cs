@@ -15,7 +15,19 @@ namespace Rythm
         new public static RythmEngine Instance => Singleton<Rythm.RythmEngine>.Instance;
 
         public bool PlayingMusic => AudioSource.isPlaying;
-        public float CurrentBeat => sampleOffset + TimeInSong * BPS;
+        public float CurrentBeat
+        {
+            get
+            {
+                if (!PlayingMusic)
+                {
+                    Debug.LogError("Not playing music");
+                    return default;
+                }
+                return sampleOffset + (TimeInSong * BPS);
+            }
+        }
+
         public float TimeInSong => (float)CurrentSample / (float)MusicClip.frequency;
         public float DurationOfSong => MusicClip.samples / MusicClip.frequency;
         public float PercentThroughSong => TimeInSong / DurationOfSong;
@@ -35,7 +47,7 @@ namespace Rythm
 
         float BeatsInSong => (float)(DurationOfSong * BPS);
 
-        readonly SortedList<float, Action> queuedActions = new SortedList<float, Action>();
+        readonly SortedDictionary<float, Action> queuedActions = new SortedDictionary<float, Action>();
 
 
         int CurrentSample => AudioSource.timeSamples;
@@ -114,9 +126,13 @@ namespace Rythm
             {
                 return;
             }
+
             List<float> ToRemoveCache = new List<float>();
             float frameCurrentBeat = CurrentBeat;
-            foreach (var action in queuedActions)
+
+            var cacheofQueuedActions = new SortedDictionary<float, Action>(queuedActions);
+
+            foreach (var action in cacheofQueuedActions)
             {
                 if (action.Key > frameCurrentBeat)
                 {

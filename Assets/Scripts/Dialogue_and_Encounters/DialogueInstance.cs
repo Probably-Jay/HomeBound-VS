@@ -65,12 +65,12 @@ namespace Dialogue
 
         private void TriggerDialogue()
         {
-            if(mainIDIndex < mainDialogueIDs.Count)
+            if (mainIDIndex < mainDialogueIDs.Count)
             {
                 StartDialogue(mainDialogueIDs[mainIDIndex]);
                 mainIDIndex++;
 
-                if(runMainOnlyOnce && mainIDIndex >= mainDialogueIDs.Count)
+                if (runMainOnlyOnce && !HasBackupDialogue && mainIDIndex >= mainDialogueIDs.Count) // prevent needing to press again to clear
                 {
                     DisconnectFromInteractTrigger();
                 }
@@ -84,7 +84,7 @@ namespace Dialogue
                 return;
             }
 
-            if(backupDialogeIDs.Count > 0)
+            if (HasBackupDialogue)
             {
                 int index = backupIDIndex % backupDialogeIDs.Count;
                 StartDialogue(backupDialogeIDs[index]);
@@ -94,6 +94,8 @@ namespace Dialogue
 
             DisconnectFromInteractTrigger();
         }
+
+        private bool HasBackupDialogue => backupDialogeIDs.Count > 0;
 
         private void StartDialogue(string id)
         {

@@ -45,6 +45,12 @@ namespace NoteSystem {
         // Update is called once per frame
         void Update()
         {
+            if (!Rythm.RythmEngine.Instance.PlayingMusic || Rythm.RythmEngine.Instance.CurrentBeat - 10 > climaxBeat)
+            {
+                Remove();
+                return;
+            }
+
             beatsOfExistence += Time.deltaTime;
             // Debug.Log(Rythm.RythmEngine.Instance.CurrentBeat);
             this.transform.position = Vector3.LerpUnclamped(startPos.position, endPos.position, (float)((Rythm.RythmEngine.Instance.CurrentBeat - spawningBeat) / absoluteBeatsToHit));
@@ -91,7 +97,7 @@ namespace NoteSystem {
         public void Remove()
         {
             wordUI.Remove();
-            this.gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 

@@ -23,6 +23,6 @@ namespace Interactables
         }
 
 
-        public void DisconnectFromInteractTrigger() { }
+        public void DisconnectFromInteractTrigger() { OnDisconnectFromInteractTrigger?.Invoke(this); }
     }
 }

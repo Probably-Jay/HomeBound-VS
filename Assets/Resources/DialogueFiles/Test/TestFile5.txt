@@ -1,5 +1,7 @@
 id: test_5, mode: 1
 [Me]: hello there
+[Stranger]: hia stranger
+[Me]: hello there 2
 [a]: [rythm: SansScript]
 [Stranger]: hi...
 [Me]: what's your name?

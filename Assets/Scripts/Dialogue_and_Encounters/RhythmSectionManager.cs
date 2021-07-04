@@ -64,10 +64,6 @@ public class RhythmSectionManager : MonoBehaviour
         rDI.PassControlToDialogue(passbackBeat);
     }
 
-    public void EndSection()
-    {
-        rDI.EndRythmSection();
-    }
     public void LoadAndBeginSection(string iD)
     {
         if (!noteSheets.ContainsKey(iD))
@@ -81,6 +77,12 @@ public class RhythmSectionManager : MonoBehaviour
         Rythm.RythmEngine.Instance.Play(noteSection.song);
         sectionLoader.LoadAndBeginSectionNotes(noteSection.notes);
 
+    }
+    public void EndSection()
+    {
+        rDI.EndRythmSection();
+        sectionLoader.EndSection();
+        Rythm.RythmEngine.Instance.Stop();
     }
 
 

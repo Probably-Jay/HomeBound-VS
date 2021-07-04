@@ -42,19 +42,20 @@ namespace RhythmSectionLoading {
             //LoadSection(noteSheet);
         }
 
-        private void SwitchOffLanes()
-        {
-            foreach (var lane in lanes)
-            {
-                lane.gameObject.SetActive(false);
-            }
-        }
+        
 
         void SwitchOnLanes()
         {
             foreach (var lane in lanes)
             {
                 lane.gameObject.SetActive(true);
+            }
+        }
+        void SwitchOffLanes()
+        {
+            foreach (var lane in lanes)
+            {
+                lane.gameObject.SetActive(false);
             }
         }
 
@@ -66,6 +67,16 @@ namespace RhythmSectionLoading {
             InitialiseSection();
 
         }
+
+        public void EndSection()
+        {
+            SwitchOffLanes();
+            noteSheet = null;
+            notes.Clear();
+            toDialogues.Clear();
+            otherCommands.Clear();
+        }
+
         void ReadSection(TextAsset text)
         {
             notes.Clear();

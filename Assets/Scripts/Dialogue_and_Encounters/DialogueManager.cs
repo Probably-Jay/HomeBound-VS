@@ -92,14 +92,11 @@ namespace Dialogue
 
         public bool ContainsConversation(string conversationID) => conversationHandler.Conversations.ContainsKey(conversationID);
 
-        internal void LeaveArgument()
-        {
-            throw new NotImplementedException();
-        }
+
 
         private void StartNewConversation(Conversation conversation) 
         {
-            dialogueContextController.SetDialougeMode(conversation.initialMode);
+            dialogueContextController.ResetDialogeModeTo(conversation.initialMode);
             dialogueContextController.StartNewConversation();
             currentConversation = StartCoroutine(QueueConversation(conversation));
 
@@ -116,7 +113,15 @@ namespace Dialogue
 
         private IEnumerator QueueConversation(Conversation conversation)
         {
-            conversation.OnSetDialogueMode += (mode) => dialogueContextController.SetDialougeMode(mode); // add changing mode events
+            conversation.OnSetDialogueMode += (mode) =>
+            {
+                //if (mode == DialogueMode.None)
+                //{
+                //    dialogueContextController.ReturnToPreviousMode();
+                //    return;
+                //}
+                dialogueContextController.MutateDialogeMode(mode); 
+            }; 
             conversation.OnSetColour += (colour) => dialogueContextController.AddColourRTT(colour);
             conversation.OnTriggerRythmSection += (id) => rythmDialogeControlInterface.StartNewRythm(id);
 
@@ -161,6 +166,7 @@ namespace Dialogue
         internal void EnterArgument()
         {
             dialogueContextController.EnterArgument();
+            dialogueContextController.OnTypedPhrase += ReleaseControl;
         }
 
         internal void RythmControlReceived()
@@ -171,13 +177,24 @@ namespace Dialogue
 
         internal void RythmControlYeilded()
         {
-            dialogueContextController.SetDialougeMode(DialogueMode.Encounter_PlayerSpeak);
+            dialogueContextController.ClearBox();
+            dialogueContextController.MutateDialogeMode(DialogueMode.Encounter_PlayerSpeak);
         }
 
         internal void ReleaseControl()
         {
+            if (!hasControl)
+            {
+                return;
+            }
             ReadyToPassToRythm = true;
             rythmDialogeControlInterface.PassControlToRythm();
+        }
+
+        internal void LeaveArgument()
+        {
+            dialogueContextController.OnTypedPhrase -= ReleaseControl;
+            dialogueContextController.LeaveArgument();
         }
 
         /// <summary>
@@ -190,7 +207,7 @@ namespace Dialogue
             {
                 return;
             }
-            dialogueContextController.SetDialougeMode(newDialogueMode);
+            dialogueContextController.MutateDialogeMode(newDialogueMode);
         }
 
         /// <summary>
