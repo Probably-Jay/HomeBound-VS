@@ -14,7 +14,7 @@ namespace Rythm
     {
         new public static RythmEngine Instance => Singleton<Rythm.RythmEngine>.Instance;
 
-        public bool PlayingMusic { get; private set; } = false;
+        public bool PlayingMusic => AudioSource.isPlaying;
         public float CurrentBeat => sampleOffset + TimeInSong * BPS;
         public float TimeInSong => (float)CurrentSample / (float)MusicClip.frequency;
         public float DurationOfSong => MusicClip.samples / MusicClip.frequency;
@@ -27,9 +27,9 @@ namespace Rythm
         public float DeltaBeats => Instance.SecondsToBeat(Time.deltaTime);
 
 
-        RythmSong currentTrack = null;
+       // RythmSong currentTrack = null;
       //  [SerializeField] bool playImediatley;
-        public AudioClip MusicClip { get => currentTrack?.audioClip; }
+        public AudioClip MusicClip { get => AudioSource.clip; }
         float BPM;
         float sampleOffset;
 
@@ -48,16 +48,19 @@ namespace Rythm
         {
             base.InitSingleton();
             AudioSource = GetComponent<AudioSource>();
-
-           
-
         }
 
         public void Play(RythmSong music)
         {
             ClearAnyQueuedActions();
             SetTrack(music);
-            BeginPlaying();
+            BeginPlaying(music);
+        }
+
+        public void Stop()
+        {
+            AudioSource.Stop();
+            AudioSource.clip = null;
         }
 
         private void ClearAnyQueuedActions()
@@ -70,24 +73,25 @@ namespace Rythm
 
         }
 
-        private void BeginPlaying()
-        {
-            DebugDetails();
-            AudioSource.Play();
-            AudioSource.timeSamples = currentTrack.beginAtSample;
-            PlayingMusic = true;
-        }
-
         private void SetTrack(RythmSong music)
         {
-            AudioSource.clip = MusicClip;
+            AudioSource.clip = music.audioClip;
             BPM = music.BPM;
             sampleOffset = music.offset;
         }
 
-        private void DebugDetails()
+        private void BeginPlaying(RythmSong music)
         {
-            Debug.Log($"Track: {currentTrack.name}");
+            DebugDetails(music);
+            AudioSource.Play();
+            AudioSource.timeSamples = music.beginAtSample;
+        }
+
+
+
+        private void DebugDetails(RythmSong music)
+        {
+            Debug.Log($"Track: {music.name}");
             Debug.Log($"Samples: { MusicClip.samples} at { MusicClip.frequency}Hz");
             Debug.Log($"BPM: {BPM} ({BPS}pbs)");
             Debug.Log($"Duration: {TimeSpan.FromSeconds(DurationOfSong)}, {BeatsInSong} beats long");
@@ -106,6 +110,10 @@ namespace Rythm
 
         private void InvokeQueue()
         {
+            if (!PlayingMusic)
+            {
+                return;
+            }
             List<float> ToRemoveCache = new List<float>();
             float frameCurrentBeat = CurrentBeat;
             foreach (var action in queuedActions)
@@ -191,7 +199,7 @@ namespace Rythm
 
             if(beat < CurrentBeat)
             {
-                Debug.LogError("Beat queued for the past");
+                Debug.LogWarning("Beat queued for the past");
             }
 
             Action newEvent;

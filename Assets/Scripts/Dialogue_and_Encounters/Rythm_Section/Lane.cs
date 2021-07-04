@@ -89,7 +89,7 @@ namespace NoteSystem
         {
             //  Debug.Log(note.word);
             
-            if (note.GetClimaxBeat() < Rythm.RythmEngine.Instance.CurrentBeat)
+            if (note.GetClimaxBeat() > Rythm.RythmEngine.Instance.CurrentBeat)
             {
                 NDI.AddWord(note.word, note.GetClimaxBeat());
             }

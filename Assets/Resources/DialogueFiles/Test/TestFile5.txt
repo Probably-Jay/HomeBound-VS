@@ -1,10 +1,10 @@
 id: test_5, mode: 1
 [Me]: hello there
+[a]: [rythm: SansScript]
 [Stranger]: hi...
 [Me]: what's your name?
 [Stranger]: it's [colour: FF0000]James[colour: FFFFFF], pleased to meet you
 [James]: will you be staying long?
-[a]: [rythm: SansScript]
 [James]: oh okay
 [Jaymes]: i have a y in my name now
 [end]
