@@ -1606,7 +1606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1213019537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2063,7 +2063,7 @@ MonoBehaviour:
   identifications:
   - SansScript
   sheets:
-  - {fileID: 4900000, guid: 67b5e05f04cfd6d4db6f137c05f4e246, type: 3}
+  - {fileID: 0}
   sectionLoader: {fileID: 0}
   rDI: {fileID: 0}
 --- !u!1 &1892879814
