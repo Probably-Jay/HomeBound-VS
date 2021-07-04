@@ -61,5 +61,8 @@ public class RhythmSectionManager : MonoBehaviour
         }
         Rythm.RythmEngine.Instance.Play(noteSheets[iD].song);
         sectionLoader.LoadAndBeginSectionNotes(noteSheets[iD].notes);    }
+        
+        
+    }
    
 }

@@ -12,7 +12,7 @@ namespace Overworld {
             ,Down
             ,Left
     }
-    public class CharacterController : MonoBehaviour
+    public class PlayerCharacterController : MonoBehaviour
     {
         [SerializeField] bool canWalk = true;
 

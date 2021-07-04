@@ -598,10 +598,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\World\CharacterController.cs" />
     <Compile Include="Assets\Scripts\World\FloorHandler.cs" />
     <Compile Include="Assets\Scripts\World\Floors.cs" />
     <Compile Include="Assets\Scripts\World\Interactable.cs" />
+    <Compile Include="Assets\Scripts\World\PlayerCharacterController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\World\~World.asmdef" />

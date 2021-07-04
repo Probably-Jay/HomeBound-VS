@@ -106,7 +106,7 @@ namespace SingletonManagement
         {
             if (instance == this)
             {
-                if (!GameQuitting) Debug.Log($"Destroying singlton instance");
+                if (!GameQuitting) Debug.Log($"Destroying singlton instance: {this}");
                 instance = null;
             }
         }

@@ -207,7 +207,7 @@ namespace Interactables
 
         private bool PlayerFacingUs(GameObject playerObject)
         {
-            var player = playerObject.GetComponent<Overworld.CharacterController>();
+            var player = playerObject.GetComponent<Overworld.PlayerCharacterController>();
 
             Vector2 usToPlayer = (playerObject.transform.position - transform.position).normalized;
 
