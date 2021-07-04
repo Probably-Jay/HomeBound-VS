@@ -44,7 +44,8 @@ namespace Dialogue
             
         }
 
-        public void PassControlToDialogue()
+
+        private void PassControlToDialogue()
         {
             AssertInRythmSection();
             RythmHasControl = false;
@@ -52,14 +53,15 @@ namespace Dialogue
             dialogueManager.RythmControlReceived();
         }
 
-        public void PassControlToDialogue(float passBack)
+        public void PassControlToDialogue(float? passBack)
         {
             if (dialogueManager.ThisHasControl)
             {
                 Debug.LogError("Dialogue already has control");
             }
             PassControlToDialogue();
-            QueuePassBackToRythm(passBack);
+            if(passBack.HasValue)
+                QueuePassBackToRythm(passBack.Value);
         }
 
         private void QueuePassBackToRythm(float passBack)

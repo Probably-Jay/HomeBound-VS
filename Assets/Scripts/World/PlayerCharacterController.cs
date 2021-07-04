@@ -183,7 +183,7 @@ namespace Overworld {
                         }
                         else
                         {
-                            Debug.Log("this is working");
+                           
                             SetVelocity(currentDirection);
                         }
                     }
@@ -226,7 +226,7 @@ namespace Overworld {
                     }
                     else
                     {
-                        Debug.Log("wants to stop");
+                       // Debug.Log("wants to stop");
                         SetVelocity(currentDirection);
                     }
                 }
@@ -234,8 +234,7 @@ namespace Overworld {
         }
 
         private void SetVelocity(WalkingDirection direction)
-        {
-            Debug.Log("somewhere I am zooming");
+        {           
             myRb.velocity =  DirectionToVector(direction) * speed;
         }
         private void Stop()

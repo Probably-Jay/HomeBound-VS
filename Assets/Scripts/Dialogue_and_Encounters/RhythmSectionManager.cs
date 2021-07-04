@@ -40,13 +40,13 @@ public class RhythmSectionManager : MonoBehaviour
     {
         Debug.Log($"{nameof(RhythmSectionManager)} Yeilded control");
     }
-    public void PassToDialogue()
+    public void PassToDialogue(float? passbackBeat)
     {
         if (!HasControl)
         {
             Debug.LogError("Passing control when does not have control");
         }
-        rDI.PassControlToDialogue();
+        rDI.PassControlToDialogue(passbackBeat);
     }
 
     public void EndSection()
@@ -59,10 +59,16 @@ public class RhythmSectionManager : MonoBehaviour
         {
             throw new System.Exception($"{nameof(noteSheets)} does not contain key {iD}");
         }
-        Rythm.RythmEngine.Instance.Play(noteSheets[iD].song);
-        sectionLoader.LoadAndBeginSectionNotes(noteSheets[iD].notes);    }
-        
-        
+
+
+        Rythm.NoteSection noteSection = noteSheets[iD];
+
+        Rythm.RythmEngine.Instance.Play(noteSection.song);
+        sectionLoader.LoadAndBeginSectionNotes(noteSection.notes);
+
     }
+
+
+}
    
 

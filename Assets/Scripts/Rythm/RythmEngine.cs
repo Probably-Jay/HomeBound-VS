@@ -199,7 +199,7 @@ namespace Rythm
 
             if(beat < CurrentBeat)
             {
-                Debug.LogError("Beat queued for the past");
+                Debug.LogWarning("Beat queued for the past");
             }
 
             Action newEvent;

@@ -127,7 +127,7 @@ namespace RhythmSectionLoading {
         }
         void QueueDialoguePass(PassToDialogue toDialogue)
         {
-            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.PassToDialogue(); }, toDialogue.passBeat);
+            Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.PassToDialogue(toDialogue.returnBeat); }, toDialogue.passBeat);
         }
         void QueueCommand(OtherCommand command)
         {
