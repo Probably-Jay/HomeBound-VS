@@ -17,14 +17,19 @@ namespace Overworld {
         [SerializeField] bool canWalk = true;
 
         bool isWalking = false;
+        bool isBlocked = false;
         WalkingDirection direction;
         [SerializeField] bool gridBasedMovement;
         [SerializeField] Grid grid;
+        [SerializeField] FloorHandler floorHandler;
         private Vector2 destinationCentre;
         [SerializeField] Rigidbody2D myRb;
         [SerializeField] WalkingDirection[] directions = new WalkingDirection[4];
         [SerializeField] KeyCode[] buttons = new KeyCode[4];
         [SerializeField] float speed;
+        [SerializeField] int layer = 0;
+        [SerializeField] Animator animator;
+
 
         [SerializeField] Dictionary<WalkingDirection, KeyCode> movementKeys = new Dictionary<WalkingDirection, KeyCode>();
         List<WalkingDirection> dirStack = new List<WalkingDirection> { };
@@ -122,6 +127,11 @@ namespace Overworld {
             {
                 isWalking = false;
             }
+            animator.SetBool("isWalking", isWalking||(myRb.velocity.magnitude!=0f));
+            Debug.Log(animator.GetBool("isWalking"));
+            animator.SetInteger("Direction", (int)currentDirection);
+            Debug.Log(animator.GetInteger("Direction"));
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(0));
         }
         private void FixedUpdate()
         {
@@ -138,17 +148,35 @@ namespace Overworld {
             }
             else
             {
+                //if button being pressed, and the walking direction aligns with said buttn, or my velocity is zero
                 if (isWalking&&((currentDirection==direction)||myRb.velocity==Vector2.zero))
                 {
+                    //if i'm just setting off, set the travelling direction to the direction pressed
                     if (myRb.velocity == Vector2.zero)
                     {
                         currentDirection = direction;
                     }
-                    myRb.velocity = DirectionToVector(currentDirection) * speed;
-                    if (HasPassedGridCentre(currentDirection, grid.WorldToCell(this.transform.position)))
+                    
+                        //myRb.velocity = DirectionToVector(currentDirection) * speed;
+                    
+                    if (WillPassGridCentre(currentDirection, grid.WorldToCell(this.transform.position)))
                     {
                         destinationCentre = grid.GetCellCenterWorld((grid.WorldToCell(this.transform.position) + new Vector3Int(Mathf.FloorToInt(DirectionToVector(currentDirection).x), Mathf.FloorToInt(DirectionToVector(currentDirection).y), 0)));
-
+                        if (!CheckGround(grid.WorldToCell(destinationCentre)) || CheckWall(grid.WorldToCell(destinationCentre)))
+                        {
+                            
+                            destinationCentre = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
+                            this.transform.position = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
+                            Stop();
+                            //Debug.Log(grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position)));
+                            //Debug.Log(this.transform.position);
+                            //Debug.Log("how is this not working");
+                        }
+                        else
+                        {
+                            Debug.Log("this is working");
+                            SetVelocity(currentDirection);
+                        }
                     }
                     else
                     {
@@ -157,26 +185,53 @@ namespace Overworld {
                 }
                 else if (isWalking)
                 {
-                    if (HasPassedGridCentre(currentDirection, grid.WorldToCell(destinationCentre)))
+                    if (WillPassGridCentre(currentDirection, grid.WorldToCell(destinationCentre)))
                     {
                         this.transform.position = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                         currentDirection = direction;
+                        destinationCentre = grid.GetCellCenterWorld((grid.WorldToCell(this.transform.position) + new Vector3Int(Mathf.FloorToInt(DirectionToVector(currentDirection).x), Mathf.FloorToInt(DirectionToVector(currentDirection).y), 0)));
+                        if (!CheckGround(grid.WorldToCell(destinationCentre)) || CheckWall(grid.WorldToCell(destinationCentre)))
+                        {
+
+                            destinationCentre = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
+                            this.transform.position = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
+                            Stop();
+                            //Debug.Log(grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position)));
+                            //Debug.Log(this.transform.position);
+                            //Debug.Log("how is this not working");
+                        }
+                        else
+                        {
+                            
+                            SetVelocity(currentDirection);
+                        }
                     }
-                    myRb.velocity = DirectionToVector(currentDirection) * speed;
+                    //SetVelocity(currentDirection);
                 }
                 else if(myRb.velocity!=Vector2.zero)
                 {
-                    if (HasPassedGridCentre(currentDirection, grid.WorldToCell(destinationCentre)))
+                    if (WillPassGridCentre(currentDirection, grid.WorldToCell(destinationCentre)))
                     {
                         this.transform.position = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
-                        myRb.velocity=Vector2.zero;
+                        Stop();
                     }
                     else
                     {
-                        myRb.velocity = DirectionToVector(currentDirection) * speed;
+                        Debug.Log("wants to stop");
+                        SetVelocity(currentDirection);
                     }
                 }
             }
+        }
+
+        private void SetVelocity(WalkingDirection direction)
+        {
+            Debug.Log("somewhere I am zooming");
+            myRb.velocity =  DirectionToVector(direction) * speed;
+        }
+        private void Stop()
+        {
+            myRb.velocity = Vector2.zero;
         }
 
         //Checks if a key has been pressed/released, updates the direction logic accordingly.
@@ -199,6 +254,30 @@ namespace Overworld {
                 }
             }
         }
+        private bool CheckGround(Vector3Int cell)
+        {
+            if (floorHandler.GetTileOnFloor(layer-1,cell) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private bool CheckWall(Vector3Int cell)
+        {
+            if (floorHandler.GetTileOnFloor(layer, cell) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+
 
         //This function takes a WalkingDirection and returns the 2d vector that corresponds to it.
         private Vector2 DirectionToVector(WalkingDirection walkingDirection)
@@ -228,6 +307,19 @@ namespace Overworld {
                 default:  { return false; }
             }
 
+        }
+        private bool WillPassGridCentre(WalkingDirection direction, Vector3Int cell)
+        {
+            Vector2 cellCenter = grid.GetCellCenterWorld(cell);
+            Vector2 myPosition2D = new Vector2(this.transform.position.x, this.transform.position.y);
+            switch (direction)
+            {
+                case WalkingDirection.Up: { if (myPosition2D.y+(speed*Time.fixedDeltaTime) > cellCenter.y) { return true; } else return false; }
+                case WalkingDirection.Down: { if (myPosition2D.y-(speed * Time.fixedDeltaTime) < cellCenter.y) { return true; } else return false; }
+                case WalkingDirection.Right: { if (myPosition2D.x+(speed * Time.fixedDeltaTime) > cellCenter.x) { return true; } else return false; }
+                case WalkingDirection.Left: { if (myPosition2D.x - (speed * Time.fixedDeltaTime) < cellCenter.x) { return true; } else return false; }
+                default: { return false; }
+            }
         }
         
     }

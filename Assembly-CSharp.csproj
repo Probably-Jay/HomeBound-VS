@@ -62,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Interface\NoteDialogueInterface.cs" />
+    <Compile Include="Assets\FloorHandler.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -646,6 +646,9 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="~Game.csproj">
@@ -661,12 +664,8 @@
       <Name>Rythm</Name>
     </ProjectReference>
     <ProjectReference Include="~InteractableInterface.csproj">
-      <Project>{12254B1C-66B3-9ED5-14A2-2A80DA24795F}</Project>
+      <Project>{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}</Project>
       <Name>~InteractableInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
-      <Project>{E65D7C90-708E-4520-E46F-39CF15504CE2}</Project>
-      <Name>Unity.TextMeshPro.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="DialogueSystem.csproj">
       <Project>{64C63A26-6E11-3B72-2C3F-B172915EDAD0}</Project>
@@ -680,13 +679,9 @@
       <Project>{354EAF47-F608-D8B1-D75E-1AFE6B6D692A}</Project>
       <Name>~Core</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{9C8C14C4-A5F3-7F72-36ED-614AB85EA7F0}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{11EBBDD7-E2FD-F626-966F-35718B89FB30}</Project>
-      <Name>UnityEditor.UI</Name>
+    <ProjectReference Include="~Dialogue_System.csproj">
+      <Project>{7DB04697-AB7A-3DD9-8E6A-B1E9583A07B9}</Project>
+      <Name>~Dialogue_System</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
