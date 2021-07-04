@@ -29,8 +29,7 @@ namespace Rythm
 
         float BeatsInSong => (float)(DurationOfSong * BPS);
 
-
-        SortedList<float, Action> queuedActions = new SortedList<float, Action>();
+        readonly SortedList<float, Action> queuedActions = new SortedList<float, Action>();
 
 
         int CurrentSample => AudioSource.timeSamples;
@@ -45,16 +44,24 @@ namespace Rythm
             AudioSource = GetComponent<AudioSource>();
 
            
-            //if (playImediatley)
-            //{
-            //    Play(new RythmSong());
-            //}
+
         }
 
         private void Play(RythmSong music)
         {
+            ClearAnyQueuedActions();
             SetTrack(music);
             BeginPlaying();
+        }
+
+        private void ClearAnyQueuedActions()
+        {
+            if(queuedActions.Count > 0)
+            {
+                Debug.LogError($"There are actions queued while changing the song!");
+                queuedActions.Clear();
+            }
+
         }
 
         private void BeginPlaying()
