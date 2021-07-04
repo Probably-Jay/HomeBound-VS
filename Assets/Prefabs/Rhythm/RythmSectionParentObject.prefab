@@ -161,11 +161,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4658575184520333015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc5aee1dfad89b48af60340c2f45699, type: 3}
+  m_Script: {fileID: 11500000, guid: f4e029db5f9d9014285a8a4bc5a87fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteSheet: {fileID: 4900000, guid: 67b5e05f04cfd6d4db6f137c05f4e246, type: 3}
-  song: {fileID: 0}
+  noteSheet: {fileID: 0}
+  rSM: {fileID: 0}
   lanes:
   - {fileID: 4658575185153892786}
   - {fileID: 5811461777490372762}

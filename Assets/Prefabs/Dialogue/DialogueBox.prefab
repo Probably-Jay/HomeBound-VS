@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2533711652629958719}
   - component: {fileID: 2533711652629958656}
   - component: {fileID: 2533711652629958657}
+  - component: {fileID: 6101950649974932413}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -153,9 +154,9 @@ MonoBehaviour:
   nameOutdisplay: {fileID: 2533711652857469034}
   standardDelay: 0.05
   randomDelayDelta: 0.04
-  nextPhraseKey: 275
+  nextPhraseKey: 101
   onBeat: 0
-  typingMode: 1
+  typingMode: 3
   displayActionsPerBeat: 2
   spaceWordByCharacterFillsInBeat: 0.6
 --- !u!114 &2533711652629958719
@@ -195,6 +196,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d205b19f8d7f6d34c94ae36ebffcf826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6101950649974932413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2533711652629958714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2137bd1021abd84d92ad0947946f939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2533711652668772420
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +220,7 @@ GameObject:
   - component: {fileID: 2533711652668772423}
   - component: {fileID: 2533711652668772422}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: DialogueBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 190, y: -8}
+  m_AnchoredPosition: {x: -794, y: -8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2533711652857469035

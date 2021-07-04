@@ -7,40 +7,6 @@ namespace RhythmSectionLoading {
     {
         EndSection
     }
-    class Note
-    {
-        public float climaxBeat { get; private set; }
-        public int lane { get; private set; }
-        public string word { get; private set; }
-        public void Initialise(float climaxBeat, int lane, string word)
-        {
-            this.climaxBeat = climaxBeat;
-            this.lane = lane;
-            this.word = word;
-        }
-    }
-    class PassToDialogue
-    {
-        public float passBeat { get; private set; }
-        public float returnBeat { get; private set; }
-        public void Initialise(float passBeat, float returnBeat)
-        {
-            this.passBeat = passBeat;
-            this.returnBeat = returnBeat;
-        }
-    }
-    class OtherCommand
-    {
-        public CommandType type { get; private set; }
-        public float onBeat { get; private set; }
-        public void Initialise(float onBeat, CommandType type)
-        {
-            this.onBeat = onBeat;
-            this.type = type;
-        }
-    }
-
-
     public class RhythmInitialise : MonoBehaviour
     {
         
@@ -50,7 +16,7 @@ namespace RhythmSectionLoading {
                 , Lane
                 , word
         }
-        [SerializeField] TextAsset noteSheet;
+        TextAsset noteSheet;
         string[] noteSheetLines;
         //[SerializeField] Rythm.RythmSong song;
         NoteSpawner noteSpawner;
@@ -151,4 +117,39 @@ namespace RhythmSectionLoading {
         }
 
     }
+  
+    class Note
+    {
+        public float climaxBeat { get; private set; }
+        public int lane { get; private set; }
+        public string word { get; private set; }
+        public void Initialise(float climaxBeat, int lane, string word)
+        {
+            this.climaxBeat = climaxBeat;
+            this.lane = lane;
+            this.word = word;
+        }
+    }
+    class PassToDialogue
+    {
+        public float passBeat { get; private set; }
+        public float returnBeat { get; private set; }
+        public void Initialise(float passBeat, float returnBeat)
+        {
+            this.passBeat = passBeat;
+            this.returnBeat = returnBeat;
+        }
+    }
+    class OtherCommand
+    {
+        public CommandType type { get; private set; }
+        public float onBeat { get; private set; }
+        public void Initialise(float onBeat, CommandType type)
+        {
+            this.onBeat = onBeat;
+            this.type = type;
+        }
+    }
+
+
 }

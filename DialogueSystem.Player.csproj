@@ -611,6 +611,7 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RythmDialogueInterface.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitDetection.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitZone.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\IRythmDialogeControlInterface.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\Lane.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteDialogueInterface.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSection.cs" />
