@@ -1,0 +1,3 @@
+id: test_8
+[Stranger]: Please go away.
+[end]

@@ -437,13 +437,7 @@ namespace Dialogue
 
         void SkipToInstantFill()
         {
-            //if(fillingCoroutine != null)
-            //{
-            //    StopCoroutine(fillingCoroutine);
-            //}
-        
             FillInstant();
-           // FillRestInstant(bufferPhrase);
         }
 
         void FillInstant()
@@ -489,7 +483,6 @@ namespace Dialogue
                     durationOfCharacter *= 4; // longer delay after sentence end
                 }
 
-                // todo parse instructions
 
                 bufferAndLivePhrase.AddToLiveDirectly(character);
 
@@ -507,17 +500,6 @@ namespace Dialogue
 
     
 
-       
-
-       
-
-        //IEnumerator AddWords()
-        //{
-        //    var index = liveString.Length;
-        //    liveString.Append(bufferString[index]);
-        //    var waitTime = StandardTypingDelay + UnityEngine.Random.Range(0, RandomTypingDelayDelta);
-        //    yield return new WaitForSeconds(waitTime);
-        //}
 
     }
 

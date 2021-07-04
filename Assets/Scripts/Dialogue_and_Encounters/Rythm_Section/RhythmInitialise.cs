@@ -28,6 +28,7 @@ namespace RhythmSectionLoading {
         [SerializeField] float leadTime = 5f;
         [SerializeField] bool debugStartOnStart;
 
+        [SerializeField] GameObject childObject;
 
 
         // Start is called before the first frame update
@@ -42,21 +43,16 @@ namespace RhythmSectionLoading {
             //LoadSection(noteSheet);
         }
 
-        
+
 
         void SwitchOnLanes()
         {
-            foreach (var lane in lanes)
-            {
-                lane.gameObject.SetActive(true);
-            }
+            childObject.SetActive(true);
         }
+
         void SwitchOffLanes()
         {
-            foreach (var lane in lanes)
-            {
-                lane.gameObject.SetActive(false);
-            }
+            childObject.SetActive(false);
         }
 
         public void LoadAndBeginSectionNotes(TextAsset section)
