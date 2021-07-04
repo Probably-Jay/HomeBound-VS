@@ -7,7 +7,7 @@ using NoteSystem;
 namespace NoteSystem {
     public class WordUI : MonoBehaviour
     {
-        string word;
+        string word = "";
         WordNote wordNote;
         const float yOffset = 1f;
 
@@ -22,8 +22,14 @@ namespace NoteSystem {
         void Update()
         {
             //Debug.Log(wordNote.gameObject);
+            UpdatePosition();
+        }
+
+        private void UpdatePosition()
+        {
             this.transform.position = Camera.main.WorldToScreenPoint(wordNote.gameObject.transform.position + (Vector3.up * yOffset));
         }
+
         void UpdateWord(string passedWord)
         {
             word = passedWord;
@@ -32,7 +38,7 @@ namespace NoteSystem {
         public void Initialise(string text, WordNote passedWordNote)
         {
             wordNote = passedWordNote;
-
+            UpdatePosition();
             UpdateWord(text);
 
         }
