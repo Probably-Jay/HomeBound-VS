@@ -16,7 +16,7 @@ namespace Overworld {
     {
         [SerializeField] bool canWalk = true;
 
-        bool isWalking = false;
+        bool hasWalkingInput = false;
         bool isBlocked = false;
         WalkingDirection direction;
         [SerializeField] bool gridBasedMovement;
@@ -105,39 +105,48 @@ namespace Overworld {
         // Update is called twice per frame
         void Update()
         {
-            if (!canWalk)
-            {
-                dirStack.Clear();
-                isWalking = false;
-                return;
-            }
-
             //check and update the dirStack based on keys pressed/released
+            GatherInput();
+            UpdateAnimation();
+        }
+
+        private void GatherInput()
+        {
             CheckKey(WalkingDirection.Up);
             CheckKey(WalkingDirection.Down);
             CheckKey(WalkingDirection.Left);
             CheckKey(WalkingDirection.Right);
             if (dirStack.Count > 0)
             {
-                isWalking = true;
+                hasWalkingInput = true;
                 direction = dirStack[dirStack.Count - 1];
-               // Debug.Log(direction);
+                // Debug.Log(direction);
             }
             else
             {
-                isWalking = false;
+                hasWalkingInput = false;
             }
-            animator.SetBool("isWalking", isWalking||(myRb.velocity.magnitude!=0f));
-            Debug.Log(animator.GetBool("isWalking"));
-            animator.SetInteger("Direction", (int)currentDirection);
-            Debug.Log(animator.GetInteger("Direction"));
-            Debug.Log(animator.GetCurrentAnimatorStateInfo(0));
         }
+
+        private void UpdateAnimation()
+        {
+            if (canWalk)
+            {
+                animator.SetBool("isWalking", (hasWalkingInput || (myRb.velocity.magnitude != 0f)));
+
+                animator.SetInteger("Direction", (int)currentDirection);
+            }
+        }
+
         private void FixedUpdate()
         {
+            if (!canWalk)
+            {
+                return;
+            }
             if (!gridBasedMovement)
             {
-                if (isWalking)
+                if (hasWalkingInput)
                 {
                     myRb.velocity = DirectionToVector(direction) * speed;
                 }
@@ -149,7 +158,7 @@ namespace Overworld {
             else
             {
                 //if button being pressed, and the walking direction aligns with said buttn, or my velocity is zero
-                if (isWalking&&((currentDirection==direction)||myRb.velocity==Vector2.zero))
+                if (hasWalkingInput&&((currentDirection==direction)||myRb.velocity==Vector2.zero))
                 {
                     //if i'm just setting off, set the travelling direction to the direction pressed
                     if (myRb.velocity == Vector2.zero)
@@ -183,7 +192,7 @@ namespace Overworld {
                         destinationCentre = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                     }
                 }
-                else if (isWalking)
+                else if (hasWalkingInput)
                 {
                     if (WillPassGridCentre(currentDirection, grid.WorldToCell(destinationCentre)))
                     {
@@ -250,6 +259,22 @@ namespace Overworld {
             {
                 if (dirStack.Contains(walkingDirection))
                 {
+                    dirStack.Remove(walkingDirection);
+                }
+            }
+            if (Input.GetKey(movementKeys[walkingDirection]))
+            {
+                if (!dirStack.Contains(walkingDirection))
+                {
+                    Debug.Log("missed keydown");
+                    dirStack.Add(walkingDirection);
+                }
+            }
+            else
+            {
+                if (dirStack.Contains(walkingDirection))
+                {
+                    Debug.Log("missed keyup");
                     dirStack.Remove(walkingDirection);
                 }
             }
