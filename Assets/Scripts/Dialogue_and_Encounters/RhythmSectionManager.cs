@@ -60,6 +60,7 @@ public class RhythmSectionManager : MonoBehaviour
             throw new System.Exception($"{nameof(noteSheets)} does not contain key {iD}");
         }
         sectionLoader.LoadAndBeginSection(noteSheets[iD]);
+        
     }
    
 }

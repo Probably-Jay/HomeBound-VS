@@ -599,6 +599,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\World\CharacterController.cs" />
+    <Compile Include="Assets\Scripts\World\FloorHandler.cs" />
+    <Compile Include="Assets\Scripts\World\Floors.cs" />
     <Compile Include="Assets\Scripts\World\Interactable.cs" />
   </ItemGroup>
   <ItemGroup>
