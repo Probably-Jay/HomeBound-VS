@@ -194,3 +194,4 @@ crashlytics-build.properties
 
 /Assets/Audio
 *.wav
+*.wav.meta
