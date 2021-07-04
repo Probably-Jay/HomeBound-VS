@@ -26,6 +26,7 @@ namespace RhythmSectionLoading {
         List<PassToDialogue> toDialogues = new List<PassToDialogue> { };
         List<OtherCommand> otherCommands = new List<OtherCommand> { };
         [SerializeField] float leadTime = 5f;
+        [SerializeField] bool debugStartOnStart;
 
 
 
@@ -33,7 +34,10 @@ namespace RhythmSectionLoading {
         void Start()
         {
             noteSpawner = this.GetComponent<NoteSpawner>();
-            SwitchOffLanes();
+            if (!debugStartOnStart)
+            {
+                SwitchOffLanes();
+            }
 
             //LoadSection(noteSheet);
         }

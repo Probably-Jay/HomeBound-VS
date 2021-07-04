@@ -136,6 +136,10 @@ namespace Overworld {
 
                 animator.SetInteger("Direction", (int)currentDirection);
             }
+            else
+            {
+                animator.SetBool("isWalking", false);
+            }
         }
 
         private void FixedUpdate()

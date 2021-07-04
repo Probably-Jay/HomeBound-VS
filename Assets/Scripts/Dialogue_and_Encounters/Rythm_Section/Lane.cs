@@ -5,23 +5,21 @@ using NoteSystem;
 
 namespace NoteSystem
 {
-
-
-
-
     public class Lane : MonoBehaviour
     {
         [SerializeField] private Transform editorSP;
         [SerializeField] private HitZone editorHZ;
+        [SerializeField] private Sprite editorNoteSprite;
         [SerializeField] public Transform spawnPoint { get; private set; }
         [SerializeField] public HitZone hitZone { get; private set; }
         [SerializeField] List<WordNote> notesInChannel = new List<WordNote> { };
         [SerializeField] KeyCode button = KeyCode.Space;
         [SerializeField] NoteDialogueInterface NDI;
-
+        [SerializeField] public Sprite noteSprite { get; private set; }
         // Start is called before the first frame update
         void Awake()
         {
+            noteSprite = editorNoteSprite;
             spawnPoint = editorSP;
             hitZone = editorHZ;
         }
@@ -72,17 +70,23 @@ namespace NoteSystem
                 {
                     //process miss here
                     //Debug.Log("Miss!");
-                  //  Debug.Log(tempCurrentBeat + ", " + notesInChannel[0].GetClimaxBeat());
+                    //  Debug.Log(tempCurrentBeat + ", " + notesInChannel[0].GetClimaxBeat());
+                    hitZone.MissAnimation();
                     return;
                 }
                 else
                 {
                  //   Debug.Log(nextNoteHitQuality);
                     ProcessHitOnNote(notesInChannel[0], nextNoteHitQuality);
+                    hitZone.HitAnimation();
                  //   Debug.Log("processed hit on:" + notesInChannel[0].word);
                     notesInChannel.RemoveAt(0);
                 }
 
+            }
+            else
+            {
+                hitZone.MissAnimation();
             }
         }
         void ProcessHitOnNote(WordNote note, HitQuality quality)

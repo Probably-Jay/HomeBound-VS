@@ -51,7 +51,7 @@ namespace NoteSystem {
         }
         public void Initialise(string passedWord, float hitBeat, Lane passedLane, Canvas canvas, float? spawnBeat = null)
         {
-
+            SpriteRenderer spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
             if (spawnBeat.HasValue)
             {
                 spawningBeat = (float)spawnBeat.Value;
@@ -70,6 +70,7 @@ namespace NoteSystem {
             endPos = lane.hitZone.transform;
             this.transform.position = startPos.position;
             this.canvas = canvas;
+            spriteRenderer.sprite = lane.noteSprite;
             InitialiseWordUI();
         }
         public float TargetBeat()
@@ -82,6 +83,7 @@ namespace NoteSystem {
         }
         private void InitialiseWordUI()
         {
+            
             GameObject tempWordUI = GameObject.Instantiate(wordUIPrefab, canvas.gameObject.transform);
             wordUI = tempWordUI.GetComponent<WordUI>();
             wordUI.Initialise(word, this);

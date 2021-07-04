@@ -10,10 +10,24 @@ public class RhythmSectionManager : MonoBehaviour
     [SerializeField] List<Rythm.NoteSection> sheets = new List<Rythm.NoteSection> { };
     [SerializeField] RhythmInitialise sectionLoader;
     [SerializeField] Dialogue.RythmDialogueInterface rDI;
-
+    [SerializeField] bool debugStartOnStart;
     public bool HasControl => rDI.RythmHasControl;
+    private float time=0;
 
     // Start is called before the first frame update
+    private void Update()
+    {
+        if (!debugStartOnStart)
+        {
+            return;
+        }
+        time = time + Time.deltaTime;
+        if (time > 1)
+        {
+            rDI.StartNewRythm(identifications[0]);
+            debugStartOnStart = false;
+        }
+    }
     void Awake()
     {
         if (identifications.Count == sheets.Count)
@@ -27,6 +41,7 @@ public class RhythmSectionManager : MonoBehaviour
         {
             Debug.LogError("Cannot Zip Identifications and Sheets");
         }
+        
     }
 
 
