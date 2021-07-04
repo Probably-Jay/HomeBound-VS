@@ -2048,6 +2048,45 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 10.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1913506035618416047, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: editorNoteSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d475e26604903344fbd3168b632a0ccd,
+        type: 3}
+    - target: {fileID: 1913506035711091784, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: hitSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7d873be79b4ed44b9c562e12f32c7df,
+        type: 3}
+    - target: {fileID: 1913506035711091784, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: missSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96321d3d39deedf4996193a2de362cf6,
+        type: 3}
+    - target: {fileID: 1913506035711091791, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f753392b2151207438b3efb91be116c5,
+        type: 3}
+    - target: {fileID: 1913506035711091791, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913506035711091791, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913506035711091791, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4658575184520333014, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: rSM
@@ -2144,16 +2183,94 @@ PrefabInstance:
       propertyPath: DialogueBoxOpener
       value: 
       objectReference: {fileID: 966029579}
+    - target: {fileID: 4658575185047584850, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 809a9c10ac529bd4ba97aa5cb3934839,
+        type: 3}
+    - target: {fileID: 4658575185047584850, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658575185047584850, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658575185047584850, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658575185047584853, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: hitSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3f6db165b440bf04086fe8417bfa2330,
+        type: 3}
+    - target: {fileID: 4658575185047584853, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: missSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9e2bae046fa9db5418896fb616cbfdfa,
+        type: 3}
+    - target: {fileID: 4658575185153892786, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: editorNoteSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 839984c9c448f314fb1ca6588a93a825,
+        type: 3}
     - target: {fileID: 4658575185153892789, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5811461777490372762, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: editorNoteSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b44c74b39991d5d4a98fc01d45a5310a,
+        type: 3}
     - target: {fileID: 5811461777490372765, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5811461777600858490, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 293c05dd26cc5dd47bf518ea8e60bb29,
+        type: 3}
+    - target: {fileID: 5811461777600858490, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5811461777600858490, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5811461777600858490, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5811461777600858493, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: hitSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a2f8142a114e9104eb4f93a60ca9a879,
+        type: 3}
+    - target: {fileID: 5811461777600858493, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: missSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a84e1716c9a49cf46ae50c2e5efe47b2,
+        type: 3}
     - target: {fileID: 7173979258473825709, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: m_Name
@@ -2185,6 +2302,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfa0a9f0fed797b45ab2f75443c0062f, type: 2}
   sectionLoader: {fileID: 1750068223}
   rDI: {fileID: 1478533509}
+  debugStartOnStart: 0
 --- !u!114 &1750068223 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4658575184520333014, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
