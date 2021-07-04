@@ -64,10 +64,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\World\CharacterController.cs" />
     <Compile Include="Assets\Scripts\World\FloorHandler.cs" />
     <Compile Include="Assets\Scripts\World\Floors.cs" />
     <Compile Include="Assets\Scripts\World\Interactable.cs" />
+    <Compile Include="Assets\Scripts\World\PlayerCharacterController.cs" />
     <None Include="Assets\Scripts\World\~World.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

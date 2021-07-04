@@ -20,6 +20,12 @@ namespace Rythm
         public float DurationOfSong => MusicClip.samples / MusicClip.frequency;
         public float PercentThroughSong => TimeInSong / DurationOfSong;
         public float BPS => BPM / 60f;
+        public float DurationOfBeat => BeatToSeconds(1);
+        /// <summary>
+        /// <see cref="Time.deltaTime"/> in beats
+        /// </summary>
+        public float DeltaBeats => Instance.SecondsToBeat(Time.deltaTime);
+
 
         RythmSong currentTrack = null;
       //  [SerializeField] bool playImediatley;
@@ -47,7 +53,7 @@ namespace Rythm
 
         }
 
-        private void Play(RythmSong music)
+        public void Play(RythmSong music)
         {
             ClearAnyQueuedActions();
             SetTrack(music);
@@ -91,12 +97,7 @@ namespace Rythm
 
       
 
-        /// <summary>
-        /// <see cref="Time.deltaTime"/> in beats
-        /// </summary>
-        public float DeltaBeats => Instance.SecondsToBeat(Time.deltaTime);
-
-        public float DurationOfBeat => BeatToSeconds(1);
+  
 
         private void Update()
         {          
