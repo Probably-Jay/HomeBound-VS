@@ -197,6 +197,7 @@ namespace Dialogue
             ,colour
             ,rythm
             ,pause
+            ,shake
         }
 
         private string ParseInlineInstructions(Conversation conversation, DialoguePhrase phrase, string body, int lineNumber, GroupCollection header)
@@ -257,6 +258,7 @@ namespace Dialogue
         private Action GetInstruction(Conversation conversation, Instructions iName, Match instruction)
         {
             string value = instruction.Groups[iName.ToString()].Value;
+
             switch (iName)
             {
                 case Instructions.mode:
@@ -292,7 +294,14 @@ namespace Dialogue
                         Action pause = () => conversation.Pause(v);
                         return pause;
                     }
-                    break;
+
+                case Instructions.shake:
+                    {
+                        var v = float.Parse(value);
+                        Action shake = () => conversation.Shake(v);
+
+                        return shake;
+                    }
                 default: throw new Exception("Instruction name exists but no code handles this case");
             }
 

@@ -1,11 +1,7 @@
 {
-    "name": "~Dialogue_System",
+    "name": "~CameraControl",
     "references": [
-        "GUID:6aac11a11a06dbc49b43825cd198f3f4",
-        "GUID:b65dfa23e77d241418e4bdb59b69c6d1",
-        "GUID:0faf6e3b9789ca64ea166765fb5a4c1c",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:4814eb8b3144b9344be6059aa302c7d6"
+        "GUID:4307f53044263cf4b835bd812fc161a4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

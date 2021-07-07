@@ -5,7 +5,7 @@ using Cinemachine;
 public class PointOfIntrestManager : MonoBehaviour
 {
     [SerializeField,Range(0,1)] float playerWeight = 0.98f;
-    [SerializeField, Range(0, 1)] float otherWeights = 0.01f;
+   // [SerializeField, Range(0, 1)] float otherWeights = 0.01f;
     [SerializeField] Transform player;
     [SerializeField] List<Transform> pointsOfIntrest;
     [SerializeField, Range(0, 10)] float distance;

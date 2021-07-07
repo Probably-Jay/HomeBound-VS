@@ -125,6 +125,7 @@ namespace Dialogue
             conversation.OnSetColour += (colour) => dialogueContextController.AddColourRTT(colour);
             conversation.OnTriggerRythmSection += (id) => rythmDialogeControlInterface.StartNewRythm(id);
             conversation.OnPause += (value) => dialogueContextController.PauseTyping(value);
+            conversation.OnShake += (value) => dialogueContextController.Shake(value);
 
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)

@@ -90,6 +90,9 @@ namespace Dialogue
         /// Pause for <paramref name="v"/> <c>1/16</c> notes
         /// </summary>
         public void Pause(int v) => OnPause?.Invoke(v);
+
+        public event Action<float> OnShake;
+        public void Shake(float v) => OnShake?.Invoke(v);
     }
 
 

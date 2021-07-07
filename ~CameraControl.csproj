@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7DB04697-AB7A-3DD9-8E6A-B1E9583A07B9}</ProjectGuid>
+    <ProjectGuid>{34A124F9-42B7-FA37-AF8F-855D6953560F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>~Dialogue_System</AssemblyName>
+    <AssemblyName>~CameraControl</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -64,17 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\ConversationHandler.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueBoxTester.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueContextController.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueParsingException.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueTyper.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\FileLoading\DialogueLoader.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\Objects\Conversation.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\Objects\DialoguePhrase.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\Objects\DialoguePhraseObject.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\Parsing\DialogueParser.cs" />
-    <None Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\~Dialogue_System.asmdef" />
+    <Compile Include="Assets\Scripts\CameraControl\TriggerScreenShake.cs" />
+    <None Include="Assets\Scripts\CameraControl\~CameraControl.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -620,25 +611,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="~Game.csproj">
-      <Project>{7D78C81D-0FD2-D4F7-4933-6287F7CF5652}</Project>
-      <Name>~Game</Name>
-    </ProjectReference>
-    <ProjectReference Include="Rythm.csproj">
-      <Project>{A405DFF5-69F4-D895-29C6-2000F8AF12A1}</Project>
-      <Name>Rythm</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Core.csproj">
-      <Project>{354EAF47-F608-D8B1-D75E-1AFE6B6D692A}</Project>
-      <Name>~Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="~CameraControl.csproj">
-      <Project>{34A124F9-42B7-FA37-AF8F-855D6953560F}</Project>
-      <Name>~CameraControl</Name>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{444E6EE2-C90E-964E-C2B2-93BF064C044E}</Project>
+      <Name>Cinemachine</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>

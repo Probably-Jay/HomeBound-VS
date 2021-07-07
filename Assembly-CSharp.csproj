@@ -621,6 +621,10 @@
       <Project>{264F350A-2FFD-C493-317F-B891A3089293}</Project>
       <Name>Unity.Timeline.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{444E6EE2-C90E-964E-C2B2-93BF064C044E}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
     <ProjectReference Include="~Game.csproj">
       <Project>{7D78C81D-0FD2-D4F7-4933-6287F7CF5652}</Project>
       <Name>~Game</Name>
@@ -681,6 +685,10 @@
       <Project>{7B937E82-E9C6-F4C2-6245-5E1063936C02}</Project>
       <Name>Unity.2D.Tilemap.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{457EF047-18BD-E8B7-196F-F1FBFFBB6A29}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}</Project>
       <Name>Unity.TextMeshPro</Name>
@@ -689,13 +697,9 @@
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="Cinemachine.csproj">
-      <Project>{444E6EE2-C90E-964E-C2B2-93BF064C044E}</Project>
-      <Name>Cinemachine</Name>
-    </ProjectReference>
-    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
-      <Project>{457EF047-18BD-E8B7-196F-F1FBFFBB6A29}</Project>
-      <Name>com.unity.cinemachine.editor</Name>
+    <ProjectReference Include="~CameraControl.csproj">
+      <Project>{34A124F9-42B7-FA37-AF8F-855D6953560F}</Project>
+      <Name>~CameraControl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
