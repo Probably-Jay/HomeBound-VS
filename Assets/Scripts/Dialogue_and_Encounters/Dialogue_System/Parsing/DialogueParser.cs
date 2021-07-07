@@ -29,7 +29,8 @@ namespace Dialogue
             conversation.initialMode = mode != DialogueMode.None ? mode : DialogueMode.Normal;
 
 
-            string[] lines = allLines.Skip(1).Take(allLines.Length).ToArray();
+            string[] lines = allLines.Skip(1).Take(allLines.Length).ToArray(); // skip metadata line
+
 
 
             for (int i = 0; i < lines.Length; i++)
@@ -195,13 +196,14 @@ namespace Dialogue
             ,mode
             ,colour
             ,rythm
+            ,pause
         }
 
         private string ParseInlineInstructions(Conversation conversation, DialoguePhrase phrase, string body, int lineNumber, GroupCollection header)
         {
             if (body.Count((c) => c == '[') != body.Count((c) => c == ']'))
             {
-                throw new Exception($"Phrase {lineNumber} inline instructions malformed");
+                throw new Exception($"Phrase {lineNumber} inline instructions malformed, open close missmatch");
             }
 
             MatchCollection instructionsGroups = Regex.Matches(body, @"\[([ #\w\:]+)\]");
@@ -219,7 +221,7 @@ namespace Dialogue
                 bool found = false;
                 foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
                 {
-                    var instruction = Regex.Match(match.Value, $@"\[(|{iName}: (?<{iName}>[#\w]+))\]");
+                    var instruction = Regex.Match(match.Value, $@"\[({iName}: (?<{iName}>[#\w]+(?:.\d+)?))\]");
 
                     if (!instruction.Success)
                     {
@@ -254,11 +256,11 @@ namespace Dialogue
 
         private Action GetInstruction(Conversation conversation, Instructions iName, Match instruction)
         {
+            string value = instruction.Groups[iName.ToString()].Value;
             switch (iName)
             {
                 case Instructions.mode:
                     {
-                        string value = instruction.Groups[iName.ToString()].Value;
                         var v = int.Parse(value);
                         Action changeMode = () => conversation.SetDialougeMode((DialogueMode)v);
                         return changeMode;
@@ -266,7 +268,6 @@ namespace Dialogue
 
                 case Instructions.colour:
                     {
-                        string value = instruction.Groups[iName.ToString()].Value;
                         var v = int.Parse(value, System.Globalization.NumberStyles.HexNumber);
                         Action changeColour = () => conversation.SetColour(v);
                         return changeColour;
@@ -274,21 +275,24 @@ namespace Dialogue
 
                 case Instructions.debug:
                     {
-                        string value = instruction.Groups[iName.ToString()].Value;
-
                         Action changeMode = () => Debug.Log($"Inline debug: {value}. Conversation: {conversation.conversationID}");
                         return changeMode;
                     }
 
                 case Instructions.rythm:
                     {
-                        string value = instruction.Groups[iName.ToString()].Value;
-
                         Action startRyhtmSection = () => conversation.StartRyhtmSection(value);
 
                         return startRyhtmSection;
                     }
 
+                case Instructions.pause:
+                    {
+                        var v = int.Parse(value);
+                        Action pause = () => conversation.Pause(v);
+                        return pause;
+                    }
+                    break;
                 default: throw new Exception("Instruction name exists but no code handles this case");
             }
 

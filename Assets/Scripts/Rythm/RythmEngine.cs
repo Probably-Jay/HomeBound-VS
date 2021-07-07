@@ -15,14 +15,17 @@ namespace Rythm
         new public static RythmEngine Instance => Singleton<Rythm.RythmEngine>.Instance;
 
         public bool PlayingMusic => AudioSource.isPlaying;
+        [SerializeField] float noMusicBPM = 120;
+        float floNoMusicBPS => noMusicBPM/60.0f;
+
         public float CurrentBeat
         {
             get
             {
                 if (!PlayingMusic)
                 {
-                    Debug.LogError("Not playing music");
-                    return default;
+                  //  Debug.LogError("Not playing music");
+                    return Time.time * floNoMusicBPS;
                 }
                 return sampleOffset + (TimeInSong * BPS);
             }
@@ -122,10 +125,10 @@ namespace Rythm
 
         private void InvokeQueue()
         {
-            if (!PlayingMusic)
-            {
-                return;
-            }
+            //if (!PlayingMusic)
+            //{
+            //    return;
+            //}
 
             List<float> ToRemoveCache = new List<float>();
             float frameCurrentBeat = CurrentBeat;
@@ -149,7 +152,7 @@ namespace Rythm
         }
 
 
-        public void QueueActionNextBeat(Action action) => QueueActionAfterBeats(action);
+        public void QueueActionNextBeat(Action action) => QueueActionAfterBeats(action,0);
 
         /// <summary>
         /// Will add an event to be triggered on the beat, or after a certain number of beats happen. <paramref name="beatsTime"/> is measured in <paramref name="beatResolution"/> at <c>0.25 == 1/4 beats</c>
@@ -157,8 +160,13 @@ namespace Rythm
         /// <param name="action">The function to be called</param>
         /// <param name="beatsTime">The beats from now when the <paramref name="action"/> will be invoked</param>
         /// <param name="beatResolution">The sub-division of beat being used</param>
-        public void QueueActionAfterBeats(Action action, int beatsTime = 0, float beatResolution = 1)
+        public void QueueActionAfterBeats(Action action, int beatsTime, float beatResolution = 1)
         {
+            if (!PlayingMusic)
+            {
+                Debug.LogError("Not playing music");
+            }
+
             float target;
             if(beatsTime > 0)
             {
@@ -182,6 +190,8 @@ namespace Rythm
             AddEvent(action, targetBeat);
         }
 
+    
+
         public float GetBeatsFromNow(int beatsTime, float beatResolution = 1)
         {
             if (beatResolution <= 0)
@@ -191,7 +201,7 @@ namespace Rythm
 
             float nextBeat = GetNextBeat(beatResolution);
 
-            var beatsAfterNext = beatsTime * (1.0 / beatResolution); // calculate the offset
+            var beatsAfterNext = beatsTime * (beatResolution); // calculate the offset
 
             var target = nextBeat + beatsAfterNext; // add on the offset 
 
@@ -200,6 +210,7 @@ namespace Rythm
 
         private float GetNextBeat(float beatResolution = 1)
         {
+
             var beatSplit = Maths.WholeAndFrac(CurrentBeat); // get whole and fractional part
 
 

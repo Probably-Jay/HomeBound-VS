@@ -132,6 +132,10 @@ namespace Dialogue
 
         public void QueuePhrase(DialoguePhrase phrase, float? onBeat = null, bool forceContext = false) => dialogueTyper.QueueNewPhrase(phrase, onBeat, forceContext);
 
+        public void PauseTyping(int value)
+        {
+            dialogueTyper.PauseTyping(value);
+        }
 
         public void EnterArgument()
         {

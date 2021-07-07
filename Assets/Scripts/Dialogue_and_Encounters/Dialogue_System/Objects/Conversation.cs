@@ -84,6 +84,12 @@ namespace Dialogue
 
         public event Action<string> OnTriggerRythmSection;
         public void StartRyhtmSection(string id) => OnTriggerRythmSection?.Invoke(id);
+
+        public event Action<int> OnPause;
+        /// <summary>
+        /// Pause for <paramref name="v"/> <c>1/16</c> notes
+        /// </summary>
+        public void Pause(int v) => OnPause?.Invoke(v);
     }
 
 

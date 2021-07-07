@@ -77,6 +77,7 @@ namespace Dialogue
         bool beenQueuedThisConversation = false;
 
         public long Context { get; private set; } = 0;
+        public bool Paused { get; private set; }
 
         public void IncrimentContext() => Context++;
 
@@ -166,6 +167,13 @@ namespace Dialogue
             //liveString.Clear();
 
             ClearBox();
+        }
+
+        public void PauseTyping(int value)
+        {
+            Paused = true;
+   
+            RythmEngine.Instance.QueueActionAfterBeats(() => Paused = false, value, 1/16f);
         }
 
         private void StopCoroutines()
@@ -406,6 +414,15 @@ namespace Dialogue
         {
             while (bufferAndLivePhrase.bufferPhrase.StillMovingBufferToLive)
             {
+                if (Paused)
+                {
+                    yield return new WaitUntil(() => !Paused);
+                }
+                //while (Paused)
+                //{
+                //    Debug.Log("Paused");
+                //    yield return null;
+                //}
 
                 if (OnBeat)
                 {
@@ -437,13 +454,15 @@ namespace Dialogue
 
         void SkipToInstantFill()
         {
+            Paused = false;
             FillInstant();
         }
 
         void FillInstant()
         {
             bufferAndLivePhrase.MoveAllRemainingTextToLive();
-        }     
+            Paused = false;
+        }
 
         void FlowWordWhole()
         {
@@ -484,7 +503,7 @@ namespace Dialogue
                 }
 
 
-                bufferAndLivePhrase.AddToLiveDirectly(character);
+                bufferAndLivePhrase.AddToLiveDirectly(character); // already handled instructions (hopefully)
 
                 if ((dt -= durationOfCharacter) > 0)
                 {
@@ -493,6 +512,8 @@ namespace Dialogue
 
                 dt = Time.deltaTime;
                 if (!OnBeat) durationOfCharacter += UnityEngine.Random.Range(0, spaceWordFillsInBeat * RandomTypingDelayDelta);
+
+              //  Debug.LogWarning("Fiules");
 
                 yield return new WaitForSeconds(durationOfCharacter);
             }
@@ -587,7 +608,8 @@ namespace Dialogue
                 else
                 {
                     HandleInlineInstruction();
-                    return GetNextCharacter();
+                    // return GetNextCharacter();
+                    return null;
                 }
 
 
