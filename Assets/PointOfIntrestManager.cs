@@ -10,6 +10,8 @@ public class PointOfIntrestManager : MonoBehaviour
     [SerializeField] List<Transform> pointsOfIntrest;
     [SerializeField, Range(0, 10)] float distance;
 
+   
+
     CinemachineTargetGroup group;
 
     private void Awake()
