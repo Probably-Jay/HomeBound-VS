@@ -17,7 +17,7 @@ namespace Overworld {
         [SerializeField] bool canWalk = true;
 
         bool hasWalkingInput = false;
-        bool isBlocked = false;
+       // bool isBlocked = false;
         WalkingDirection direction;
         [SerializeField] bool gridBasedMovement;
         [SerializeField] Grid grid;

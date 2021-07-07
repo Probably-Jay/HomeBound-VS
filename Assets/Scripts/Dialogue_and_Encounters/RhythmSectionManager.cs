@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RhythmSectionLoading;
+using System;
+using Rythm;
 
 public class RhythmSectionManager : MonoBehaviour
 {
@@ -74,10 +76,41 @@ public class RhythmSectionManager : MonoBehaviour
 
         Rythm.NoteSection noteSection = noteSheets[iD];
 
+        if (!SectionIsValid(noteSection))
+        {
+            Debug.LogError($"Skipping section {iD}");
+        }
+
         Rythm.RythmEngine.Instance.Play(noteSection.song);
         sectionLoader.LoadAndBeginSectionNotes(noteSection.notes);
 
     }
+
+    private bool SectionIsValid(NoteSection noteSection)
+    {
+        try
+        {
+            if(noteSection == null)
+                throw new Exception("notesection is null");
+            if(noteSection.notes == null)
+                throw new Exception("notesection.notes is null");
+            if(noteSection.notes.text == "")
+                throw new Exception("notesection is empty");
+            if(noteSection.song == null)
+                throw new Exception("notesection.song is null");
+            if(noteSection.song.audioClip == null)
+                throw new Exception("notesection.song has no audio clip, did you forget to re-import the music files you fucking moron?");
+            if(noteSection.song.BPM == 0)
+                throw new Exception("notesection.song has no BPM"); 
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Exception loading {noteSection.name}: {e.Message}: {e.StackTrace}");
+            return false;
+        }
+        return true;
+    }
+
     public void EndSection()
     {
         rDI.EndRythmSection();
