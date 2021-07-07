@@ -284,7 +284,7 @@ namespace Overworld {
         }
         private bool CheckGround(Vector3Int cell)
         {
-            if (floorHandler.GetTileOnFloor(layer-1,cell) != null)
+            if (floorHandler.GetGroundTileOnFloor(layer,cell) != null)
             {
                 return true;
             }
@@ -295,7 +295,7 @@ namespace Overworld {
         }
         private bool CheckWall(Vector3Int cell)
         {
-            if (floorHandler.GetTileOnFloor(layer, cell) != null)
+            if (floorHandler.GetObsTileOnFloor(layer, cell) != null)
             {
                 return true;
             }
