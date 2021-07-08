@@ -15,24 +15,24 @@ namespace Interactables
         const float facintDirectionSensitivity = -0.9f;
         [SerializeField] string InteractionName = "Interact";
         [SerializeField] KeyCode interactKey = KeyCode.E;
+        [SerializeField] bool canBeInteractedWith = true;
 
-
-        // [SerializeField] UnityEvent simpleInteractions;
-
-        // event Action interactAction; 
-
+ 
+        [Header("All triggers must be of type \"" + nameof(SimpleInteractableTriggered) +"\" or impliment \"" + nameof(IInteractableTriggered)+ "\"")]
         [SerializeField] List<MonoBehaviour> interactableTriggers;
-       
-      //  readonly List<UnityEngine.Object> Othertriggers = new List<UnityEngine.Object>();
-
+  
 
         TMP_Text UIDisplay;
-      // private bool keyPressed;
+
 
         public bool HasEvents => interactableTriggers.Count > 0;
         GameObject UIParentObject => UIDisplay.transform.parent.gameObject;
 
-        bool canBeInteracted = true;
+        // bool canBeInteracted = true;
+        bool CanBeInteracted => canBeInteractedWith && interactableActivated && triggeredCount == 0;
+        bool interactableActivated;
+        private int triggeredCount = 0;
+
         private bool InInteractioinRange => UIParentObject.activeInHierarchy; // implicit state, defined by if "interact (E)" ui is visible
 
 
@@ -116,12 +116,12 @@ namespace Interactables
             }
         }
 
-        private void ActivateInteractable() => canBeInteracted = true;
+        private void ActivateInteractable() => interactableActivated = true;
 
         private void DeactivateInteractable()
         {
             DeactivateUI();
-            canBeInteracted = false;
+            interactableActivated = false;
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -135,7 +135,7 @@ namespace Interactables
 
         private void Update()
         {
-            if (canBeInteracted && InInteractioinRange && Input.GetKeyDown(interactKey))
+            if (CanBeInteracted && InInteractioinRange && Input.GetKeyDown(interactKey))
             {
                 HandleInteraction();
             }
@@ -143,7 +143,7 @@ namespace Interactables
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (!canBeInteracted)
+            if (!CanBeInteracted)
             {
                 return;
             }
@@ -164,6 +164,20 @@ namespace Interactables
 
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            InvokeEnterInteractable();
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if(triggeredCount > 0)
+            {
+                Debug.LogWarning("Triggered count is not 0");
+            }
+            InvokeExitInteractable();
+        }
+
         private void HandleInteraction()
         {
             if (!HasEvents)
@@ -179,16 +193,43 @@ namespace Interactables
 
         private void InvokeTriggers()
         {
-            for (int i = interactableTriggers.Count-1; i >= 0; i--)
+            for (int i = interactableTriggers.Count-1; i >= 0; i--) // rev in case of removal
             {
-                MonoBehaviour item = interactableTriggers[i];
-                if (!(item is IInteractableTriggered triggered))
-                {
-                    throw new Exception($"Triggers must be of type {typeof(IInteractableTriggered)}");
-                }
+                IInteractableTriggered triggered = GetITriggered(i);
                 triggered.Trigger();
             }
         }
+
+        void InvokeEnterInteractable()
+        {
+            for (int i = interactableTriggers.Count - 1; i >= 0; i--)
+            {
+                IInteractableTriggered triggered = GetITriggered(i);
+                triggered.Trigger();
+            }
+        }
+        void InvokeExitInteractable()
+        {
+            for (int i = interactableTriggers.Count - 1; i >= 0; i--)
+            {
+                IInteractableTriggered triggered = GetITriggered(i);
+                triggered.Trigger();
+            }
+        }
+
+        private IInteractableTriggered GetITriggered(int i)
+        {
+            MonoBehaviour item = interactableTriggers[i];
+            if (!(item is IInteractableTriggered triggered))
+            {
+                throw new Exception($"Triggers must be of type {typeof(IInteractableTriggered)}");
+            }
+
+            return triggered;
+        }
+
+
+
 
         private void ActivateUI()
         {
@@ -238,12 +279,17 @@ namespace Interactables
 
         private void Triggered_OnTriggered()
         {
-            canBeInteracted = false;
+            triggeredCount++;
         }
 
         private void Triggered_OnPostTriggered()
         {
-            canBeInteracted = true;
+            triggeredCount--;
+            if(triggeredCount < 0)
+            {
+                Debug.LogError("More post triggers than triggers");
+                triggeredCount = 0;
+            }
         }
     }
 }

@@ -1,13 +1,13 @@
 id: test_demo
 [Stranger]: Hello there.
 [Player]: Hi?
-[Stranger]: My name is[pause: 16].[pause: 16].[pause: 16]. [pause: 32][colour: FF00FF][shake: 2]REX.[colour: FFFFFF]
-[Player]: Hello [colour: FF00FF]Rex[colour: FFFFFF], where am I?
+[Stranger]: My name is[pause: 8].[pause: 16].[pause: 16].[pause: 16] [colour: FF00FF][shake: 2]REX.[colour: FFFFFF]
+[Player]: Hello [pause: 16][colour: FF00FF]Rex[colour: FFFFFF], where am I?
 [REX]: You're in the [colour: FF0000]HomeBound Tech Demo![colour: FFFFFF]
 [REX]: You've already figured out [colour: 00FF00]Walking around[colour: FFFFFF] and [colour: 00FF00] interacting[colour: FFFFFF] with things, right?
 [Player]: Yeah, I seem to be getting the hang of that!
 [REX]: And you've totally got [colour: 00FF00]talking[colour: FFFFFF] down too.
-[REX]: The last thing to try out is the [colour: FF00FF]RHYTHM ENCOUNTER!![colour: FFFFFF]
+[REX]: The last thing to try out is the [colour: FF00FF][shake: 0.5]RHYTHM ENCOUNTER!![colour: FFFFFF]
 [Player]: What's that?
 [REX]: Sometimes in this game, a conversation will become quite heated...
 [REX]: In those situations, it can get pretty hard to get all your words out in the right order. 
@@ -15,6 +15,6 @@ id: test_demo
 [REX]: I hope you're having fun... 
 [REX]: Now, that wasn't so bad huh?
 [Player]: I guess not...
-[REX]: That's it from the [colour: FF0000]HomeBound Tech Demo Update![colour: FFFFFF]
+[REX]: That's it from the [colour: FF0000][shake: 0.5]HomeBound Tech Demo Update![colour: FFFFFF]
 [REX]: Hope to see you all soon!!
 [end]

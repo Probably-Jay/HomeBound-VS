@@ -12,6 +12,12 @@ namespace Interactables
         void Trigger();
 
 
+        void EnteredTriggerZone();
+        void ExitedTriggerZone();
+
+
+        // both OnTriggered and OnPostTriggered *MUST* be called, even if the operation is a single call 
+
         /// <summary> Will disable the interactable until <see cref="OnPostTriggered"/> is called </summary>
         event Action OnTriggered;
         /// <summary> Will re-enable the interactable </summary>
