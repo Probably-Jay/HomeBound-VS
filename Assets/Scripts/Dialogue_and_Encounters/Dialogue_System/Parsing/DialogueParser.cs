@@ -207,7 +207,7 @@ namespace Dialogue
                 throw new Exception($"Phrase {lineNumber} inline instructions malformed, open close missmatch");
             }
 
-            MatchCollection instructionsGroups = Regex.Matches(body, @"\[([ #\w\:]+)\]");
+            MatchCollection instructionsGroups = Regex.Matches(body, @"\[([ #\w\:]+(?:.\d+)?)\]");
 
 
             int matchIndex = 0;

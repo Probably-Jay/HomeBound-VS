@@ -11,24 +11,7 @@ namespace Dialogue
     public class DialogueLoader
     {
         //  public static string ResourcesPath => Path.Combine("Assets", "Resources");
-        public static string StreamingPath
-        {
-            get
-            {
-                string streamingAssetsPath;
-                try
-                {
-                    streamingAssetsPath = Application.streamingAssetsPath;
-
-                }
-                catch (Exception e)
-                {
-
-                    throw new Exception("Streaming assets unavalibale");
-                }
-                return streamingAssetsPath;
-            }
-        }
+        public static string StreamingPath => Application.streamingAssetsPath;
 
         public static string DialogueFilePath => Path.Combine(StreamingPath, "DialogueFiles");
 

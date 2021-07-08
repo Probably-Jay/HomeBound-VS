@@ -16,7 +16,7 @@ namespace Rythm
 
         public bool PlayingMusic => AudioSource.isPlaying;
         [SerializeField] float noMusicBPM = 120;
-        float floNoMusicBPS => noMusicBPM/60.0f;
+        float NoMusicBPS => noMusicBPM/60.0f;
 
         public float CurrentBeat
         {
@@ -25,7 +25,7 @@ namespace Rythm
                 if (!PlayingMusic)
                 {
                   //  Debug.LogError("Not playing music");
-                    return Time.time * floNoMusicBPS;
+                    return Time.time * NoMusicBPS;
                 }
                 return sampleOffset + (TimeInSong * BPS);
             }
@@ -164,7 +164,7 @@ namespace Rythm
         {
             if (!PlayingMusic)
             {
-                Debug.LogError("Not playing music");
+                Debug.LogWarning($"Not playing music, using fallback BMP: {noMusicBPM}");
             }
 
             float target;
