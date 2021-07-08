@@ -17,17 +17,14 @@ namespace Interactables
         [SerializeField] KeyCode interactKey = KeyCode.E;
 
 
-        // [SerializeField] UnityEvent simpleInteractions;
-
-        // event Action interactAction; 
-
+ 
+        [Header("All triggers must be of type \"" + nameof(SimpleInteractableTrigger) +"\" or impliment \"" + nameof(IInteractableTriggered)+ "\"")]
         [SerializeField] List<MonoBehaviour> interactableTriggers;
-       
-      //  readonly List<UnityEngine.Object> Othertriggers = new List<UnityEngine.Object>();
+  
 
 
         TMP_Text UIDisplay;
-      // private bool keyPressed;
+
 
         public bool HasEvents => interactableTriggers.Count > 0;
         GameObject UIParentObject => UIDisplay.transform.parent.gameObject;
