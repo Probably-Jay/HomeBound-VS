@@ -124,5 +124,10 @@ namespace Dialogue
             OnDisconnectFromInteractTrigger?.Invoke(this);
             Component.Destroy(this);
         }
+
+
+        public void EnteredTriggerZone() { }
+        public void ExitedTriggerZone() { }
+
     }
 }

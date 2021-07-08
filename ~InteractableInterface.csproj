@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\InteractableInterface\IInteractableTriggered.cs" />
-    <Compile Include="Assets\Scripts\InteractableInterface\SimpleInteractableTrigger.cs" />
+    <Compile Include="Assets\Scripts\InteractableInterface\SimpleInteractableTriggered.cs" />
     <None Include="Assets\Scripts\InteractableInterface\~InteractableInterface.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

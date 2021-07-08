@@ -587,7 +587,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\InteractableInterface\IInteractableTriggered.cs" />
-    <Compile Include="Assets\Scripts\InteractableInterface\SimpleInteractableTrigger.cs" />
+    <Compile Include="Assets\Scripts\InteractableInterface\SimpleInteractableTriggered.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\InteractableInterface\~InteractableInterface.asmdef" />
