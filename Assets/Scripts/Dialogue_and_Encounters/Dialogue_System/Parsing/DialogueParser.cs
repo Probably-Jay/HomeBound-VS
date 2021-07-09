@@ -37,9 +37,14 @@ namespace Dialogue
             {
                 string line = lines[i];
 
+                if (line == "" || line[0] == '\r'  || line[0] == '/') // blank line or comment
+                {
+                    continue;
+                }
+
                 var header = ParseHeader(line, lineNumber: i);
 
-                if (header == null)
+                if (header == null) // reached [end]
                 {
                     break;
                 }
@@ -136,7 +141,9 @@ namespace Dialogue
                 return null;
             }
 
-            Match headerGroup = Regex.Match(line, @"^\s*\[(?<name>[ \w]+)(|, mode: (?<mode>[ \w]+))\]: ");
+            
+
+            Match headerGroup = Regex.Match(line, @"^\s*\[(?<name>[ \w]+)\]: ");
 
             if (!headerGroup.Success)
             {
@@ -195,7 +202,7 @@ namespace Dialogue
             debug
             ,mode
             ,colour
-            ,rythm
+            ,rhythm
             ,pause
             ,shake
         }
@@ -281,7 +288,7 @@ namespace Dialogue
                         return changeMode;
                     }
 
-                case Instructions.rythm:
+                case Instructions.rhythm:
                     {
                         Action startRyhtmSection = () => conversation.StartRyhtmSection(value);
 

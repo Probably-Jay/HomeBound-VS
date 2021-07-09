@@ -1,6 +1,9 @@
 id: test_demo
 [Stranger]: Hello there.
 [Player]: Hi?
+
+// this line is a comment
+
 [Stranger]: My name is[pause: 8].[pause: 16].[pause: 16].[pause: 16] [colour: FF00FF][shake: 2]REX.[colour: FFFFFF]
 [Player]: Hello [pause: 16][colour: FF00FF]Rex[colour: FFFFFF], where am I?
 [REX]: You're in the [colour: FF0000]HomeBound Tech Demo![colour: FFFFFF]
@@ -11,10 +14,19 @@ id: test_demo
 [Player]: What's that?
 [REX]: Sometimes in this game, a conversation will become quite heated...
 [REX]: In those situations, it can get pretty hard to get all your words out in the right order. 
-[REX]: Let me show you what I mean...[pause: 64] [rythm: demo]
+[REX]: Let me show you what I mean...[pause: 64] [rhythm: demo]
+
+// rhythm section words go here
+
 [REX]: I hope you're having fun... 
+
+// and here
+
+// rhythm section ends
+
 [REX]: Now, that wasn't so bad huh?
 [Player]: I guess not...
 [REX]: That's it from the [colour: FF0000][shake: 0.5]HomeBound Tech Demo Update![colour: FFFFFF]
 [REX]: Hope to see you all soon!!
 [end]
+
