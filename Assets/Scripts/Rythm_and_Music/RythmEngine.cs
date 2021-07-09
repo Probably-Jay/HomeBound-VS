@@ -65,14 +65,14 @@ namespace Rythm
             AudioSource = GetComponent<AudioSource>();
         }
 
-        public void Play(RythmSong music)
+        internal void Play(RythmSong music)
         {
             ClearAnyQueuedActions();
             SetTrack(music);
             BeginPlaying(music);
         }
 
-        public void Stop()
+        internal void Stop()
         {
             AudioSource.Stop();
             AudioSource.clip = null;

@@ -628,7 +628,7 @@
       <Name>Unity.Timeline.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Cinemachine.csproj">
-      <Project>{444E6EE2-C90E-964E-C2B2-93BF064C044E}</Project>
+      <Project>{53009CFC-120E-EA42-AC45-6CEB449A26D0}</Project>
       <Name>Cinemachine</Name>
     </ProjectReference>
     <ProjectReference Include="~Game.csproj">
@@ -642,10 +642,6 @@
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{8D6EBC53-96EC-9B6A-E93A-984AB1DA622E}</Project>
       <Name>Unity.VSCode.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Rythm.csproj">
-      <Project>{A405DFF5-69F4-D895-29C6-2000F8AF12A1}</Project>
-      <Name>Rythm</Name>
     </ProjectReference>
     <ProjectReference Include="~InteractableInterface.csproj">
       <Project>{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}</Project>
@@ -692,11 +688,11 @@
       <Name>~Dialogue_System</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Tilemap.Editor.csproj">
-      <Project>{7B937E82-E9C6-F4C2-6245-5E1063936C02}</Project>
+      <Project>{80E9FC4B-61E4-BFB4-0798-ECD27C10876F}</Project>
       <Name>Unity.2D.Tilemap.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="com.unity.cinemachine.editor.csproj">
-      <Project>{457EF047-18BD-E8B7-196F-F1FBFFBB6A29}</Project>
+      <Project>{5FC60446-4259-4315-8978-9015157925AD}</Project>
       <Name>com.unity.cinemachine.editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
@@ -706,6 +702,10 @@
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Rythm.csproj">
+      <Project>{12BA2B9B-F977-257D-A770-C239B2421B56}</Project>
+      <Name>Rythm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

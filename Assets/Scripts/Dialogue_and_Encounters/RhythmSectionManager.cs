@@ -78,7 +78,7 @@ public class RhythmSectionManager : MonoBehaviour
 
         if (!SectionIsValid(noteSection))
         {
-            Debug.LogError($"Skipping section {iD}");
+            Debug.LogError($"Skipping section {iD} as it is invalid");
         }
 
         Rythm.RythmEngine.Instance.Play(noteSection.song);
