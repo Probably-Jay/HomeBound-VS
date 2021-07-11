@@ -13,6 +13,7 @@ namespace Rythm
         // private AudioSource
         [SerializeField] RythmSong defaultMusic;
         [SerializeField] MultiAudioSource multiAudioSource = new MultiAudioSource();
+        [SerializeField] private bool playOnStart;
 
         public bool PlayingMusic => CurrentAudioSource.isPlaying;
         public int CurrentSample => CurrentAudioSource.timeSamples;
@@ -28,7 +29,8 @@ namespace Rythm
 
         private void Start()
         {
-            PushNewSong(defaultMusic);
+            if(playOnStart)
+                PushNewSong(defaultMusic);
         }
 
         /// <summary>
