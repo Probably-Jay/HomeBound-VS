@@ -14,7 +14,8 @@ namespace Rythm
     {
         new public static RythmEngine Instance => Singleton<Rythm.RythmEngine>.Instance;
 
-        public bool PlayingMusic => AudioSource.isPlaying;
+        public bool PlayingMusic => MusicManager.PlayingMusic;
+
         [SerializeField] float noMusicBPM = 120;
         float NoMusicBPS => noMusicBPM/60.0f;
 
@@ -31,8 +32,8 @@ namespace Rythm
             }
         }
 
-        public float TimeInSong => (float)CurrentSample / (float)MusicClip.frequency;
-        public float DurationOfSong => MusicClip.samples / MusicClip.frequency;
+        public float TimeInSong => (float)CurrentSample / (float)MusicManager.CurrentClipFrequency;
+        public float DurationOfSong => (float)MusicManager.CurrentClipSamples / (float)MusicManager.CurrentClipFrequency;
         public float PercentThroughSong => TimeInSong / DurationOfSong;
         public float BPS => BPM / 60f;
         public float DurationOfBeat => BeatToSeconds(1);
@@ -41,10 +42,10 @@ namespace Rythm
         /// </summary>
         public float DeltaBeats => Instance.SecondsToBeat(Time.deltaTime);
 
+        public MusicManager MusicManager { get; private set; }
 
-       // RythmSong currentTrack = null;
-      //  [SerializeField] bool playImediatley;
-        public AudioClip MusicClip { get => AudioSource.clip; }
+       // public AudioClip CurrentMusicClip { get => MusicManager.AudioSource.clip; }
+
         float BPM;
         float sampleOffset;
 
@@ -53,29 +54,31 @@ namespace Rythm
         readonly SortedDictionary<float, Action> queuedActions = new SortedDictionary<float, Action>();
 
 
-        int CurrentSample => AudioSource.timeSamples;
+        int CurrentSample => MusicManager.CurrentSample;
 
 
-        private AudioSource AudioSource { get; set; }
-
+      //  private AudioSource AudioSource { get; set; }
 
         public override void Initialise()
         {
             base.InitSingleton();
-            AudioSource = GetComponent<AudioSource>();
+         //   AudioSource = GetComponent<AudioSource>();
+            MusicManager = GetComponent<MusicManager>();
         }
 
-        internal void Play(RythmSong music)
+        public void PlayRhytmSong(RythmSong music)
         {
             ClearAnyQueuedActions();
-            SetTrack(music);
-            BeginPlaying(music);
+            MusicManager.PushNewSong(music);
+           // SetTrack(music);
+           // BeginPlaying(music);
         }
 
-        internal void Stop()
+        public void StopRythmSong()
         {
-            AudioSource.Stop();
-            AudioSource.clip = null;
+            MusicManager.ReturnToPreviousSong();
+          //  AudioSource.Stop();
+          //  AudioSource.clip = null;
         }
 
         private void ClearAnyQueuedActions()
@@ -88,31 +91,34 @@ namespace Rythm
 
         }
 
-        private void SetTrack(RythmSong music)
+        //private void SetTrack(RythmSong music)
+        //{
+        //    AudioSource.clip = music.audioClip;
+        //    SetTrackInfo(music);
+        //}
+
+        internal void SetTrackInfo(RythmSong music)
         {
-            AudioSource.clip = music.audioClip;
             BPM = music.BPM;
             sampleOffset = music.offset;
         }
 
-        private void BeginPlaying(RythmSong music)
-        {
-            DebugDetails(music);
-            AudioSource.Play();
-            AudioSource.timeSamples = music.beginAtSample;
-        }
+        //private void BeginPlaying(RythmSong music)
+        //{
+           
+        //}
 
 
 
-        private void DebugDetails(RythmSong music)
-        {
-            Debug.Log($"Track: {music.name}");
-            Debug.Log($"Samples: { MusicClip.samples} at { MusicClip.frequency}Hz");
-            Debug.Log($"BPM: {BPM} ({BPS}pbs)");
-            Debug.Log($"Duration: {TimeSpan.FromSeconds(DurationOfSong)}, {BeatsInSong} beats long");
-            Debug.Log($"Offset: {sampleOffset} samples");
+        //internal void DebugDetails(RythmSong music)
+        //{
+        //    Debug.Log($"Track: {music.name}");
+        //    Debug.Log($"Samples: { music.audioClip.samples} at { music.audioClip.frequency}Hz");
+        //    Debug.Log($"BPM: {BPM} ({BPS}pbs)");
+        //    Debug.Log($"Duration: {TimeSpan.FromSeconds(DurationOfSong)}, {BeatsInSong} beats long");
+        //    Debug.Log($"Offset: {sampleOffset} samples");
 
-        }
+        //}
 
       
 

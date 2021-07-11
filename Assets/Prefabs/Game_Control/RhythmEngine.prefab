@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6301723050433295602}
   - component: {fileID: 5897840166497060641}
-  - component: {fileID: 3173386520227777564}
+  - component: {fileID: 6362014657729633657}
+  - component: {fileID: 5646660584035715264}
   m_Layer: 0
   m_Name: RhythmEngine
   m_TagString: Untagged
@@ -44,9 +45,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea798632811471c42b7c24dd853aa199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 11400000, guid: 01f67dc8816eb8c46a869c67b9826ab8, type: 2}
-  playImediatley: 0
---- !u!82 &3173386520227777564
+  noMusicBPM: 120
+--- !u!114 &6362014657729633657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024951589727670159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f00cb27de6ffd6468b6de22d177ba0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMusic: {fileID: 11400000, guid: 432c88e67592b5e4d87c4fe0df8a2f72, type: 2}
+  multiAudioSource:
+    fadeInMusicCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    fadeOutMusicCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+--- !u!82 &5646660584035715264
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +83,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

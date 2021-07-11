@@ -81,7 +81,7 @@ public class RhythmSectionManager : MonoBehaviour
             Debug.LogError($"Skipping section {iD} as it is invalid");
         }
 
-        Rythm.RythmEngine.Instance.Play(noteSection.song);
+        Rythm.RythmEngine.Instance.PlayRhytmSong(noteSection.song);
         sectionLoader.LoadAndBeginSectionNotes(noteSection.notes);
 
     }
@@ -115,7 +115,7 @@ public class RhythmSectionManager : MonoBehaviour
     {
         rDI.EndRythmSection();
         sectionLoader.EndSection();
-        Rythm.RythmEngine.Instance.Stop();
+        Rythm.RythmEngine.Instance.StopRythmSong();
     }
 
 
