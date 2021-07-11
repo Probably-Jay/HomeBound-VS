@@ -58,6 +58,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f00cb27de6ffd6468b6de22d177ba0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMusic: {fileID: 11400000, guid: 432c88e67592b5e4d87c4fe0df8a2f72, type: 2}
+  multiAudioSource:
+    fadeInMusicCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    fadeOutMusicCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!82 &5646660584035715264
 AudioSource:
   m_ObjectHideFlags: 0

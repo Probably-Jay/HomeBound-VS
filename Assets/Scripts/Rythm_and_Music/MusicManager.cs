@@ -24,6 +24,10 @@ namespace Rythm
         private void Awake()
         {
             multiAudioSource.Init(this, GetComponent<AudioSource>());
+        }
+
+        private void Start()
+        {
             PushNewSong(defaultMusic);
         }
 
@@ -73,10 +77,10 @@ namespace Rythm
             [SerializeField] private AnimationCurve fadeOutMusicCurve;
             public AudioSource CurrentTopSource => activeSources.Peek().AudioSource;
             public RythmSong CurrentSong => activeSources.Peek().RythmSong;
-            private SourceAndSong CurrentTop => activeSources.Peek();
+            private SourceAndSong CurrentTop => activeSources.Count == 0 ? null : activeSources.Peek();
 
-            private Stack<SourceAndSong> activeSources;
-            private Queue<SourceAndSong> inactiveSources;
+            private Stack<SourceAndSong> activeSources = new Stack<SourceAndSong>();
+            private Queue<SourceAndSong> inactiveSources = new Queue<SourceAndSong>();
             private MonoBehaviour parentBehaviour;
 
             internal void Init(MonoBehaviour parentBehaviour, AudioSource audioSource)
@@ -97,7 +101,8 @@ namespace Rythm
                 SetNewSong(newSongAndSource);
 
                 parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource, newSong, fromSample));
-                parentBehaviour.StartCoroutine(PauseSong(oldSource));
+                if(oldSource != null) // this will be null for first song pushed
+                    parentBehaviour.StartCoroutine(PauseSong(oldSource));
 
                 return CurrentSong;
             }
@@ -184,10 +189,7 @@ namespace Rythm
                 inactiveSources.Enqueue(oldSource);
             }
 
-     
-
-     
-
+        
 
             private class SourceAndSong
             {
