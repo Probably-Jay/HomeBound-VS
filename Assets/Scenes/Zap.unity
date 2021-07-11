@@ -495,6 +495,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efce123f74830ec41a7296015e8460b9, type: 3}
+--- !u!114 &1418976497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2482429792165461989, guid: 047080c6aa3bbed459b9053570908dcf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1446397039}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1446397039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -502,6 +514,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 433319338}
     m_Modifications:
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: continuedisplay
+      value: 
+      objectReference: {fileID: 1418976497}
     - target: {fileID: 2533711652668772420, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: m_Name
@@ -617,6 +634,11 @@ PrefabInstance:
       propertyPath: rythmManager
       value: 
       objectReference: {fileID: 1615766869}
+    - target: {fileID: 7213319526063479410, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_Name
+      value: ContinuedDisplay
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047080c6aa3bbed459b9053570908dcf, type: 3}
 --- !u!114 &1499735144 stripped
@@ -871,6 +893,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: sheets.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 01ac76ad2258ad44e9705e5bafa71218,
+        type: 2}
     - target: {fileID: 1913506035618416040, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -928,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 4658575184520333014, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: debugStartOnStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4658575184520333015, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
