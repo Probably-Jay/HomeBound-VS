@@ -97,14 +97,14 @@ namespace RhythmSectionLoading {
                     otherCommands.Add(new OtherCommand());
                     otherCommands[otherCommands.Count - 1].Initialise(onBeat, CommandType.EndSection);
                 }
-                else
+                else if (line[0]=='a')//anchor points/absolute points
                 {
                     //Debug.Log(line); //40,1,hello
-                    string hitbeatString = line.Split(',')[0]; //40
-                    string laneString = line.Split(',')[1];//1
+                    string hitbeatString = line.Split(',')[1]; //40
+                    string laneString = line.Split(',')[2];//1
                     string temp1 = line.Remove(0, line.IndexOf(',') + 1);//1,hello
-                                                                         //Debug.Log(temp1);
-                    string word = temp1.Remove(0, temp1.IndexOf(',') + 1);//hello
+                    string temp2 = line.Remove(0, line.IndexOf(',') + 1);//1,hello                                //Debug.Log(temp1);
+                    string word = temp2.Remove(0, temp1.IndexOf(',') + 1);//hello
                     word = word.Replace("\r", "");
                     //Debug.Log(word);
                     notes.Add(new Note());
@@ -113,6 +113,20 @@ namespace RhythmSectionLoading {
                     notes[notes.Count - 1].Initialise(hitBeat, lane, word);
                     //Debug.Log(word);
                     //Debug.Log("Note Read: "+hitbeatString + "," + laneString + "," + word);
+                }
+                else
+                {
+                    string relativeHitBeatString = line.Split(',')[0]; //40
+                    string laneString = line.Split(',')[1];//1
+                    string temp1 = line.Remove(0, line.IndexOf(',') + 1);//1,hello
+                                                                         //Debug.Log(temp1);
+                    string word = temp1.Remove(0, temp1.IndexOf(',') + 1);//hello
+                    word = word.Replace("\r", "");
+                    //Debug.Log(word);
+                    notes.Add(new Note());
+                    float hitBeat = float.Parse(relativeHitBeatString)+notes[notes.Count-2].climaxBeat;
+                    int lane = int.Parse(laneString);
+                    notes[notes.Count - 1].Initialise(hitBeat, lane, word);
                 }
             }
 
