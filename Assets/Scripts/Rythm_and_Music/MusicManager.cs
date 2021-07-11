@@ -90,7 +90,7 @@ namespace Rythm
                     throw new Exception("Must have a audiosources");
                 }
                 this.parentBehaviour = parentBehaviour;
-                inactiveSources.Enqueue(new SourceAndSong(audioSource));
+                inactiveSources.Enqueue(new SourceAndSong(audioSource, fadeInMusicCurve, fadeOutMusicCurve, parentBehaviour));
             }
 
             public RythmSong PushNewClip(RythmSong newSong, int fromSample = 0)
@@ -101,8 +101,10 @@ namespace Rythm
                 SetNewSong(newSongAndSource);
 
                 parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource, newSong, fromSample));
+
                 if(oldSource != null) // this will be null for first song pushed
                     parentBehaviour.StartCoroutine(PauseSong(oldSource));
+
 
                 return CurrentSong;
             }
@@ -163,29 +165,29 @@ namespace Rythm
             {
                 var newSource = parentBehaviour.gameObject.AddComponent<AudioSource>();
                 newSource.playOnAwake = false;
-                var sourceAndSong = new SourceAndSong(newSource);
+                var sourceAndSong = new SourceAndSong(newSource, fadeInMusicCurve, fadeOutMusicCurve, parentBehaviour);
                 inactiveSources.Enqueue(sourceAndSong);
             }
 
             private IEnumerator PlayNewSong(SourceAndSong songAndSource, RythmSong newSong, int fromSample)
             {
                 songAndSource.Set(newSong, fromSample);
-                yield return songAndSource.FadeIn();
+                yield return songAndSource.FadeInPlay();
             }
 
             private IEnumerator ResumeSong(SourceAndSong songAndSource)
             {
-                yield return songAndSource.FadeIn();
+                yield return songAndSource.FadeInPlay();
             }
 
             private IEnumerator PauseSong(SourceAndSong oldSource)
             {
-                yield return oldSource.FadePause();
+                yield return oldSource.FadeOutPause();
             }
 
             private IEnumerator StopAndKillSource(SourceAndSong oldSource)
             {
-                yield return oldSource.FadeStopAndUnset();
+                yield return oldSource.FadeOutStopAndUnset();
                 inactiveSources.Enqueue(oldSource);
             }
 
@@ -193,9 +195,16 @@ namespace Rythm
 
             private class SourceAndSong
             {
-                public SourceAndSong(AudioSource audioSource)
+                private readonly AnimationCurve fadeInCurve;
+                private readonly AnimationCurve fadeOutCurve;
+                private readonly MonoBehaviour parentBehivaiour;
+
+                public SourceAndSong(AudioSource audioSource, AnimationCurve fadeInCurve, AnimationCurve fadeOutCurve, MonoBehaviour parentBehivaiour)
                 {
                     this.AudioSource = audioSource;
+                    this.fadeInCurve = fadeInCurve;
+                    this.fadeOutCurve = fadeOutCurve;
+                    this.parentBehivaiour = parentBehivaiour;
                 }
 
                 public AudioSource AudioSource { get; private set; }
@@ -218,25 +227,54 @@ namespace Rythm
                     AudioSource.clip = null;
                 }
 
-                public IEnumerator FadeIn()
+                public IEnumerator FadeInPlay()
                 {
+                    AudioSource.volume = fadeInCurve.Evaluate(0);
+
                     AudioSource.Play();
+
+                    yield return parentBehivaiour.StartCoroutine(Evaluate(fadeInCurve));
+
                     yield break;
                 }
 
-                public IEnumerator FadePause()
+              
+
+                public IEnumerator FadeOutPause()
                 {
+                    AudioSource.volume = fadeOutCurve.Evaluate(0);
+                    yield return parentBehivaiour.StartCoroutine(Evaluate(fadeOutCurve));
+
                     AudioSource.Pause();
+
                     yield break;
                 }
 
-                public IEnumerator FadeStopAndUnset()
+                public IEnumerator FadeOutStopAndUnset()
                 {
+                    AudioSource.volume = fadeOutCurve.Evaluate(0);
+                    yield return parentBehivaiour.StartCoroutine(Evaluate(fadeOutCurve));
+
                     AudioSource.Stop();
                     Unset();
+
                     yield break;
                 }
-                
+
+                IEnumerator Evaluate(AnimationCurve curve)
+                {
+                    float t = 0;
+
+                    var lastKey = curve[curve.length - 1];
+                    while (t < lastKey.time)
+                    {
+                        AudioSource.volume = curve.Evaluate(t);
+                        t += Time.deltaTime;
+                        yield return null;
+                    }
+                    yield break;
+                }
+
             }
         }
     }
