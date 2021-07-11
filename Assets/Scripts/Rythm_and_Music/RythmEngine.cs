@@ -70,15 +70,11 @@ namespace Rythm
         {
             ClearAnyQueuedActions();
             MusicManager.PushNewSong(music);
-           // SetTrack(music);
-           // BeginPlaying(music);
         }
 
         public void StopRythmSong()
         {
             MusicManager.ReturnToPreviousSong();
-          //  AudioSource.Stop();
-          //  AudioSource.clip = null;
         }
 
         private void ClearAnyQueuedActions()
