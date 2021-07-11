@@ -108,6 +108,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  playOnStart: 1
 --- !u!82 &5646660584035715264
 AudioSource:
   m_ObjectHideFlags: 0

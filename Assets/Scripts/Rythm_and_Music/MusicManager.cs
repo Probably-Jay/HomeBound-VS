@@ -15,7 +15,7 @@ namespace Rythm
         [SerializeField] MultiAudioSource multiAudioSource = new MultiAudioSource();
         [SerializeField] private bool playOnStart;
 
-        public bool PlayingMusic => CurrentAudioSource.isPlaying;
+        public bool PlayingMusic => CurrentAudioSource == null ? false :  CurrentAudioSource.isPlaying;
         public int CurrentSample => CurrentAudioSource.timeSamples;
         public int CurrentClipFrequency => CurrentClip.frequency;
         public int CurrentClipSamples => CurrentClip.samples;
@@ -77,7 +77,7 @@ namespace Rythm
         {
             [SerializeField] private AnimationCurve fadeInMusicCurve;
             [SerializeField] private AnimationCurve fadeOutMusicCurve;
-            public AudioSource CurrentTopSource => activeSources.Peek().AudioSource;
+            public AudioSource CurrentTopSource => activeSources.Count == 0 ? null : activeSources.Peek().AudioSource;
             public RythmSong CurrentSong => activeSources.Peek().RythmSong;
             private SourceAndSong CurrentTop => activeSources.Count == 0 ? null : activeSources.Peek();
 
@@ -266,6 +266,13 @@ namespace Rythm
                 IEnumerator Evaluate(AnimationCurve curve)
                 {
                     float t = 0;
+
+#if UNITY_EDITOR // check optimised away at build
+                    if(curve.length < 2)
+                    {
+                        throw new Exception("Fade in / out curve must have at least 2 keys");
+                    }
+#endif
 
                     var lastKey = curve[curve.length - 1];
                     while (t < lastKey.time)
