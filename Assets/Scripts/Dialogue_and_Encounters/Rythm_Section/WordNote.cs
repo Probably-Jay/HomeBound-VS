@@ -59,16 +59,22 @@ namespace NoteSystem {
             }
 
             beatsOfExistence += Time.deltaTime;
-            
+
             var newPos = Vector3.LerpUnclamped(startPos.position, endPos.position, (float)((Rythm.RythmEngine.Instance.CurrentBeat - spawningBeat) / absoluteBeatsToHit));
+            UodatePosition(newPos);
+        }
+
+        private void UodatePosition(Vector3 newPos)
+        {
             float distanceMoved = (newPos.x - transform.position.x);
-            if (distanceMoved > 0)
+            if (distanceMoved > +0.00001f) // if we have moved any small value to the right
             {
-                Debug.LogError("Note attempting to move to the right! Preventing.");
+                Debug.LogError("Note attempting to move note to the right! Preventing.");
                 return;
             }
             this.transform.position = newPos;
         }
+
         public void Initialise(string passedWord, float hitBeat, Lane passedLane, Canvas canvas, float? spawnBeat = null)
         {
             SpriteRenderer spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
