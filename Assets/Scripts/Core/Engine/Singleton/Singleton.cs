@@ -113,10 +113,12 @@ namespace SingletonManagement
 
         public static bool GameQuitting { get; private set; } = false;
 
+#if UNITY_EDITOR
         [RuntimeInitializeOnLoadMethod]
+#endif
         static void RunOnStart()
         {
-            Application.quitting += () => GameQuitting = true;
+            Application.wantsToQuit += () => GameQuitting = true;
         }
 
 

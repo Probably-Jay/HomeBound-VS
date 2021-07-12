@@ -326,8 +326,9 @@ namespace Rythm
                 {
                     float t = 0;
 
+
 #if UNITY_EDITOR // check optimised away at build
-                    if(curve.length < 2)
+                    if (curve.length < 2)
                     {
                         throw new Exception("Fade in / out curve must have at least 2 keys");
                     }

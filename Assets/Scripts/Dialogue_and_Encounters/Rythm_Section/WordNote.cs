@@ -25,7 +25,10 @@ namespace NoteSystem {
         }
         private void OnDisable()
         {
-            Rythm.RythmEngine.Instance.OnSongChanged -= Remove;
+            if (Rythm.RythmEngine.InstanceExists)
+            {
+                Rythm.RythmEngine.Instance.OnSongChanged -= Remove;
+            }
         }
 
 
