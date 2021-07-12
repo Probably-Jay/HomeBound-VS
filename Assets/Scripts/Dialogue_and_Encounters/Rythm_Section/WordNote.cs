@@ -19,17 +19,25 @@ namespace NoteSystem {
         [SerializeField] GameObject wordUIPrefab;
         WordUI wordUI;
 
+        private void OnEnable()
+        {
+            Rythm.RythmEngine.Instance.OnSongChanged += Remove;   
+        }
+        private void OnDisable()
+        {
+            Rythm.RythmEngine.Instance.OnSongChanged -= Remove;
+        }
+
+
         // Start is called before the first frame update
         void Awake()
         {
             //code for testing, delete when initialising these from script
             spawningBeat = Rythm.RythmEngine.Instance.CurrentBeat;
-            //end code for testing
-            //absoluteBeatsToHit = climaxBeat - Rythm.RythmEngine.Instance.CurrentBeat;
-            //Debug.Log(lane.gameObject);
-            //Debug.Log(lane.hitZone);
+
             if (lane != null)
             {
+                Debug.LogError("Note has no lane");
                 //lane.hitZone.Join(this);
             }
             beatsOfExistence = 0f;
@@ -37,23 +45,29 @@ namespace NoteSystem {
             {
                 this.transform.position = startPos.position;
             }
-            //canvas = GameObject.Find("Canvas");
-            //InitialiseWordUI();
+
 
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!Rythm.RythmEngine.Instance.PlayingMusic || Rythm.RythmEngine.Instance.CurrentBeat - 10 > climaxBeat)
+            if (!Rythm.RythmEngine.Instance.PlayingMusic || Rythm.RythmEngine.Instance.CurrentBeat - 5 > climaxBeat)
             {
                 Remove();
                 return;
             }
 
             beatsOfExistence += Time.deltaTime;
-            // Debug.Log(Rythm.RythmEngine.Instance.CurrentBeat);
-            this.transform.position = Vector3.LerpUnclamped(startPos.position, endPos.position, (float)((Rythm.RythmEngine.Instance.CurrentBeat - spawningBeat) / absoluteBeatsToHit));
+            
+            var newPos = Vector3.LerpUnclamped(startPos.position, endPos.position, (float)((Rythm.RythmEngine.Instance.CurrentBeat - spawningBeat) / absoluteBeatsToHit));
+            float distanceMoved = (newPos.x - transform.position.x);
+            if (distanceMoved > 0)
+            {
+                Debug.LogError("Note attempting to move to the right! Preventing.");
+                return;
+            }
+            this.transform.position = newPos;
         }
         public void Initialise(string passedWord, float hitBeat, Lane passedLane, Canvas canvas, float? spawnBeat = null)
         {

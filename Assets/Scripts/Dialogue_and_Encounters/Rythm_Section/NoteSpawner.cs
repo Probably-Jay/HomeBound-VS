@@ -14,9 +14,10 @@ public class NoteSpawner : MonoBehaviour
     {
         if (!rSM.HasControl)
         {
-            Debug.LogError("Attempting to spawn note when does not have control!");
+            Debug.LogError("Attempting to spawn note when does not have control! Skipping spawn attempt.");
             return;
         }
+
         Debug.Log("Spawned");
         WordNote tempWordNote = GameObject.Instantiate(wordNotePrefab).GetComponent<WordNote>();
         if (spawnBeat.HasValue)
