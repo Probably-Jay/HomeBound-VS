@@ -59,8 +59,8 @@ namespace Dialogue
             Game.GameContextController.Instance.PushContext(Game.Context.Rythm);
             dialogueManager.EnterArgument();
             PassControlToRythm();
-            rythmManager.LoadAndBeginSection(id);
             InRythmSection = true;
+            rythmManager.LoadAndBeginSection(id);
         }
 
 

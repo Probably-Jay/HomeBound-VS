@@ -8,12 +8,26 @@ namespace Rythm
 
     public class MusicManager : MonoBehaviour
     {
+        private void OnEnable()
+        {
+            multiAudioSource.OnChangedMusic += InvokeSongChanged;
+        }
+
+        private void OnDisable()
+        {
+            multiAudioSource.OnChangedMusic -= InvokeSongChanged;
+        }
+
+        private void InvokeSongChanged(RythmSong song) => OnChangedMusic?.Invoke(song);
+
         private AudioSource CurrentAudioSource => multiAudioSource.CurrentTopSource;
 
         // private AudioSource
         [SerializeField] RythmSong defaultMusic;
         [SerializeField] MultiAudioSource multiAudioSource = new MultiAudioSource();
         [SerializeField] private bool playOnStart;
+
+        public event Action<RythmSong> OnChangedMusic;
 
         public bool PlayingMusic => CurrentAudioSource == null ? false :  CurrentAudioSource.isPlaying;
         public int CurrentSample => CurrentAudioSource.timeSamples;
@@ -32,7 +46,7 @@ namespace Rythm
             if (playOnStart)
             {
                 multiAudioSource.InitNewClip(defaultMusic, defaultMusic.beginAtSample); 
-                RythmEngine.Instance.SetTrackInfo(defaultMusic);
+                //RythmEngine.Instance.SetTrackInfo(defaultMusic);
             }
         }
 
@@ -42,7 +56,7 @@ namespace Rythm
         public void PushNewSong(RythmSong music)
         {
             multiAudioSource.PushNewClip(music, music.beginAtSample);
-            RythmEngine.Instance.SetTrackInfo(music);     
+          //  RythmEngine.Instance.SetTrackInfo(music);     
         }
 
         /// <summary>
@@ -51,7 +65,7 @@ namespace Rythm
         public void MutateCurrentSongToNewSong(RythmSong music)
         {
             multiAudioSource.MutateCurrentClip(music, music.beginAtSample);
-            RythmEngine.Instance.SetTrackInfo(music);
+          //  RythmEngine.Instance.SetTrackInfo(music);
         }
 
         /// <summary>
@@ -60,7 +74,7 @@ namespace Rythm
         public void ReturnToPreviousSong()
         {
             var prev = multiAudioSource.ReturnToPreviousClip();
-            RythmEngine.Instance.SetTrackInfo(prev);
+         //   RythmEngine.Instance.SetTrackInfo(prev);
         }
 
         public void PauseSong()
@@ -82,6 +96,9 @@ namespace Rythm
             [SerializeField] private AnimationCurve fadeOutMusicCurve;
             public AudioSource CurrentTopSource => CurrentTop?.AudioSource;
             public RythmSong CurrentSong => CurrentTop?.RythmSong;
+
+            public event Action<RythmSong> OnChangedMusic;
+
             private SourceAndSong CurrentTop
             {
                 get
@@ -115,9 +132,9 @@ namespace Rythm
             {
                 var newSongAndSource = GetUnusedAudioSource();
 
-                SetNewSong(newSongAndSource);
+                SetNewSong(newSongAndSource, newSong, fromSample);
 
-                parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource, newSong, fromSample));
+                parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource));
 
                 return CurrentSong;
             }
@@ -128,9 +145,9 @@ namespace Rythm
 
                 var oldSource = CurrentTop;
 
-                SetNewSong(newSongAndSource);
+                SetNewSong(newSongAndSource, newSong, fromSample);
 
-                parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource, newSong, fromSample));
+                parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource));
 
                 if(oldSource != null)
                     parentBehaviour.StartCoroutine(PauseSong(oldSource));
@@ -144,9 +161,9 @@ namespace Rythm
                 SourceAndSong newSongAndSource = GetUnusedAudioSource();
                 var oldSource = SetPreviousSong();
 
-                SetNewSong(newSongAndSource);
+                SetNewSong(newSongAndSource, newSong, fromSample);
 
-                parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource, newSong, fromSample));
+                parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource));
                 parentBehaviour.StartCoroutine(StopAndKillSource(oldSource));
 
                 return CurrentSong;
@@ -178,9 +195,25 @@ namespace Rythm
 
 
             ///<summary>Set current top to <paramref name="songAndSource"/></summary>
-            private void SetNewSong(SourceAndSong songAndSource) => activeSources.Push(songAndSource);
+            private void SetNewSong(SourceAndSong songAndSource, RythmSong newSong, int fromSample)
+            {
+                songAndSource.Set(newSong, fromSample);
+                activeSources.Push(songAndSource);
+                InvokeSongChange();
+            }
             ///<summary>Set current top to element below it in the stack and return poped value</summary>
-            private SourceAndSong SetPreviousSong() => activeSources.Pop();
+            private SourceAndSong SetPreviousSong()
+            {
+                var popped = activeSources.Pop();
+                InvokeSongChange();
+                return popped;
+            }
+
+            private void InvokeSongChange()
+            {
+                OnChangedMusic?.Invoke(CurrentSong);
+            }
+
 
             private SourceAndSong GetUnusedAudioSource()
             {
@@ -198,9 +231,8 @@ namespace Rythm
                 inactiveSources.Enqueue(sourceAndSong);
             }
 
-            private IEnumerator PlayNewSong(SourceAndSong songAndSource, RythmSong newSong, int fromSample)
+            private IEnumerator PlayNewSong(SourceAndSong songAndSource)
             {
-                songAndSource.Set(newSong, fromSample);
                 yield return songAndSource.FadeInPlay();
             }
 

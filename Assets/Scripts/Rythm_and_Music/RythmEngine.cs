@@ -16,6 +16,8 @@ namespace Rythm
 
         public bool PlayingMusic => MusicManager.PlayingMusic;
 
+        public event Action OnSongChanged;
+
         [SerializeField] float noMusicBPM = 120;
         [SerializeField] private bool invokeAllQueedActionsOnSongChange;
 
@@ -66,6 +68,18 @@ namespace Rythm
             base.InitSingleton();
          //   AudioSource = GetComponent<AudioSource>();
             MusicManager = GetComponent<MusicManager>();
+            MusicManager.OnChangedMusic += MusicManager_OnChangedMusic;
+        }
+
+   
+        private void OnDisable()
+        {
+            MusicManager.OnChangedMusic -= MusicManager_OnChangedMusic;
+        }
+        private void MusicManager_OnChangedMusic(RythmSong song)
+        {
+            SetTrackInfo(song);
+            OnSongChanged?.Invoke();
         }
 
         public void PlayRhytmSong(RythmSong music)
