@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestMeg
   m_EditorClassIdentifier: 
   song: {fileID: 11400000, guid: 01f67dc8816eb8c46a869c67b9826ab8, type: 2}
-  notes: {fileID: 4900000, guid: 9349c9cb390781644a2f187c74c00d28, type: 3}
+  notes: {fileID: 4900000, guid: e36ffbd40d9133441950a28f881bd930, type: 3}

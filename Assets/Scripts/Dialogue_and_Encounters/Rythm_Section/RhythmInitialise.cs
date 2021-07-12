@@ -103,7 +103,7 @@ namespace RhythmSectionLoading {
                     string hitbeatString = line.Split(',')[1]; //40
                     string laneString = line.Split(',')[2];//1
                     string temp1 = line.Remove(0, line.IndexOf(',') + 1);//1,hello
-                    string temp2 = line.Remove(0, line.IndexOf(',') + 1);//1,hello                                //Debug.Log(temp1);
+                    string temp2 = temp1.Remove(0, line.IndexOf(',') + 1);//1,hello                                //Debug.Log(temp1);
                     string word = temp2.Remove(0, temp1.IndexOf(',') + 1);//hello
                     word = word.Replace("\r", "");
                     //Debug.Log(word);
@@ -124,6 +124,10 @@ namespace RhythmSectionLoading {
                     word = word.Replace("\r", "");
                     //Debug.Log(word);
                     notes.Add(new Note());
+                    if (notes.Count < 2)
+                    {
+                        throw new System.Exception("Relative note attempted to parse as first note. Please use an absolute note as the first note");
+                    }
                     float hitBeat = float.Parse(relativeHitBeatString)+notes[notes.Count-2].climaxBeat;
                     int lane = int.Parse(laneString);
                     notes[notes.Count - 1].Initialise(hitBeat, lane, word);

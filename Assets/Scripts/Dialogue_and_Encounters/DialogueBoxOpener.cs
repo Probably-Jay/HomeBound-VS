@@ -9,6 +9,7 @@ using System;
 public class DialogueBoxOpener : MonoBehaviour
 {
     [SerializeField] DialogueManager dialogeBox;
+    [SerializeField] bool debugStartBoxOpen;
     GameObject dialogeBoxParent;
 
     public event Action OnBoxOpen;
@@ -42,7 +43,11 @@ public class DialogueBoxOpener : MonoBehaviour
 
     private void Start()
     {
-        dialogeBoxParent.SetActive(false);
+        if (!debugStartBoxOpen)
+        {
+
+            dialogeBoxParent.SetActive(false);
+        }
         DialogeBox.Load(Game.TextAssetFolders.Test);
     }
 
