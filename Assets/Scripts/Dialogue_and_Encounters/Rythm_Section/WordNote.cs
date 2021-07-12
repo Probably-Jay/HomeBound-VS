@@ -91,6 +91,9 @@ namespace NoteSystem {
             word = passedWord;
             climaxBeat = hitBeat;
             lane.Join(this);
+
+            transform.SetParent(lane.transform); // Added to keep the scene hirarcy clean -J
+
             beatsOfExistence = 0f;
             startPos = lane.spawnPoint.transform;
             endPos = lane.hitZone.transform;
