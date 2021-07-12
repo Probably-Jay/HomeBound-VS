@@ -29,8 +29,11 @@ namespace Rythm
 
         private void Start()
         {
-            if(playOnStart)
-                PushNewSong(defaultMusic);
+            if (playOnStart)
+            {
+                multiAudioSource.InitNewClip(defaultMusic, defaultMusic.beginAtSample); 
+                RythmEngine.Instance.SetTrackInfo(defaultMusic);
+            }
         }
 
         /// <summary>
@@ -69,7 +72,7 @@ namespace Rythm
         {
             multiAudioSource.ResumeClip();
         }
-     
+
 
 
         [System.Serializable]
@@ -77,9 +80,21 @@ namespace Rythm
         {
             [SerializeField] private AnimationCurve fadeInMusicCurve;
             [SerializeField] private AnimationCurve fadeOutMusicCurve;
-            public AudioSource CurrentTopSource => activeSources.Count == 0 ? null : activeSources.Peek().AudioSource;
-            public RythmSong CurrentSong => activeSources.Peek().RythmSong;
-            private SourceAndSong CurrentTop => activeSources.Count == 0 ? null : activeSources.Peek();
+            public AudioSource CurrentTopSource => CurrentTop?.AudioSource;
+            public RythmSong CurrentSong => CurrentTop?.RythmSong;
+            private SourceAndSong CurrentTop
+            {
+                get
+                {
+                    if (activeSources.Count == 0)
+                    {
+                        Debug.LogWarning($"No music is playing, {nameof(activeSources)} is empty.");
+                        return null;
+                    }
+                    
+                    return activeSources.Peek();   
+                }
+            }
 
             private Stack<SourceAndSong> activeSources = new Stack<SourceAndSong>();
             private Queue<SourceAndSong> inactiveSources = new Queue<SourceAndSong>();
@@ -95,18 +110,30 @@ namespace Rythm
                 inactiveSources.Enqueue(new SourceAndSong(audioSource, fadeInMusicCurve, fadeOutMusicCurve, parentBehaviour));
             }
 
+            /// <summary>Same as <see cref="PushNewSong(RythmSong,int)"/> except will not warn that a song is not currently in the stack</summary>
+            public RythmSong InitNewClip(RythmSong newSong, int fromSample = 0)
+            {
+                var newSongAndSource = GetUnusedAudioSource();
+
+                SetNewSong(newSongAndSource);
+
+                parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource, newSong, fromSample));
+
+                return CurrentSong;
+            }
+
             public RythmSong PushNewClip(RythmSong newSong, int fromSample = 0)
             {
                 var newSongAndSource = GetUnusedAudioSource();
+
                 var oldSource = CurrentTop;
 
                 SetNewSong(newSongAndSource);
 
                 parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource, newSong, fromSample));
 
-                if(oldSource != null) // this will be null for first song pushed
+                if(oldSource != null)
                     parentBehaviour.StartCoroutine(PauseSong(oldSource));
-
 
                 return CurrentSong;
             }

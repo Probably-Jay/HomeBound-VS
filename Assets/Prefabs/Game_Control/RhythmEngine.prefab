@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noMusicBPM: 120
+  invokeAllQueedActionsOnSongChange: 0
 --- !u!114 &6362014657729633657
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -35,6 +35,7 @@ namespace RhythmSectionLoading {
         void Start()
         {
             noteSpawner = this.GetComponent<NoteSpawner>();
+            noteSpawner.Init(rSM);
             if (!debugStartOnStart)
             {
                 SwitchOffLanes();

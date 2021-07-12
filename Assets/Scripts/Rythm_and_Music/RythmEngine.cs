@@ -17,6 +17,8 @@ namespace Rythm
         public bool PlayingMusic => MusicManager.PlayingMusic;
 
         [SerializeField] float noMusicBPM = 120;
+        [SerializeField] private bool invokeAllQueedActionsOnSongChange;
+
         float NoMusicBPS => noMusicBPM/60.0f;
 
         public float CurrentBeat
@@ -81,10 +83,46 @@ namespace Rythm
         {
             if(queuedActions.Count > 0)
             {
-                Debug.LogError($"There are actions queued while changing the song!");
+                if (invokeAllQueedActionsOnSongChange)
+                {
+                    Debug.LogWarning($"There are actions queued while changing the song! Invoking all");
+                    InvokeAllActions();
+                }
+                else
+                {
+                    Debug.LogError($"There are actions queued while changing the song! Discarding all");
+                }
+                
                 queuedActions.Clear();
             }
 
+        }
+
+        private void InvokeAllActions()
+        {
+            int count = 0;
+            while (queuedActions.Count > 0)
+            {
+                if(count > 100)
+                {
+                    throw new Exception("Possible cyclical action queue detected");
+                    break;
+                }
+                List<float> ToRemoveCache = new List<float>();
+                var cacheofQueuedActions = new SortedDictionary<float, Action>(queuedActions);
+                foreach (var action in cacheofQueuedActions)
+                {
+
+                    action.Value?.Invoke();
+                    ToRemoveCache.Add(action.Key);
+                }
+
+                foreach (var key in ToRemoveCache)
+                {
+                    queuedActions.Remove(key);
+                }
+                count++;
+            }
         }
 
         //private void SetTrack(RythmSong music)
