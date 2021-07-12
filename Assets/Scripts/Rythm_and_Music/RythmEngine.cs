@@ -106,7 +106,7 @@ namespace Rythm
                 if(count > 100)
                 {
                     throw new Exception("Possible cyclical action queue detected");
-                    break;
+                   // break;
                 }
                 List<float> ToRemoveCache = new List<float>();
                 var cacheofQueuedActions = new SortedDictionary<float, Action>(queuedActions);

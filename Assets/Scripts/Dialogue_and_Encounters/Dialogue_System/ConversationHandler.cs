@@ -7,7 +7,7 @@ namespace Dialogue {
 
     public class ConversationHandler : MonoBehaviour
     {
-        DialogueLoader dialogueLoader;
+        IDialogueLoader dialogueLoader;
         DialogueParser dialogueParser;
 
         //   readonly List<Game.TextAssetFolders> loadedConversations;
@@ -19,7 +19,11 @@ namespace Dialogue {
 
         private void Awake()
         {
-            dialogueLoader = new DialogueLoader();
+            dialogueLoader = FindObjectOfType<DialogueSceneSerialisedLoader>();
+            if(dialogueLoader == null)
+            {
+                Debug.LogError($"Cannot find {nameof(DialogueSceneSerialisedLoader)}");
+            }
             dialogueParser = new DialogueParser();
         }
 
@@ -45,11 +49,11 @@ namespace Dialogue {
                 try
                 {
                     conversation = dialogueParser.TryParse(conversationText.Value);
-
                 }
-                catch (System.Exception e)
+                catch 
                 {
-                    throw new DialogueParsingException($"In folder: {folder}, file: {conversationText.Key}: {e.Message}: {e.StackTrace}");
+                    Debug.LogError($"Parsing error in folder: {folder}, file: {conversationText.Key}");
+                    throw;
                 }
 
                 Conversations.Add(conversation.conversationID, conversation);

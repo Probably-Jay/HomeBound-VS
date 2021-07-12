@@ -8,14 +8,14 @@ using UnityEngine.Networking;
 
 namespace Dialogue
 {
-    public class DialogueLoader
+    public class DialogueLoader : IDialogueLoader
     {
         //  public static string ResourcesPath => Path.Combine("Assets", "Resources");
         public static string StreamingPath => Application.streamingAssetsPath;
 
         public static string DialogueFilePath => Path.Combine(StreamingPath, "DialogueFiles");
 
-        public readonly Dictionary<string, string> RawFileData = new Dictionary<string, string>();
+        public Dictionary<string, string> RawFileData { get; } = new Dictionary<string, string>();
 
         public string GetRawData(TextAssetFolders folder, string file) => RawFileData[Combine(folder, file)];
 
@@ -28,6 +28,7 @@ namespace Dialogue
         {
             if (!RawFileData.ContainsKey(folder))
             {
+                Debug.LogError($"Folder {folder} cannot be unloaded as is not loaded");
                 return;
             }
             RawFileData.Remove(folder);
