@@ -9,25 +9,22 @@ namespace NoteSystem {
     {
         string word = "";
         WordNote wordNote;
-        const float yOffset = 1f;
+        const float yOffset = 0.66f;
+        const float zOffset = 0.1f;
 
         [SerializeField] TMPro.TextMeshProUGUI text;
-        // Start is called before the first frame update
-        void Start()
-        {
 
-        }
 
         // Update is called once per frame
         void Update()
         {
-            //Debug.Log(wordNote.gameObject);
             UpdatePosition();
         }
 
         private void UpdatePosition()
         {
-            this.transform.position = Camera.main.WorldToScreenPoint(wordNote.gameObject.transform.position + (Vector3.up * yOffset));
+           // this.transform.position = Camera.main.WorldToScreenPoint(wordNote.gameObject.transform.position + (Vector3.up * yOffset));
+            this.transform.position = wordNote.gameObject.transform.position + (Vector3.up * yOffset) + (-Vector3.forward*zOffset);
         }
 
         void UpdateWord(string passedWord)
