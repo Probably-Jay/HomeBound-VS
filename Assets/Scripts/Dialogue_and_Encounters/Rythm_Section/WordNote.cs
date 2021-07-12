@@ -18,7 +18,9 @@ namespace NoteSystem {
         private Canvas canvas;
         [SerializeField] GameObject wordUIPrefab;
         WordUI wordUI;
+        private RhythmSectionManager rSM;
 
+        public bool CanAddWord => rSM.HasControl;
         private void OnEnable()
         {
             Rythm.RythmEngine.Instance.OnSongChanged += Remove;   
@@ -78,7 +80,7 @@ namespace NoteSystem {
             this.transform.position = newPos;
         }
 
-        public void Initialise(string passedWord, float hitBeat, Lane passedLane, Canvas canvas, float? spawnBeat = null)
+        public void Initialise(string passedWord, float hitBeat, Lane passedLane, Canvas canvas, RhythmSectionManager rSM, float? spawnBeat = null)
         {
             SpriteRenderer spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
             if (spawnBeat.HasValue)
@@ -103,6 +105,9 @@ namespace NoteSystem {
             this.transform.position = startPos.position;
             this.canvas = canvas;
             spriteRenderer.sprite = lane.noteSprite;
+
+            this.rSM = rSM;
+
             InitialiseWordUI();
         }
         public float TargetBeat()

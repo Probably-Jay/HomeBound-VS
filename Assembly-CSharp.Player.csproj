@@ -650,9 +650,9 @@
     <None Include="Assets\NoteSongs\NoteSheets\DanceSheet.txt" />
     <None Include="Assets\NoteSongs\NoteSheets\notesheet 1.txt" />
     <None Include="Assets\NoteSongs\NoteSheets\notesheet.txt" />
-    <None Include="Assets\StreamingAssets\DialogueFiles\Test\TestFile6.txt" />
-    <None Include="Assets\StreamingAssets\DialogueFiles\Test\TestFile7.txt" />
-    <None Include="Assets\StreamingAssets\DialogueFiles\Test\TestFile8.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile6.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile7.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile8.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

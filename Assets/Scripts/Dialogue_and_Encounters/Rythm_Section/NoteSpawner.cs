@@ -12,21 +12,21 @@ public class NoteSpawner : MonoBehaviour
 
     public void SpawnNote(string word, float climaxBeat, NoteSystem.Lane lane, float ? spawnBeat = null)
     {
-        if (!rSM.HasControl)
-        {
-            Debug.LogError("Attempting to spawn note when does not have control! Skipping spawn attempt.");
-            return;
-        }
+        //if (!rSM.HasControl)
+        //{
+        //    Debug.LogError("Attempting to spawn note when does not have control! Skipping spawn attempt.");
+        //    return;
+        //}
 
         Debug.Log("Spawned");
         WordNote tempWordNote = GameObject.Instantiate(wordNotePrefab).GetComponent<WordNote>();
         if (spawnBeat.HasValue)
         {
-            tempWordNote.Initialise(word, climaxBeat, lane, canvas, spawnBeat);
+            tempWordNote.Initialise(word, climaxBeat, lane, canvas, rSM, spawnBeat);
         }
         else
         {
-            tempWordNote.Initialise(word, climaxBeat, lane, canvas);
+            tempWordNote.Initialise(word, climaxBeat, lane, canvas, rSM);
         }
     }
 

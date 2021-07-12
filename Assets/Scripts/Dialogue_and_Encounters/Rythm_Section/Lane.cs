@@ -92,7 +92,10 @@ namespace NoteSystem
         void ProcessHitOnNote(WordNote note, HitQuality quality)
         {
             //  Debug.Log(note.word);
-            
+            if (!note.CanAddWord)
+            {
+                Debug.LogError($"Note {note.word} attempting to type when does not have control! Permitting, but please re-work the notesheet");
+            }
             if (note.GetClimaxBeat() > Rythm.RythmEngine.Instance.CurrentBeat)
             {
                 NDI.AddWord(note.word, note.GetClimaxBeat());
@@ -101,6 +104,7 @@ namespace NoteSystem
             {
                 NDI.AddWord(note.word);
             }
+
             note.Remove();
 
         }

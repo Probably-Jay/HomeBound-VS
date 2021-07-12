@@ -607,6 +607,8 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueParsingException.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueTyper.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\FileLoading\DialogueLoader.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\FileLoading\DialogueSceneSerialisedLoader.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\FileLoading\IDialogueLoader.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\Objects\Conversation.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\Objects\DialoguePhrase.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\Objects\DialoguePhraseObject.cs" />
