@@ -105,9 +105,8 @@ namespace NoteSystem {
             this.transform.position = startPos.position;
             this.canvas = canvas;
             spriteRenderer.sprite = lane.noteSprite;
-
             this.rSM = rSM;
-
+            spriteRenderer.sortingLayerName = "UI";
             InitialiseWordUI();
         }
         public float TargetBeat()
