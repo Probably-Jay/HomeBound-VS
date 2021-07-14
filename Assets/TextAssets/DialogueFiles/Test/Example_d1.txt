@@ -1,0 +1,5 @@
+id: example_taskDone_1
+[Stranger]: Well done, that was one task in this quest.
+[You]: What is the next task?.
+[Stranger]: Keep talking to me and you'll find out.
+[end]

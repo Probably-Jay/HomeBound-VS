@@ -1,0 +1,3 @@
+id: example_begin_2
+[Stranger]: I said, go stand on that green thing, [pause: 8]moron.
+[end]

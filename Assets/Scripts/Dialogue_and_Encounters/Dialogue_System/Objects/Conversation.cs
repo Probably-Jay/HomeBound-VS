@@ -68,7 +68,7 @@ namespace Dialogue
     #endregion
     */
 
-    [CreateAssetMenu(fileName = "Conversation", menuName = "ScriptableObjects/Conversation", order = 1)]
+    [CreateAssetMenu(fileName = "Conversation", menuName = "ScriptableObjects/Dialogue/Conversation", order = 1)]
     public class Conversation : ScriptableObject
     {
         public string conversationID;

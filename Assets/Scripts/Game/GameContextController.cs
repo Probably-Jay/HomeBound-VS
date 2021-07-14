@@ -44,7 +44,6 @@ namespace Game
         public event Action<Context, Context> OnContextChange;
         private void InvokeContextChange(Context previousContext)
         {
-            Debug.Log($"Switching to {CurrentContext} from {previousContext}");
 
             if (previousContext == CurrentContext)
             {
