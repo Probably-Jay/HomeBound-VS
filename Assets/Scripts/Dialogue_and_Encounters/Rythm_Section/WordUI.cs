@@ -23,7 +23,7 @@ namespace NoteSystem {
 
         private void UpdatePosition()
         {
-           // this.transform.position = Camera.main.WorldToScreenPoint(wordNote.gameObject.transform.position + (Vector3.up * yOffset));
+            //this.transform.position = Camera.main.WorldToScreenPoint(wordNote.gameObject.transform.position + (Vector3.up * yOffset));
             this.transform.position = wordNote.gameObject.transform.position + (Vector3.up * yOffset) + (-Vector3.forward*zOffset);
         }
 

@@ -1,16 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngine.UI.csproj", "{9AEDA807-B0E1-291B-31CD-C332D19F9DD2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.TestRunner", "UnityEngine.TestRunner.csproj", "{9058E666-FD68-2BDA-A79D-F19A5D10DC5E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro", "Unity.TextMeshPro.csproj", "{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Timeline", "Unity.Timeline.csproj", "{199B67E4-AD32-9AD5-E8A5-9F2B2E93326C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinemachine", "Cinemachine.csproj", "{444E6EE2-C90E-964E-C2B2-93BF064C044E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~InteractableInterface", "~InteractableInterface.csproj", "{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogueSystem", "DialogueSystem.csproj", "{64C63A26-6E11-3B72-2C3F-B172915EDAD0}"
@@ -35,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~Game", "~Game.csproj", "{7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~SingletonControl", "~SingletonControl.csproj", "{3FFCABBE-8023-336E-FAA0-7D152DFA442B}"
 EndProject
+<<<<<<< HEAD
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditModeTests", "EditModeTests.csproj", "{1472AE1F-333F-5B43-B1E5-503F6F467A6B}"
+EndProject
+=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEditor.TestRunner", "UnityEditor.TestRunner.csproj", "{3827BD03-3FF5-7806-4376-88B54DD7A291}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro.Editor", "Unity.TextMeshPro.Editor.csproj", "{D1FA95BB-5775-5815-5358-6D2AA9B23EF1}"
@@ -79,32 +73,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~Game.Player", "~Game.Playe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "~SingletonControl.Player", "~SingletonControl.Player.csproj", "{15D16660-1F91-782E-0021-BEF6153068DD}"
 EndProject
+>>>>>>> main
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9AEDA807-B0E1-291B-31CD-C332D19F9DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AEDA807-B0E1-291B-31CD-C332D19F9DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AEDA807-B0E1-291B-31CD-C332D19F9DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AEDA807-B0E1-291B-31CD-C332D19F9DD2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9058E666-FD68-2BDA-A79D-F19A5D10DC5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9058E666-FD68-2BDA-A79D-F19A5D10DC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9058E666-FD68-2BDA-A79D-F19A5D10DC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9058E666-FD68-2BDA-A79D-F19A5D10DC5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{199B67E4-AD32-9AD5-E8A5-9F2B2E93326C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{199B67E4-AD32-9AD5-E8A5-9F2B2E93326C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{199B67E4-AD32-9AD5-E8A5-9F2B2E93326C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{199B67E4-AD32-9AD5-E8A5-9F2B2E93326C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{444E6EE2-C90E-964E-C2B2-93BF064C044E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{444E6EE2-C90E-964E-C2B2-93BF064C044E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{444E6EE2-C90E-964E-C2B2-93BF064C044E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{444E6EE2-C90E-964E-C2B2-93BF064C044E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -153,6 +128,8 @@ Global
 		{3FFCABBE-8023-336E-FAA0-7D152DFA442B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FFCABBE-8023-336E-FAA0-7D152DFA442B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FFCABBE-8023-336E-FAA0-7D152DFA442B}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
 		{3827BD03-3FF5-7806-4376-88B54DD7A291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3827BD03-3FF5-7806-4376-88B54DD7A291}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3827BD03-3FF5-7806-4376-88B54DD7A291}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -193,10 +170,13 @@ Global
 		{9657043B-C890-9E94-F12C-0CD16BCC720B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9657043B-C890-9E94-F12C-0CD16BCC720B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9657043B-C890-9E94-F12C-0CD16BCC720B}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> main
 		{1472AE1F-333F-5B43-B1E5-503F6F467A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1472AE1F-333F-5B43-B1E5-503F6F467A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1472AE1F-333F-5B43-B1E5-503F6F467A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1472AE1F-333F-5B43-B1E5-503F6F467A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
 		{8F558F6F-798C-BF2E-5BE7-03E785E11283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8F558F6F-798C-BF2E-5BE7-03E785E11283}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F558F6F-798C-BF2E-5BE7-03E785E11283}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -241,6 +221,7 @@ Global
 		{15D16660-1F91-782E-0021-BEF6153068DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15D16660-1F91-782E-0021-BEF6153068DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15D16660-1F91-782E-0021-BEF6153068DD}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> main
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
