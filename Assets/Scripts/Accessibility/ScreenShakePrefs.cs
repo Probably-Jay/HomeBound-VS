@@ -66,7 +66,6 @@ namespace Accessibility
 
         private void TurnOffScreenShake()
         {
-            // else
             toggleOn = false;
             sliderParent.SetActive(false);
             SetShakePref(0);
