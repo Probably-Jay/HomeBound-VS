@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 using UnityEngine.SceneManagement;
 using SingletonManagement;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// Class which controls the switching of scenes
@@ -20,25 +21,13 @@ public class SceneChangeController : Singleton<SceneChangeController>
         MainMenu
         ,Settings
 
-        , ConnectingScene
-                
-        , MoodSelectScreen
-    //    , MoodSelectScreen1
-    //    , MoodSelectScreen2
-    //    , PersonalGarden
-    //    , Tutorial
         , Credits
         , Game
     }
 
     [SerializeField] int MainMenuIndex;
     [SerializeField] int SettingsBuildIndex;
-    [SerializeField] int ConectingSceneIndex;
-    [SerializeField] int MoodSelectBuildIndex;
 
-    //[SerializeField] int MoodSelect2BuildIndex;
-   // [SerializeField] int PersonalGardenBuildIndex;  
-    //[SerializeField] int TutorialBuildIndex;
     [SerializeField] int GameBuildIndex;
     [SerializeField] int CreditsBuildIndex;
 
@@ -72,12 +61,7 @@ public class SceneChangeController : Singleton<SceneChangeController>
     {
         sceneBuildIndexesDictionary.Add(Scenes.MainMenu, MainMenuIndex);
         sceneBuildIndexesDictionary.Add(Scenes.Settings, SettingsBuildIndex);
-        sceneBuildIndexesDictionary.Add(Scenes.ConnectingScene, ConectingSceneIndex);
-        sceneBuildIndexesDictionary.Add(Scenes.MoodSelectScreen, MoodSelectBuildIndex);
-       // sceneBuildIndexesDictionary.Add(Scenes.MoodSelectScreen1, MoodSelectBuildIndex);
-      //  sceneBuildIndexesDictionary.Add(Scenes.MoodSelectScreen2, MoodSelect2BuildIndex);
-       // sceneBuildIndexesDictionary.Add(Scenes.PersonalGarden, PersonalGardenBuildIndex);
-      //  sceneBuildIndexesDictionary.Add(Scenes.Tutorial, TutorialBuildIndex);
+
         sceneBuildIndexesDictionary.Add(Scenes.Credits, CreditsBuildIndex);
         sceneBuildIndexesDictionary.Add(Scenes.Game, GameBuildIndex);
     }
@@ -176,7 +160,7 @@ public class SceneChangeController : Singleton<SceneChangeController>
     private void EnterScene()
     {
         LoadingScreen.SetActive(false);
-       // EventsManager.InvokeEvent(EventsManager.EventType.EnterNewScene);
+       //z EventsManager.InvokeEvent(EventsManager.EventType.EnterNewScene);
         loadingScene = null;
         EventsManager.CleanEvents();
     }

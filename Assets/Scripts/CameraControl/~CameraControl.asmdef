@@ -1,7 +1,8 @@
 {
     "name": "~CameraControl",
     "references": [
-        "GUID:4307f53044263cf4b835bd812fc161a4"
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:ea4485cdff8909142a7f7bb4109f7560"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
