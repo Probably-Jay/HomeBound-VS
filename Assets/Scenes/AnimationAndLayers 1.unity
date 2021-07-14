@@ -208,12 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!223 &237583510 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 716948332, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1373688918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &262339617
 GameObject:
   m_ObjectHideFlags: 0
@@ -9744,26 +9738,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1236444553}
     m_Modifications:
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 716948332, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: m_Camera
       value: 
@@ -9772,11 +9746,6 @@ PrefabInstance:
       propertyPath: rDI
       value: 
       objectReference: {fileID: 1478533509}
-    - target: {fileID: 1913506035618416040, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4658575184520333015, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: m_Name
@@ -9837,11 +9806,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4658575184520333017, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
-        type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 237583510}
     - target: {fileID: 4658575184520333019, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: DialogueBox
@@ -9852,16 +9816,6 @@ PrefabInstance:
       propertyPath: DialogueBoxOpener
       value: 
       objectReference: {fileID: 966029579}
-    - target: {fileID: 4658575185153892789, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5811461777490372765, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
 --- !u!1 &1383698827 stripped

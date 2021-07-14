@@ -580,6 +580,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Core\Engine\Control\EventsManager.cs" />
+    <Compile Include="Assets\Scripts\Core\Engine\Level_Change\CrossfadeController.cs" />
+    <Compile Include="Assets\Scripts\Core\Engine\Level_Change\SceneChangeController.cs" />
     <Compile Include="Assets\Scripts\Core\Engine\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Utility.cs" />
   </ItemGroup>

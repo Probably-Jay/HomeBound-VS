@@ -72,6 +72,7 @@
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile6.txt" />
     <None Include="Assets\NoteSongs\NoteSheets\notesheet 1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\NoteSongs\NoteSheets\testSHeet.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile7.txt" />

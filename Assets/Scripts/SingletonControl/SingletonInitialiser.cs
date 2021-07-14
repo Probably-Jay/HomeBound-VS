@@ -12,7 +12,11 @@ namespace SingletonManagement
         [SerializeField] bool instantiateSingletonsInThisScene = true;
       
         [Header("Prefabs of singleton objects")]
-        //[SerializeField] GameObject eventsManager;
+
+        [Header("Events")]
+        [SerializeField] GameObject eventsManager;
+        [SerializeField] bool initaliseEventsManager; 
+        
         [Header("Rythm")]
         [SerializeField] GameObject rythmEngine;
         [SerializeField] bool initaliseRythmEngine;
@@ -33,6 +37,9 @@ namespace SingletonManagement
 
             // create all singletons
 
+            if(initaliseEventsManager)
+                CreateSingleon<EventsManager>(eventsManager);
+            
             if(initaliseRythmEngine)
                 CreateSingleon<Rythm.RythmEngine>(rythmEngine);
 

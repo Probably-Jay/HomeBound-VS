@@ -650,6 +650,7 @@
     <None Include="Assets\NoteSongs\NoteSheets\DanceSheet.txt" />
     <None Include="Assets\NoteSongs\NoteSheets\notesheet 1.txt" />
     <None Include="Assets\NoteSongs\NoteSheets\notesheet.txt" />
+    <None Include="Assets\NoteSongs\NoteSheets\testSHeet.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile6.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile7.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile8.txt" />
