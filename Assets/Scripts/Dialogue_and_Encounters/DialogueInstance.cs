@@ -9,9 +9,17 @@ namespace Dialogue
     public class DialogueInstance : MonoBehaviour, IInteractableTriggered
     {
 
-        [SerializeField] List<string> mainDialogueIDs;
-        [SerializeField] bool runMainOnlyOnce = false;
-        [SerializeField] List<string> backupDialogeIDs;
+        private bool HasBackupDialogue => backupDialogueIDs.Count > 0;
+        public bool RunMainOnlyOnce { get => runMainOnlyOnce; set => runMainOnlyOnce = value; }
+        private bool SeenAllMainDialogue => mainIDIndex >= mainDialogueIDs.Count;
+
+        public event Action OnBegunLastMainMainDialogue;
+
+
+
+        [SerializeField] private List<string> mainDialogueIDs;
+        [SerializeField] private bool runMainOnlyOnce = false;
+        [SerializeField] private List<string> backupDialogueIDs;
         DialogueBoxOpener opener;
         int mainIDIndex;
         int backupIDIndex;
@@ -32,7 +40,7 @@ namespace Dialogue
                 throw new System.Exception($"{this.ToString()} does not contain any dialogue.");
             }
 
-            if(!runMainOnlyOnce && backupDialogeIDs.Count > 0)
+            if(!RunMainOnlyOnce && backupDialogueIDs.Count > 0)
             {
                 Debug.LogError($"{this.ToString()} contains backup dialogue that can never be reached.", this);
                 throw new System.Exception($"{this.ToString()} contains backup dialogue that can never be reached.");
@@ -57,7 +65,7 @@ namespace Dialogue
             {
                 opener.DialogeBox.AssertContainsConversation(id);
             }
-            foreach (var id in backupDialogeIDs)
+            foreach (var id in backupDialogueIDs)
             {
                 opener.DialogeBox.AssertContainsConversation(id);
             }
@@ -70,14 +78,18 @@ namespace Dialogue
                 StartDialogue(mainDialogueIDs[mainIDIndex]);
                 mainIDIndex++;
 
-                if (runMainOnlyOnce && !HasBackupDialogue && mainIDIndex >= mainDialogueIDs.Count) // prevent needing to press again to clear
+                if (SeenAllMainDialogue)
                 {
-                    DisconnectFromInteractTrigger();
+                    OnBegunLastMainMainDialogue?.Invoke();
+                    if (RunMainOnlyOnce && !HasBackupDialogue) // prevent needing to press again to clear
+                    {
+                        DisconnectFromInteractTrigger();
+                    }
                 }
                 return;
             }
 
-            if (!runMainOnlyOnce)
+            if (!RunMainOnlyOnce)
             {
                 mainIDIndex = 0;
                 TriggerDialogue();
@@ -86,8 +98,8 @@ namespace Dialogue
 
             if (HasBackupDialogue)
             {
-                int index = backupIDIndex % backupDialogeIDs.Count;
-                StartDialogue(backupDialogeIDs[index]);
+                int index = backupIDIndex % backupDialogueIDs.Count;
+                StartDialogue(backupDialogueIDs[index]);
                 backupIDIndex++;
                 return;
             }
@@ -95,7 +107,6 @@ namespace Dialogue
             DisconnectFromInteractTrigger();
         }
 
-        private bool HasBackupDialogue => backupDialogeIDs.Count > 0;
 
         private void StartDialogue(string id)
         {
@@ -128,6 +139,44 @@ namespace Dialogue
 
         public void EnteredTriggerZone() { }
         public void ExitedTriggerZone() { }
+
+        public void ClearMainDialogues()
+        {
+            mainDialogueIDs.Clear();
+            ResetMainDialogueIndex();
+        }
+        public void ClearBackupDialogues()
+        {
+            backupDialogueIDs.Clear();
+            ResetBackupDialogueIndex();
+        }
+
+        public void AddMainDialogueElement(string dialogeID) => mainDialogueIDs.Add(dialogeID);
+        public void AddBackupDialogueElement(string dialogeID) => backupDialogueIDs.Add(dialogeID);
+
+        public void SetMainDialogue(string dialogeID)
+        {
+            ClearMainDialogues();
+            mainDialogueIDs = new List<string>() { dialogeID};
+        }    
+        public void SetMainDialogue(IEnumerable<string> dialogeIDs)
+        {
+            ClearMainDialogues();
+            mainDialogueIDs = new List<string>(dialogeIDs);
+        }             
+        public void SetBackupDialogue(string dialogeID)
+        {
+            ClearBackupDialogues();
+            backupDialogueIDs = new List<string>() { dialogeID };
+        } 
+        public void SetBackupDialogue(IEnumerable<string> dialogeIDs)
+        {
+            ClearBackupDialogues();
+            backupDialogueIDs = new List<string>(dialogeIDs);
+        }
+
+        public void ResetMainDialogueIndex() => mainIDIndex = 0;
+        public void ResetBackupDialogueIndex() => backupIDIndex = 0;
 
     }
 }

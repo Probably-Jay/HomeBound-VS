@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Dialogue
 {
-    [CreateAssetMenu(fileName = "Phrase", menuName = "ScriptableObjects/Dialouge", order = 1)]
+    [CreateAssetMenu(fileName = "Phrase", menuName = "ScriptableObjects/Dialouge/Dialouge", order = 1)]
     public class DialoguePhraseObject : ScriptableObject
     {
         public DialoguePhrase phrase;

@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace Rythm
 {
-    [CreateAssetMenu(fileName = "Song", menuName = "ScriptableObjects/Song", order = 1)]
+    [CreateAssetMenu(fileName = "Song", menuName = "ScriptableObjects/Rhythm/Song", order = 1)]
     public class RythmSong : ScriptableObject
     {
         public AudioClip audioClip;
