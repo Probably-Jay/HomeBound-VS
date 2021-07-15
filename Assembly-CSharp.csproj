@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />

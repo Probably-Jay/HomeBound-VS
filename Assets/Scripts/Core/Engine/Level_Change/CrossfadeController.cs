@@ -3,53 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-// jay 18/02
 
-public class CrossfadeController : MonoBehaviour
+namespace SceneChange
 {
-
-    [SerializeField] Animator animator;
-    //[SerializeField,Range(0,1)] float transitionTime = 1;
-
-
-    private void OnEnable()
+    public class CrossfadeController : MonoBehaviour
     {
-        //EventsManager.BindEvent(EventsManager.EventType.BeginSceneLoad, CrossfadeExitScene);
-        //EventsManager.BindEvent(EventsManager.EventType.SceneLoadComplete, CrossfadeEnterScene);
-    }
 
-    private void OnDisable()
-    {
-        //EventsManager.UnbindEvent(EventsManager.EventType.BeginSceneLoad, CrossfadeExitScene);
-        //EventsManager.UnbindEvent(EventsManager.EventType.SceneLoadComplete, CrossfadeEnterScene);
-    }
+        [SerializeField] Animator animator;
 
-    /// <summary>
-    /// Crossfade for leaving a scene
-    /// </summary>
-    void CrossfadeExitScene()
-    {
-        animator.SetTrigger("CrossfadeExitScene");
-        StartCoroutine(WaitForAnimatioeToReachState("Loading"));
-    }
-
-    /// <summary>
-    /// crossfade for entering a scene
-    /// </summary>
-    void CrossfadeEnterScene()
-    {
-        animator.SetTrigger("CrossfadeEnterScene");
-        StartCoroutine(WaitForAnimatioeToReachState("Passive"));
-    }
-
-
-    IEnumerator WaitForAnimatioeToReachState(string name)
-    {
-        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(name))
+        void Start()
         {
-            yield return null;
+            SceneChangeController.Instance.OnSceneChange += RunAnimation;
         }
-       // EventsManager.InvokeEvent(EventsManager.EventType.CrossfadeAnimationEnd);
-    }
 
+        //private void OnDisable()
+        //{
+        //    SceneChangeController.Instance.OnPreSceneChange -= RunAnimation;
+        //}
+
+        void RunAnimation()
+        {
+           // StartCoroutine(UpdateAnimation());
+        }
+
+        //IEnumerator UpdateAnimation()
+        //{
+        //    while (SceneChangeController.Instance.CurrentlyChangingScene)
+        //    {
+        //        bool intTransition = SceneChangeController.Instance.LoadingScene && !SceneChangeController.Instance.TransitionAnimationDone;
+        //        Debug.Log(intTransition);
+
+        //        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Null") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
+        //        {
+        //            SceneChangeController.Instance.SetTransitionAnimationDone();
+        //        }
+
+        //        animator.SetBool("InTransition", intTransition);
+
+        //        yield return null;
+        //    }
+        //}
+
+    }
 }
