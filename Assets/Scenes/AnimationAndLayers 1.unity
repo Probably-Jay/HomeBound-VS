@@ -9942,7 +9942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915dd64fc35f83640935b2c13647ec78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnCompleteOnExit: 0
+  UncompleteOnExit: 0
 --- !u!61 &1037624921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10333,9 +10333,9 @@ MonoBehaviour:
   m_RefResolutionY: 540
   m_UpscaleRT: 0
   m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
+  m_CropFrameX: 1
+  m_CropFrameY: 1
+  m_StretchFill: 1
 --- !u!1 &1236444551
 GameObject:
   m_ObjectHideFlags: 0

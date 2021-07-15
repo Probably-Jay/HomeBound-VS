@@ -44,9 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instantiateSingletonsInThisScene: 1
+  eventsManager: {fileID: 0}
+  initaliseEventsManager: 0
+  sceneChangeController: {fileID: 3972033512130617817, guid: 9aaadbfcc77269f4abd6fbb6872bc475,
+    type: 3}
+  initalisesceneChangeController: 0
   rythmEngine: {fileID: 5024951589727670159, guid: 7319ec533028a94459fd0823ae399e6d,
     type: 3}
-  initaliseRythmEngine: 0
+  initaliseRythmEngine: 1
   contextController: {fileID: 4972095541758908167, guid: a4a89a69019d5e142aefe0c4efbaef79,
     type: 3}
-  initaliseContextController: 0
+  initaliseContextController: 1

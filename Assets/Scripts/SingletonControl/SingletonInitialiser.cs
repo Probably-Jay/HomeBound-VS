@@ -15,7 +15,11 @@ namespace SingletonManagement
 
         [Header("Events")]
         [SerializeField] GameObject eventsManager;
-        [SerializeField] bool initaliseEventsManager; 
+        [SerializeField] bool initaliseEventsManager;         
+        
+        [Header("Scene Change")]
+        [SerializeField] GameObject sceneChangeController;
+        [SerializeField] bool initalisesceneChangeController; 
         
         [Header("Rythm")]
         [SerializeField] GameObject rythmEngine;
@@ -37,20 +41,30 @@ namespace SingletonManagement
 
             // create all singletons
 
-            if(initaliseEventsManager)
-                CreateSingleon<EventsManager>(eventsManager);
-            
-            if(initaliseRythmEngine)
-                CreateSingleon<Rythm.RythmEngine>(rythmEngine);
+            SetUpSingleton<EventsManager>(initaliseEventsManager, eventsManager);
 
-            if (initaliseContextController)
-                CreateSingleon<Game.GameContextController>(contextController);
+            SetUpSingleton<SceneChange.SceneChangeController>(initalisesceneChangeController, sceneChangeController);
+
+            SetUpSingleton<Rythm.RythmEngine>(initaliseRythmEngine, rythmEngine);
+
+            SetUpSingleton<Game.GameContextController>(initaliseContextController, contextController);
+
         }
+
+        private void SetUpSingleton<T>(bool initialise, GameObject prefab) where T : Singleton<T>
+        {
+            if (initialise)
+                CreateSingleon<T>(prefab);
+            else
+                DisableSingletonIfExists<T>();
+        }
+
 
         private void CreateSingleon<T>(GameObject singletonPrefab) where T : Singleton<T>
         {
             if (Singleton<T>.InstanceExists)
             {
+                Singleton<T>.Instance.gameObject.SetActive(true);
                 return;
             }
 
@@ -63,6 +77,15 @@ namespace SingletonManagement
             var singletonObject = Instantiate(singletonPrefab);
             singletonObject.GetComponent<T>().Initialise();
         }
- 
+
+        private void DisableSingletonIfExists<T>() where T : Singleton<T>
+        {
+            if (!Singleton<T>.InstanceExists)
+            {
+                return;
+            }
+            Singleton<T>.Instance.gameObject.SetActive(false); // this may not work, or do nothing
+        }
+
     }
 }
