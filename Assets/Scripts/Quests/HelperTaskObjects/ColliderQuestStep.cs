@@ -6,24 +6,27 @@ namespace Quests
     [RequireComponent(typeof(BoxCollider2D))]
     public class ColliderQuestStep : SimpleQuestStep
     {
-        [SerializeField] bool UnCompleteOnExit = false;
+        [SerializeField] bool UncompleteOnExit = false;
 
-        private void Start()
-        {
-            SetTrigger();
-        }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerEnter2D(Collider2D _)
         {
             CompleteStep();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider _)
         {
-            if (UnCompleteOnExit)
+            if (UncompleteOnExit)
             {
                 UnCompleteStep();
             }
+        }
+
+
+        // make sure collider is trigger
+        private void Start()
+        {
+            SetTrigger();
         }
 #if UNITY_EDITOR
         private void OnValidate()
@@ -31,7 +34,6 @@ namespace Quests
             SetTrigger();
         }
 #endif
-
         private void SetTrigger()
         {
             GetComponent<BoxCollider2D>().isTrigger = true;

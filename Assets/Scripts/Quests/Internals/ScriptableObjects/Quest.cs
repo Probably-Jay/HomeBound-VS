@@ -13,7 +13,6 @@ namespace Quests
         [SerializeField] List<QuestTask> tasks = new List<QuestTask>();
         [SerializeField] UnityEvent onQuestBegin;
         [SerializeField] UnityEvent onQuestComplete;
-       // [SerializeField] UnityEvent<Quest> onQuestCompleteWithRef;
 
         public bool Complete => CurrentQuestStep >= tasks.Count;
 
@@ -21,10 +20,9 @@ namespace Quests
         
         
 
-       // public UnityEvent<Quest> OnQuestCompleteWithRef => onQuestCompleteWithRef;
 
         public int CurrentQuestStep { get; private set; } = -1;
-        public IQuestTask CurrentQuestTask
+        public QuestTask CurrentQuestTask
         {
             get
             {
@@ -96,6 +94,7 @@ namespace Quests
         private void CompleteQuest()
         {
             OnQuestComplete?.Invoke();
+            Debug.Log("Quest completed");
         }
     }
 }

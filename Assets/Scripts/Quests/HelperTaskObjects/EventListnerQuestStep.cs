@@ -32,14 +32,14 @@ namespace Quests
                     typeof(EventListnerQuestStep).GetMethod(nameof(OnInvoked),
                     BindingFlags.NonPublic | BindingFlags.Instance);
 
-                Delegate localDelegateToSunscribe = Delegate.CreateDelegate(eventFeildDelegateType, this, localOnInvokeMethodInfo);
+                Delegate localDelegateToSunscribe = Delegate.CreateDelegate(eventFeildDelegateType, this, localOnInvokeMethodInfo, true);
 
                 object[] boxedLocalDelegateToSunscribe = { localDelegateToSunscribe };
                 eventFeildAddMethod.Invoke(component, boxedLocalDelegateToSunscribe);
             }
             catch 
             {
-                Debug.LogError($"Attempt to bind to event failed");
+                Debug.LogError($"Attempt to bind to event failed, on \"{gameObject.name}\", targeting \"{target}\", looking for component \"{componentTypeName}\" and event field \"{eventName}\"",gameObject);
                 throw;
             }
            

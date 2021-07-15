@@ -12,6 +12,7 @@ namespace Dialogue
         private bool HasBackupDialogue => backupDialogueIDs.Count > 0;
         public bool RunMainOnlyOnce { get => runMainOnlyOnce; set => runMainOnlyOnce = value; }
         private bool SeenAllMainDialogue => mainIDIndex >= mainDialogueIDs.Count;
+
         public event Action OnBegunLastMainMainDialogue;
 
 

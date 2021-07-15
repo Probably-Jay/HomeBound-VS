@@ -21,7 +21,7 @@ public class ExampleQuestLogic : MonoBehaviour
 
     public void QuestComplete()
     {
-        Debug.Log("Quest complete");
+        Debug.Log("*This was triggered by the quest being completed*");
     }
 
 }

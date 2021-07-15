@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace Quests
 {
    // [CreateAssetMenu(fileName = "QuestTask", menuName = "ScriptableObjects/Quests/Task", order = 1)]
-    public class QuestTask : MonoBehaviour, IQuestTask
+    public class QuestTask : MonoBehaviour
     {
  
         [SerializeField]  private List<QuestTaskCompletable> taskPrerequisites;
