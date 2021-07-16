@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NoteSystem;
+using System.Linq;
 namespace RhythmSectionLoading {
     enum CommandType
     {
@@ -25,9 +26,10 @@ namespace RhythmSectionLoading {
         List<Note> notes = new List<Note> { };
         List<PassToDialogue> toDialogues = new List<PassToDialogue> { };
         List<OtherCommand> otherCommands = new List<OtherCommand> { };
+        List<string> sectionLines = new List<string> { };
         [SerializeField] float leadTime = 5f;
         [SerializeField] bool debugStartOnStart;
-
+        List<List<Note>> noteLines = new List<List<Note>> { };
         [SerializeField] GameObject childObject;
 
 
@@ -61,6 +63,12 @@ namespace RhythmSectionLoading {
             SwitchOnLanes();
             noteSheet = section;
             ReadSection(noteSheet);
+            sectionLines = SplitSectionIntoStringLines(notes, toDialogues, otherCommands);
+            noteLines = SplitSectionIntoNoteLines(notes, toDialogues, otherCommands);
+            foreach(string sectionLine in sectionLines)
+            {
+                Debug.Log(sectionLine);
+            }
             InitialiseSection();
 
         }
@@ -109,7 +117,20 @@ namespace RhythmSectionLoading {
                     word = word.Replace("\r", "");
                     //Debug.Log(word);
                     notes.Add(new Note());
-                    float hitBeat = float.Parse(hitbeatString);
+                    float hitBeat;
+                    try
+                    {
+                        hitBeat =float.Parse(hitbeatString);
+                    }
+                    catch
+                    {
+                        string possibleError = "";
+                        if (hitbeatString == ">")
+                        {
+                            possibleError = " did you try to make a pass command absolute?";
+                        }
+                        throw new System.Exception("Attempted to parse \"" + hitbeatString + "\" as a climax beat." + possibleError);
+                    }
                     int lane = int.Parse(laneString);
                     notes[notes.Count - 1].Initialise(hitBeat, lane, word);
                     //Debug.Log(word);
@@ -136,6 +157,74 @@ namespace RhythmSectionLoading {
             }
 
         }
+        List<string> SplitSectionIntoStringLines(List<Note> notes, List<PassToDialogue> passes,List<OtherCommand> commands)
+        {
+            List<string> secLines = new List<string> { };
+            List<float> lineEnds = new List<float> { };
+            foreach (PassToDialogue pass in passes)
+            {
+                lineEnds.Add(pass.returnBeat);          
+            }
+            foreach(OtherCommand command in commands)
+            {
+                if (command.type == CommandType.EndSection)
+                {
+                    lineEnds.Add(command.onBeat);
+                }
+            }
+            lineEnds.Sort();
+            foreach(int end in lineEnds)
+            {
+                secLines.Add("");
+            }
+            notes = notes.OrderBy(note => note.climaxBeat).ToList();
+            foreach(Note note in notes)
+            {
+                for(int i=0; i < lineEnds.Count; i++)
+                {
+                    if (note.climaxBeat < lineEnds[i])
+                    {
+                        secLines[i] += note.word + " ";
+                        i = lineEnds.Count;
+                    }
+                }
+            }
+            return secLines;
+        }
+        List<List<Note>> SplitSectionIntoNoteLines(List<Note> notes, List<PassToDialogue> passes, List<OtherCommand> commands)
+        {
+            List<List<Note>> secLines = new List<List<Note>> { };
+            List<float> lineEnds = new List<float> { };
+            foreach (PassToDialogue pass in passes)
+            {
+                lineEnds.Add(pass.returnBeat);
+            }
+            foreach (OtherCommand command in commands)
+            {
+                if (command.type == CommandType.EndSection)
+                {
+                    lineEnds.Add(command.onBeat);
+                }
+            }
+            lineEnds.Sort();
+            foreach (int end in lineEnds)
+            {
+                secLines.Add(new List<Note> { });
+            }
+            notes = notes.OrderBy(note => note.climaxBeat).ToList();
+            foreach (Note note in notes)
+            {
+                for (int i = 0; i < lineEnds.Count; i++)
+                {
+                    if (note.climaxBeat < lineEnds[i])
+                    {
+                        secLines[i].Add(note);
+                        i = lineEnds.Count;
+                    }
+                }
+            }
+            return secLines;
+        }
         void InitialiseSection()
         {
             foreach(Note note in notes)
@@ -150,6 +239,7 @@ namespace RhythmSectionLoading {
             {
                 QueueCommand(command);
             }
+            QueueLinePreviews();
         }
         void QueueNote(Note note)
         {
@@ -166,7 +256,57 @@ namespace RhythmSectionLoading {
                 Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.EndSection(); }, command.onBeat);
             }
         }
+        void QueueLinePreviews()
+        {
+            for (int i = 0; i < sectionLines.Count; i++)
+            {
 
+                float targetBeat = noteLines[i][0].climaxBeat - leadTime;
+                if (targetBeat < 0)
+                {
+                    targetBeat = 0;
+                }
+                string line = sectionLines[i];
+                Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.ShowPreviewLine(line); }, targetBeat);
+            }
+        }
+        //this, along with it's accompanying adding method, is deprecated, because as MATT informs me, this is replacable by one system.linq line. : ) I'm fine.
+        List<Note> SortNoteListByClimaxBeat(List<Note> notes)
+        {
+            List<Note> sortedNotes = new List<Note> { };
+            if (notes[0] == null)
+            {
+                return notes;
+            }
+            sortedNotes.Add(notes[0]);
+            for (int i = 1; i < notes.Count; i++)
+            {
+                AddSortedNote(notes[i], sortedNotes);
+            }
+            return sortedNotes;
+        }
+
+        //i said i'M fINE
+        private static void AddSortedNote(Note note, List<Note> sortedNotes)
+        {
+            bool added = false;
+            for (int j = 0; j < sortedNotes.Count; j++)
+            {
+                if (note.climaxBeat < sortedNotes[j].climaxBeat)
+                {
+                    if (added == false)
+                    {
+                        sortedNotes.Insert(j, note);
+                    }
+                    added = true;
+                    j = sortedNotes.Count;
+                }
+            }
+            if (added == false)
+            {
+                sortedNotes.Add(note);
+            }
+        }
     }
   
     class Note

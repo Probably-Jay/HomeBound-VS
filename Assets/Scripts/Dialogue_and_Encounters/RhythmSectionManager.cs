@@ -65,6 +65,10 @@ public class RhythmSectionManager : MonoBehaviour
         }
         rDI.PassControlToDialogue(passbackBeat);
     }
+    public void ShowPreviewLine(string line)
+    {
+        rDI.AddLinePreview(line);
+    }
 
     public void LoadAndBeginSection(string iD)
     {

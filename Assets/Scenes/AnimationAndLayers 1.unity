@@ -134,7 +134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3289020}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e90cb01db4453004a9c80046f8642634, type: 3}
   m_Name: 
@@ -9621,6 +9621,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723951724}
   m_CullTransparentMesh: 0
+--- !u!223 &776047869 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 716948332, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373688918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &778829596
 GameObject:
   m_ObjectHideFlags: 0
@@ -10958,6 +10964,11 @@ PrefabInstance:
       propertyPath: rDI
       value: 
       objectReference: {fileID: 1478533509}
+    - target: {fileID: 1913506035618416047, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: RDI
+      value: 
+      objectReference: {fileID: 1478533509}
     - target: {fileID: 4658575184520333015, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: m_Name
@@ -11018,6 +11029,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658575184520333017, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 776047869}
     - target: {fileID: 4658575184520333019, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: DialogueBox
@@ -11028,6 +11044,16 @@ PrefabInstance:
       propertyPath: DialogueBoxOpener
       value: 
       objectReference: {fileID: 966029579}
+    - target: {fileID: 4658575185153892786, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: RDI
+      value: 
+      objectReference: {fileID: 1478533509}
+    - target: {fileID: 5811461777490372762, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: RDI
+      value: 
+      objectReference: {fileID: 1478533509}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
 --- !u!1 &1383698827 stripped
@@ -14121,6 +14147,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4829981341636049674, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4829981341636049675, guid: 53792fb9ef3c88248b3e2af711a4da52,
         type: 3}
       propertyPath: dialogue
@@ -14195,6 +14226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExampleQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829981343252242897, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53792fb9ef3c88248b3e2af711a4da52, type: 3}

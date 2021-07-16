@@ -152,6 +152,7 @@ using System;
 
         public void AddLinePreview(string line)
         {
+            Debug.LogWarning("Adding line Preview");
             dialogueManager.AddLinePreview(line);
         }
 
