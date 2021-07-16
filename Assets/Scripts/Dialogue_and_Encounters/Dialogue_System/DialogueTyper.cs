@@ -255,15 +255,15 @@ namespace Dialogue
         /// <param name="word">string to be added</param>
         /// <param name="onBeat">The beat this will happen on</param>
         /// <param name="forceContext">Experimental, will only allow the word to be added within this instance of conversation</param>
-        public void AddNewWordDirectly(string word, float? onBeat = null, bool forceContext = false)
+        public void AddNewWordDirectly(string word, HitQuality hitQuality, float? onBeat = null, bool forceContext = false)
         {
             if ((RythmEngine.TryInstance?.PlayingMusic ?? false) && onBeat.HasValue)
             {
-                AddWordDirectlyOnbeat(word, onBeat.Value, forceContext);
+                AddWordDirectlyOnbeat(word, hitQuality, onBeat.Value, forceContext);
                 return;
             }
 
-            AddWordDirectly(word);
+            AddWordDirectly(word, hitQuality);
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace Dialogue
             RythmEngine.Instance.QueueActionAtExplicitBeat(() => QueuePhrase(phrase, _context), beat);
         }
 
-        private void AddWordDirectly(string word, long? _context = null)
+        private void AddWordDirectly(string word, HitQuality hitQuality, long? _context = null)
         {
             if(_context.HasValue && _context != Context)
             {
@@ -301,12 +301,12 @@ namespace Dialogue
 
         }
 
-        private void AddWordDirectlyOnbeat(string word, float beat, bool forceContext)
+        private void AddWordDirectlyOnbeat(string word, HitQuality hitQuality, float beat, bool forceContext)
         {
             long? _context = forceContext ? (long?)Context : null;
             RythmEngine.Instance.QueueActionAtExplicitBeat(() => { 
             //    Debug.Log($"_{word} {beat}: {RythmEngine.Instance.CurrentBeat}"); 
-                AddWordDirectly(word, _context); 
+                AddWordDirectly(word, hitQuality, _context); 
             }, beat); 
 
         }

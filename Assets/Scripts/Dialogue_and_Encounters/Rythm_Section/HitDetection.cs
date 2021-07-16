@@ -6,12 +6,13 @@ namespace NoteSystem
     public enum HitQuality
     {
         Miss
-        , Early
-        , Late
-        , Good
-        , Great
-        , Perfect
+       , Early
+       , Late
+       , Good
+       , Great
+       , Perfect
     }
+
     public static class HitDetection
     {
         // Start is called before the first frame update
