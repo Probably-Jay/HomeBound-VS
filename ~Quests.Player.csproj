@@ -583,8 +583,6 @@
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\ColliderQuestStep.cs" />
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\EventListnerQuestStep.cs" />
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\SimpleQuestStep.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\Interfaces\IQuestTask.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\Interfaces\IQuestable.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\Interfaces\QuestTaskCompletable.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\Quest.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\QuestTask.cs" />
