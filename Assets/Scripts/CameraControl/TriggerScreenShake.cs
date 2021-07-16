@@ -16,7 +16,9 @@ namespace CameraControl
 
         public void TriggerImpulse(float v = 1)
         {
-            source.GenerateImpulse(v);
+            var prefs = Accessibility.ScreenShakePrefs.ScreenShakePrefsKey;
+            var accesibilityModifier = PlayerPrefs.HasKey(prefs) ? PlayerPrefs.GetFloat(prefs) : 1;
+            source.GenerateImpulse(v * accesibilityModifier);
         }
         private void Update()
         {

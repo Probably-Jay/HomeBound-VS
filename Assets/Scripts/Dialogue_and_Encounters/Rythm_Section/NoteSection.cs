@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace Rythm
 {
-    [CreateAssetMenu(fileName = "NoteSection", menuName = "ScriptableObjects/NoteSection", order = 1)]
+    [CreateAssetMenu(fileName = "NoteSection", menuName = "ScriptableObjects/Rhythm/NoteSection", order = 1)]
     public class NoteSection : ScriptableObject
     {
         public RythmSong song;

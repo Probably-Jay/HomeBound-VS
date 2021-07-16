@@ -1,0 +1,4 @@
+id: example_taskDone_3
+[Stranger]: There you go, quest complete.
+[Stranger]: Congrats.
+[end]

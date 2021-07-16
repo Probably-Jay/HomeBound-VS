@@ -1,0 +1,4 @@
+id: example_begin_1
+[Stranger]: Hey.
+[Stranger]: Go Stand on that green thing up there.
+[end]

@@ -14,7 +14,7 @@ namespace Dialogue
         Dialogue
     }
 
-
+    
     public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterface
     {
         public Controler InControl { get; private set; }

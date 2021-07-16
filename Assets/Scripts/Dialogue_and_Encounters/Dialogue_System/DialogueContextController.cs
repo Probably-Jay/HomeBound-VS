@@ -86,7 +86,6 @@ namespace Dialogue
         private void ApplyMode()
         {
             var mode = dialogueMode.Peek();
-            Debug.Log($"Switching to {mode}");
             switch (mode)
             {
                 case DialogueMode.None:
