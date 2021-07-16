@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Obsolete("Replaced by " + nameof(Dialogue.RythmDialogueInterface),true)]
+[System.Obsolete("Replaced by " + nameof(RythmDialogueInterface),true)]
 public class NoteDialogueInterface : MonoBehaviour
 {
     [SerializeField] DialogueBoxOpener DialogueBoxOpener;

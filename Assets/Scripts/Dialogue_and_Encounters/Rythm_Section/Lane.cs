@@ -15,7 +15,7 @@ namespace NoteSystem
         [SerializeField] List<WordNote> notesInChannel = new List<WordNote> { };
         [SerializeField] KeyCode button = KeyCode.Space;
        // [SerializeField] NoteDialogueInterface NDI;
-        [SerializeField] Dialogue.RythmDialogueInterface RDI;
+        [SerializeField] RythmDialogueInterface RDI;
         [SerializeField] public Sprite noteSprite { get; private set; }
         // Start is called before the first frame update
         void Awake()

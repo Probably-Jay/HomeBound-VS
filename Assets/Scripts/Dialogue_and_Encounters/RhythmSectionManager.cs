@@ -11,7 +11,7 @@ public class RhythmSectionManager : MonoBehaviour
     [SerializeField] List<string> identifications = new List<string> { };
     [SerializeField] List<Rythm.NoteSection> sheets = new List<Rythm.NoteSection> { };
     [SerializeField] RhythmInitialise sectionLoader;
-    [SerializeField] Dialogue.RythmDialogueInterface rDI;
+    [SerializeField] RythmDialogueInterface rDI;
     [SerializeField] bool debugStartOnStart;
     public bool HasControl => rDI.RythmHasControl;
     private float time=0;
