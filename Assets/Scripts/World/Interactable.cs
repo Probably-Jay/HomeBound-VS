@@ -252,7 +252,7 @@ namespace Interactables
 
             Vector2 usToPlayer = (playerObject.transform.position - transform.position).normalized;
 
-            Vector2 playerFacing = player.FacingDirection;
+            Vector2 playerFacing = player.FacingVector;
 
             var allignment = Vector2.Dot(usToPlayer, playerFacing);
 
