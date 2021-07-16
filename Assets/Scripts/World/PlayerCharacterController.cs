@@ -56,6 +56,7 @@ namespace Overworld {
         [SerializeField] float speed;
         [SerializeField] int layer = 0;
         [SerializeField] Animator animator;
+        bool clearedMovement=false;
 
 
         [SerializeField] Dictionary<WalkingDirection, KeyCode> movementKeys = new Dictionary<WalkingDirection, KeyCode>();
@@ -99,6 +100,13 @@ namespace Overworld {
                 Game.GameContextController.Instance.OnContextChange -= HandleGameContextChange;
             }
         }
+
+        public void RequireNewButtonPressToMove()
+        {
+            dirStack.Clear();
+            clearedMovement = true;
+        } 
+
 
         private void HandleGameContextChange(Context current, Context _)
         {
@@ -170,7 +178,7 @@ namespace Overworld {
                 animator.SetBool("isWalking", false);
             }
         }
-
+        
         private void FixedUpdate()
         {
             if (!canWalk)
@@ -280,7 +288,8 @@ namespace Overworld {
         {
             if (Input.GetKeyDown(movementKeys[walkingDirection]))
             {
-               // Debug.Log(walkingDirection);
+                // Debug.Log(walkingDirection);
+                clearedMovement = false;
                 if (!dirStack.Contains(walkingDirection))
                 {
                     //Debug.Log("Added" + walkingDirection.ToString());
@@ -296,7 +305,7 @@ namespace Overworld {
             }
             if (Input.GetKey(movementKeys[walkingDirection]))
             {
-                if (!dirStack.Contains(walkingDirection))
+                if (!dirStack.Contains(walkingDirection)&!clearedMovement)
                 {
                     Debug.Log("missed keydown");
                     dirStack.Add(walkingDirection);
@@ -313,7 +322,7 @@ namespace Overworld {
         }
         private bool CheckGround(Vector3Int cell)
         {
-            if (floorHandler.GetTileOnFloor(layer-1,cell) != null)
+            if (floorHandler.GetGroundTileOnFloor(layer,cell) != null)
             {
                 return true;
             }
@@ -324,7 +333,7 @@ namespace Overworld {
         }
         private bool CheckWall(Vector3Int cell)
         {
-            if (floorHandler.GetTileOnFloor(layer, cell) != null)
+            if (floorHandler.GetObsTileOnFloor(layer, cell) != null)
             {
                 return true;
             }

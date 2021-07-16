@@ -676,10 +676,6 @@
       <Project>{3FFCABBE-8023-336E-FAA0-7D152DFA442B}</Project>
       <Name>~SingletonControl</Name>
     </ProjectReference>
-    <ProjectReference Include="Rythm.csproj">
-      <Project>{A405DFF5-69F4-D895-29C6-2000F8AF12A1}</Project>
-      <Name>Rythm</Name>
-    </ProjectReference>
     <ProjectReference Include="~InteractableInterface.csproj">
       <Project>{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}</Project>
       <Name>~InteractableInterface</Name>
@@ -696,13 +692,13 @@
       <Project>{354EAF47-F608-D8B1-D75E-1AFE6B6D692A}</Project>
       <Name>~Core</Name>
     </ProjectReference>
-    <ProjectReference Include="~CameraControl.csproj">
-      <Project>{34A124F9-42B7-FA37-AF8F-855D6953560F}</Project>
-      <Name>~CameraControl</Name>
-    </ProjectReference>
     <ProjectReference Include="~Dialogue_System.csproj">
       <Project>{7DB04697-AB7A-3DD9-8E6A-B1E9583A07B9}</Project>
       <Name>~Dialogue_System</Name>
+    </ProjectReference>
+    <ProjectReference Include="~CameraControl.csproj">
+      <Project>{34A124F9-42B7-FA37-AF8F-855D6953560F}</Project>
+      <Name>~CameraControl</Name>
     </ProjectReference>
     <ProjectReference Include="~UI.csproj">
       <Project>{6CC47064-18D1-3BAC-74CE-BBC9B438A12A}</Project>
@@ -711,6 +707,10 @@
     <ProjectReference Include="~Quests.csproj">
       <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
       <Name>~Quests</Name>
+    </ProjectReference>
+    <ProjectReference Include="Rythm.csproj">
+      <Project>{A405DFF5-69F4-D895-29C6-2000F8AF12A1}</Project>
+      <Name>Rythm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
