@@ -592,6 +592,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\World\Door.cs" />
+    <Compile Include="Assets\Scripts\World\Floor.cs" />
     <Compile Include="Assets\Scripts\World\FloorHandler.cs" />
     <Compile Include="Assets\Scripts\World\Floors.cs" />
     <Compile Include="Assets\Scripts\World\Interactable.cs" />

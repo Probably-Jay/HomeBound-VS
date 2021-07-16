@@ -58,8 +58,13 @@ namespace Quests
             }
             Debug.Log($"Quest {QuestName} has been begun");
             CurrentQuestStep = 0;
-            CurrentQuestTask.TaskActive = true;
+            BeginCurrentTask();
             onQuestBegin?.Invoke();
+        }
+
+        private void BeginCurrentTask()
+        {
+            CurrentQuestTask.BeginTask();
         }
 
         public void Progress()
@@ -81,14 +86,14 @@ namespace Quests
                 CompleteQuest();
                 return;
             }
-            CurrentQuestTask.TaskActive = true;
+            BeginCurrentTask();
             Debug.Log("Quest step progressed");
         }
 
         private void DisposeCurrentTask()
         {
             CurrentQuestTask.OnCompleteTask?.RemoveListener(Progress);
-            CurrentQuestTask.TaskActive = false;
+            CurrentQuestTask.EndTask();
         }
 
         private void CompleteQuest()
