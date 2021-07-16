@@ -5,6 +5,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Overworld {
+    public static class DirectionTools
+    {
+        //This function takes a WalkingDirection and returns the 2d vector that corresponds to it.
+        public static Vector2 DirectionToVector(WalkingDirection walkingDirection)
+        {
+            switch (walkingDirection)
+            {
+                case WalkingDirection.Down: { return Vector2.down; }
+                case WalkingDirection.Up: { return Vector2.up; }
+                case WalkingDirection.Left: { return Vector2.left; }
+                case WalkingDirection.Right: { return Vector2.right; }
+                default: { return Vector2.up; }
+            }
+
+        }
+        public static WalkingDirection OppositeDirection(WalkingDirection walkingDirection)
+        {
+            switch (walkingDirection)
+            {
+                case WalkingDirection.Down: { return WalkingDirection.Up; }
+                case WalkingDirection.Up: { return WalkingDirection.Down; }
+                case WalkingDirection.Left: { return WalkingDirection.Right; }
+                case WalkingDirection.Right: { return WalkingDirection.Left; }
+                default: { return WalkingDirection.Down; }
+            }
+        }
+    }
     public enum WalkingDirection
     {
         Up
@@ -29,13 +56,16 @@ namespace Overworld {
         [SerializeField] float speed;
         [SerializeField] int layer = 0;
         [SerializeField] Animator animator;
+        bool clearedMovement=false;
 
 
         [SerializeField] Dictionary<WalkingDirection, KeyCode> movementKeys = new Dictionary<WalkingDirection, KeyCode>();
         List<WalkingDirection> dirStack = new List<WalkingDirection> { };
         WalkingDirection currentDirection;
 
-        public Vector2 FacingDirection => DirectionToVector(direction);
+        public Vector2 FacingVector => DirectionTools.DirectionToVector(direction);
+        public WalkingDirection FacingDirection => currentDirection;
+        
 
 
         // This character controller handles both grid based and non grid based movements for a top-down 2d game.
@@ -70,6 +100,13 @@ namespace Overworld {
                 Game.GameContextController.Instance.OnContextChange -= HandleGameContextChange;
             }
         }
+
+        public void RequireNewButtonPressToMove()
+        {
+            dirStack.Clear();
+            clearedMovement = true;
+        } 
+
 
         private void HandleGameContextChange(Context current, Context _)
         {
@@ -141,7 +178,7 @@ namespace Overworld {
                 animator.SetBool("isWalking", false);
             }
         }
-
+        
         private void FixedUpdate()
         {
             if (!canWalk)
@@ -152,7 +189,7 @@ namespace Overworld {
             {
                 if (hasWalkingInput)
                 {
-                    myRb.velocity = DirectionToVector(direction) * speed;
+                    myRb.velocity = DirectionTools.DirectionToVector(direction) * speed;
                 }
                 else
                 {
@@ -174,7 +211,7 @@ namespace Overworld {
                     
                     if (WillPassGridCentre(currentDirection, grid.WorldToCell(this.transform.position)))
                     {
-                        destinationCentre = grid.GetCellCenterWorld((grid.WorldToCell(this.transform.position) + new Vector3Int(Mathf.FloorToInt(DirectionToVector(currentDirection).x), Mathf.FloorToInt(DirectionToVector(currentDirection).y), 0)));
+                        destinationCentre = grid.GetCellCenterWorld((grid.WorldToCell(this.transform.position) + new Vector3Int(Mathf.FloorToInt(DirectionTools.DirectionToVector(currentDirection).x), Mathf.FloorToInt(DirectionTools.DirectionToVector(currentDirection).y), 0)));
                         if (!CheckGround(grid.WorldToCell(destinationCentre)) || CheckWall(grid.WorldToCell(destinationCentre)))
                         {
                             
@@ -202,7 +239,7 @@ namespace Overworld {
                     {
                         this.transform.position = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                         currentDirection = direction;
-                        destinationCentre = grid.GetCellCenterWorld((grid.WorldToCell(this.transform.position) + new Vector3Int(Mathf.FloorToInt(DirectionToVector(currentDirection).x), Mathf.FloorToInt(DirectionToVector(currentDirection).y), 0)));
+                        destinationCentre = grid.GetCellCenterWorld((grid.WorldToCell(this.transform.position) + new Vector3Int(Mathf.FloorToInt(DirectionTools.DirectionToVector(currentDirection).x), Mathf.FloorToInt(DirectionTools.DirectionToVector(currentDirection).y), 0)));
                         if (!CheckGround(grid.WorldToCell(destinationCentre)) || CheckWall(grid.WorldToCell(destinationCentre)))
                         {
 
@@ -239,7 +276,7 @@ namespace Overworld {
 
         private void SetVelocity(WalkingDirection direction)
         {           
-            myRb.velocity =  DirectionToVector(direction) * speed;
+            myRb.velocity =  DirectionTools.DirectionToVector(direction) * speed;
         }
         private void Stop()
         {
@@ -251,7 +288,8 @@ namespace Overworld {
         {
             if (Input.GetKeyDown(movementKeys[walkingDirection]))
             {
-               // Debug.Log(walkingDirection);
+                // Debug.Log(walkingDirection);
+                clearedMovement = false;
                 if (!dirStack.Contains(walkingDirection))
                 {
                     //Debug.Log("Added" + walkingDirection.ToString());
@@ -267,7 +305,7 @@ namespace Overworld {
             }
             if (Input.GetKey(movementKeys[walkingDirection]))
             {
-                if (!dirStack.Contains(walkingDirection))
+                if (!dirStack.Contains(walkingDirection)&!clearedMovement)
                 {
                     Debug.Log("missed keydown");
                     dirStack.Add(walkingDirection);
@@ -284,7 +322,7 @@ namespace Overworld {
         }
         private bool CheckGround(Vector3Int cell)
         {
-            if (floorHandler.GetTileOnFloor(layer-1,cell) != null)
+            if (floorHandler.GetGroundTileOnFloor(layer,cell) != null)
             {
                 return true;
             }
@@ -295,7 +333,7 @@ namespace Overworld {
         }
         private bool CheckWall(Vector3Int cell)
         {
-            if (floorHandler.GetTileOnFloor(layer, cell) != null)
+            if (floorHandler.GetObsTileOnFloor(layer, cell) != null)
             {
                 return true;
             }
@@ -307,19 +345,7 @@ namespace Overworld {
         
 
 
-        //This function takes a WalkingDirection and returns the 2d vector that corresponds to it.
-        private Vector2 DirectionToVector(WalkingDirection walkingDirection)
-        {
-            switch (walkingDirection) 
-            {
-                case WalkingDirection.Down: { return Vector2.down; }
-                case WalkingDirection.Up: { return Vector2.up; }
-                case WalkingDirection.Left: { return Vector2.left; }
-                case WalkingDirection.Right: { return Vector2.right; }
-                default: { return Vector2.up; }
-            }
-
-        }
+        
 
         //this function checks if the player has passed the centre of a given cell, in a given direction.
         private bool HasPassedGridCentre(WalkingDirection direction,Vector3Int cell)

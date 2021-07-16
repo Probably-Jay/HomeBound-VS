@@ -5,9 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class FloorHandler : MonoBehaviour
 {
-    Dictionary<int, Tilemap> floors = new Dictionary<int, Tilemap> { };
+    Dictionary<int, Floor> floors = new Dictionary<int, Floor> { };
     [SerializeField] List<int> indexes = new List<int> { };
-    [SerializeField] List<Tilemap> tilemaps = new List<Tilemap> { };
+    [SerializeField] List<Floor> tilemaps = new List<Floor> { };
 
 
     // Start is called before the first frame update
@@ -25,12 +25,16 @@ public class FloorHandler : MonoBehaviour
     {
 
     }
-    public Tilemap GetFloor(int index)
+    public Floor GetFloor(int index)
     {
         return floors[index];
     }
-    public TileBase GetTileOnFloor(int floorIndex, Vector3Int tilePosition)
+    public TileBase GetGroundTileOnFloor(int floorIndex, Vector3Int tilePosition)
     {
-        return (floors[floorIndex].GetTile(tilePosition));
+        return (floors[floorIndex].Ground.GetTile(tilePosition));
+    }
+    public TileBase GetObsTileOnFloor(int floorIndex, Vector3Int tilePosition)
+    {
+        return (floors[floorIndex].Obstacles.GetTile(tilePosition));
     }
 }
