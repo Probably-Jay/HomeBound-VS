@@ -193,7 +193,7 @@ namespace Dialogue
         }
 
         public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false) => dialogueTyper.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
-        public void AddWordDirectly(string text, HitQuality hitQuality, float? onBeat = null, bool forceContext = false) => dialogueTyper.AddNewWordDirectly(text, hitQuality, onBeat, forceContext);
+        public void AddWordDirectly(string text, HitQuality hitQuality, float? onBeat = null, bool forceContext = false) => dialogueTyper.UnGreyOutWord(text, hitQuality, onBeat, forceContext);
 
         public void AddColourRTT(int colour)
         {
@@ -202,7 +202,10 @@ namespace Dialogue
             dialogueTyper.AddRichTextTag(tag);
         }
 
-       
+        public void AddLinePreview(string line)
+        {
+            dialogueTyper.AddLinePreview(line);
+        }
 
         //// Start is called before the first frame update
         //void Start()

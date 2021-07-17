@@ -85,7 +85,7 @@ namespace Dialogue
         {
             if (!ContainsConversation(conversationID))
             {
-                throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}");
+                throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}. Did you remember to add it to the scene serialiser?");
             }
         }
 
@@ -139,9 +139,9 @@ namespace Dialogue
             yield break;
         }
 
-        internal void AddLinePreview(string line)
+        public void AddLinePreview(string line)
         {
-            throw new NotImplementedException();
+            dialogueContextController.AddLinePreview(line);
         }
 
 

@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using TMPro;
 using Rythm;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Dialogue
@@ -20,6 +21,11 @@ namespace Dialogue
     [RequireComponent(typeof(TMP_Text))]
     public class DialogueTyper : MonoBehaviour
     {
+
+        public const string greyTag = "<color=#777777>";
+        public const string whiteTag = "<color=#FFFFFF>";
+
+
         TMP_Text display;
         [SerializeField] TMP_Text nameOutdisplay;
         [SerializeField] TMP_Text continuedisplay;
@@ -72,9 +78,11 @@ namespace Dialogue
       
         private string nameString;
 
-      //  private Coroutine fillingCoroutine;
+
+        //  private Coroutine fillingCoroutine;
 
         bool beenQueuedThisConversation = false;
+        private GrayedOutText grayedOutText = new GrayedOutText();
 
         public long Context { get; private set; } = 0;
         public bool Paused { get; private set; }
@@ -232,6 +240,7 @@ namespace Dialogue
             ProgressPhraseDirectly(speaker);
         }
 
+      
         private void ProgressPhraseDirectly(string speaker, long? _context = null)
         {
             if (_context.HasValue && _context != Context)
@@ -255,16 +264,50 @@ namespace Dialogue
         /// <param name="word">string to be added</param>
         /// <param name="onBeat">The beat this will happen on</param>
         /// <param name="forceContext">Experimental, will only allow the word to be added within this instance of conversation</param>
-        public void AddNewWordDirectly(string word, HitQuality hitQuality, float? onBeat = null, bool forceContext = false)
+        [System.Obsolete("This has been replaced by " + nameof(UnGreyOutWord))]
+        public void AddNewWordDirectlyOld(string word, HitQuality hitQuality, float? onBeat = null, bool forceContext = false)
         {
             if ((RythmEngine.TryInstance?.PlayingMusic ?? false) && onBeat.HasValue)
             {
-                AddWordDirectlyOnbeat(word, hitQuality, onBeat.Value, forceContext);
+                AddWordDirectlyOnbeatOld(word, hitQuality, onBeat.Value, forceContext);
                 return;
             }
 
-            AddWordDirectly(word, hitQuality);
+            AddWordDirectlyOld(word, hitQuality);
         }
+
+        public void UnGreyOutWord(string word, HitQuality hitQuality, float? onBeat = null, bool forceContext = false)
+        {
+            if ((RythmEngine.TryInstance?.PlayingMusic ?? false) && onBeat.HasValue)
+            {
+                UnGreyOutWordOnbeat(word, hitQuality, onBeat.Value, forceContext);
+                return;
+            }
+
+            UnGreyOutWordDirectly(word, hitQuality);
+        }
+
+        private void UnGreyOutWordOnbeat(string word, HitQuality hitQuality, float beat, bool forceContext)
+        {
+            long? _context = forceContext ? (long?)Context : null;
+            RythmEngine.Instance.QueueActionAtExplicitBeat(() => {
+                //    Debug.Log($"_{word} {beat}: {RythmEngine.Instance.CurrentBeat}"); 
+                UnGreyOutWordDirectly(word, hitQuality, _context);
+            }, beat);
+        }
+        private void UnGreyOutWordDirectly(string word, HitQuality hitQuality, float? _context = null)
+        {
+            if (_context.HasValue && _context != Context)
+            {
+                Debug.LogWarning($"Word {word} out of context ({_context} vs {Context})");
+                return;
+            }
+            grayedOutText.WhitenWord(word);
+            bufferAndLivePhrase.Reset();
+            bufferAndLivePhrase.AddToLiveDirectly(grayedOutText.Text);
+        }
+
+
 
         /// <summary>
         /// "WARNING: Will add a string directly to the output and will bypass typing mode*
@@ -274,7 +317,18 @@ namespace Dialogue
         {
             bufferAndLivePhrase.AddToLiveDirectly(tag);
         }
-    
+
+        internal void AddLinePreview(string line)
+        {
+            if (!bufferAndLivePhrase.Empty||!grayedOutText.Empty)
+            {
+                Debug.LogError("Box is not empty");
+                grayedOutText.Clear();
+            }
+            grayedOutText.AddLine(line);
+            bufferAndLivePhrase.AddToLiveDirectly(grayedOutText.Text.ToString());
+        }
+
         private void QueuePhrase(DialoguePhrase phrase, long? _context = null)
         {
             if (_context.HasValue && _context != Context)
@@ -290,7 +344,7 @@ namespace Dialogue
             RythmEngine.Instance.QueueActionAtExplicitBeat(() => QueuePhrase(phrase, _context), beat);
         }
 
-        private void AddWordDirectly(string word, HitQuality hitQuality, long? _context = null)
+        private void AddWordDirectlyOld(string word, HitQuality hitQuality, long? _context = null)
         {
             if(_context.HasValue && _context != Context)
             {
@@ -301,12 +355,11 @@ namespace Dialogue
 
         }
 
-        private void AddWordDirectlyOnbeat(string word, HitQuality hitQuality, float beat, bool forceContext)
+        private void AddWordDirectlyOnbeatOld(string word, HitQuality hitQuality, float beat, bool forceContext)
         {
             long? _context = forceContext ? (long?)Context : null;
             RythmEngine.Instance.QueueActionAtExplicitBeat(() => { 
-            //    Debug.Log($"_{word} {beat}: {RythmEngine.Instance.CurrentBeat}"); 
-                AddWordDirectly(word, hitQuality, _context); 
+                AddWordDirectlyOld(word, hitQuality, _context); 
             }, beat); 
 
         }
@@ -376,7 +429,7 @@ namespace Dialogue
 
         private void UpdateDisplay()
         {
-            display.text = bufferAndLivePhrase.liveText;
+            display.text = bufferAndLivePhrase.LiveText;
             nameOutdisplay.text = nameString;
         }
 
@@ -524,11 +577,54 @@ namespace Dialogue
 
     }
 
+    internal class GrayedOutText
+    {
+        string text = "";
+
+        public bool Active { get; private set; }
+
+        public string Text { get => text; }
+        public bool Empty => text.Length == 0;
+
+        
+
+        public void AddLine(string line) 
+        {
+            if (Active)
+            {
+                Debug.LogError("Grayed out text already active");
+            }
+
+            var words = line.Split(' ');
+            StringBuilder sb = new StringBuilder();
+            foreach (var word in words)
+            {
+                sb.Append($"{DialogueTyper.greyTag}{word}{DialogueTyper.whiteTag} ");
+            }
+
+            text = sb.ToString();
+        }
+
+        public void WhitenWord(string word)
+        {
+            string pattern = $@"<color=\#777777>{word}<color=\#FFFFFF>";
+            //pattern = Regex.Escape(pattern);
+            text = Regex.Replace(text, pattern, word);
+        }
+
+        public void Clear()
+        {
+            text = "";
+            Active = false;
+        }
+    }
 
     internal class BufferAndLivePhrase
     {
         public readonly BufferPhrase bufferPhrase =  new BufferPhrase();
-        public string liveText => livePhrase.ToString(); 
+        public string LiveText => livePhrase.ToString();
+
+        public bool Empty => bufferPhrase.Empty && livePhrase.Length == 0;
 
         readonly StringBuilder livePhrase = new StringBuilder();
 
@@ -588,6 +684,8 @@ namespace Dialogue
             public int nextCharacterIndex { get; private set; } = 0;
 
             public bool StillMovingBufferToLive => nextCharacterIndex < dialoguePhrase.Phrase.Length;
+
+            public bool Empty => dialoguePhrase.Phrase.Length == 0;
 
             public char? GetNextCharacter()
             {
