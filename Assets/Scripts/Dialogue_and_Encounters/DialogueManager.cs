@@ -85,7 +85,7 @@ namespace Dialogue
         {
             if (!ContainsConversation(conversationID))
             {
-                throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}");
+                throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}. Did you remember to add it to the scene serialiser?");
             }
         }
 
@@ -139,9 +139,9 @@ namespace Dialogue
             yield break;
         }
 
-        internal void AddLinePreview(string line)
+        public void AddLinePreview(string line)
         {
-            throw new NotImplementedException();
+            dialogueContextController.AddLinePreview(line);
         }
 
 
@@ -237,10 +237,10 @@ namespace Dialogue
         /// <param name="text">The text to display</param>
         /// <param name="onBeat">The beat this will occur on, leave <c>null</c> to trigger immidiatley</param>
         /// <param name="forceContext">Experimental, will prevent this from triggering unexpectely far in the future</param>
-        internal void AddWordDirectly(string text, NoteSystem.HitQuality hitQuality, float? onBeat = null, bool forceContext = false)
+        internal void UnGreyOutHitWord(string text, NoteSystem.HitQuality hitQuality, float? onBeat = null, bool forceContext = false)
         {
             AssertRythmSectionHasControl();
-            dialogueContextController.AddWordDirectly(text, (Dialogue.HitQuality)(int)hitQuality, onBeat, forceContext);
+            dialogueContextController.UnGreyOutHitWord(text, (Dialogue.HitQuality)(int)hitQuality, onBeat, forceContext);
         }
 
         private void AssertRythmSectionHasControl()

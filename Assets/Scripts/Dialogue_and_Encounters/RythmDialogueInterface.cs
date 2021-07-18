@@ -137,22 +137,22 @@ using System;
 
 
 
-        public void AddWordDirectly(string word, NoteSystem.HitQuality hitQuality, float? beatWhenDisplayed = null)
+        public void UnGreyOutHitWord(string word, NoteSystem.HitQuality hitQuality, float? beatWhenDisplayed = null)
         {
             word += ' ';
             if (beatWhenDisplayed != null)
             {
-                dialogueManager.AddWordDirectly(word, hitQuality, beatWhenDisplayed);
+                dialogueManager.UnGreyOutHitWord(word, hitQuality, beatWhenDisplayed);
             }
             else
             {
-                dialogueManager.AddWordDirectly(word, hitQuality);
+                dialogueManager.UnGreyOutHitWord(word, hitQuality);
             }
         }
 
         public void AddLinePreview(string line)
         {
-            Debug.LogWarning("Adding line Preview");
+            Debug.Log($"Adding line Preview {line}");
             dialogueManager.AddLinePreview(line);
         }
 
