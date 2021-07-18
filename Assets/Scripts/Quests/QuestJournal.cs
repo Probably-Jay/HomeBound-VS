@@ -12,19 +12,19 @@ namespace Quests
 
         public List<Quest> CurrentQuests { get => currentQuests; set => currentQuests = value; }
         
-        void Start()
-        {
-            InitInitialQuests();
-        }
+        //void Start()
+        //{
+        //    InitInitialQuests();
+        //}
 
-        private void InitInitialQuests()
-        {
-            foreach (var quest in currentQuests)
-            {
-                quest.Init();
-                BeginQuest(quest);
-            }
-        }
+        //private void InitInitialQuests()
+        //{
+        //    foreach (var quest in currentQuests)
+        //    {
+        //        quest.Init();
+        //        BeginQuest(quest);
+        //    }
+        //}
 
         public void AddAndBeginQuest(Quest quest)
         {

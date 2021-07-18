@@ -6,9 +6,17 @@ namespace Quests
 {
     public class SimpleQuestStep : QuestTaskCompletable
     {
-        private bool completed;
 
-        public override bool Completed { get => completed; protected set => completed = value; }
+     
+
+        [Tooltip("Keep this false if the task should not start completed")]
+        [SerializeField] private bool completed;
+
+        public override bool Completed
+        {
+            get => completed;
+            protected set => completed = value;
+        }
 
         public override event Action OnCompleted;
 
@@ -19,6 +27,8 @@ namespace Quests
         }
 
         public void UnCompleteStep() => Completed = false;
+
+
 
     }
 }

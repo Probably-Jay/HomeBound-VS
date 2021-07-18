@@ -68,6 +68,9 @@
     <Reference Include="~InteractableInterface">
       <HintPath>Library/ScriptAssemblies/~InteractableInterface.dll</HintPath>
     </Reference>
+    <Reference Include="~Dialogue_And_Encounters">
+      <HintPath>Library/ScriptAssemblies/~Dialogue_And_Encounters.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -97,9 +100,6 @@
     </Reference>
     <Reference Include="~Quests">
       <HintPath>Library/ScriptAssemblies/~Quests.dll</HintPath>
-    </Reference>
-    <Reference Include="~Dialogue_And_Encounters">
-      <HintPath>Library/ScriptAssemblies/~Dialogue_And_Encounters.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/PlaybackEngines/WebGLSupport/Managed/UnityEngine.dll</HintPath>
@@ -650,6 +650,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ChangeScene.cs" />
+    <Compile Include="Assets\DialogueQuests.cs" />
     <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
   </ItemGroup>

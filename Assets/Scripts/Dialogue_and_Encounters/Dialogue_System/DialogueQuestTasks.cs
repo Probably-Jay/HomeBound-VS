@@ -15,50 +15,37 @@ namespace Dialogue
     public class DialogueQuestTasksEditor : Editor
     {
 
-        // This will contain the <wave> array of the WaveManager. 
         SerializedProperty tasks;
 
-        // The Reorderable List we will be working with 
         ReorderableList list;
 
         private void OnEnable()
         {
-            // Get the <wave> array from WaveManager, in SerializedProperty form.
-            // Note that <serializedObject> is a property of the parent Editor class.
             tasks = serializedObject.FindProperty(nameof(DialogueQuestTasks.displayTasks));
 
-            // Set up the reorderable list       
             list = new ReorderableList(serializedObject, tasks, true, true, true, true);
 
 
-            // Update the array property's representation in the inspector
-            // Have the ReorderableList do its work
-            // Apply any property modification
-            list.drawElementCallback = DrawListItems; // Delegate to draw the elements on the list
-            list.drawHeaderCallback = DrawHeader; // Skip this line if you set displayHeader to 'false' in your ReorderableList constructor.
+            list.drawElementCallback = DrawListItems; 
+            list.drawHeaderCallback = DrawHeader; 
         }
 
-        //This is the function that makes the custom editor work
+
         public override void OnInspectorGUI()
         {
+            serializedObject.Update(); 
 
-           // base.OnInspectorGUI();
-
-
-            serializedObject.Update(); // Update the array property's representation in the inspector
-
-            list.DoLayoutList(); // Have the ReorderableList do its work
-
-            // We need to call this so that changes on the Inspector are saved by Unity.
+            list.DoLayoutList(); 
+     
             serializedObject.ApplyModifiedProperties();
         }
 
-        // Draws the elements on the list
+
         void DrawListItems(Rect rect, int index, bool isActive, bool isFocused)
         {
             SerializedProperty element = list.serializedProperty.GetArrayElementAtIndex(index); // The element in the list
 
-            //Create a property field and label field for each property. 
+
 
 
             EditorGUI.LabelField(new Rect(rect.x, rect.y, 50, EditorGUIUtility.singleLineHeight), "Task ID:");
@@ -73,14 +60,11 @@ namespace Dialogue
 
             EditorGUI.LabelField(new Rect(rect.x + 120, rect.y, 40, EditorGUIUtility.singleLineHeight), "Task:");
 
-            //The property field for level. Since we do not need so much space in an int, width is set to 20, height of a single line.
             EditorGUI.PropertyField(
                 new Rect(rect.x+160, rect.y, 150, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative(nameof(Internal.StringQuestDict.task)),
                 GUIContent.none
             );
-
- 
 
         }
 
@@ -97,7 +81,7 @@ namespace Dialogue
     public class DialogueQuestTasks : MonoBehaviour
     {
         public List<Internal.StringQuestDict> displayTasks;
-        Dictionary<string, Quests.SimpleQuestStep> tasks;
+        Dictionary<string, Quests.SimpleQuestStep> tasks = new Dictionary<string, Quests.SimpleQuestStep>();
 
         private void Awake()
         {

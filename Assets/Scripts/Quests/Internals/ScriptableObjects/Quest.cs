@@ -41,9 +41,33 @@ namespace Quests
 
         public event Action OnTaskComplete;
 
-
-        public void Init()
+        private void Awake()
         {
+            tasks.Clear();
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i);
+                var task = child.GetComponent<QuestTask>();
+                if (task != null)
+                {
+                    tasks.Add(task);
+                }
+            }
+
+            
+
+            // tasks = new List<QuestTask>( GetComponentsInChildren<QuestTask>());
+        }
+
+        private void Start()
+        {
+            Init();
+        }
+
+        private void Init()
+        {
+
             foreach (var task in tasks)
             {
                 task.Init();

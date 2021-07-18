@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef62fedf98cded54d8cd4e5c449b115d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tasks:
-  - id: 
+  displayTasks:
+  - id: Eq_0
     task: {fileID: 0}
 --- !u!1 &2533711652629958714
 GameObject:

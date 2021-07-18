@@ -1,14 +1,10 @@
 id: test
 
-[Player]: Hi? [rhythm: demo]
-
-// rhythm section words go here
+[REX]: hey
+[Player]: What's that feeling?[CompleteTask: Eq_0]
+[REX]: Let's go[rhythm: demo]
 
 [REX]: I hope you're having fun... 
-
-// and here
-
-// rhythm section ends
 
 [REX]: Now, that wasn't so bad huh?
 [Player]: I guess not...
