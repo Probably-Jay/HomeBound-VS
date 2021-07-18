@@ -64,8 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Rythm_and_Music\BeatIndicator.cs" />
     <Compile Include="Assets\Scripts\Rythm_and_Music\MusicManager.cs" />
+    <Compile Include="Assets\Scripts\Rythm_and_Music\PleaseIgnore.cs" />
     <Compile Include="Assets\Scripts\Rythm_and_Music\RythmEngine.cs" />
     <Compile Include="Assets\Scripts\Rythm_and_Music\RythmSong.cs" />
     <None Include="Assets\Scripts\Rythm_and_Music\~Rythm.asmdef" />

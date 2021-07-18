@@ -9058,6 +9058,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: tasks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: tasks.Array.data[0].id
+      value: T_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: tasks.Array.data[0].task
+      value: 
+      objectReference: {fileID: 1037624920}
     - target: {fileID: 6101950649974932413, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: rythmManager

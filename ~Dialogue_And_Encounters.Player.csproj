@@ -5,9 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7015841A-FB4E-4919-3EE4-4ED4064E7A32}</ProjectGuid>
+    <ProjectGuid>{BB1E1C67-5483-1F71-E9B8-B76288E65BDA}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Rythm</AssemblyName>
+    <AssemblyName>~Dialogue_And_Encounters</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -53,11 +53,23 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Rythm">
+      <HintPath>Library/ScriptAssemblies/Rythm.dll</HintPath>
+    </Reference>
     <Reference Include="~Core">
       <HintPath>Library/ScriptAssemblies/~Core.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    <Reference Include="~InteractableInterface">
+      <HintPath>Library/ScriptAssemblies/~InteractableInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="~Game">
+      <HintPath>Library/ScriptAssemblies/~Game.dll</HintPath>
+    </Reference>
+    <Reference Include="~Dialogue_System">
+      <HintPath>Library/ScriptAssemblies/~Dialogue_System.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
@@ -586,13 +598,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Rythm_and_Music\MusicManager.cs" />
-    <Compile Include="Assets\Scripts\Rythm_and_Music\PleaseIgnore.cs" />
-    <Compile Include="Assets\Scripts\Rythm_and_Music\RythmEngine.cs" />
-    <Compile Include="Assets\Scripts\Rythm_and_Music\RythmSong.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueBoxOpener.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueInstance.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RhythmSectionManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RythmDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitDetection.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitZone.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\IRythmDialogeControlInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\Lane.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSection.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSpawner.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\RhythmInitialise.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordNote.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordUI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Rythm_and_Music\~Rythm.asmdef" />
+    <None Include="Assets\Scripts\Dialogue_and_Encounters\~Dialogue_And_Encounters.asmdef" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

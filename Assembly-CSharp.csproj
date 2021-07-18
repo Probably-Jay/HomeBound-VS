@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ChangeScene.cs" />
-    <Compile Include="Assets\DialogueQuestTasks.cs" />
     <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
@@ -671,10 +670,6 @@
       <Project>{199B67E4-AD32-9AD5-E8A5-9F2B2E93326C}</Project>
       <Name>Unity.Timeline</Name>
     </ProjectReference>
-    <ProjectReference Include="DialogueSystem.csproj">
-      <Project>{64C63A26-6E11-3B72-2C3F-B172915EDAD0}</Project>
-      <Name>DialogueSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
       <Project>{917C5F4F-F6A9-54C0-90DD-1B347C333F4A}</Project>
       <Name>Unity.CollabProxy.Editor</Name>
@@ -726,6 +721,10 @@
     <ProjectReference Include="~Quests.csproj">
       <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
       <Name>~Quests</Name>
+    </ProjectReference>
+    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
+      <Project>{B1FD1A2C-C177-539C-2EB0-6F4E9E204FD6}</Project>
+      <Name>~Dialogue_And_Encounters</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

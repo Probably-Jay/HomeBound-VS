@@ -56,9 +56,6 @@
     <Reference Include="~Core">
       <HintPath>Library/ScriptAssemblies/~Core.dll</HintPath>
     </Reference>
-    <Reference Include="DialogueSystem">
-      <HintPath>Library/ScriptAssemblies/DialogueSystem.dll</HintPath>
-    </Reference>
     <Reference Include="Rythm">
       <HintPath>Library/ScriptAssemblies/Rythm.dll</HintPath>
     </Reference>

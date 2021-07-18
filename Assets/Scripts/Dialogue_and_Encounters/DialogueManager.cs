@@ -13,6 +13,7 @@ namespace Dialogue
         DialogueContextController dialogueContextController;
         //    RythmDialogueInterface rythmInterface;
         IRythmDialogeControlInterface rythmDialogeControlInterface;
+        DialogueQuestTasks dialogueQuestController;
 
         private Coroutine currentConversation;
 
@@ -30,6 +31,7 @@ namespace Dialogue
             conversationHandler = GetComponent<ConversationHandler>();
             dialogueContextController = GetComponent<DialogueContextController>();
             rythmDialogeControlInterface = GetComponent<RythmDialogueInterface>();
+            dialogueQuestController = GetComponentInChildren<DialogueQuestTasks>();
         }
 
 
@@ -125,7 +127,8 @@ namespace Dialogue
             conversation.OnTriggerRythmSection += (id) => rythmDialogeControlInterface.StartNewRythm(id);
             conversation.OnPause += (value) => dialogueContextController.PauseTyping(value);
             conversation.OnShake += (value) => dialogueContextController.Shake(value);
-
+            conversation.OnCompleteQuestStep += (id) => dialogueQuestController.CompleteQuestTaskStep(id);
+            conversation.OnUnCompleteQuestStep += (id) => dialogueQuestController.UnCompleteTaskStep(id);
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)
             {

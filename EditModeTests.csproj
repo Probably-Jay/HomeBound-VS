@@ -638,10 +638,6 @@
       <Project>{3827BD03-3FF5-7806-4376-88B54DD7A291}</Project>
       <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
-    <ProjectReference Include="DialogueSystem.csproj">
-      <Project>{64C63A26-6E11-3B72-2C3F-B172915EDAD0}</Project>
-      <Name>DialogueSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="~Game.csproj">
       <Project>{7D78C81D-0FD2-D4F7-4933-6287F7CF5652}</Project>
       <Name>~Game</Name>
