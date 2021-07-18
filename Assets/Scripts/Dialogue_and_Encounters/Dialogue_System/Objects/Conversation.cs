@@ -34,6 +34,9 @@ namespace Dialogue
         public event Action<float> OnShake;
         public void Shake(float v) => OnShake?.Invoke(v);
 
+        public event Action<string> OnBeginQuest;
+        public void BeginQuest(string id) => OnBeginQuest?.Invoke(id);
+
         public event Action<string> OnCompleteQuestStep;
         public void CompleteQuestStep(string id) => OnCompleteQuestStep?.Invoke(id);
 

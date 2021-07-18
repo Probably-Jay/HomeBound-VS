@@ -65,10 +65,7 @@ namespace RhythmSectionLoading {
             ReadSection(noteSheet);
             sectionLines = SplitSectionIntoStringLines(notes, toDialogues, otherCommands);
             noteLines = SplitSectionIntoNoteLines(notes, toDialogues, otherCommands);
-            foreach(string sectionLine in sectionLines)
-            {
-                Debug.Log(sectionLine);
-            }
+
             InitialiseSection();
 
         }

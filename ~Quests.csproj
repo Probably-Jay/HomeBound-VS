@@ -67,11 +67,12 @@
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\ColliderQuestStep.cs" />
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\EventListnerQuestStep.cs" />
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\SimpleQuestStep.cs" />
+    <Compile Include="Assets\Scripts\Quests\IQuestHolder.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\Interfaces\QuestTaskCompletable.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\Quest.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\QuestTask.cs" />
-    <Compile Include="Assets\Scripts\Quests\QuestHolder.cs" />
     <Compile Include="Assets\Scripts\Quests\QuestJournal.cs" />
+    <Compile Include="Assets\Scripts\Quests\SingleQuestGiver.cs" />
     <None Include="Assets\Scripts\Quests\~Quests.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

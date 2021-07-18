@@ -13,7 +13,8 @@ namespace Dialogue
         DialogueContextController dialogueContextController;
         //    RythmDialogueInterface rythmInterface;
         IRythmDialogeControlInterface rythmDialogeControlInterface;
-        DialogueQuestTasks dialogueQuestController;
+        DialogueQuestManager dialogueQuestController;
+        DialogueQuestTaskManager dialogueQuestTaskController;
 
         private Coroutine currentConversation;
 
@@ -31,7 +32,8 @@ namespace Dialogue
             conversationHandler = GetComponent<ConversationHandler>();
             dialogueContextController = GetComponent<DialogueContextController>();
             rythmDialogeControlInterface = GetComponent<RythmDialogueInterface>();
-            dialogueQuestController = GetComponentInChildren<DialogueQuestTasks>();
+            dialogueQuestController = GetComponentInChildren<DialogueQuestManager>();
+            dialogueQuestTaskController = GetComponentInChildren<DialogueQuestTaskManager>();
         }
 
 
@@ -127,8 +129,9 @@ namespace Dialogue
             conversation.OnTriggerRythmSection += (id) => rythmDialogeControlInterface.StartNewRythm(id);
             conversation.OnPause += (value) => dialogueContextController.PauseTyping(value);
             conversation.OnShake += (value) => dialogueContextController.Shake(value);
-            conversation.OnCompleteQuestStep += (id) => dialogueQuestController.CompleteQuestTaskStep(id);
-            conversation.OnUnCompleteQuestStep += (id) => dialogueQuestController.UnCompleteTaskStep(id);
+            conversation.OnBeginQuest += (id) => dialogueQuestController.PassQuest(id);
+            conversation.OnCompleteQuestStep += (id) => dialogueQuestTaskController.CompleteQuestTaskStep(id);
+            conversation.OnUnCompleteQuestStep += (id) => dialogueQuestTaskController.UnCompleteTaskStep(id);
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)
             {
@@ -146,29 +149,6 @@ namespace Dialogue
         {
             dialogueContextController.AddLinePreview(line);
         }
-
-
-        /// <summary>
-        /// Start new rythm section
-        /// </summary>
-        //public void EnterRythmEncounter(string id)
-        //{
-        //    StopCurrentConversation();
-        //    dialogueContextController.EnterArgument();
-        //    InRythmSection = true;
-
-        //    throw new NotImplementedException("Ryhtm start not implimented");
-
-        //}
-
-        /// <summary>
-        /// Stop a rythm section
-        /// </summary>
-        //public void ExitRythmEncounter()
-        //{
-        //    StopCurrentConversation();
-        //    InRythmSection = false;
-        //}
 
 
         // These functions are intented to be used in rythm sections only

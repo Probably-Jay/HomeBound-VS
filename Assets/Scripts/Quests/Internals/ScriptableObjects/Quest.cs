@@ -10,7 +10,7 @@ namespace Quests
     public class Quest : MonoBehaviour
     {
         [SerializeField] string questName;
-        [SerializeField] List<QuestTask> tasks = new List<QuestTask>();
+        [SerializeField,HideInInspector] List<QuestTask> tasks = new List<QuestTask>();
         [SerializeField] UnityEvent onQuestBegin;
         [SerializeField] UnityEvent onQuestComplete;
 
@@ -22,6 +22,12 @@ namespace Quests
 
 
         public int CurrentQuestStep { get; private set; } = -1;
+
+        public void Validate()
+        {
+            return;
+        }
+
         public QuestTask CurrentQuestTask
         {
             get
@@ -84,11 +90,13 @@ namespace Quests
             CurrentQuestStep = 0;
             BeginCurrentTask();
             onQuestBegin?.Invoke();
+            
         }
 
         private void BeginCurrentTask()
         {
             CurrentQuestTask.BeginTask();
+            
         }
 
         public void Progress()
@@ -105,13 +113,13 @@ namespace Quests
         {
             DisposeCurrentTask();
             CurrentQuestStep++;
+            Debug.Log("Quest step progressed");
             if (Complete)
             {
                 CompleteQuest();
                 return;
             }
             BeginCurrentTask();
-            Debug.Log("Quest step progressed");
         }
 
         private void DisposeCurrentTask()

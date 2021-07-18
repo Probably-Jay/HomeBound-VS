@@ -11,7 +11,7 @@ namespace Dialogue
 
    // Tells Unity to use this Editor class with the WaveManager script component.
 
-   [CustomEditor(typeof(DialogueQuestTasks))]
+    [CustomEditor(typeof(DialogueQuestTaskManager))]
     public class DialogueQuestTasksEditor : Editor
     {
 
@@ -21,7 +21,7 @@ namespace Dialogue
 
         private void OnEnable()
         {
-            tasks = serializedObject.FindProperty(nameof(DialogueQuestTasks.displayTasks));
+            tasks = serializedObject.FindProperty(nameof(DialogueQuestTaskManager.displayTasks));
 
             list = new ReorderableList(serializedObject, tasks, true, true, true, true);
 
@@ -33,7 +33,8 @@ namespace Dialogue
 
         public override void OnInspectorGUI()
         {
-            serializedObject.Update(); 
+            serializedObject.Update();
+            base.DrawDefaultInspector();
 
             list.DoLayoutList(); 
      
@@ -46,14 +47,14 @@ namespace Dialogue
             SerializedProperty element = list.serializedProperty.GetArrayElementAtIndex(index); // The element in the list
 
 
-
+           
 
             EditorGUI.LabelField(new Rect(rect.x, rect.y, 50, EditorGUIUtility.singleLineHeight), "Task ID:");
 
 
             EditorGUI.PropertyField(
                 new Rect(rect.x+60, rect.y, 50, EditorGUIUtility.singleLineHeight),
-                element.FindPropertyRelative(nameof(Internal.StringQuestDict.id)),
+                element.FindPropertyRelative(nameof(Internal.StringQuestTaskDict.id)),
                 GUIContent.none
             );
 
@@ -62,7 +63,7 @@ namespace Dialogue
 
             EditorGUI.PropertyField(
                 new Rect(rect.x+160, rect.y, 150, EditorGUIUtility.singleLineHeight),
-                element.FindPropertyRelative(nameof(Internal.StringQuestDict.task)),
+                element.FindPropertyRelative(nameof(Internal.StringQuestTaskDict.task)),
                 GUIContent.none
             );
 
@@ -78,9 +79,9 @@ namespace Dialogue
 #endif
 
 
-    public class DialogueQuestTasks : MonoBehaviour
+    public class DialogueQuestTaskManager : MonoBehaviour
     {
-        public List<Internal.StringQuestDict> displayTasks;
+        [SerializeField,HideInInspector] internal List<Internal.StringQuestTaskDict> displayTasks;
         Dictionary<string, Quests.SimpleQuestStep> tasks = new Dictionary<string, Quests.SimpleQuestStep>();
 
         private void Awake()
@@ -108,7 +109,7 @@ namespace Dialogue
         {
             if (!HasTask(ID))
             {
-                throw new System.Exception($"The quest task id {ID} does not exist in {nameof(DialogueQuestTasks)}");
+                throw new System.Exception($"The quest task id {ID} does not exist in {nameof(DialogueQuestTaskManager)}");
             }
         }
 
@@ -117,7 +118,7 @@ namespace Dialogue
     namespace Internal
     {
         [System.Serializable]
-        public struct StringQuestDict
+        public struct StringQuestTaskDict
         {
             public string id;
             public Quests.SimpleQuestStep task;

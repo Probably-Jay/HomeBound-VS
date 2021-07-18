@@ -128,7 +128,7 @@ namespace Overworld {
 
         private void DeactivateMovement() => canWalk = false;
 
-        void Start()
+        void Awake()
         {
             movementKeys.Clear();
             for (int i = 0; i < buttons.Length; i++)

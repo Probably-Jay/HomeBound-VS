@@ -602,7 +602,9 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueBoxTester.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueContextController.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueParsingException.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueQuestTasks.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueQuestManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueQuestManagerEditor.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueQuestTaskManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueTyper.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\FileLoading\DialogueLoader.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\FileLoading\DialogueSceneSerialisedLoader.cs" />
