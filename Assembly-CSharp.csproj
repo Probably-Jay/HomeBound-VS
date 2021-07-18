@@ -95,6 +95,7 @@
     <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\NoteSongs\NoteSheets\DanceSheet.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile9.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d3.txt" />

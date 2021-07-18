@@ -14,7 +14,8 @@ namespace NoteSystem
         [SerializeField] public HitZone hitZone { get; private set; }
         [SerializeField] List<WordNote> notesInChannel = new List<WordNote> { };
         [SerializeField] KeyCode button = KeyCode.Space;
-        [SerializeField] NoteDialogueInterface NDI;
+       // [SerializeField] NoteDialogueInterface NDI;
+        [SerializeField] RythmDialogueInterface RDI;
         [SerializeField] public Sprite noteSprite { get; private set; }
         // Start is called before the first frame update
         void Awake()
@@ -98,11 +99,11 @@ namespace NoteSystem
             }
             if (note.GetClimaxBeat() > Rythm.RythmEngine.Instance.CurrentBeat)
             {
-                NDI.AddWord(note.word, note.GetClimaxBeat());
+                RDI.UnGreyOutHitWord(note.word, quality, note.GetClimaxBeat());
             }
             else
             {
-                NDI.AddWord(note.word);
+                RDI.UnGreyOutHitWord(note.word, quality);
             }
 
             note.Remove();

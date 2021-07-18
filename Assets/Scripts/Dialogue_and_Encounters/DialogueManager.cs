@@ -20,10 +20,10 @@ namespace Dialogue
 
         public bool InRythmSection => rythmDialogeControlInterface.InRythmSection;
 
-        public bool ThisHasControl { get => InRythmSection ? hasControl : true; }
+        public bool ThisHasControl { get => InRythmSection ? HasControl : true; }
         public bool ReadyToPassToRythm { get; private set; }
 
-        bool hasControl => !rythmDialogeControlInterface.RythmHasControl;
+        bool HasControl => !rythmDialogeControlInterface.RythmHasControl;
 
         private void Awake()
         {
@@ -85,7 +85,7 @@ namespace Dialogue
         {
             if (!ContainsConversation(conversationID))
             {
-                throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}");
+                throw new Exception($"Conversation {conversationID} does not exist or is not currently loaded in {conversationHandler.LoadedConversationFolder}. Did you remember to add it to the scene serialiser?");
             }
         }
 
@@ -139,6 +139,11 @@ namespace Dialogue
             yield break;
         }
 
+        public void AddLinePreview(string line)
+        {
+            dialogueContextController.AddLinePreview(line);
+        }
+
 
         /// <summary>
         /// Start new rythm section
@@ -185,7 +190,7 @@ namespace Dialogue
 
         internal void ReleaseControl()
         {
-            if (!hasControl)
+            if (!HasControl)
             {
                 return;
             }
@@ -232,10 +237,10 @@ namespace Dialogue
         /// <param name="text">The text to display</param>
         /// <param name="onBeat">The beat this will occur on, leave <c>null</c> to trigger immidiatley</param>
         /// <param name="forceContext">Experimental, will prevent this from triggering unexpectely far in the future</param>
-        internal void AddWordDirectly(string text, float? onBeat = null, bool forceContext = false)
+        internal void UnGreyOutHitWord(string text, NoteSystem.HitQuality hitQuality, float? onBeat = null, bool forceContext = false)
         {
             AssertRythmSectionHasControl();
-            dialogueContextController.AddWordDirectly(text, onBeat, forceContext);
+            dialogueContextController.UnGreyOutHitWord(text, (Dialogue.HitQuality)(int)hitQuality, onBeat, forceContext);
         }
 
         private void AssertRythmSectionHasControl()

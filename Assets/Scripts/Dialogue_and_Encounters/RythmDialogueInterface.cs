@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rythm;
+using Dialogue;
 using RhythmSectionLoading;
 using System;
 
-namespace Dialogue
-{
+
     public enum Controler 
     {
         None,
@@ -14,7 +14,7 @@ namespace Dialogue
         Dialogue
     }
 
-    
+   
     public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterface
     {
         public Controler InControl { get; private set; }
@@ -133,5 +133,28 @@ namespace Dialogue
         {
             if (!InRythmSection) throw new System.Exception("This function may only be called in a rythm section");
         }
+
+
+
+
+        public void UnGreyOutHitWord(string word, NoteSystem.HitQuality hitQuality, float? beatWhenDisplayed = null)
+        {
+            word += ' ';
+            if (beatWhenDisplayed != null)
+            {
+                dialogueManager.UnGreyOutHitWord(word, hitQuality, beatWhenDisplayed);
+            }
+            else
+            {
+                dialogueManager.UnGreyOutHitWord(word, hitQuality);
+            }
+        }
+
+        public void AddLinePreview(string line)
+        {
+            Debug.Log($"Adding line Preview {line}");
+            dialogueManager.AddLinePreview(line);
+        }
+
+
     }
-}

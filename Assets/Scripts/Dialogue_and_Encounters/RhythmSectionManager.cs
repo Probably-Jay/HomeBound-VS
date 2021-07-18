@@ -11,7 +11,7 @@ public class RhythmSectionManager : MonoBehaviour
     [SerializeField] List<string> identifications = new List<string> { };
     [SerializeField] List<Rythm.NoteSection> sheets = new List<Rythm.NoteSection> { };
     [SerializeField] RhythmInitialise sectionLoader;
-    [SerializeField] Dialogue.RythmDialogueInterface rDI;
+    [SerializeField] RythmDialogueInterface rDI;
     [SerializeField] bool debugStartOnStart;
     public bool HasControl => rDI.RythmHasControl;
     private float time=0;
@@ -64,6 +64,10 @@ public class RhythmSectionManager : MonoBehaviour
             Debug.LogError("Passing control when does not have control");
         }
         rDI.PassControlToDialogue(passbackBeat);
+    }
+    public void ShowPreviewLine(string line)
+    {
+        rDI.AddLinePreview(line);
     }
 
     public void LoadAndBeginSection(string iD)

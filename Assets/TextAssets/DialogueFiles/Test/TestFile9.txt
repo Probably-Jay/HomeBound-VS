@@ -1,0 +1,18 @@
+id: test
+
+[Player]: Hi? [rhythm: demo]
+
+// rhythm section words go here
+
+[REX]: I hope you're having fun... 
+
+// and here
+
+// rhythm section ends
+
+[REX]: Now, that wasn't so bad huh?
+[Player]: I guess not...
+[REX]: That's it from the [colour: FF0000][shake: 0.5]HomeBound Tech Demo Update![colour: FFFFFF]
+[REX]: Hope to see you all soon!!
+[end]
+

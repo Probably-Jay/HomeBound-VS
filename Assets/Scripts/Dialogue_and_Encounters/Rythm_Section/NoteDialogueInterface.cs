@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete("Replaced by " + nameof(RythmDialogueInterface),true)]
 public class NoteDialogueInterface : MonoBehaviour
 {
     [SerializeField] DialogueBoxOpener DialogueBoxOpener;
@@ -20,17 +21,17 @@ public class NoteDialogueInterface : MonoBehaviour
     {
         
     }
-    public void AddWord(string word, float? hitBeat=null)
-    {
-        word += ' ';
-        if (hitBeat != null)
-        {
-            DialogueBox.AddWordDirectly(word, hitBeat);
-        }
-        else
-        {
-            DialogueBox.AddWordDirectly(word);
+    //public void AddWord(string word, float? hitBeat=null)
+    //{
+    //    word += ' ';
+    //    if (hitBeat != null)
+    //    {
+    //        DialogueBox.AddWordDirectly(word, hitBeat);
+    //    }
+    //    else
+    //    {
+    //        DialogueBox.AddWordDirectly(word);
 
-        }
-    }
+    //    }
+    //}
 }

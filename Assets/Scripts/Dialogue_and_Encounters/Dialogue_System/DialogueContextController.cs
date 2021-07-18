@@ -15,6 +15,16 @@ namespace Dialogue
         ,Encounter_PlayerSpeak
     }
 
+    public enum HitQuality
+    {
+        Miss
+       , Early
+       , Late
+       , Good
+       , Great
+       , Perfect
+    }
+
     [RequireComponent(typeof(DialogueTyper))]
     public class DialogueContextController : MonoBehaviour
     {
@@ -183,7 +193,7 @@ namespace Dialogue
         }
 
         public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false) => dialogueTyper.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
-        public void AddWordDirectly(string text, float? onBeat = null, bool forceContext = false) => dialogueTyper.AddNewWordDirectly(text, onBeat, forceContext);
+        public void UnGreyOutHitWord(string text, HitQuality hitQuality, float? onBeat = null, bool forceContext = false) => dialogueTyper.UnGreyOutWord(text, hitQuality, onBeat, forceContext);
 
         public void AddColourRTT(int colour)
         {
@@ -192,7 +202,10 @@ namespace Dialogue
             dialogueTyper.AddRichTextTag(tag);
         }
 
-       
+        public void AddLinePreview(string line)
+        {
+            dialogueTyper.AddLinePreview(line);
+        }
 
         //// Start is called before the first frame update
         //void Start()

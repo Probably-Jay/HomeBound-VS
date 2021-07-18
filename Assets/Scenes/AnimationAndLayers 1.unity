@@ -134,7 +134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3289020}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e90cb01db4453004a9c80046f8642634, type: 3}
   m_Name: 
@@ -8943,6 +8943,11 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 788265583}
+    - target: {fileID: 2533711652629958716, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2533711652668772420, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: m_Name
@@ -9621,6 +9626,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723951724}
   m_CullTransparentMesh: 0
+--- !u!223 &776047869 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 716948332, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373688918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &778829596
 GameObject:
   m_ObjectHideFlags: 0
@@ -10956,32 +10967,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1236444553}
     m_Modifications:
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 716948329, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 716948332, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1152684980}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: rDI
+      value: 
+      objectReference: {fileID: 1478533509}
+    - target: {fileID: 1913506035618416047, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: RDI
       value: 
       objectReference: {fileID: 1478533509}
     - target: {fileID: 4658575184520333015, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
@@ -11044,16 +11040,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658575184520333017, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 776047869}
     - target: {fileID: 4658575184520333019, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
-      propertyPath: DialogueBox
+      propertyPath: canvas
       value: 
-      objectReference: {fileID: 343909168}
-    - target: {fileID: 4658575184520333019, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658575185153892786, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
-      propertyPath: DialogueBoxOpener
+      propertyPath: RDI
       value: 
-      objectReference: {fileID: 966029579}
+      objectReference: {fileID: 1478533509}
+    - target: {fileID: 5811461777490372762, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
+        type: 3}
+      propertyPath: RDI
+      value: 
+      objectReference: {fileID: 1478533509}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
 --- !u!1 &1383698827 stripped
@@ -11157,7 +11163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainDialogueIDs:
-  - test_demo
+  - test
   runMainOnlyOnce: 1
   backupDialogueIDs: []
 --- !u!1 &1455971026
@@ -14096,7 +14102,7 @@ PrefabInstance:
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
       propertyPath: test.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
@@ -14138,6 +14144,11 @@ PrefabInstance:
       propertyPath: test.Array.data[7]
       value: 
       objectReference: {fileID: 4900000, guid: 32d18fa5e18e2fe489084c3296ee62cb, type: 3}
+    - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
+        type: 3}
+      propertyPath: test.Array.data[8]
+      value: 
+      objectReference: {fileID: 4900000, guid: 9c24cd80e3f1df04893dce3381e6f4cd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b480b27924a49d4293442265c49d470, type: 3}
 --- !u!1001 &4829981342510138750
@@ -14147,6 +14158,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4829981341636049674, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4829981341636049675, guid: 53792fb9ef3c88248b3e2af711a4da52,
         type: 3}
       propertyPath: dialogue
@@ -14221,6 +14237,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExampleQuest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829981343252242897, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53792fb9ef3c88248b3e2af711a4da52, type: 3}
