@@ -8943,6 +8943,11 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 788265583}
+    - target: {fileID: 2533711652629958716, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2533711652668772420, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: m_Name
@@ -11026,12 +11031,7 @@ PrefabInstance:
         type: 3}
       propertyPath: canvas
       value: 
-      objectReference: {fileID: 1373688919}
-    - target: {fileID: 4658575185153892786, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
-        type: 3}
-      propertyPath: RDI
-      value: 
-      objectReference: {fileID: 966029579}
+      objectReference: {fileID: 0}
     - target: {fileID: 4658575185153892786, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: RDI
@@ -11044,12 +11044,6 @@ PrefabInstance:
       objectReference: {fileID: 1478533509}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
---- !u!223 &1373688919 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 716948332, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1373688918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1383698827 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8828829650089832396, guid: efe6e47e411f8474c9072dd817056e1c,
@@ -11151,7 +11145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainDialogueIDs:
-  - test_demo
+  - test
   runMainOnlyOnce: 1
   backupDialogueIDs: []
 --- !u!1 &1455971026
@@ -14090,7 +14084,7 @@ PrefabInstance:
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
       propertyPath: test.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
@@ -14132,6 +14126,11 @@ PrefabInstance:
       propertyPath: test.Array.data[7]
       value: 
       objectReference: {fileID: 4900000, guid: 32d18fa5e18e2fe489084c3296ee62cb, type: 3}
+    - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
+        type: 3}
+      propertyPath: test.Array.data[8]
+      value: 
+      objectReference: {fileID: 4900000, guid: 9c24cd80e3f1df04893dce3381e6f4cd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b480b27924a49d4293442265c49d470, type: 3}
 --- !u!1001 &4829981342510138750
