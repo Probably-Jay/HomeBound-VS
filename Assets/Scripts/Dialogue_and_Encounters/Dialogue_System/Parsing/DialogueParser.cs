@@ -205,6 +205,7 @@ namespace Dialogue
             ,rhythm
             ,pause
             ,shake
+            ,Quest
             ,CompleteTask
             ,UncompleteTask
         }
@@ -310,6 +311,13 @@ namespace Dialogue
                         Action shake = () => conversation.Shake(v);
 
                         return shake;
+                    }
+
+                case Instructions.Quest:
+                    {
+                        Action beginQuest = () => conversation.BeginQuest(value);
+
+                        return beginQuest; 
                     }
 
                 case Instructions.CompleteTask:

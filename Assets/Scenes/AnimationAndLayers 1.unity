@@ -8926,7 +8926,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 366856504}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034434010}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9623052b6ba18774db62ea415867ade0, type: 3}
@@ -8943,71 +8943,6 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 788265583}
-    - target: {fileID: 2533711652629958716, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[0].value
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[0].inSlope
-      value: -3.1002724
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[1].inSlope
-      value: -0.2614759
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[0].outSlope
-      value: -3.1002724
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[1].inWeight
-      value: 0.091302216
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[1].outSlope
-      value: -0.2614759
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[0].outWeight
-      value: 0.016630003
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: whitenCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2533711652668772420, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: m_Name
@@ -9120,34 +9055,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
-      propertyPath: tasks.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: tasks.Array.data[0].id
-      value: T_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: displayTasks.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
-      propertyPath: tasks.Array.data[0].task
-      value: 
-      objectReference: {fileID: 1037624920}
-    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
-        type: 3}
       propertyPath: displayTasks.Array.data[0].id
-      value: Eq_0
+      value: Eq1_t0
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: displayTasks.Array.data[0].task
       value: 
       objectReference: {fileID: 1187329221}
+    - target: {fileID: 4174316436918520209, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: playerQuestJournal
+      value: 
+      objectReference: {fileID: 3289021}
+    - target: {fileID: 4174316436918520209, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: displayQuests.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174316436918520209, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: displayQuests.Array.data[0].id
+      value: Eq1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174316436918520209, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: displayQuests.Array.data[0].quest
+      value: 
+      objectReference: {fileID: 1712596749}
     - target: {fileID: 6101950649974932413, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: rythmManager
@@ -9962,24 +9897,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1034434010 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2533711652629958714, guid: 047080c6aa3bbed459b9053570908dcf,
-    type: 3}
-  m_PrefabInstance: {fileID: 366856504}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1034434011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034434010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbdeaa136f2d7e4aa0979b7bb1729c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1037624918
 GameObject:
   m_ObjectHideFlags: 0
@@ -10061,6 +9978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915dd64fc35f83640935b2c13647ec78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completed: 0
   UncompleteOnExit: 0
 --- !u!61 &1037624921
 BoxCollider2D:
@@ -10657,6 +10575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebdf586ee48f4ea498f6a6ca2c0ab449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completed: 0
 --- !u!212 &1187329222
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11440,7 +11359,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 366856504}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034434010}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2137bd1021abd84d92ad0947946f939, type: 3}
@@ -11736,6 +11655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e8bc579c94ddb4e940c97879e8f3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completed: 0
   target: {fileID: 1383698827}
   componentTypeName: DialogueInstance
   eventName: OnBegunLastMainMainDialogue

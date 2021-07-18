@@ -1,7 +1,7 @@
 id: test
 
-[REX]: hey
-[Player]: What's that feeling?[CompleteTask: Eq_0]
+[REX]: hey [Quest: Eq1]
+[Player]: What's that feeling?[CompleteTask: Eq1_t0]
 [REX]: Let's go[rhythm: demo]
 
 [REX]: I hope you're having fun... 

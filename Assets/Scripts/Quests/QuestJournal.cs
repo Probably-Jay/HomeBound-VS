@@ -5,28 +5,31 @@ using UnityEngine;
 
 namespace Quests
 {
-    public class QuestJournal : MonoBehaviour
+    public class QuestJournal : MonoBehaviour, IQuestHolder
     {
-        [SerializeField] List<Quest> currentQuests;
+        [SerializeField] List<Quest> currentQuests = new List<Quest>();
 
 
         public List<Quest> CurrentQuests { get => currentQuests; set => currentQuests = value; }
-        
-        //void Start()
-        //{
-        //    InitInitialQuests();
-        //}
 
-        //private void InitInitialQuests()
-        //{
-        //    foreach (var quest in currentQuests)
-        //    {
-        //        quest.Init();
-        //        BeginQuest(quest);
-        //    }
-        //}
 
-        public void AddAndBeginQuest(Quest quest)
+        private void Start()
+        {
+            foreach (var quest in CurrentQuests)
+            {
+                try
+                {
+                    quest.Validate();
+                }
+                catch (System.Exception)
+                {
+                    Debug.LogError($"Quest {quest} is null or invalid.");
+                    throw;
+                }
+            }
+        }
+
+        public void ReceiveQuest(Quest quest)
         {
             CurrentQuests.Add(quest);
             BeginQuest(quest);
