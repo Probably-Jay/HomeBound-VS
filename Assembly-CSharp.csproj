@@ -727,6 +727,10 @@
       <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
       <Name>~Quests</Name>
     </ProjectReference>
+    <ProjectReference Include="DialogueSystem.csproj">
+      <Project>{64C63A26-6E11-3B72-2C3F-B172915EDAD0}</Project>
+      <Name>DialogueSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

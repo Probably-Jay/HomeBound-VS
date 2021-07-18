@@ -29,6 +29,7 @@ namespace Dialogue
         TMP_Text display;
         [SerializeField] TMP_Text nameOutdisplay;
         [SerializeField] TMP_Text continuedisplay;
+        [SerializeField] AnimationCurve whitenCurve;
 
 
         BufferAndLivePhrase bufferAndLivePhrase = new BufferAndLivePhrase();
@@ -132,7 +133,7 @@ namespace Dialogue
         public void ResumeNormal()
         {
             StopCoroutines();
-
+            grayedOutText.Clear();
             if(dialogueQueue.Count > 0)
             {
                 beenQueuedThisConversation = true;
@@ -153,6 +154,7 @@ namespace Dialogue
         {
             if (textCoroutine != null)
                 StopCoroutine(textCoroutine);
+            grayedOutText.Clear();
             textCoroutine = StartCoroutine(BufferNextPhrase());
             
         }
@@ -303,6 +305,11 @@ namespace Dialogue
                 return;
             }
             grayedOutText.WhitenWord(word);
+        }
+
+        internal void UpdateGreyedOut()
+        {
+          //  if()
             bufferAndLivePhrase.Reset();
             bufferAndLivePhrase.AddToLiveDirectly(grayedOutText.Text);
         }
@@ -328,8 +335,9 @@ namespace Dialogue
             {
                 grayedOutText.Clear();
             }
-            grayedOutText.AddLine(line);
+            grayedOutText.AddLine(line, this, whitenCurve);
             bufferAndLivePhrase.AddToLiveDirectly(grayedOutText.Text.ToString());
+            OnTypedPhrase?.Invoke();
         }
 
         private void QueuePhrase(DialoguePhrase phrase, long? _context = null)
@@ -589,14 +597,18 @@ namespace Dialogue
         public string Text { get => text; }
         public bool Empty => text.Length == 0;
 
-        
+        AnimationCurve curve;
+        DialogueTyper parent;
 
-        public void AddLine(string line) 
+        public void AddLine(string line, DialogueTyper parent, AnimationCurve curve) 
         {
             if (Active)
             {
                 Debug.LogError("Grayed out text already active");
             }
+
+            this.parent = parent;
+            this.curve = curve;
 
             var words = line.Split(' ');
             StringBuilder sb = new StringBuilder();
@@ -606,16 +618,49 @@ namespace Dialogue
             }
 
             text = sb.ToString();
+            Active = true;
         }
 
         public void WhitenWord(string word)
         {
+            parent.StartCoroutine(WhitenCoroutine(word, parent));
+        }
+
+        IEnumerator WhitenCoroutine(string word, DialogueTyper parent)
+        {
+           // float st = Time.time;
+            float ct = 0;
             word = word.Trim();
             string pattern = $@"<color=\#777777>{word}<color=\#FFFFFF>";
-            //pattern = Regex.Escape(pattern);
-            //text = Regex.Replace(text, pattern, $"<b>{word}</b>");
-            Regex regex = new Regex(pattern);
-            text = regex.Replace(text, $"<b>{word}</b>", 1);
+
+            while (Active && ct < 1)
+            {
+                ct += Time.deltaTime;
+                string replacement = GetReplacement(word, ct);
+
+                Regex regex = new Regex(pattern);
+
+                if (Active)
+                    text = regex.Replace(text, replacement, 1);
+
+                pattern = replacement;
+
+                parent.UpdateGreyedOut();
+                yield return null;
+            }
+        }
+
+        private string GetReplacement(string word, float ct)
+        {
+            float s = EvaluateSize(ct);
+            int size = (int)(s * 100f);
+            string percent = size.ToString("00");
+            return $"<b><color=#00FF00><size={percent}%>{word}</size></color></b>";
+        }
+
+        private float EvaluateSize(float ct)
+        {
+            return curve.Evaluate(ct);
         }
 
         public void Clear()
@@ -623,6 +668,8 @@ namespace Dialogue
             text = "";
             Active = false;
         }
+
+
     }
 
     internal class BufferAndLivePhrase

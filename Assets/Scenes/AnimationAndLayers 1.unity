@@ -8948,6 +8948,66 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[0].value
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[0].inSlope
+      value: -3.1002724
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[1].inSlope
+      value: -0.2614759
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[0].outSlope
+      value: -3.1002724
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[1].inWeight
+      value: 0.091302216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[1].outSlope
+      value: -0.2614759
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[0].outWeight
+      value: 0.016630003
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: whitenCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2533711652668772420, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: m_Name
@@ -10560,8 +10620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 100
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
+  m_RefResolutionX: 1920
+  m_RefResolutionY: 1080
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
