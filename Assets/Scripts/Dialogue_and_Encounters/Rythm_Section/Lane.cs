@@ -99,11 +99,11 @@ namespace NoteSystem
             }
             if (note.GetClimaxBeat() > Rythm.RythmEngine.Instance.CurrentBeat)
             {
-                RDI.AddWordDirectly(note.word, quality, note.GetClimaxBeat());
+                RDI.UnGreyOutHitWord(note.word, quality, note.GetClimaxBeat());
             }
             else
             {
-                RDI.AddWordDirectly(note.word, quality);
+                RDI.UnGreyOutHitWord(note.word, quality);
             }
 
             note.Remove();

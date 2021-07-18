@@ -320,9 +320,12 @@ namespace Dialogue
 
         internal void AddLinePreview(string line)
         {
-            if (!bufferAndLivePhrase.Empty||!grayedOutText.Empty)
+            if (!bufferAndLivePhrase.Empty)
             {
                 Debug.LogError("Box is not empty");
+            }
+            if (!grayedOutText.Empty)
+            {
                 grayedOutText.Clear();
             }
             grayedOutText.AddLine(line);
@@ -607,9 +610,12 @@ namespace Dialogue
 
         public void WhitenWord(string word)
         {
+            word = word.Trim();
             string pattern = $@"<color=\#777777>{word}<color=\#FFFFFF>";
             //pattern = Regex.Escape(pattern);
-            text = Regex.Replace(text, pattern, word);
+            //text = Regex.Replace(text, pattern, $"<b>{word}</b>");
+            Regex regex = new Regex(pattern);
+            text = regex.Replace(text, $"<b>{word}</b>", 1);
         }
 
         public void Clear()
