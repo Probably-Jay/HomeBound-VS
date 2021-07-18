@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueBoxTester.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueContextController.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueParsingException.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueQuestTasks.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\DialogueTyper.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\FileLoading\DialogueLoader.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Dialogue_System\FileLoading\DialogueSceneSerialisedLoader.cs" />
@@ -638,6 +639,10 @@
     <ProjectReference Include="~CameraControl.csproj">
       <Project>{34A124F9-42B7-FA37-AF8F-855D6953560F}</Project>
       <Name>~CameraControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="~Quests.csproj">
+      <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
+      <Name>~Quests</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>

@@ -205,6 +205,8 @@ namespace Dialogue
             ,rhythm
             ,pause
             ,shake
+            ,CompleteTask
+            ,UncompleteTask
         }
 
         private string ParseInlineInstructions(Conversation conversation, DialoguePhrase phrase, string body, int lineNumber, GroupCollection header)
@@ -297,18 +299,33 @@ namespace Dialogue
 
                 case Instructions.pause:
                     {
-                        var v = int.Parse(value);
+                        int v = int.Parse(value);
                         Action pause = () => conversation.Pause(v);
                         return pause;
                     }
 
                 case Instructions.shake:
                     {
-                        var v = float.Parse(value);
+                        float v = float.Parse(value);
                         Action shake = () => conversation.Shake(v);
 
                         return shake;
                     }
+
+                case Instructions.CompleteTask:
+                    {
+                        Action completeQuestStep = () => conversation.CompleteQuestStep(value);
+
+                        return completeQuestStep;
+                    }
+
+                case Instructions.UncompleteTask:
+                    {
+                        Action unCompleteQuestStep = () => conversation.UnCompleteQuestStep(value);
+
+                        return unCompleteQuestStep;
+                    }
+
                 default: throw new Exception("Instruction name exists but no code handles this case");
             }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +17,7 @@ namespace Quests
         
 
         public bool TaskComplete => taskPrerequisites.TrueForAll((t) => t.Completed);
+        public bool AnyTasksCompleted => taskPrerequisites.Any((t) => t.Completed);
 
         public UnityEvent OnCompleteTask { get => onCompleteTask; set => onCompleteTask = value; }
         public UnityEvent OnBeginTask { get => onBeginTask; set => onBeginTask = value; }
@@ -39,7 +41,10 @@ namespace Quests
                 return;
             }
 
-            Debug.Log("Quest step completed");
+            if (AnyTasksCompleted)
+            {
+                Debug.Log("Quest step completed");
+            }
 
             if (!TaskComplete)
             {
@@ -57,7 +62,16 @@ namespace Quests
             }
         }
 
-        
+        internal void BeginTask()
+        {
+            TaskActive = true;
+            OnBeginTask?.Invoke();
+            CheckAndTriggerTaskComplete();
+        }
 
+        internal void EndTask()
+        {
+            TaskActive = false;
+        }
     }
 }

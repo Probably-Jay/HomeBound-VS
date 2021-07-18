@@ -41,9 +41,33 @@ namespace Quests
 
         public event Action OnTaskComplete;
 
-
-        public void Init()
+        private void Awake()
         {
+            tasks.Clear();
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i);
+                var task = child.GetComponent<QuestTask>();
+                if (task != null)
+                {
+                    tasks.Add(task);
+                }
+            }
+
+            
+
+            // tasks = new List<QuestTask>( GetComponentsInChildren<QuestTask>());
+        }
+
+        private void Start()
+        {
+            Init();
+        }
+
+        private void Init()
+        {
+
             foreach (var task in tasks)
             {
                 task.Init();
@@ -58,8 +82,13 @@ namespace Quests
             }
             Debug.Log($"Quest {QuestName} has been begun");
             CurrentQuestStep = 0;
-            CurrentQuestTask.TaskActive = true;
+            BeginCurrentTask();
             onQuestBegin?.Invoke();
+        }
+
+        private void BeginCurrentTask()
+        {
+            CurrentQuestTask.BeginTask();
         }
 
         public void Progress()
@@ -81,14 +110,14 @@ namespace Quests
                 CompleteQuest();
                 return;
             }
-            CurrentQuestTask.TaskActive = true;
+            BeginCurrentTask();
             Debug.Log("Quest step progressed");
         }
 
         private void DisposeCurrentTask()
         {
             CurrentQuestTask.OnCompleteTask?.RemoveListener(Progress);
-            CurrentQuestTask.TaskActive = false;
+            CurrentQuestTask.EndTask();
         }
 
         private void CompleteQuest()

@@ -615,7 +615,7 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordUI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Dialogue_and_Encounters\~DialogueAndEncounters.asmdef" />
+    <None Include="Assets\Scripts\Dialogue_and_Encounters\~DialogueSystem.asmdef" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

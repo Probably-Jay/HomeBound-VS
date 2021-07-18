@@ -9,17 +9,17 @@ namespace Quests
 
       
 
-        private void Start()
-        {
-            InitQuests();
-        }
+        //private void Start()
+        //{
+        //    InitQuests();
+        //}
 
-        private void InitQuests()
-        {
-            foreach (var quest in quests)
-            {
-                quest.Init();
-            }
-        }
+        //private void InitQuests()
+        //{
+        //    foreach (var quest in quests)
+        //    {
+        //        quest.Init();
+        //    }
+        //}
     }
 }

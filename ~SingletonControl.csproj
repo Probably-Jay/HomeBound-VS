@@ -612,10 +612,6 @@
       <Project>{354EAF47-F608-D8B1-D75E-1AFE6B6D692A}</Project>
       <Name>~Core</Name>
     </ProjectReference>
-    <ProjectReference Include="DialogueSystem.csproj">
-      <Project>{64C63A26-6E11-3B72-2C3F-B172915EDAD0}</Project>
-      <Name>DialogueSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="Rythm.csproj">
       <Project>{A405DFF5-69F4-D895-29C6-2000F8AF12A1}</Project>
       <Name>Rythm</Name>
