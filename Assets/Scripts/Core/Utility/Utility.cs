@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,5 +38,43 @@ namespace Helper
         }
 
     }
+
+    public class RollingAverage
+    {
+        readonly Queue<float> values = new Queue<float>();
+        private int NumberOfValuesAveragedOver { get; set; }
+        public bool ReachedAccuracy => values.Count >= NumberOfValuesAveragedOver;
+        public float AverageValue
+        {
+            get
+            {
+                if(values.Count == 0)
+                    throw new Exception("Rolling average must have at least one value");
+                
+                float sum = 0;
+                foreach (var value in values)
+                {
+                    sum += value;
+                }
+                return sum/values.Count;
+            }
+        }
+
+        public RollingAverage(int itterations)
+        {
+            this.NumberOfValuesAveragedOver = itterations;
+        }
+
+        public void Record(float v)
+        {
+            if (ReachedAccuracy)
+            {
+                values.Dequeue();
+            }
+            values.Enqueue(v);
+        }
+
+    }
+
 
 }

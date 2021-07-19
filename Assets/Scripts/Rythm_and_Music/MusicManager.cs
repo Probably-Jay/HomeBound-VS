@@ -84,7 +84,7 @@ namespace Rythm
 
         internal void SetClipTime(int sample, int difference)
         {
-            Debug.LogWarning($"Re-syncing music. Jumping {difference} samples");
+            Debug.LogWarning($"Re-syncing music. Jumping {difference} samples ({RythmEngine.Instance.SamplesToSeconds(difference)}s)");
             CurrentAudioSource.timeSamples = sample;
         }
 
