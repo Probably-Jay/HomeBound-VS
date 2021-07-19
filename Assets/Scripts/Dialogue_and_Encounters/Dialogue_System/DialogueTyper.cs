@@ -650,8 +650,8 @@ namespace Dialogue
             // float animationRate= hitQuality != HitQuality.Perfect ? 1 : 2f/3f;
 
             bool isPerfect = hitQuality == HitQuality.Perfect;
-
-            while (Active && ct < 1)
+            float ainmTime = !isPerfect ? 1 : 15f;
+            while (Active && ct < ainmTime)
             {
                 ct += Time.deltaTime;
                 string replacement = GetReplacement(word, hitQualityTag, ct, isPerfect);
@@ -705,7 +705,15 @@ namespace Dialogue
 
         private float EvaluateSize(float t, bool isPerfect)
         {
-            return !isPerfect ? curve.Evaluate(t):perfectCurve.Evaluate(t);
+            if (!isPerfect)
+            {
+                return curve.Evaluate(t);
+            }
+            else
+            {
+                var m = curve.Evaluate(t) > 0 ? curve.Evaluate(t): curve.Evaluate(t); 
+                return  m * (1-(Mathf.Sin(t*2*Mathf.PI)*0.25f));
+            }
         }
 
         public void Clear()

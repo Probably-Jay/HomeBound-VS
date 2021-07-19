@@ -8942,6 +8942,91 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 788265583}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].time
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].value
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].inSlope
+      value: -0.044264678
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].inSlope
+      value: -3.448115
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].inSlope
+      value: -2.8040369
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].outSlope
+      value: -0.044264678
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].outSlope
+      value: -3.448115
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].inWeight
+      value: 0.091199815
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].outSlope
+      value: -2.8040369
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].outWeight
+      value: 0.905604
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].outWeight
+      value: 0.14111948
+      objectReference: {fileID: 0}
     - target: {fileID: 2533711652668772420, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: m_Name
