@@ -19,6 +19,7 @@ namespace NoteSystem {
         [SerializeField] GameObject wordUIPrefab;
         WordUI wordUI;
         private RhythmSectionManager rSM;
+        private bool hasMissed=false;
 
         public bool CanAddWord => rSM.HasControl;
         private void OnEnable()
@@ -68,7 +69,7 @@ namespace NoteSystem {
             var newPos = Vector3.LerpUnclamped(startPos.position, endPos.position, (float)((Rythm.RythmEngine.Instance.CurrentBeat - spawningBeat) / absoluteBeatsToHit));
             UodatePosition(newPos);
 
-            if ((Rythm.RythmEngine.Instance.CurrentBeat > this.climaxBeat) & (HitDetection.CheckHit(climaxBeat, Rythm.RythmEngine.Instance.CurrentBeat) == HitQuality.Miss))
+            if ((Rythm.RythmEngine.Instance.CurrentBeat > this.climaxBeat) & (HitDetection.CheckHit(climaxBeat, Rythm.RythmEngine.Instance.CurrentBeat) == HitQuality.Miss)&!hasMissed)
             {
                 BroadcastHasMissed();
             }
@@ -135,6 +136,7 @@ namespace NoteSystem {
         }
         private void BroadcastHasMissed()
         {
+            hasMissed = true;
             rSM.Strikethrough(this);
         }
     }
