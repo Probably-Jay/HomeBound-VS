@@ -36,6 +36,8 @@ namespace Rythm
             }
         }
 
+      //  public void CS() => Debug.Log(CurrentSample);
+
         public float TimeInSong => (float)CurrentSample / (float)MusicManager.CurrentClipFrequency;
         public float DurationOfSong => (float)MusicManager.CurrentClipSamples / (float)MusicManager.CurrentClipFrequency;
         public float PercentThroughSong => TimeInSong / DurationOfSong;
@@ -58,10 +60,26 @@ namespace Rythm
         readonly SortedDictionary<float, Action> queuedActions = new SortedDictionary<float, Action>();
 
 
-        int CurrentSample => MusicManager.CurrentSample;
+        int CurrentMusicSample => MusicManager.CurrentSample;
 
+        int currentEstimatedSample;
+        int cachedMusicSample;
 
-      //  private AudioSource AudioSource { get; set; }
+        //  private AudioSource AudioSource { get; set; }
+
+        private void Update()
+        {
+            InvokeQueue();
+            UpdateCurrentSample();
+        }
+
+        private void UpdateCurrentSample()
+        {
+            if(cachedMusicSample != CurrentMusicSample)
+            {
+                //currentEstimatedSample = 
+            }
+        }
 
         public override void Initialise()
         {
@@ -172,10 +190,7 @@ namespace Rythm
 
   
 
-        private void Update()
-        {          
-            InvokeQueue();
-        }
+
 
         private void InvokeQueue()
         {
