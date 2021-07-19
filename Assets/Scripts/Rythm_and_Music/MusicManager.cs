@@ -82,6 +82,12 @@ namespace Rythm
             multiAudioSource.PauseClip();
         }
 
+        internal void SetClipTime(int sample, int difference)
+        {
+            Debug.LogWarning($"Re-syncing music. Jumping {difference} samples");
+            CurrentAudioSource.timeSamples = sample;
+        }
+
         public void ResumeSong()
         {
             multiAudioSource.ResumeClip();

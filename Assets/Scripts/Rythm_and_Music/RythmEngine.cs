@@ -83,6 +83,28 @@ namespace Rythm
         {
             if (!PlayingMusic) return;
 
+            UpdateCurrentSampleEstimate();
+
+            if(cachedMusicSample == CurrentMusicSample)
+            {
+                return;
+            }
+
+
+            int difference = currentEstimatedSample - CurrentMusicSample;
+            if (Mathf.Abs(difference) > SecondsToSamples(0.014f)) // correct any differences in sample
+            {
+                MusicManager.SetClipTime(currentEstimatedSample, difference);
+            }
+
+            cachedMusicSample = CurrentMusicSample;
+
+        }
+
+        private int SecondsToSamples(float s) => Mathf.RoundToInt((float)FrequencyOfClip * s);
+
+        private void LegacyUpdateCurrentSample()
+        {
             if (cachedMusicSample == CurrentMusicSample)
             {
                 UpdateCurrentSampleEstimate();
@@ -92,26 +114,24 @@ namespace Rythm
             cachedMusicSample = CurrentMusicSample;
 
             int samplesDelta = CurrentMusicSample - currentEstimatedSample;
-            if(currentEstimatedSample < CurrentMusicSample)
-            {
-              //  Debug.LogWarning($"Time jumping forwards by {samplesDelta} ({SamplesToBeats(samplesDelta)} beats) to ({currentEstimatedSample} to {CurrentMusicSample})");
+            if (currentEstimatedSample < CurrentMusicSample) { }
+            //  Debug.LogWarning($"Time jumping forwards by {samplesDelta} ({SamplesToBeats(samplesDelta)} beats) to ({currentEstimatedSample} to {CurrentMusicSample})");
+            else { }
+            // Debug.LogError($"***Time jumping backwards by {samplesDelta} ({SamplesToBeats(samplesDelta)} beats) to ({currentEstimatedSample} to {CurrentMusicSample})***");
 
-            }
-            else
-            {
-                // Debug.LogError($"***Time jumping backwards by {samplesDelta} ({SamplesToBeats(samplesDelta)} beats) to ({currentEstimatedSample} to {CurrentMusicSample})***");
-            }
 
 
             currentEstimatedSample = CurrentMusicSample;
-
         }
 
-
+        private void FixedUpdate()
+        {
+            Debug.Log(CurrentMusicSample);
+        }
 
         private void UpdateCurrentSampleEstimate()
         {
-            var ds = Mathf.FloorToInt(Time.deltaTime * FrequencyOfClip);
+            var ds = Mathf.RoundToInt(Time.deltaTime * FrequencyOfClip);
             currentEstimatedSample += ds;
            // Debug.Log($"Updating estimate by {ds} to {currentEstimatedSample}");
         }

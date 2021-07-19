@@ -32,17 +32,11 @@ namespace NoteSystem
 
         void Update()
         {
-            //Debug.Log(tempCurrentBeat);
-           // Rythm.RythmEngine.Instance.CB();
             if (Input.GetKeyDown(button))
             {
                 float tempCurrentBeat = Rythm.RythmEngine.Instance.CurrentBeat;
                 RemovePastBeats(tempCurrentBeat);
                 ProcessHitOnNextNote(tempCurrentBeat);
-                if (notesInChannel.Count > 0)
-                {
-                    // hey zap, what was supposed to go here? -J
-                }
             }
         }
         private void RemovePastBeats(float tempCurrentBeat)
@@ -50,7 +44,7 @@ namespace NoteSystem
             if (notesInChannel.Count > 0)
             {
                 HitQuality hitKind = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat, this);
-                if ((notesInChannel[0].GetClimaxBeat() < Rythm.RythmEngine.Instance.CurrentBeat) && (hitKind == HitQuality.Miss))
+                if ((notesInChannel[0].GetClimaxBeat() < tempCurrentBeat) && (hitKind == HitQuality.Miss))
                 {
                     notesInChannel.RemoveAt(0);
                     RemovePastBeats(tempCurrentBeat);

@@ -19,9 +19,9 @@ namespace NoteSystem
         // 120 BPM ==> 0.5 SPB ==> 0.01B == 0.05s == 50ms 
 
         private const double PERFECT_BEATS_OFF = 0.017; 
-        private const double GREAT_BEATS_OFF = 0.05;
-        private const double GOOD_BEATS_OFF = 0.1;
-        private const double POOR_BEATS_OFF = 0.35;
+        private const double GREAT_BEATS_OFF = 0.06;
+        private const double GOOD_BEATS_OFF = 0.12;
+        private const double POOR_BEATS_OFF = 0.3;
 
 
         public static HitQuality CheckHit(float targetBeat, float currentBeat, MonoBehaviour m )
