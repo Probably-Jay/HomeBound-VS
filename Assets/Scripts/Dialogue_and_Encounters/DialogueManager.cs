@@ -145,6 +145,8 @@ namespace Dialogue
             yield break;
         }
 
+   
+
         public void AddLinePreview(string line)
         {
             dialogueContextController.AddLinePreview(line);
@@ -224,6 +226,11 @@ namespace Dialogue
         {
             AssertRythmSectionHasControl();
             dialogueContextController.UnGreyOutHitWord(text, (Dialogue.HitQuality)(int)hitQuality, onBeat, forceContext);
+        }
+        internal void StrikeThroughMissedWord(string word, float? onBeat = null, bool forceContext = false)
+        {
+            AssertRythmSectionHasControl();
+            dialogueContextController.StrikeThroughMissedWord(word, onBeat, forceContext);
         }
 
         private void AssertRythmSectionHasControl()

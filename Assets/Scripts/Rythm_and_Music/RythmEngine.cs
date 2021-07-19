@@ -334,7 +334,7 @@ namespace Rythm
             return (float)target;
         }
 
-        private float GetNextBeat(float beatResolution = 1)
+        public float GetNextBeat(float beatResolution = 1)
         {
 
             var beatSplit = Maths.WholeAndFrac(CurrentBeat); // get whole and fractional part

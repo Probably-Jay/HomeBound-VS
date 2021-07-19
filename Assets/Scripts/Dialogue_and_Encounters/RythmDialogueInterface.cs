@@ -139,7 +139,7 @@ using System;
 
         public void UnGreyOutHitWord(string word, NoteSystem.HitQuality hitQuality, float? beatWhenDisplayed = null)
         {
-            word += ' ';
+           // word += ' ';
             if (beatWhenDisplayed != null)
             {
                 dialogueManager.UnGreyOutHitWord(word, hitQuality, beatWhenDisplayed);
@@ -158,7 +158,8 @@ using System;
         
         public void StrikeThrough(NoteSystem.WordNote note)
         {
-            Debug.LogError("Strikethrough effect has not been implemented, word stricken:" + note.word);
+           // dialogueManager.StrikeThroughMissedWord(note.word,RythmEngine.Instance.GetNextBeat());
+            dialogueManager.StrikeThroughMissedWord(note.word);
         }
 
 
