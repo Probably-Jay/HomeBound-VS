@@ -697,15 +697,15 @@ namespace Dialogue
 
         private string GetSizePercent(float ct, bool isPerfect)
         {
-            float s = EvaluateSize(ct);
+            float s = EvaluateSize(ct,isPerfect);
             int size = (int)(s * 100f);
             string percent = size.ToString("00");
             return percent;
         }
 
-        private float EvaluateSize(float t)
+        private float EvaluateSize(float t, bool isPerfect)
         {
-            return curve.Evaluate(t);
+            return !isPerfect ? curve.Evaluate(t):perfectCurve.Evaluate(t);
         }
 
         public void Clear()
