@@ -23,7 +23,15 @@ namespace Dialogue
     {
 
         public const string greyTag = "<color=#777777>";
+        public const string escapedGreyTag = @"<color=\#777777>";
         public const string whiteTag = "<color=#FFFFFF>";
+        public const string escapedWhiteTag = @"<color=\#FFFFFF>";
+
+        public const string tealTag = "<color=#00ffe5>";
+        public const string greeenTag = "<color=#42db5b>"; //#4fff4f
+        public const string amberTag = "<color=#dba542>";
+        public const string redTag = "<color=#d10000>";
+        
 
 
         TMP_Text display;
@@ -176,6 +184,8 @@ namespace Dialogue
             //  bufferPhrase = new DialoguePhrase();
             //liveString.Clear();
 
+            grayedOutText.Clear();
+
             ClearBox();
         }
 
@@ -301,15 +311,14 @@ namespace Dialogue
         {
             if (_context.HasValue && _context != Context)
             {
-                Debug.LogWarning($"Word {word} out of context ({_context} vs {Context})");
+                Debug.LogError($"Word {word} out of context ({_context} vs {Context})");
                 return;
             }
-            grayedOutText.WhitenWord(word);
+            grayedOutText.WhitenWord(word, hitQuality);
         }
 
         internal void UpdateGreyedOut()
         {
-          //  if()
             bufferAndLivePhrase.Reset();
             bufferAndLivePhrase.AddToLiveDirectly(grayedOutText.Text);
         }
@@ -621,22 +630,24 @@ namespace Dialogue
             Active = true;
         }
 
-        public void WhitenWord(string word)
+        public void WhitenWord(string word, HitQuality hitQuality)
         {
-            parent.StartCoroutine(WhitenCoroutine(word, parent));
+            parent.StartCoroutine(WhitenCoroutine(word, hitQuality, parent));
         }
 
-        IEnumerator WhitenCoroutine(string word, DialogueTyper parent)
+        IEnumerator WhitenCoroutine(string word, HitQuality hitQuality, DialogueTyper parent)
         {
            // float st = Time.time;
             float ct = 0;
             word = word.Trim();
-            string pattern = $@"<color=\#777777>{word}<color=\#FFFFFF>";
+            string pattern = $@"{DialogueTyper.escapedGreyTag}{word}{DialogueTyper.escapedWhiteTag}";
+            string hitQualityTag = GetHitQuality(hitQuality);
+
 
             while (Active && ct < 1)
             {
                 ct += Time.deltaTime;
-                string replacement = GetReplacement(word, ct);
+                string replacement = GetReplacement(word, hitQualityTag, ct);
 
                 Regex regex = new Regex(pattern);
 
@@ -650,12 +661,39 @@ namespace Dialogue
             }
         }
 
-        private string GetReplacement(string word, float ct)
+        private string GetReplacement(string word, string hitQualityTag, float ct)
+        {
+            string percent = GetSizePercent(ct);
+            
+            return $"<b>{hitQualityTag}<size={percent}%>{word}</size></color></b>";
+        }
+
+        private string GetHitQuality(HitQuality hitQuality)
+        {
+            switch (hitQuality)
+            {
+                case HitQuality.Miss: return DialogueTyper.redTag;
+
+                case HitQuality.Early: return DialogueTyper.amberTag;
+
+                case HitQuality.Late: return DialogueTyper.amberTag;
+
+                case HitQuality.Good: return DialogueTyper.greeenTag;
+
+                case HitQuality.Great: return DialogueTyper.greeenTag;
+
+                case HitQuality.Perfect: return DialogueTyper.tealTag;
+
+                default: throw new NotImplementedException();
+            }
+        }
+
+        private string GetSizePercent(float ct)
         {
             float s = EvaluateSize(ct);
             int size = (int)(s * 100f);
             string percent = size.ToString("00");
-            return $"<b><color=#00FF00><size={percent}%>{word}</size></color></b>";
+            return percent;
         }
 
         private float EvaluateSize(float ct)

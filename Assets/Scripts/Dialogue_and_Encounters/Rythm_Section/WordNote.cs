@@ -79,7 +79,7 @@ namespace NoteSystem {
             float distanceMoved = (newPos.x - transform.position.x);
             if (distanceMoved > +0.00001f) // if we have moved any small value to the right
             {
-                Debug.LogError($"Note attempting to move note to the right! {(Mathf.Sign(distanceMoved)>0 ? "+":"")}{distanceMoved} Preventing.");
+                Debug.LogError($"Note attempting to move note to the right! {(Mathf.Sign(distanceMoved) > 0 ? "+" : "")}{distanceMoved} Preventing.");
                 return;
             }
             this.transform.position = newPos;

@@ -29,32 +29,22 @@ namespace NoteSystem
             notesInChannel.Add(note);
         }
 
-        // Update is called once per frame
+
         void Update()
         {
             if (Input.GetKeyDown(button))
             {
-            //    Debug.Log("bam!");
-                Rythm.RythmEngine.Instance.QueueActionNextBeat(() =>
-                {
-                    //Debug.Log("beat");
-                }
-                    );
                 float tempCurrentBeat = Rythm.RythmEngine.Instance.CurrentBeat;
                 RemovePastBeats(tempCurrentBeat);
                 ProcessHitOnNextNote(tempCurrentBeat);
-                if (notesInChannel.Count > 0)
-                {
-
-                }
             }
         }
         private void RemovePastBeats(float tempCurrentBeat)
         {
             if (notesInChannel.Count > 0)
             {
-                HitQuality hitKind = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat);
-                if ((notesInChannel[0].GetClimaxBeat() < Rythm.RythmEngine.Instance.CurrentBeat) && (hitKind == HitQuality.Miss))
+                HitQuality hitKind = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat, this);
+                if ((notesInChannel[0].GetClimaxBeat() < tempCurrentBeat) && (hitKind == HitQuality.Miss))
                 {
                     notesInChannel.RemoveAt(0);
                     RemovePastBeats(tempCurrentBeat);
@@ -65,25 +55,18 @@ namespace NoteSystem
         {
             if (notesInChannel.Count > 0)
             {
-                HitQuality nextNoteHitQuality = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat);
+                HitQuality nextNoteHitQuality = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat, this);
 
                 if (nextNoteHitQuality == HitQuality.Miss)
                 {
-                    //process miss here
-                    //Debug.Log("Miss!");
-                    //  Debug.Log(tempCurrentBeat + ", " + notesInChannel[0].GetClimaxBeat());
                     hitZone.MissAnimation();
                     return;
                 }
-                else
-                {
-                 //   Debug.Log(nextNoteHitQuality);
-                    ProcessHitOnNote(notesInChannel[0], nextNoteHitQuality);
-                    hitZone.HitAnimation();
-                 //   Debug.Log("processed hit on:" + notesInChannel[0].word);
-                    notesInChannel.RemoveAt(0);
-                }
 
+                ProcessHitOnNote(notesInChannel[0], nextNoteHitQuality);
+                hitZone.HitAnimation();
+
+                notesInChannel.RemoveAt(0);
             }
             else
             {
