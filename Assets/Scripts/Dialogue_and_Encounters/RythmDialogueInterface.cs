@@ -155,6 +155,11 @@ using System;
             Debug.Log($"Adding line Preview {line}");
             dialogueManager.AddLinePreview(line);
         }
+        
+        public void StrikeThrough(NoteSystem.WordNote note)
+        {
+            throw new NotImplementedException("Strikethrough effect has not been implemented, word stricken:" + note.word);
+        }
 
 
     }

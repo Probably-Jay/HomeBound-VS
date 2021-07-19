@@ -67,6 +67,11 @@ namespace NoteSystem {
 
             var newPos = Vector3.LerpUnclamped(startPos.position, endPos.position, (float)((Rythm.RythmEngine.Instance.CurrentBeat - spawningBeat) / absoluteBeatsToHit));
             UodatePosition(newPos);
+
+            if ((Rythm.RythmEngine.Instance.CurrentBeat > this.climaxBeat) & (HitDetection.CheckHit(climaxBeat, Rythm.RythmEngine.Instance.CurrentBeat) == HitQuality.Miss))
+            {
+                BroadcastHasMissed();
+            }
         }
 
         private void UodatePosition(Vector3 newPos)
@@ -127,6 +132,10 @@ namespace NoteSystem {
         {
             wordUI.Remove();
             Destroy(gameObject);
+        }
+        private void BroadcastHasMissed()
+        {
+            rSM.Strikethrough(this);
         }
     }
 

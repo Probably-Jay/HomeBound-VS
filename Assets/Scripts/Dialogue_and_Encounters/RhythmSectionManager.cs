@@ -121,7 +121,10 @@ public class RhythmSectionManager : MonoBehaviour
         sectionLoader.EndSection();
         Rythm.RythmEngine.Instance.StopRythmSong();
     }
-
+    public void Strikethrough(NoteSystem.WordNote note)
+    {
+        rDI.StrikeThrough(note);
+    }
 
 }
    
