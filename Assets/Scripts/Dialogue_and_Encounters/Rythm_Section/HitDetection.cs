@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace NoteSystem
@@ -15,28 +16,36 @@ namespace NoteSystem
 
     public static class HitDetection
     {
-        // Start is called before the first frame update
+        // 120 BPM ==> 0.5 SPB ==> 0.01B == 0.05s == 50ms 
 
-        
-        public static HitQuality CheckHit(float targetBeat, float currentBeat)
+        private const double PERFECT_BEATS_OFF = 0.017; 
+        private const double GREAT_BEATS_OFF = 0.05;
+        private const double GOOD_BEATS_OFF = 0.1;
+        private const double POOR_BEATS_OFF = 0.35;
+
+
+        public static HitQuality CheckHit(float targetBeat, float currentBeat, MonoBehaviour m )
         {
             float beatsOff = (Mathf.Abs(targetBeat - currentBeat));
 
-            if (beatsOff > 0.4) { return HitQuality.Miss; }
+            if (beatsOff > POOR_BEATS_OFF) { return HitQuality.Miss; }
 
-            //HitQuality output;
-            if (beatsOff < 0.1)
+            
+            if (beatsOff < PERFECT_BEATS_OFF)
             {
+                Debug.Log($"Perfect: {currentBeat}/{targetBeat} ({beatsOff} beats off)");
+                m.StartCoroutine(DebugNextFrame());
                 return HitQuality.Perfect;
             }
-            else if (beatsOff < 0.2)
+            else if (beatsOff < GREAT_BEATS_OFF)
             {
                 return HitQuality.Great;
             }
-            else if (beatsOff < 0.3)
+            else if (beatsOff < GOOD_BEATS_OFF)
             {
                 return HitQuality.Good;
             }
+
             else if (targetBeat > currentBeat)
             {
                 return HitQuality.Early;
@@ -48,6 +57,12 @@ namespace NoteSystem
 
 
         }
-        // Update is called once per frame
+
+        private static IEnumerator DebugNextFrame()
+        {
+            yield return null;
+          //  yield return null;
+            Debug.Log($"Next frame: {Rythm.RythmEngine.Instance.CurrentBeat}");
+        }
     }
 }

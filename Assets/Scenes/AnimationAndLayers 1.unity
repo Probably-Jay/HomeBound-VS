@@ -9054,12 +9054,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
+      propertyPath: displayTasks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
       propertyPath: displayTasks.Array.data[0].id
       value: Eq1_t0
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
+      propertyPath: displayTasks.Array.data[1].id
+      value: Eq1_t0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
       propertyPath: displayTasks.Array.data[0].task
+      value: 
+      objectReference: {fileID: 1187329221}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: displayTasks.Array.data[1].task
       value: 
       objectReference: {fileID: 1187329221}
     - target: {fileID: 4174316436918520209, guid: 047080c6aa3bbed459b9053570908dcf,
