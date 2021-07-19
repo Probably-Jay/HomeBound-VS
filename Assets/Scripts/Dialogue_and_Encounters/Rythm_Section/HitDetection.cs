@@ -18,7 +18,7 @@ namespace NoteSystem
     {
         // 120 BPM ==> 0.5 SPB ==> 0.01B == 0.05s == 50ms 
 
-        private const double PERFECT_BEATS_OFF = 0.017*3; 
+        private const double PERFECT_BEATS_OFF = 0.02; 
         private const double GREAT_BEATS_OFF = 0.06;
         private const double GOOD_BEATS_OFF = 0.12;
         private const double POOR_BEATS_OFF = 0.3;

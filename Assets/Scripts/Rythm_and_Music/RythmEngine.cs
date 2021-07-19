@@ -63,13 +63,15 @@ namespace Rythm
 
         private float SamplesToBeats(int sample) => SamplesToSeconds(sample) / BPS;
 
-        private float SamplesToSeconds(int sample) => sample / FrequencyOfClip;
+        public float SamplesToSeconds(int sample) => sample / FrequencyOfClip;
 
 
         int CurrentMusicSample => MusicManager.CurrentSample;
 
         int currentEstimatedSample;
         int cachedMusicSample;
+
+        RollingAverage rollingAverageSamplesOff = new RollingAverage(6);
 
         //  private AudioSource AudioSource { get; set; }
 
@@ -92,7 +94,18 @@ namespace Rythm
 
 
             int difference = currentEstimatedSample - CurrentMusicSample;
-            if (Mathf.Abs(difference) > SecondsToSamples(0.014f)) // correct any differences in sample
+
+            rollingAverageSamplesOff.Record(difference);
+
+            if(!rollingAverageSamplesOff.ReachedAccuracy)
+            {
+                return;
+            }
+            var avg = rollingAverageSamplesOff.AverageValue;
+
+            Debug.Log($"avg: {avg}");
+
+            if (Mathf.Abs(avg) > SecondsToSamples(0.01f)) // correct any differences in sample
             {
                 MusicManager.SetClipTime(currentEstimatedSample, difference);
             }
@@ -101,7 +114,7 @@ namespace Rythm
 
         }
 
-        private int SecondsToSamples(float s) => Mathf.RoundToInt((float)FrequencyOfClip * s);
+        public int SecondsToSamples(float s) => Mathf.RoundToInt((float)FrequencyOfClip * s);
 
         private void LegacyUpdateCurrentSample()
         {
@@ -126,7 +139,7 @@ namespace Rythm
 
         private void FixedUpdate()
         {
-            Debug.Log(CurrentMusicSample);
+         //   Debug.Log(CurrentMusicSample);
         }
 
         private void UpdateCurrentSampleEstimate()
