@@ -30,7 +30,7 @@ namespace Dialogue
         public const string tealTag = "<color=#00ffe5>";
         public const string greeenTag = "<color=#42db5b>"; //#4fff4f
         public const string amberTag = "<color=#dba542>";
-        public const string redTag = "<color=#d10000>";
+        public const string redTag = "<color=#d10000z>";
         
 
 
@@ -38,6 +38,7 @@ namespace Dialogue
         [SerializeField] TMP_Text nameOutdisplay;
         [SerializeField] TMP_Text continuedisplay;
         [SerializeField] AnimationCurve whitenCurve;
+        [SerializeField] AnimationCurve perfectWhitenCurve;
 
 
         BufferAndLivePhrase bufferAndLivePhrase = new BufferAndLivePhrase();
@@ -344,7 +345,7 @@ namespace Dialogue
             {
                 grayedOutText.Clear();
             }
-            grayedOutText.AddLine(line, this, whitenCurve);
+            grayedOutText.AddLine(line, this, whitenCurve, perfectWhitenCurve);
             bufferAndLivePhrase.AddToLiveDirectly(grayedOutText.Text.ToString());
             OnTypedPhrase?.Invoke();
         }
@@ -607,9 +608,10 @@ namespace Dialogue
         public bool Empty => text.Length == 0;
 
         AnimationCurve curve;
+        private AnimationCurve perfectCurve;
         DialogueTyper parent;
 
-        public void AddLine(string line, DialogueTyper parent, AnimationCurve curve) 
+        public void AddLine(string line, DialogueTyper parent, AnimationCurve curve, AnimationCurve perfectWhitenCurve) 
         {
             if (Active)
             {
@@ -618,6 +620,7 @@ namespace Dialogue
 
             this.parent = parent;
             this.curve = curve;
+            this.perfectCurve = perfectWhitenCurve;
 
             var words = line.Split(' ');
             StringBuilder sb = new StringBuilder();
@@ -643,11 +646,15 @@ namespace Dialogue
             string pattern = $@"{DialogueTyper.escapedGreyTag}{word}{DialogueTyper.escapedWhiteTag}";
             string hitQualityTag = GetHitQuality(hitQuality);
 
+            // float animationFactor = hitQuality != HitQuality.Perfect ? 1 : 1.5f;
+            // float animationRate= hitQuality != HitQuality.Perfect ? 1 : 2f/3f;
+
+            bool isPerfect = hitQuality == HitQuality.Perfect;
 
             while (Active && ct < 1)
             {
                 ct += Time.deltaTime;
-                string replacement = GetReplacement(word, hitQualityTag, ct);
+                string replacement = GetReplacement(word, hitQualityTag, ct, isPerfect);
 
                 Regex regex = new Regex(pattern);
 
@@ -661,9 +668,9 @@ namespace Dialogue
             }
         }
 
-        private string GetReplacement(string word, string hitQualityTag, float ct)
+        private string GetReplacement(string word, string hitQualityTag, float ct, bool isPerfect)
         {
-            string percent = GetSizePercent(ct);
+            string percent = GetSizePercent(ct, isPerfect);
             
             return $"<b>{hitQualityTag}<size={percent}%>{word}</size></color></b>";
         }
@@ -688,7 +695,7 @@ namespace Dialogue
             }
         }
 
-        private string GetSizePercent(float ct)
+        private string GetSizePercent(float ct, bool isPerfect)
         {
             float s = EvaluateSize(ct);
             int size = (int)(s * 100f);
@@ -696,9 +703,9 @@ namespace Dialogue
             return percent;
         }
 
-        private float EvaluateSize(float ct)
+        private float EvaluateSize(float t)
         {
-            return curve.Evaluate(ct);
+            return curve.Evaluate(t);
         }
 
         public void Clear()
