@@ -24,7 +24,7 @@ namespace NoteSystem
         private const double POOR_BEATS_OFF = 0.3;
 
 
-        public static HitQuality CheckHit(float targetBeat, float currentBeat, MonoBehaviour m )
+        public static HitQuality CheckHit(float targetBeat, float currentBeat )
         {
             float beatsOff = (Mathf.Abs(targetBeat - currentBeat));
 
@@ -34,7 +34,7 @@ namespace NoteSystem
             if (beatsOff < PERFECT_BEATS_OFF)
             {
                 Debug.Log($"Perfect: {currentBeat}/{targetBeat} ({beatsOff} beats off)");
-                m.StartCoroutine(DebugNextFrame());
+                //m.StartCoroutine(DebugNextFrame());
                 return HitQuality.Perfect;
             }
             else if (beatsOff < GREAT_BEATS_OFF)

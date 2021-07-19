@@ -43,7 +43,7 @@ namespace NoteSystem
         {
             if (notesInChannel.Count > 0)
             {
-                HitQuality hitKind = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat, this);
+                HitQuality hitKind = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat);
                 if ((notesInChannel[0].GetClimaxBeat() < tempCurrentBeat) && (hitKind == HitQuality.Miss))
                 {
                     notesInChannel.RemoveAt(0);
@@ -55,7 +55,7 @@ namespace NoteSystem
         {
             if (notesInChannel.Count > 0)
             {
-                HitQuality nextNoteHitQuality = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat, this);
+                HitQuality nextNoteHitQuality = HitDetection.CheckHit((float)notesInChannel[0].GetClimaxBeat(), tempCurrentBeat);
 
                 if (nextNoteHitQuality == HitQuality.Miss)
                 {
