@@ -21,7 +21,7 @@ namespace Rythm
         [SerializeField] float noMusicBPM = 120;
         [SerializeField] private bool invokeAllQueedActionsOnSongChange;
 
-        float NoMusicBPS => noMusicBPM/60.0f;
+        float NoMusicBPS => noMusicBPM / 60.0f;
 
         public float CurrentBeat
         {
@@ -29,16 +29,18 @@ namespace Rythm
             {
                 if (!PlayingMusic)
                 {
-                  //  Debug.LogError("Not playing music");
+                    //  Debug.LogError("Not playing music");
                     return Time.time * NoMusicBPS;
                 }
                 return sampleOffset + (TimeInSong * BPS);
             }
         }
 
-      //  public void CS() => Debug.Log(CurrentSample);
+      //  public void CB() => Debug.Log(CurrentBeat);
 
-        public float TimeInSong => (float)CurrentSample / (float)MusicManager.CurrentClipFrequency;
+        public float TimeInSong => (float)currentEstimatedSample / FrequencyOfClip;
+        private float FrequencyOfClip => (float)MusicManager.CurrentClipFrequency;
+
         public float DurationOfSong => (float)MusicManager.CurrentClipSamples / (float)MusicManager.CurrentClipFrequency;
         public float PercentThroughSong => TimeInSong / DurationOfSong;
         public float BPS => BPM / 60f;
@@ -50,7 +52,7 @@ namespace Rythm
 
         public MusicManager MusicManager { get; private set; }
 
-       // public AudioClip CurrentMusicClip { get => MusicManager.AudioSource.clip; }
+        // public AudioClip CurrentMusicClip { get => MusicManager.AudioSource.clip; }
 
         float BPM;
         float sampleOffset;
@@ -58,6 +60,10 @@ namespace Rythm
         float BeatsInSong => (float)(DurationOfSong * BPS);
 
         readonly SortedDictionary<float, Action> queuedActions = new SortedDictionary<float, Action>();
+
+        private float SamplesToBeats(int sample) => SamplesToSeconds(sample) / BPS;
+
+        private float SamplesToSeconds(int sample) => sample / FrequencyOfClip;
 
 
         int CurrentMusicSample => MusicManager.CurrentSample;
@@ -75,21 +81,50 @@ namespace Rythm
 
         private void UpdateCurrentSample()
         {
-            if(cachedMusicSample != CurrentMusicSample)
+            if (!PlayingMusic) return;
+
+            if (cachedMusicSample == CurrentMusicSample)
             {
-                //currentEstimatedSample = 
+                UpdateCurrentSampleEstimate();
+                return;
             }
+
+            cachedMusicSample = CurrentMusicSample;
+
+            int samplesDelta = CurrentMusicSample - currentEstimatedSample;
+            if(currentEstimatedSample < CurrentMusicSample)
+            {
+              //  Debug.LogWarning($"Time jumping forwards by {samplesDelta} ({SamplesToBeats(samplesDelta)} beats) to ({currentEstimatedSample} to {CurrentMusicSample})");
+
+            }
+            else
+            {
+                // Debug.LogError($"***Time jumping backwards by {samplesDelta} ({SamplesToBeats(samplesDelta)} beats) to ({currentEstimatedSample} to {CurrentMusicSample})***");
+            }
+
+
+            currentEstimatedSample = CurrentMusicSample;
+
+        }
+
+
+
+        private void UpdateCurrentSampleEstimate()
+        {
+            var ds = Mathf.FloorToInt(Time.deltaTime * FrequencyOfClip);
+            currentEstimatedSample += ds;
+           // Debug.Log($"Updating estimate by {ds} to {currentEstimatedSample}");
         }
 
         public override void Initialise()
         {
             base.InitSingleton();
-         //   AudioSource = GetComponent<AudioSource>();
+            //   AudioSource = GetComponent<AudioSource>();
             MusicManager = GetComponent<MusicManager>();
             MusicManager.OnChangedMusic += MusicManager_OnChangedMusic;
         }
 
-   
+
         private void OnDisable()
         {
             MusicManager.OnChangedMusic -= MusicManager_OnChangedMusic;
@@ -113,7 +148,7 @@ namespace Rythm
 
         private void ClearAnyQueuedActions()
         {
-            if(queuedActions.Count > 0)
+            if (queuedActions.Count > 0)
             {
                 if (invokeAllQueedActionsOnSongChange)
                 {
@@ -124,7 +159,7 @@ namespace Rythm
                 {
                     Debug.LogError($"There are actions queued while changing the song! Discarding all");
                 }
-                
+
                 queuedActions.Clear();
             }
 
@@ -135,10 +170,10 @@ namespace Rythm
             int count = 0;
             while (queuedActions.Count > 0)
             {
-                if(count > 100)
+                if (count > 100)
                 {
                     throw new Exception("Possible cyclical action queue detected");
-                   // break;
+                    // break;
                 }
                 List<float> ToRemoveCache = new List<float>();
                 var cacheofQueuedActions = new SortedDictionary<float, Action>(queuedActions);
@@ -167,11 +202,13 @@ namespace Rythm
         {
             BPM = music.BPM;
             sampleOffset = music.offset;
+            cachedMusicSample = CurrentMusicSample;
+            currentEstimatedSample = CurrentMusicSample;
         }
 
         //private void BeginPlaying(RythmSong music)
         //{
-           
+
         //}
 
 
@@ -186,9 +223,9 @@ namespace Rythm
 
         //}
 
-      
 
-  
+
+
 
 
 
@@ -221,7 +258,7 @@ namespace Rythm
         }
 
 
-        public void QueueActionNextBeat(Action action) => QueueActionAfterBeats(action,0);
+        public void QueueActionNextBeat(Action action) => QueueActionAfterBeats(action, 0);
 
         /// <summary>
         /// Will add an event to be triggered on the beat, or after a certain number of beats happen. <paramref name="beatsTime"/> is measured in <paramref name="beatResolution"/> at <c>0.25 == 1/4 beats</c>
@@ -237,7 +274,7 @@ namespace Rythm
             }
 
             float target;
-            if(beatsTime > 0)
+            if (beatsTime > 0)
             {
                 target = GetBeatsFromNow(beatsTime, beatResolution);
             }
@@ -245,7 +282,7 @@ namespace Rythm
             {
                 target = GetNextBeat(beatResolution);
             }
-            
+
             AddEvent(action, target);
         }
 
@@ -255,11 +292,11 @@ namespace Rythm
         /// <param name="action">The function to be called</param>
         /// <param name="targetBeat">The beat that this will be triggered on</param>
         public void QueueActionAtExplicitBeat(Action action, float targetBeat)
-        {   
+        {
             AddEvent(action, targetBeat);
         }
 
-    
+
 
         public float GetBeatsFromNow(int beatsTime, float beatResolution = 1)
         {
@@ -293,7 +330,7 @@ namespace Rythm
         {
             //Debug.Log($"Queued event for beat {beat}");
 
-            if(beat < CurrentBeat)
+            if (beat < CurrentBeat)
             {
                 Debug.LogWarning("Beat queued for the past");
             }
@@ -301,7 +338,7 @@ namespace Rythm
             Action newEvent;
             if (queuedActions.TryGetValue(beat, out newEvent))
             {
-               // newEvent += action;
+                // newEvent += action;
                 //queuedActions[beat] += newEvent;
                 queuedActions[beat] += action;
             }

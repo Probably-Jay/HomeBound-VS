@@ -33,7 +33,7 @@ namespace NoteSystem
         void Update()
         {
             //Debug.Log(tempCurrentBeat);
-            Rythm.RythmEngine.Instance.CS();
+           // Rythm.RythmEngine.Instance.CB();
             if (Input.GetKeyDown(button))
             {
                 float tempCurrentBeat = Rythm.RythmEngine.Instance.CurrentBeat;

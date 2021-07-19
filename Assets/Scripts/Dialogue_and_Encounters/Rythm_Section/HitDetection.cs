@@ -16,25 +16,25 @@ namespace NoteSystem
 
     public static class HitDetection
     {
-        // 120 BPS ==> 0.5 SPB ==> 0.03B == 0.015s == 15ms 
+        // 120 BPM ==> 0.5 SPB ==> 0.01B == 0.05s == 50ms 
 
-        private const double PERFECT_BEATS_OFF = 0.03; 
-        private const double GREAT_BEATS_OFF = 0.1;
-        private const double GOOD_BEATS_OFF = 0.3;
-        private const double MISS_BEATS_OFF = 0.4;
+        private const double PERFECT_BEATS_OFF = 0.017; 
+        private const double GREAT_BEATS_OFF = 0.05;
+        private const double GOOD_BEATS_OFF = 0.1;
+        private const double POOR_BEATS_OFF = 0.35;
 
 
         public static HitQuality CheckHit(float targetBeat, float currentBeat, MonoBehaviour m )
         {
             float beatsOff = (Mathf.Abs(targetBeat - currentBeat));
 
-            if (beatsOff > MISS_BEATS_OFF) { return HitQuality.Miss; }
+            if (beatsOff > POOR_BEATS_OFF) { return HitQuality.Miss; }
 
             
             if (beatsOff < PERFECT_BEATS_OFF)
             {
                 Debug.Log($"Perfect: {currentBeat}/{targetBeat} ({beatsOff} beats off)");
-              //  m.StartCoroutine(DebugNextFrame());
+                m.StartCoroutine(DebugNextFrame());
                 return HitQuality.Perfect;
             }
             else if (beatsOff < GREAT_BEATS_OFF)
@@ -58,11 +58,11 @@ namespace NoteSystem
 
         }
 
-        //private static IEnumerator DebugNextFrame()
-        //{
-        //    yield return null;
-        //    yield return null;
-        //    Debug.Log($"Next frame: {Rythm.RythmEngine.Instance.CurrentBeat}");
-        //}
+        private static IEnumerator DebugNextFrame()
+        {
+            yield return null;
+          //  yield return null;
+            Debug.Log($"Next frame: {Rythm.RythmEngine.Instance.CurrentBeat}");
+        }
     }
 }
