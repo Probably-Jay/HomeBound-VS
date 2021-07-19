@@ -158,7 +158,7 @@ using System;
         
         public void StrikeThrough(NoteSystem.WordNote note)
         {
-            throw new NotImplementedException("Strikethrough effect has not been implemented, word stricken:" + note.word);
+            Debug.LogError("Strikethrough effect has not been implemented, word stricken:" + note.word);
         }
 
 
