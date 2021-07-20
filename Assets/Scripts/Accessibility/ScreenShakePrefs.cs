@@ -29,7 +29,7 @@ namespace Accessibility
 
         private void OnEnable()
         {
-            slider.value = GetSliderValue();
+            ReInitialise();
             slider.onValueChanged.AddListener(SaveSliderValue);
         }
 
@@ -37,6 +37,20 @@ namespace Accessibility
         private void OnDisable()
         {
             slider.onValueChanged.RemoveListener(SaveSliderValue);
+        }
+        private void ReInitialise()
+        {
+            slider.value = GetSliderValue();
+            if(slider.value == 0)
+            {
+                toggle.isOn = false;
+                TurnOffScreenShake();
+            }
+            else
+            {
+                toggle.isOn = transform;
+                TurnOnScreenShake();
+            }
         }
         private float GetSliderValue()
         {
