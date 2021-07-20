@@ -652,6 +652,7 @@
     <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
+    <Compile Include="Assets\_TempOptionsOpener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />

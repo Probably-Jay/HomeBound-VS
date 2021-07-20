@@ -29,11 +29,22 @@ namespace Accessibility
 
         private void OnEnable()
         {
+            slider.value = GetSliderValue();
             slider.onValueChanged.AddListener(SaveSliderValue);
         }
+
+
         private void OnDisable()
         {
             slider.onValueChanged.RemoveListener(SaveSliderValue);
+        }
+        private float GetSliderValue()
+        {
+            if (!PlayerPrefs.HasKey(ScreenShakePrefsKey))
+            {
+                return 1;
+            }
+            return PlayerPrefs.GetFloat(ScreenShakePrefsKey);
         }
 
         public void SaveSliderValue(float newVal) => SetShakePref(newVal);
@@ -80,6 +91,10 @@ namespace Accessibility
         private static void SetShakePref(float v)
         {
             PlayerPrefs.SetFloat(ScreenShakePrefsKey, v);
+            if(PlayerPrefs.GetFloat(ScreenShakePrefsKey) != v)
+            {
+                throw new System.Exception("Did not save player prefs");
+            }
         }
 
    

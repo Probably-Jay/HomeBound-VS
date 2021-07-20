@@ -67,6 +67,7 @@
     <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
+    <Compile Include="Assets\_TempOptionsOpener.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />
@@ -658,6 +659,10 @@
       <Project>{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}</Project>
       <Name>~InteractableInterface</Name>
     </ProjectReference>
+    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
+      <Project>{B1FD1A2C-C177-539C-2EB0-6F4E9E204FD6}</Project>
+      <Name>~Dialogue_And_Encounters</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{D1FA95BB-5775-5815-5358-6D2AA9B23EF1}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
@@ -721,10 +726,6 @@
     <ProjectReference Include="~Quests.csproj">
       <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
       <Name>~Quests</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
-      <Project>{B1FD1A2C-C177-539C-2EB0-6F4E9E204FD6}</Project>
-      <Name>~Dialogue_And_Encounters</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
