@@ -10,8 +10,8 @@ namespace Quests
    // [CreateAssetMenu(fileName = "QuestTask", menuName = "ScriptableObjects/Quests/Task", order = 1)]
     public class QuestTask : MonoBehaviour
     {
- 
-        [SerializeField]  private List<QuestTaskCompletable> taskPrerequisites;
+
+        [SerializeField] public List<SimpleQuestStep> taskPrerequisites;
        
         public bool TaskActive { get; set; }
         
@@ -74,4 +74,12 @@ namespace Quests
             TaskActive = false;
         }
     }
+
+    //[System.Serializable]
+    //public class QuestStep 
+    //{ 
+    //    public int stepOrder;
+    //    public QuestStepCompletable step;
+    //}
+
 }
