@@ -302,11 +302,11 @@
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
     <Reference Include="~EditorAssembly">
       <HintPath>Library/ScriptAssemblies/~EditorAssembly.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.18f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -658,9 +658,7 @@
     <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
-    <Compile Include="Assets\QuestUIElement.cs" />
-    <Compile Include="Assets\QuestVeiwUI.cs" />
-    <Compile Include="Assets\_TempOptionsOpener.cs" />
+    <Compile Include="Assets\_TempOpener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />

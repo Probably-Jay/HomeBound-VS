@@ -69,9 +69,14 @@
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\SimpleQuestStep.cs" />
     <Compile Include="Assets\Scripts\Quests\IQuestHolder.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\Interfaces\QuestStepCompletable.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\IUIDesrcibable.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\Quest.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\QuestTask.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\IUISelectable.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestTaskEditor.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestUIElement.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestVeiwUI.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\TaskUIElement.cs" />
     <Compile Include="Assets\Scripts\Quests\QuestJournal.cs" />
     <Compile Include="Assets\Scripts\Quests\SingleQuestGiver.cs" />
     <None Include="Assets\Scripts\Quests\~Quests.asmdef" />
@@ -617,6 +622,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>

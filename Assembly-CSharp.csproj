@@ -67,9 +67,7 @@
     <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
-    <Compile Include="Assets\QuestUIElement.cs" />
-    <Compile Include="Assets\QuestVeiwUI.cs" />
-    <Compile Include="Assets\_TempOptionsOpener.cs" />
+    <Compile Include="Assets\_TempOpener.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />

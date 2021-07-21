@@ -5,14 +5,15 @@ using UnityEngine;
 
 namespace Temporary
 {
-    public class _TempOptionsOpener : MonoBehaviour
+    public class _TempOpener : MonoBehaviour
     {
-        [SerializeField] GameObject optionsParent;
+        [SerializeField] KeyCode openKey = KeyCode.O;
+        [SerializeField] GameObject parent;
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(openKey))
             {
                 OpenOrClose();
             }
@@ -24,18 +25,18 @@ namespace Temporary
 
         private void Close()
         {
-            optionsParent.SetActive(false);
+            parent.SetActive(false);
         }
         private void Open()
         {
-            optionsParent.SetActive(true);
+            parent.SetActive(true);
         }
 
 
 
         private void OpenOrClose()
         {
-            if (optionsParent.activeInHierarchy)
+            if (parent.activeInHierarchy)
             {
                 Close();
             }

@@ -71,7 +71,7 @@ namespace HomeboundEditor
 
         void DrawHeader(Rect rect)
         {
-            string name = "Task Steps";
+            string name = "Tasks and task-IDs";
             EditorGUI.LabelField(rect, name);
         }
 

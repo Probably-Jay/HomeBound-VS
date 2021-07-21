@@ -103,7 +103,7 @@ namespace Rythm
             }
             var avg = rollingAverageSamplesOff.AverageValue;
 
-            Debug.Log($"avg: {avg}");
+           // Debug.Log($"avg: {avg}");
 
             if (Mathf.Abs(avg) > SecondsToSamples(0.01f)) // correct any differences in sample
             {

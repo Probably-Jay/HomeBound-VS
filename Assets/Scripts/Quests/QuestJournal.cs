@@ -12,6 +12,7 @@ namespace Quests
 
         public List<Quest> Quests { get => currentQuests; set => currentQuests = value; }
 
+        public event Action OnQuestChange;
 
         private void Start()
         {
@@ -32,6 +33,7 @@ namespace Quests
         public void ReceiveQuest(Quest quest)
         {
             Quests.Add(quest);
+            OnQuestChange?.Invoke();
             BeginQuest(quest);
         }
 
@@ -57,6 +59,8 @@ namespace Quests
             {
                 currentQuests.Remove(quest);
             }
+            OnQuestChange?.Invoke();
+
         }
     }
 }
