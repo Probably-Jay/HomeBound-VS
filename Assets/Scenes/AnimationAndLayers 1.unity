@@ -139,8 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90cb01db4453004a9c80046f8642634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuests:
-  - {fileID: 1591623752}
+  currentQuests: []
 --- !u!1 &52225035
 GameObject:
   m_ObjectHideFlags: 0
@@ -9345,6 +9344,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4568910733025470893, guid: 53792fb9ef3c88248b3e2af711a4da52,
         type: 3}
+      propertyPath: title
+      value: Talk to man
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568910733025470893, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: description
+      value: Talk to the man you see
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568910733025470893, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
       propertyPath: taskPrerequisites.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -9378,6 +9387,26 @@ PrefabInstance:
       propertyPath: dialogue
       value: 
       objectReference: {fileID: 1383698833}
+    - target: {fileID: 4829981342072627827, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: title
+      value: Example quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829981342072627827, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: description
+      value: In this quest you must do some things
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829981342593985711, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: title
+      value: Talk to him agin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829981342593985711, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: description
+      value: Talk to the guy again
+      objectReference: {fileID: 0}
     - target: {fileID: 4829981342593985711, guid: 53792fb9ef3c88248b3e2af711a4da52,
         type: 3}
       propertyPath: taskPrerequisites.Array.data[0]
@@ -9387,6 +9416,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829981342788347305, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: title
+      value: Stand on thing
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829981342788347305, guid: 53792fb9ef3c88248b3e2af711a4da52,
+        type: 3}
+      propertyPath: description
+      value: Stand on the green thing up there, or is it the red one
       objectReference: {fileID: 0}
     - target: {fileID: 4829981342788347305, guid: 53792fb9ef3c88248b3e2af711a4da52,
         type: 3}
@@ -10690,6 +10729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1142738507}
   - component: {fileID: 1142738506}
+  - component: {fileID: 1142738508}
   m_Layer: 0
   m_Name: _TempOptionsOpener
   m_TagString: Untagged
@@ -10709,7 +10749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07091212d37f9fd4294550d60a03198a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionsParent: {fileID: 325691668}
+  openKey: 111
+  parent: {fileID: 325691668}
 --- !u!4 &1142738507
 Transform:
   m_ObjectHideFlags: 0
@@ -10722,8 +10763,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1142738508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142738505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07091212d37f9fd4294550d60a03198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openKey: 105
+  parent: {fileID: 2105827658}
 --- !u!1 &1152684978
 GameObject:
   m_ObjectHideFlags: 0
@@ -11584,7 +11639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainDialogueIDs:
-  - test_demo
+  - test
+  - test_8
   runMainOnlyOnce: 1
   backupDialogueIDs: []
 --- !u!1 &1455971026
@@ -12604,6 +12660,12 @@ MonoBehaviour:
   pointsOfIntrest:
   - {fileID: 1383698830}
   distance: 5
+--- !u!1 &2105827658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8688662269767085598, guid: 8e8f4624ff6408249ba65a08a5f713cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 8688662270595408598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2112597432
 GameObject:
   m_ObjectHideFlags: 0
@@ -14583,67 +14645,62 @@ PrefabInstance:
     - target: {fileID: 8688662268681342379, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688662268681342379, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269170423357, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269170423357, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269346600396, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269346600396, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269632389526, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269632389526, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8688662269692095924, guid: 8e8f4624ff6408249ba65a08a5f713cd,
-        type: 3}
-      propertyPath: m_ScrollSensitivity
-      value: 20
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269713537052, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269713537052, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269713537052, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269713537052, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269767085594, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
@@ -14658,7 +14715,7 @@ PrefabInstance:
     - target: {fileID: 8688662269767085594, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8688662269767085594, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}
@@ -14754,6 +14811,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: QuestCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688662269767085598, guid: 8e8f4624ff6408249ba65a08a5f713cd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8688662270611281945, guid: 8e8f4624ff6408249ba65a08a5f713cd,
         type: 3}

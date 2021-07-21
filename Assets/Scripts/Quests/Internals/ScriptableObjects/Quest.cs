@@ -110,7 +110,7 @@ namespace Quests
         public void Progress()
         {
             if (Complete) return;
-            if (!CurrentQuestTask.TaskComplete) return;
+            if (!CurrentQuestTask.Complete) return;
             OnTaskComplete?.Invoke();
 
             ProgressQuestTask();

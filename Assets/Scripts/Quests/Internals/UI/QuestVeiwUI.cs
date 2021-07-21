@@ -30,7 +30,9 @@ namespace Quests
             if (!inited)
                 return;
             Subscribe();
+            UpdateQuests();
         }
+
 
 
         private void OnDisable()
@@ -43,7 +45,7 @@ namespace Quests
         }
 
 
-      
+
 
 
         // Start is called before the first frame update
@@ -92,7 +94,7 @@ namespace Quests
         {
             foreach (var element in questElements)
             {
-                if(element == expanded)
+                if (element == expanded)
                 {
                     continue;
                 }
@@ -120,7 +122,6 @@ namespace Quests
 
         private void SetSelected(IUISelectable selected)
         {
-            //this.selected = selected;
             infoPannel.SetActive(true);
             title.text = selected.Describable.Title;
             body.text = selected.Describable.Description;
@@ -137,18 +138,18 @@ namespace Quests
         private void AddQuests()
         {
             ClearAll();
-            for (int i = 0; i < 5; i++) // todo remove this
-            {
+           // for (int i = 0; i < 5; i++) // todo remove this
+            //{
                 foreach (var quest in playerQuestJournal.Quests)
                 {
                     AddQuest(quest);
                 }
-            }
+            //}
         }
 
         private void AddQuest(Quest quest)
         {
-            var elementGo = Instantiate(QuestElementPrefab,veiwContentParent);
+            var elementGo = Instantiate(QuestElementPrefab, veiwContentParent);
             var questElement = elementGo.GetComponent<QuestUIElement>();
             questElement.Init(quest);
             questElements.Add(questElement);
@@ -167,10 +168,12 @@ namespace Quests
             }
         }
 
-        // Update is called once per frame
-        void Update()
+        private void UpdateQuests()
         {
-
+            foreach (var quest in questElements)
+            {
+                quest.UpdateQuest();
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Quests
         public string Description => description;
         
 
-        public bool TaskComplete => taskPrerequisites.TrueForAll((t) => t.Completed);
+        public bool Complete => taskPrerequisites.TrueForAll((t) => t.Completed);
         public bool AnyTasksCompleted => taskPrerequisites.Any((t) => t.Completed);
 
         public UnityEvent OnCompleteTask { get => onCompleteTask; set => onCompleteTask = value; }
@@ -51,7 +51,7 @@ namespace Quests
                 Debug.Log("Quest step completed");
             }
 
-            if (!TaskComplete)
+            if (!Complete)
             {
                 return;
             }

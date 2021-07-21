@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Quests
 {
+    /// <summary>
+    /// Its a bit shit but it works
+    /// </summary>
     public class QuestUIElement : MonoBehaviour, IUISelectable
     {
         private Quest quest;
@@ -53,7 +56,6 @@ namespace Quests
 
         public void CollapseOrExpand()
         {
-            Debug.Log("Pressed");
             if (collapsed)
             {
                 Expand();
@@ -67,9 +69,15 @@ namespace Quests
         private void Expand()
         {
             int thisIndex = transform.GetSiblingIndex();
-            for (int i = 0; i < taskElements.Count; i++)
+            bool lastTask = false;
+            for (int i = 0; i < taskElements.Count && !lastTask; i++) // this is where the tasks that will be displayed are updated, really that should not be calculated here
             {
-                Transform child = taskElements[i].transform;
+                TaskUIElement task = taskElements[i];
+                if (!task.task.Complete)
+                {
+                    lastTask = true;
+                }
+                Transform child = task.transform;
                 child.gameObject.SetActive(true);
                 child.SetParent(transformParent);
                 child.SetSiblingIndex(thisIndex + 1 + i);
@@ -99,6 +107,28 @@ namespace Quests
         public void Deselect()
         {
             GetComponent<UnityEngine.UI.Image>().color = new Color(1f, 1f, 1f);
+
+        }
+
+        internal void UpdateQuest()
+        {
+            if (quest.Complete)
+            {
+                title.text = $"<s>{title.text}</s>";
+                GetComponent<UnityEngine.UI.Image>().color = new Color(0.35f, 0.35f, 0.35f);
+                transform.SetAsLastSibling();
+                Collapse();
+            }
+            foreach (var task in taskElements)
+            {
+                task.UpdateTask();
+            }
+
+            if (!collapsed)
+            {
+                Collapse();
+                Expand();
+            }
 
         }
     }
