@@ -18,6 +18,13 @@ namespace Tool
         string fileExtention = "png";
 
         bool overwriteExisting = false;
+        bool isSpritesheet = false;
+
+        float paddingX = 8;
+        float paddingY = 8;
+
+        float offsetX = 0;
+        float offsetY = 0;
 
         [MenuItem("Tool/Asset Importer")]
         public static void ShowWindow()
@@ -43,9 +50,20 @@ namespace Tool
             fileExtention = EditorGUILayout.TextField(new GUIContent("File Type: (blank for any)"), fileExtention);
 
             overwriteExisting = EditorGUILayout.Toggle("Overwite existing files", overwriteExisting);
+            isSpritesheet = EditorGUILayout.Toggle("sprite sheet", isSpritesheet);
+
+            if (isSpritesheet)
+            {
+                paddingX = EditorGUILayout.FloatField(new GUIContent("Padding X:"), paddingX);
+                paddingY = EditorGUILayout.FloatField(new GUIContent("Padding Y:"), paddingY);
+                offsetX = EditorGUILayout.FloatField(new GUIContent("Offset X:"), offsetX);
+                offsetY = EditorGUILayout.FloatField(new GUIContent("Offset Y:"), offsetY);
+
+            }
 
             if (GUILayout.Button("Import"))
             {
+                AssetImportPostProcessing.SetUp(isSpritesheet, paddingX, paddingY, offsetX, offsetY);
                 CustomAssetImporter.CustomImportAsset(sourcePath, importToFolder, fileExtention, overwriteExisting);
             }
         }
@@ -60,6 +78,7 @@ namespace Tool
         {
             outputDirectory = !(outputDirectory == null || outputDirectory == "") ? outputDirectory : DefaultPath;
             filetype = !(filetype == null || filetype == "") ? filetype : "*";
+
 
             try
             {
@@ -132,10 +151,25 @@ namespace Tool
 
     public class AssetImportPostProcessing : AssetPostprocessor
     {
+        public static int spriteWidth = 32;
+        public static float spritePaddingY = 7;
+        public static float spritePaddingX = 8;
+        public static float spriteoffsetY = 0;
+        public static float spriteOffsetX = 0;
         public static TextureImporterType textureImportType = TextureImporterType.Sprite;
         public static int pixelsPerUnit = 32;
         public static FilterMode filterMode = FilterMode.Point;
         public static TextureImporterCompression compressionMode = TextureImporterCompression.Uncompressed;
+        public static bool isSpriteSheet;
+
+        internal static void SetUp(bool isSpritesheet, float paddingX, float paddingY, float offsetX, float offsetY)
+        {
+            AssetImportPostProcessing.isSpriteSheet = isSpritesheet;
+            AssetImportPostProcessing.spritePaddingX = paddingX;
+            AssetImportPostProcessing.spritePaddingY = paddingY;
+            AssetImportPostProcessing.spriteoffsetY = offsetX;
+            AssetImportPostProcessing.spriteOffsetX = offsetY;
+        }
 
         void OnPostprocessSprites(Texture2D texture, Sprite[] sprites)
         {
@@ -144,6 +178,29 @@ namespace Tool
             importer.spritePixelsPerUnit = pixelsPerUnit;
             importer.filterMode = filterMode;
             importer.textureCompression = compressionMode;
+
+            if (isSpriteSheet)
+            {
+                importer.spriteImportMode = SpriteImportMode.Multiple;
+
+                SpriteMetaData[] spritesheet = new SpriteMetaData[4];
+
+                for (int i = 0; i < 4; i++)
+                {
+                    SpriteMetaData sprite = new SpriteMetaData();
+
+
+                    sprite.name = importer.name + $"s_{i.ToString("00")}";
+                    
+                    sprite.rect = new Rect(spriteOffsetX + i * (spriteWidth + spritePaddingX), spriteoffsetY+ spritePaddingY, 32, 32);
+
+                    spritesheet[i] = sprite;
+                }
+
+                importer.spritesheet = spritesheet;
+
+
+            }
            
         }
 
