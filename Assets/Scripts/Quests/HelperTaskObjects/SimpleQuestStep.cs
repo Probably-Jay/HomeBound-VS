@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Quests
 {
-    public class SimpleQuestStep : QuestTaskCompletable
+    [System.Serializable]
+    public class SimpleQuestStep : QuestStepCompletable
     {
-
-     
-
         [Tooltip("Keep this false if the task should not start completed")]
         [SerializeField] private bool completed;
 

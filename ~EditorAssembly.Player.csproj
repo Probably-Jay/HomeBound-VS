@@ -5,9 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{807BF5A2-9421-F622-F440-330F47D76893}</ProjectGuid>
+    <ProjectGuid>{045E66A9-7D77-0BA2-1F87-2C7C7D054515}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>~Quests</AssemblyName>
+    <AssemblyName>~EditorAssembly</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -16,7 +16,7 @@
     <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectGeneratorVersion>4.9.1.0</UnityProjectGeneratorVersion>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>WebGL:20</UnityBuildTarget>
     <UnityVersion>2019.4.18f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -53,9 +53,6 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -583,24 +580,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\ColliderQuestStep.cs" />
-    <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\EventListnerQuestStep.cs" />
-    <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\SimpleQuestStep.cs" />
-    <Compile Include="Assets\Scripts\Quests\IQuestHolder.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\Interfaces\QuestStepCompletable.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\IUIDesrcibable.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\Quest.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\QuestTask.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\UI\IUISelectable.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestTaskEditor.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestUIElement.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestVeiwUI.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\UI\TaskUIElement.cs" />
-    <Compile Include="Assets\Scripts\Quests\QuestJournal.cs" />
-    <Compile Include="Assets\Scripts\Quests\SingleQuestGiver.cs" />
+    <Compile Include="Assets\Editor\AssetImporter.cs" />
+    <Compile Include="Assets\Editor\QuestTaskEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Quests\~Quests.asmdef" />
+    <None Include="Assets\Editor\~EditorAssembly.asmdef" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

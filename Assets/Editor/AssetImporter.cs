@@ -76,6 +76,9 @@ namespace Tool
 
         public static void CustomImportAsset(string sourceDirectoryPath, string outputDirectory, string filetype, bool overwriteExisting)
         {
+            AssetImportPostProcessing.settingsEnabled = true;
+
+
             outputDirectory = !(outputDirectory == null || outputDirectory == "") ? outputDirectory : DefaultPath;
             filetype = !(filetype == null || filetype == "") ? filetype : "*";
 
@@ -122,6 +125,7 @@ namespace Tool
             finally
             {
                 AssetDatabase.StopAssetEditing();
+                AssetImportPostProcessing.settingsEnabled = false;
             }
 
         }
@@ -151,6 +155,8 @@ namespace Tool
 
     public class AssetImportPostProcessing : AssetPostprocessor
     {
+        public static bool settingsEnabled = false;
+
         public static int spriteWidth = 32;
         public static float spritePaddingY = 7;
         public static float spritePaddingX = 8;
@@ -173,6 +179,11 @@ namespace Tool
 
         void OnPostprocessSprites(Texture2D texture, Sprite[] sprites)
         {
+            if (!settingsEnabled)
+            {
+                return;
+            }
+
             var importer = assetImporter as TextureImporter;
             importer.textureType = textureImportType;
             importer.spritePixelsPerUnit = pixelsPerUnit;
@@ -199,7 +210,7 @@ namespace Tool
 
                 importer.spritesheet = spritesheet;
 
-
+                Debug.Log("Imprt settings applied");
             }
            
         }

@@ -7,25 +7,37 @@ using UnityEngine.Events;
 namespace Quests
 {
     ///[CreateAssetMenu(fileName = "Quest", menuName = "ScriptableObjects/Quests/Quest", order = 1)]
-    public class Quest : MonoBehaviour
+    public class Quest : MonoBehaviour, IUIDesrcibable
     {
-        [SerializeField] string questName;
+        [SerializeField] string title;
+        [TextArea(1,4)]
+        [SerializeField] string description;
         [SerializeField,HideInInspector] List<QuestTask> tasks = new List<QuestTask>();
         [SerializeField] UnityEvent onQuestBegin;
         [SerializeField] UnityEvent onQuestComplete;
 
-        public bool Complete => CurrentQuestStep >= tasks.Count;
 
-        public bool Begun => CurrentQuestStep > -1;
+        public string Title => title;
+        public string Description => description;
+
+        public List<QuestTask> Tasks { get => tasks; }
+        public int CurrentTask { get; private set; } = -1;
+
+        public bool Begun => CurrentTask > -1;
+        public bool Complete => CurrentTask >= Tasks.Count;
+
         
+
+        public UnityEvent OnQuestComplete { get => onQuestComplete; set => onQuestComplete = value; }
+
+        public event Action OnTaskComplete;
         
 
 
-        public int CurrentQuestStep { get; private set; } = -1;
 
         public void Validate()
         {
-            return;
+            return; // called to assure object exists
         }
 
         public QuestTask CurrentQuestTask
@@ -34,22 +46,18 @@ namespace Quests
             {
                 if (!Begun || Complete)
                 {
-                    Debug.LogError($"Quest {QuestName} not begun or is completed, {nameof(CurrentQuestTask)} not available");
+                    Debug.LogError($"Quest {Title} not begun or is completed, {nameof(CurrentQuestTask)} not available");
                     return null;
                 }
-                return tasks[CurrentQuestStep];
+                return Tasks[CurrentTask];
             }
         }
 
-        public string QuestName => questName;
 
-        public UnityEvent OnQuestComplete { get => onQuestComplete; set => onQuestComplete = value; }
-
-        public event Action OnTaskComplete;
 
         private void Awake()
         {
-            tasks.Clear();
+            Tasks.Clear();
 
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -57,7 +65,7 @@ namespace Quests
                 var task = child.GetComponent<QuestTask>();
                 if (task != null)
                 {
-                    tasks.Add(task);
+                    Tasks.Add(task);
                 }
             }
 
@@ -74,7 +82,7 @@ namespace Quests
         private void Init()
         {
 
-            foreach (var task in tasks)
+            foreach (var task in Tasks)
             {
                 task.Init();
                 task.OnCompleteTask.AddListener(Progress);
@@ -84,10 +92,10 @@ namespace Quests
         {
             if (Begun)
             {
-                Debug.LogError($"Quest {QuestName} already begun");
+                Debug.LogError($"Quest {Title} already begun");
             }
-            Debug.Log($"Quest {QuestName} has been begun");
-            CurrentQuestStep = 0;
+            Debug.Log($"Quest {Title} has been begun");
+            CurrentTask = 0;
             BeginCurrentTask();
             onQuestBegin?.Invoke();
             
@@ -102,7 +110,7 @@ namespace Quests
         public void Progress()
         {
             if (Complete) return;
-            if (!CurrentQuestTask.TaskComplete) return;
+            if (!CurrentQuestTask.Complete) return;
             OnTaskComplete?.Invoke();
 
             ProgressQuestTask();
@@ -112,7 +120,7 @@ namespace Quests
         private void ProgressQuestTask()
         {
             DisposeCurrentTask();
-            CurrentQuestStep++;
+            CurrentTask++;
             Debug.Log("Quest step progressed");
             if (Complete)
             {
