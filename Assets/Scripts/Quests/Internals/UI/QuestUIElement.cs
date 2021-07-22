@@ -25,7 +25,7 @@ namespace Quests
         public event Action<QuestUIElement> OnDroppedDown;
 
         public IUIDesrcibable Describable => quest;
-
+        public Quest Quest => quest;
 
         private void Awake()
         {
