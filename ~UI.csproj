@@ -64,7 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Accessibility\AccessibilityManager.cs" />
     <Compile Include="Assets\Scripts\Accessibility\ColourBlindHelper.cs" />
+    <Compile Include="Assets\Scripts\Accessibility\ColourBlindPrefs.cs" />
     <Compile Include="Assets\Scripts\Accessibility\ColourTester.cs" />
     <Compile Include="Assets\Scripts\Accessibility\SavePrefs.cs" />
     <Compile Include="Assets\Scripts\Accessibility\ScreenShakePrefs.cs" />
@@ -611,6 +613,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{3716CBD3-4FAA-EBCA-5C34-9B7D1B927FCA}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
     <ProjectReference Include="~Core.csproj">
       <Project>{354EAF47-F608-D8B1-D75E-1AFE6B6D692A}</Project>
       <Name>~Core</Name>

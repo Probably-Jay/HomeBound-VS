@@ -106,7 +106,6 @@ namespace Dialogue
         private void Awake()
         {
             display = GetComponent<TMP_Text>();
-            ColourBlindHelper.Mode = ColourBlindMode.Deuteranopia;
         }
 
 

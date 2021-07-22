@@ -104,12 +104,7 @@ namespace Accessibility
 
             Color.RGBToHSV(c, out var h, out var s, out var v);
 
-            h = (h + diff) % 1;
-
-            if (h < 0)
-            {
-                h += 1;
-            }
+            h = (h + diff + 1) % 1;
 
             var colour = Color.HSVToRGB(h, s, v);
             return colour;

@@ -53,6 +53,9 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="~Core">
       <HintPath>Library/ScriptAssemblies/~Core.dll</HintPath>
     </Reference>
@@ -583,7 +586,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Accessibility\AccessibilityManager.cs" />
     <Compile Include="Assets\Scripts\Accessibility\ColourBlindHelper.cs" />
+    <Compile Include="Assets\Scripts\Accessibility\ColourBlindPrefs.cs" />
     <Compile Include="Assets\Scripts\Accessibility\ColourTester.cs" />
     <Compile Include="Assets\Scripts\Accessibility\SavePrefs.cs" />
     <Compile Include="Assets\Scripts\Accessibility\ScreenShakePrefs.cs" />
