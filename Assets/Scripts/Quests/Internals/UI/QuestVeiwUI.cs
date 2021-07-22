@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 namespace Quests
 {
@@ -26,27 +27,34 @@ namespace Quests
         private void OnEnable()
         {
             UnsetSelected();
-            playerQuestJournal.OnQuestChange += PlayerQuestJournal_OnQuestChange;
             if (!inited)
                 return;
             Subscribe();
             UpdateQuests();
+            CheckForNewQuests();
         }
 
-
+   
 
         private void OnDisable()
         {
             UnsetSelected();
-            playerQuestJournal.OnQuestChange -= PlayerQuestJournal_OnQuestChange;
+          //  playerQuestJournal.OnQuestChange -= PlayerQuestJournal_OnQuestChange;
             if (!inited)
                 return;
             UnSubscribe();
         }
 
 
+        private void Awake()
+        {
+            playerQuestJournal.OnQuestChange += PlayerQuestJournal_OnQuestChange;
+        }
 
-
+        private void OnDestroy()
+        {
+            playerQuestJournal.OnQuestChange -= PlayerQuestJournal_OnQuestChange;
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -83,10 +91,10 @@ namespace Quests
 
         private void PlayerQuestJournal_OnQuestChange()
         {
+            AddQuests();
             if (!inited)
                 return;
             UnSubscribe();
-            AddQuests();
             Subscribe();
         }
 
@@ -134,17 +142,27 @@ namespace Quests
                 element.Deselect();
             }
         }
+        private void CheckForNewQuests()
+        {
+
+            var distinct = (from q in questElements
+                            where !playerQuestJournal.Quests.Contains(q.Quest)
+                            select q).ToList();
+
+            if (distinct.Count > 0)
+            {
+                AddQuests();
+            }
+        }
 
         private void AddQuests()
         {
             ClearAll();
-           // for (int i = 0; i < 5; i++) // todo remove this
-            //{
-                foreach (var quest in playerQuestJournal.Quests)
-                {
-                    AddQuest(quest);
-                }
-            //}
+            foreach (var quest in playerQuestJournal.Quests)
+            {
+                AddQuest(quest);
+            }
+            UpdateQuests();
         }
 
         private void AddQuest(Quest quest)
