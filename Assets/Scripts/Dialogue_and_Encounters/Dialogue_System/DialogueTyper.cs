@@ -7,6 +7,8 @@ using TMPro;
 using Rythm;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Accessibility;
+
 
 namespace Dialogue
 {
@@ -22,17 +24,17 @@ namespace Dialogue
     public class DialogueTyper : MonoBehaviour
     {
 
-        public const string lightGreyTag = "<color=#888888>";
-        public const string escapedlightGreyTag = @"<color=\#888888>";
-        public const string whiteTag = "<color=#FFFFFF>";
-        public const string escapedWhiteTag = @"<color=\#FFFFFF>";
+        public static string lightGreyTag =>         $"<color=#{ColourBlindHelper.GetColourString("888888")}>";
+        public static string escapedlightGreyTag =>  $@"<color=\#{ColourBlindHelper.GetColourString("888888")}>";
+        public static string whiteTag =>             $"<color=#{ColourBlindHelper.GetColourString("FFFFFF")}>";
+        public static string escapedWhiteTag => $@"<color=\#{ColourBlindHelper.GetColourString("FFFFFF")}>";
 
-        public const string nearWhiteTag = "<color=#CCCCCC>";
-        public const string darkGreyTag = "<color=#666666>";
-        public const string tealTag = "<color=#00ffe5>";
-        public const string greeenTag = "<color=#42db5b>"; //#4fff4f
-        public const string amberTag = "<color=#dba542>";
-        public const string redTag = "<color=#d10000z>";
+        public static string nearWhiteTag => $"<color=#{ColourBlindHelper.GetColourString("CCCCCC")}>";
+        public static string darkGreyTag => $"<color=#{ColourBlindHelper.GetColourString("666666")}>";
+        public static string tealTag => $"<color=#{ColourBlindHelper.GetColourString("00FFE5")}>";
+        public static string greeenTag => $"<color=#{ColourBlindHelper.GetColourString("42DB5B")}>"; //#4fff4f
+        public static string amberTag => $"<color=#{ColourBlindHelper.GetColourString("DBA542")}>";
+        public static string redTag => $"<color=#{ColourBlindHelper.GetColourString("D10000")}>";
         
 
 

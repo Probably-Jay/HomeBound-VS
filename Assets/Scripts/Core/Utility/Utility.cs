@@ -20,8 +20,8 @@ namespace Helper
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static float Frac(float value) { return value - Mathf.Round(value); }
-        public static float Whole(float value) => Mathf.Round(value);
+        public static float Frac(float value) { return value - Mathf.Floor(value); }
+        public static float Whole(float value) => Mathf.Floor(value);
 
         public static (float whole, float frac) WholeAndFrac(float value) { return (Whole(value), Frac(value)); }
 
