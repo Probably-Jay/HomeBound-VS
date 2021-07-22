@@ -1,3 +1,15 @@
-﻿{
-	"name": "~UI"
+{
+    "name": "~UI",
+    "references": [
+        "GUID:0faf6e3b9789ca64ea166765fb5a4c1c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

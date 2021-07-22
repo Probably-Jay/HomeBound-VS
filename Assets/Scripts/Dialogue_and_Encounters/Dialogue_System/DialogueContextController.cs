@@ -199,7 +199,7 @@ namespace Dialogue
         public void AddColourRTT(int colour)
         {
             string hex = colour.ToString("X6");
-            string tag = $"<color=#{hex}>";
+            string tag = $"<color=#{Accessibility.ColourBlindHelper.GetColourString(hex)}>";
             dialogueTyper.AddRichTextTag(tag);
         }
 

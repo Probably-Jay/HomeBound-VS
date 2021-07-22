@@ -646,6 +646,10 @@
       <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
       <Name>~Quests</Name>
     </ProjectReference>
+    <ProjectReference Include="~UI.csproj">
+      <Project>{6CC47064-18D1-3BAC-74CE-BBC9B438A12A}</Project>
+      <Name>~UI</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>
