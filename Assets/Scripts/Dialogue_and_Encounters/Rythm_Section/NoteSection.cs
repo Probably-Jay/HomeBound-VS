@@ -10,7 +10,7 @@ namespace Rythm
     [CreateAssetMenu(fileName = "NoteSection", menuName = "ScriptableObjects/Rhythm/NoteSection", order = 1)]
     public class NoteSection : ScriptableObject
     {
-        public RythmSong song;
+        public SplitRythmSong song;
         public TextAsset notes;
     }
 }

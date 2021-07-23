@@ -378,7 +378,7 @@ namespace Rythm
                 {
                     RythmSong = song;
                     AudioSource.timeSamples = fromSample;
-                    AudioSource.clip = song.mainRhythmAudioClip;
+                    AudioSource.clip = song.audioClip;
                 }
 
                 public void Unset()

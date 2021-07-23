@@ -183,6 +183,7 @@ namespace Rythm
         {
             ClearAnyQueuedActions();
             MusicManager.StartRhythmSection(music);
+            MusicManager.ResumeMelody();
         }
 
         public void StopRhythmSectionSong()

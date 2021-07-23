@@ -85,7 +85,7 @@ public class RhythmSectionManager : MonoBehaviour
             Debug.LogError($"Skipping section {iD} as it is invalid");
         }
 
-        Rythm.RythmEngine.Instance.PlayRhytmSong(noteSection.song);
+        Rythm.RythmEngine.Instance.PlayRhythmSectionSong(noteSection.song);
         sectionLoader.LoadAndBeginSectionNotes(noteSection.notes);
 
     }
@@ -102,10 +102,14 @@ public class RhythmSectionManager : MonoBehaviour
                 throw new Exception("notesection is empty");
             if(noteSection.song == null)
                 throw new Exception("notesection.song is null");
-            if(noteSection.song.mainRhythmAudioClip == null)
+            if(noteSection.song.backingRhythmSong.audioClip == null)
+                throw new Exception("notesection.song has no audio clip, did you forget to re-import the music files you fucking moron?");            
+            if(noteSection.song.melodySong.audioClip== null)
                 throw new Exception("notesection.song has no audio clip, did you forget to re-import the music files you fucking moron?");
-            if(noteSection.song.BPM == 0)
-                throw new Exception("notesection.song has no BPM"); 
+            if(noteSection.song.backingRhythmSong.BPM == 0)
+                throw new Exception("notesection.backingRhythmSong.song has no BPM");            
+            if(noteSection.song.melodySong.BPM == 0)
+                throw new Exception("notesection.melodySong.song has no BPM"); 
         }
         catch (Exception e)
         {
@@ -119,7 +123,7 @@ public class RhythmSectionManager : MonoBehaviour
     {
         rDI.EndRythmSection();
         sectionLoader.EndSection();
-        Rythm.RythmEngine.Instance.StopRythmSong();
+        Rythm.RythmEngine.Instance.StopRhythmSectionSong();
     }
     public void Strikethrough(NoteSystem.WordNote note)
     {
