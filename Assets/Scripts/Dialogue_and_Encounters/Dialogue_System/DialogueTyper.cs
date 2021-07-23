@@ -684,7 +684,8 @@ namespace Dialogue
             // float animationRate= hitQuality != HitQuality.Perfect ? 1 : 2f/3f;
 
             bool isPerfect = hitQuality == HitQuality.Perfect;
-            float ainmTime = !isPerfect ? 1 : 15f;
+            float ainmTime = !isPerfect ? curve.keys[curve.length-1].time : perfectCurve.keys[perfectCurve.length - 1].time;
+
             while (Active && ct < ainmTime)
             {
                 ct += Time.deltaTime;

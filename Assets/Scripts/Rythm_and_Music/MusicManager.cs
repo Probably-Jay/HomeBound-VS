@@ -45,7 +45,7 @@ namespace Rythm
         {
             if (playOnStart)
             {
-                multiAudioSource.InitNewClip(defaultMusic, defaultMusic.beginAtSample); 
+                multiAudioSource.InitFirstClip(defaultMusic, defaultMusic.beginAtSample); 
                 //RythmEngine.Instance.SetTrackInfo(defaultMusic);
             }
         }
@@ -56,8 +56,14 @@ namespace Rythm
         public void PushNewSong(RythmSong music)
         {
             multiAudioSource.PushNewClip(music, music.beginAtSample);
-          //  RythmEngine.Instance.SetTrackInfo(music);     
+        }        
+        
+        public void PushNewSong(RythmSong music, int beginAtSample)
+        {
+            multiAudioSource.PushNewClip(music, beginAtSample);
         }
+
+
 
         /// <summary>
         /// Play provided <paramref name="music"/> and stop the current song
@@ -65,7 +71,6 @@ namespace Rythm
         public void MutateCurrentSongToNewSong(RythmSong music)
         {
             multiAudioSource.MutateCurrentClip(music, music.beginAtSample);
-          //  RythmEngine.Instance.SetTrackInfo(music);
         }
 
         /// <summary>
@@ -73,25 +78,58 @@ namespace Rythm
         /// </summary>
         public void ReturnToPreviousSong()
         {
-            var prev = multiAudioSource.ReturnToPreviousClip();
-         //   RythmEngine.Instance.SetTrackInfo(prev);
+            multiAudioSource.ReturnToPreviousClip();
         }
 
-        public void PauseSong()
+ 
+
+        /// <summary>
+        /// Pauses the top song
+        /// </summary>
+        public void PauseSinlgeSong()
         {
             multiAudioSource.PauseClip();
         }
 
-        internal void SetClipTime(int sample, int difference)
-        {
-            Debug.LogWarning($"Re-syncing music. Jumping {difference} samples ({RythmEngine.Instance.SamplesToSeconds(difference)}s)");
-            CurrentAudioSource.timeSamples = sample;
-        }
-
-        public void ResumeSong()
+        public void ResumeSingleSong()
         {
             multiAudioSource.ResumeClip();
         }
+   
+        public void SetSongTime(int sample)
+        {
+            CurrentAudioSource.timeSamples = sample;
+        }
+
+        /// <summary>
+        /// Play provided <paramref name="music"/> and add it to the song-stack, plays the backing and starts the melody paused. Pause the current song so that it can be returned to later
+        /// </summary>
+        public void StartRhythmSection(SplitRythmSong music)
+        {
+            multiAudioSource.PushNewSplitClip(music, music.backingRhythmSong.beginAtSample, music.melodySong.beginAtSample);
+        }
+
+        public void PauseMelody()
+        {
+            multiAudioSource.PauseClipMelodyClip();
+        }
+
+        public void ResumeMelody()
+        {
+            multiAudioSource.ResumeMelodyClip();
+        }
+
+        public void StopRythmSection()
+        {
+            multiAudioSource.EndSplitClip();
+        }
+
+        internal void SyncSongTime(int sample, int difference)
+        {
+            Debug.LogWarning($"Re-syncing music. Jumping {difference} samples ({RythmEngine.Instance.SamplesToSeconds(difference)}s)");
+            SetSongTime(sample);
+        }
+
 
 
 
@@ -119,9 +157,37 @@ namespace Rythm
                 }
             }
 
+            private SourceAndSong CurrentMelody 
+            {
+                get
+                {
+                    if(mode != Mode.RhythmSection)
+                    {
+                        throw new Exception("There is no seperate melody as you are not in a rhythm section");
+                    }
+
+                    return melody;
+                }
+                set
+                {
+                    melody = value;
+                }
+            }
+
+
             private Stack<SourceAndSong> activeSources = new Stack<SourceAndSong>();
             private Queue<SourceAndSong> inactiveSources = new Queue<SourceAndSong>();
+            private SourceAndSong melody = null;
             private MonoBehaviour parentBehaviour;
+
+            enum Mode 
+            { 
+                SinlgeTrackSong
+                ,RhythmSection
+            }
+
+            
+            private Mode mode = Mode.SinlgeTrackSong;
 
             internal void Init(MonoBehaviour parentBehaviour, AudioSource audioSource)
             {
@@ -134,7 +200,7 @@ namespace Rythm
             }
 
             /// <summary>Same as <see cref="PushNewSong(RythmSong,int)"/> except will not warn that a song is not currently in the stack</summary>
-            public RythmSong InitNewClip(RythmSong newSong, int fromSample = 0)
+            public RythmSong InitFirstClip(RythmSong newSong, int fromSample = 0)
             {
                 var newSongAndSource = GetUnusedAudioSource();
 
@@ -145,15 +211,21 @@ namespace Rythm
                 return CurrentSong;
             }
 
-            public RythmSong PushNewClip(RythmSong newSong, int fromSample = 0)
+            public RythmSong PushNewClip(RythmSong newSong, int fromSample = 0, bool play = true )
             {
+                if (mode != Mode.SinlgeTrackSong)
+                {
+                    throw new Exception("Cannot begin rhythm section when already in one");
+                }
+
                 var newSongAndSource = GetUnusedAudioSource();
 
                 var oldSource = CurrentTop;
 
                 SetNewSong(newSongAndSource, newSong, fromSample);
 
-                parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource));
+                if(play)
+                    parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource));
 
                 if(oldSource != null)
                     parentBehaviour.StartCoroutine(PauseSong(oldSource));
@@ -177,7 +249,7 @@ namespace Rythm
 
           
 
-            public RythmSong ReturnToPreviousClip()
+            public RythmSong ReturnToPreviousClip(bool resumePrevious = true)
             {
                 if (!(activeSources.Count > 1))
                 {
@@ -188,17 +260,19 @@ namespace Rythm
                 SourceAndSong oldSource = SetPreviousSong();
                 var newTopSongAndSource = CurrentTop;
 
-                parentBehaviour.StartCoroutine(ResumeSong(newTopSongAndSource));
+                if(resumePrevious)
+                    parentBehaviour.StartCoroutine(ResumeSong(newTopSongAndSource));
+
                 parentBehaviour.StartCoroutine(StopAndKillSource(oldSource));
 
                 return CurrentSong;
             }
 
             public void PauseClip() => parentBehaviour.StartCoroutine(PauseSong(CurrentTop));
+            public void PauseClipMelodyClip() => melody.InstantPause();//parentBehaviour.StartCoroutine(PauseSong(melody));
 
             public void ResumeClip() => parentBehaviour.StartCoroutine(ResumeSong(CurrentTop));
-
-
+            internal void ResumeMelodyClip() => melody.InstantPlay();//parentBehaviour.StartCoroutine(ResumeSong(melody));
 
             ///<summary>Set current top to <paramref name="songAndSource"/></summary>
             private void SetNewSong(SourceAndSong songAndSource, RythmSong newSong, int fromSample)
@@ -220,6 +294,25 @@ namespace Rythm
                 OnChangedMusic?.Invoke(CurrentSong);
             }
 
+            public void PushNewSplitClip(SplitRythmSong music, int beginAtSample, int melodyBeginAtSample)
+            {
+                PushNewClip(music.melodySong, beginAtSample, play: false);
+                CurrentMelody = CurrentTop;
+                PushNewClip(music.backingRhythmSong, melodyBeginAtSample);
+                mode = Mode.RhythmSection;
+            }
+
+            public void EndSplitClip()
+            {
+                if(mode != Mode.RhythmSection)
+                {
+                    throw new Exception("Cannot end rhythm section because we are not in one!");
+                }
+
+                ReturnToPreviousClip(resumePrevious: false);
+                ReturnToPreviousClip();
+
+            }
 
             private SourceAndSong GetUnusedAudioSource()
             {
@@ -258,13 +351,14 @@ namespace Rythm
                 inactiveSources.Enqueue(oldSource);
             }
 
-        
+      
 
             private class SourceAndSong
             {
                 private readonly AnimationCurve fadeInCurve;
                 private readonly AnimationCurve fadeOutCurve;
                 private readonly MonoBehaviour parentBehivaiour;
+                private bool playing => AudioSource.isPlaying;
 
                 public SourceAndSong(AudioSource audioSource, AnimationCurve fadeInCurve, AnimationCurve fadeOutCurve, MonoBehaviour parentBehivaiour)
                 {
@@ -284,7 +378,7 @@ namespace Rythm
                 {
                     RythmSong = song;
                     AudioSource.timeSamples = fromSample;
-                    AudioSource.clip = song.audioClip;
+                    AudioSource.clip = song.mainRhythmAudioClip;
                 }
 
                 public void Unset()
@@ -296,6 +390,9 @@ namespace Rythm
 
                 public IEnumerator FadeInPlay()
                 {
+                    if (playing)
+                        yield break;
+
                     AudioSource.volume = fadeInCurve.Evaluate(0);
 
                     AudioSource.Play();
@@ -305,10 +402,16 @@ namespace Rythm
                     yield break;
                 }
 
-              
+                public void InstantPlay()
+                {
+                    AudioSource.Play();
+                }
 
                 public IEnumerator FadeOutPause()
                 {
+                    if (!playing)
+                        yield break;
+
                     AudioSource.volume = fadeOutCurve.Evaluate(0);
                     yield return parentBehivaiour.StartCoroutine(Evaluate(fadeOutCurve));
 
@@ -316,6 +419,8 @@ namespace Rythm
 
                     yield break;
                 }
+
+                public void InstantPause() => AudioSource.Pause();
 
                 public IEnumerator FadeOutStopAndUnset()
                 {
@@ -350,6 +455,7 @@ namespace Rythm
                     yield break;
                 }
 
+              
             }
         }
     }

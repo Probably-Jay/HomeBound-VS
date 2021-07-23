@@ -107,7 +107,7 @@ namespace Rythm
 
             if (Mathf.Abs(avg) > SecondsToSamples(0.01f)) // correct any differences in sample
             {
-                MusicManager.SetClipTime(currentEstimatedSample, difference);
+                MusicManager.SyncSongTime(currentEstimatedSample, difference);
             }
 
             cachedMusicSample = CurrentMusicSample;
@@ -168,15 +168,26 @@ namespace Rythm
             OnSongChanged?.Invoke();
         }
 
-        public void PlayRhytmSong(RythmSong music)
+        public void PlaySong(RythmSong music)
         {
             ClearAnyQueuedActions();
             MusicManager.PushNewSong(music);
         }
 
-        public void StopRythmSong()
+        public void StopSong()
         {
             MusicManager.ReturnToPreviousSong();
+        }
+
+        public void PlayRhythmSectionSong(SplitRythmSong music)
+        {
+            ClearAnyQueuedActions();
+            MusicManager.StartRhythmSection(music);
+        }
+
+        public void StopRhythmSectionSong()
+        {
+            MusicManager.StopRythmSection();
         }
 
         private void ClearAnyQueuedActions()
