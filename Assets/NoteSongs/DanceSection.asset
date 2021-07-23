@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c2713ecfcccf74d8d7dfce2b25c4f1, type: 3}
   m_Name: DanceSection
   m_EditorClassIdentifier: 
-  song: {fileID: 11400000, guid: 6b84f0dbf325cf24694a873fbe7f6947, type: 2}
+  song: {fileID: 11400000, guid: fc71b040cfa9bd04c979a7c50d12ab32, type: 2}
   notes: {fileID: 4900000, guid: 0c81169ab662a8a47a9f0bd4b1a6d89a, type: 3}

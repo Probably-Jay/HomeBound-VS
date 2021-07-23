@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1afa684f1061054d9d6d924f0af955d, type: 3}
   m_Name: DanceSection
   m_EditorClassIdentifier: 
-  melodySong: {fileID: 0}
-  backingRhythmSong: {fileID: 0}
+  melodySong: {fileID: 11400000, guid: e2d234b891540b54a972fae7ce795db0, type: 2}
+  backingRhythmSong: {fileID: 11400000, guid: 656c9ddb4dd42fa418f1f3ee53e921bb, type: 2}

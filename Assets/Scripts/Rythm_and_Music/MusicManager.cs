@@ -20,7 +20,8 @@ namespace Rythm
 
         private void InvokeSongChanged(RythmSong song) => OnChangedMusic?.Invoke(song);
 
-        private AudioSource CurrentAudioSource => multiAudioSource.CurrentTopSource;
+        private AudioSource CurrentAudioSource => multiAudioSource.CurrentSongSource;
+        private RythmSong CurrentSong => multiAudioSource.CurrentSong;
 
         // private AudioSource
         [SerializeField] RythmSong defaultMusic;
@@ -32,7 +33,10 @@ namespace Rythm
         public bool PlayingMusic => CurrentAudioSource == null ? false :  CurrentAudioSource.isPlaying;
         public int CurrentSample => CurrentAudioSource.timeSamples;
         public int CurrentClipFrequency => CurrentClip.frequency;
-        public int CurrentClipSamples => CurrentClip.samples;
+        public int CurrentClipTotalSamples => CurrentClip.samples;
+        public float CurrentSongBPM => CurrentSong.BPM;
+        public float CurrentSongSampleOffset => CurrentSong.beginAtSample;
+        public int CurrentSongPickupBeats => CurrentSong.pickupBeats;
         private AudioClip CurrentClip => CurrentAudioSource.clip;
 
 
@@ -96,10 +100,10 @@ namespace Rythm
             multiAudioSource.ResumeClip();
         }
    
-        public void SetSongTime(int sample)
-        {
-            CurrentAudioSource.timeSamples = sample;
-        }
+        //public void SetSongTime(int sample)
+        //{
+        //    CurrentAudioSource.timeSamples = sample;
+        //}
 
         /// <summary>
         /// Play provided <paramref name="music"/> and add it to the song-stack, plays the backing and starts the melody paused. Pause the current song so that it can be returned to later
@@ -126,8 +130,14 @@ namespace Rythm
 
         internal void SyncSongTime(int sample, int difference)
         {
-            Debug.LogWarning($"Re-syncing music. Jumping {difference} samples ({RythmEngine.Instance.SamplesToSeconds(difference)}s)");
-            SetSongTime(sample);
+            float a = RythmEngine.Instance.SamplesToSeconds(difference);
+            Debug.LogWarning($"Re-syncing music. Jumping {difference} samples ({a}s)");
+            if(Mathf.Abs(difference) < 400)
+            {
+                int b = 0;
+                b++;
+            }
+            multiAudioSource.SyncSongTime(sample);
         }
 
 
@@ -138,8 +148,8 @@ namespace Rythm
         {
             [SerializeField] private AnimationCurve fadeInMusicCurve;
             [SerializeField] private AnimationCurve fadeOutMusicCurve;
-            public AudioSource CurrentTopSource => CurrentTop?.AudioSource;
-            public RythmSong CurrentSong => CurrentTop?.RythmSong;
+            public AudioSource CurrentSongSource => !PlayingSeperateMelody ? CurrentTop?.AudioSource : CurrentMelody.AudioSource;
+            public RythmSong CurrentSong => !PlayingSeperateMelody ? CurrentTop?.RythmSong : CurrentMelody.RythmSong;
 
             public event Action<RythmSong> OnChangedMusic;
 
@@ -174,6 +184,7 @@ namespace Rythm
                 }
             }
 
+            private bool PlayingSeperateMelody => mode == Mode.RhythmSection;
 
             private Stack<SourceAndSong> activeSources = new Stack<SourceAndSong>();
             private Queue<SourceAndSong> inactiveSources = new Queue<SourceAndSong>();
@@ -269,10 +280,16 @@ namespace Rythm
             }
 
             public void PauseClip() => parentBehaviour.StartCoroutine(PauseSong(CurrentTop));
-            public void PauseClipMelodyClip() => melody.InstantPause();//parentBehaviour.StartCoroutine(PauseSong(melody));
+            public void PauseClipMelodyClip()
+            {
+                CurrentMelody.InstantPause();//parentBehaviour.StartCoroutine(PauseSong(melody));
+            }
 
             public void ResumeClip() => parentBehaviour.StartCoroutine(ResumeSong(CurrentTop));
-            internal void ResumeMelodyClip() => melody.InstantPlay();//parentBehaviour.StartCoroutine(ResumeSong(melody));
+            internal void ResumeMelodyClip()
+            {
+                CurrentMelody.InstantPlay();//parentBehaviour.StartCoroutine(ResumeSong(melody));
+            }
 
             ///<summary>Set current top to <paramref name="songAndSource"/></summary>
             private void SetNewSong(SourceAndSong songAndSource, RythmSong newSong, int fromSample)
@@ -311,6 +328,7 @@ namespace Rythm
 
                 ReturnToPreviousClip(resumePrevious: false);
                 ReturnToPreviousClip();
+                RythmEngine.Instance.ReSync();
 
             }
 
@@ -351,7 +369,15 @@ namespace Rythm
                 inactiveSources.Enqueue(oldSource);
             }
 
-      
+            internal void SyncSongTime(int sample)
+            {
+                var diff = sample - CurrentSongSource.timeSamples;
+                CurrentTop.AudioSource.timeSamples += diff;
+                if(melody != null)
+                {
+                    melody.AudioSource.timeSamples += diff;
+                }
+            }
 
             private class SourceAndSong
             {

@@ -13,6 +13,7 @@ namespace Rythm
         public AudioClip audioClip;
         [Range(1,360)] public float BPM;
         [Range(-1,1)]public float offset;
+        [Range(0, 3)] public int pickupBeats;
         public int beginAtSample => Mathf.RoundToInt(beginAtTime * audioClip.frequency);
 
         public float beginAtTime;

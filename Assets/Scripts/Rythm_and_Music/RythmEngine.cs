@@ -32,16 +32,31 @@ namespace Rythm
                     //  Debug.LogError("Not playing music");
                     return Time.time * NoMusicBPS;
                 }
-                return sampleOffset + (TimeInSong * BPS);
+                return SampleOffset + (TimeInSong * BPS);
             }
         }
 
-      //  public void CB() => Debug.Log(CurrentBeat);
+
+        public int CurrentBar => GetBarOfBeat(CurrentBeat);
+        public int CurrentBeatInBar => GetIndexInBar(CurrentBeat);
+        /// <summary>
+        /// Returns the index within a bar of a given beat
+        /// </summary>
+        public int GetIndexInBar(float beat) => (Mathf.FloorToInt(beat) + PickupBeats) % BEATS_IN_A_BAR;
+        /// <summary>
+        /// Returns the bar of a given beat
+        /// </summary>
+        public int GetBarOfBeat(float beat) => ((Mathf.FloorToInt(beat) + PickupBeats) / BEATS_IN_A_BAR);
+        /// <summary>
+        /// Returns the first beat of a given bar
+        /// </summary>
+        public int GetFirstBeatOfBar(int bar) => bar * BEATS_IN_A_BAR;
+
 
         public float TimeInSong => (float)currentEstimatedSample / FrequencyOfClip;
         private float FrequencyOfClip => (float)MusicManager.CurrentClipFrequency;
 
-        public float DurationOfSong => (float)MusicManager.CurrentClipSamples / (float)MusicManager.CurrentClipFrequency;
+        public float DurationOfSong => (float)MusicManager.CurrentClipTotalSamples / (float)MusicManager.CurrentClipFrequency;
         public float PercentThroughSong => TimeInSong / DurationOfSong;
         public float BPS => BPM / 60f;
         public float DurationOfBeat => BeatToSeconds(1);
@@ -54,10 +69,16 @@ namespace Rythm
 
         // public AudioClip CurrentMusicClip { get => MusicManager.AudioSource.clip; }
 
-        float BPM;
-        float sampleOffset;
+        public float BPM => MusicManager.CurrentSongBPM;
+        private float SampleOffset => MusicManager.CurrentSongSampleOffset;
 
-        float BeatsInSong => (float)(DurationOfSong * BPS);
+        private int PickupBeats => MusicManager.CurrentSongPickupBeats;
+
+        public const int BEATS_IN_A_BAR = 4;
+
+
+        public float BeatsInSong => (float)(DurationOfSong * BPS);
+
 
         readonly SortedDictionary<float, Action> queuedActions = new SortedDictionary<float, Action>();
 
@@ -71,7 +92,7 @@ namespace Rythm
         int currentEstimatedSample;
         int cachedMusicSample;
 
-        RollingAverage rollingAverageSamplesOff = new RollingAverage(6);
+        RollingAverage rollingAverageSamplesOff = new RollingAverage(30);
 
         //  private AudioSource AudioSource { get; set; }
 
@@ -95,18 +116,34 @@ namespace Rythm
 
             int difference = currentEstimatedSample - CurrentMusicSample;
 
+            if(Mathf.Abs(difference) > SecondsToSamples(3))
+            {
+                Debug.LogWarning($"Huge sample difference spike detected: {SamplesToSeconds(difference)}");
+            }
+
             rollingAverageSamplesOff.Record(difference);
 
             if(!rollingAverageSamplesOff.ReachedAccuracy)
             {
                 return;
             }
-            var avg = rollingAverageSamplesOff.AverageValue;
 
-           // Debug.Log($"avg: {avg}");
+            var avg = Mathf.Abs(rollingAverageSamplesOff.SmallestAbsoluteValue);
 
-            if (Mathf.Abs(avg) > SecondsToSamples(0.01f)) // correct any differences in sample
+            // Debug.Log($"avg: {avg}");
+
+            int sampleThreshold = SecondsToSamples(0.005f);
+
+            if (avg > sampleThreshold) // correct any differences in sample
             {
+                if(SamplesToSeconds(Mathf.Abs(difference)) > 2)
+                {
+                    Debug.LogError($"Huge sample jump");
+                }
+                if(Mathf.Abs(difference) < sampleThreshold)
+                {
+                    Debug.LogError($"Minuscule sample jump");
+                }
                 MusicManager.SyncSongTime(currentEstimatedSample, difference);
             }
 
@@ -114,8 +151,22 @@ namespace Rythm
 
         }
 
+        internal void SetCachedDataToNewTrack()
+        {
+            cachedMusicSample = CurrentMusicSample;
+            currentEstimatedSample = CurrentMusicSample;
+            rollingAverageSamplesOff.Reset();
+        }
+
+
+        internal void ReSync()
+        {
+            SetCachedDataToNewTrack();
+        }
+
         public int SecondsToSamples(float s) => Mathf.RoundToInt((float)FrequencyOfClip * s);
 
+        [System.Obsolete()]
         private void LegacyUpdateCurrentSample()
         {
             if (cachedMusicSample == CurrentMusicSample)
@@ -137,16 +188,12 @@ namespace Rythm
             currentEstimatedSample = CurrentMusicSample;
         }
 
-        private void FixedUpdate()
-        {
-         //   Debug.Log(CurrentMusicSample);
-        }
+
 
         private void UpdateCurrentSampleEstimate()
         {
-            var ds = Mathf.RoundToInt(Time.deltaTime * FrequencyOfClip);
+            var ds = Mathf.RoundToInt(Time.unscaledDeltaTime * FrequencyOfClip);
             currentEstimatedSample += ds;
-           // Debug.Log($"Updating estimate by {ds} to {currentEstimatedSample}");
         }
 
         public override void Initialise()
@@ -164,13 +211,13 @@ namespace Rythm
         }
         private void MusicManager_OnChangedMusic(RythmSong song)
         {
-            SetTrackInfo(song);
+            ClearAnyQueuedActions();
+            SetCachedDataToNewTrack();
             OnSongChanged?.Invoke();
         }
 
         public void PlaySong(RythmSong music)
         {
-            ClearAnyQueuedActions();
             MusicManager.PushNewSong(music);
         }
 
@@ -180,11 +227,14 @@ namespace Rythm
         }
 
         public void PlayRhythmSectionSong(SplitRythmSong music)
-        {
-            ClearAnyQueuedActions();
+        {          
             MusicManager.StartRhythmSection(music);
-            MusicManager.ResumeMelody();
+            ResumeSongMelody();
         }
+
+        public void ResumeSongMelody() => MusicManager.ResumeMelody();
+
+        public void PauseSongMelody() => MusicManager.PauseMelody();
 
         public void StopRhythmSectionSong()
         {
@@ -221,11 +271,11 @@ namespace Rythm
                     // break;
                 }
                 List<float> ToRemoveCache = new List<float>();
+                List<Action> ToInvokeCache = new List<Action>();
                 var cacheofQueuedActions = new SortedDictionary<float, Action>(queuedActions);
                 foreach (var action in cacheofQueuedActions)
                 {
-
-                    action.Value?.Invoke();
+                    ToInvokeCache.Add(action.Value);
                     ToRemoveCache.Add(action.Key);
                 }
 
@@ -233,45 +283,20 @@ namespace Rythm
                 {
                     queuedActions.Remove(key);
                 }
+
+                foreach (var action in ToInvokeCache) // we need to make sure it's removed *BEFORE* it's invoked
+                {
+                    action?.Invoke();
+                }
+
+
                 count++;
             }
         }
 
-        //private void SetTrack(RythmSong music)
-        //{
-        //    AudioSource.clip = music.audioClip;
-        //    SetTrackInfo(music);
-        //}
-
-        internal void SetTrackInfo(RythmSong music)
-        {
-            BPM = music.BPM;
-            sampleOffset = music.offset;
-            cachedMusicSample = CurrentMusicSample;
-            currentEstimatedSample = CurrentMusicSample;
-        }
-
-        //private void BeginPlaying(RythmSong music)
-        //{
-
-        //}
 
 
-
-        //internal void DebugDetails(RythmSong music)
-        //{
-        //    Debug.Log($"Track: {music.name}");
-        //    Debug.Log($"Samples: { music.audioClip.samples} at { music.audioClip.frequency}Hz");
-        //    Debug.Log($"BPM: {BPM} ({BPS}pbs)");
-        //    Debug.Log($"Duration: {TimeSpan.FromSeconds(DurationOfSong)}, {BeatsInSong} beats long");
-        //    Debug.Log($"Offset: {sampleOffset} samples");
-
-        //}
-
-
-
-
-
+   
 
 
         private void InvokeQueue()
@@ -282,6 +307,7 @@ namespace Rythm
             //}
 
             List<float> ToRemoveCache = new List<float>();
+            List<Action> ToInvokeCache = new List<Action>();
             float frameCurrentBeat = CurrentBeat;
 
             var cacheofQueuedActions = new SortedDictionary<float, Action>(queuedActions);
@@ -292,7 +318,7 @@ namespace Rythm
                 {
                     continue; // break may be more efficient
                 }
-                action.Value?.Invoke();
+                ToInvokeCache.Add(action.Value);
                 ToRemoveCache.Add(action.Key);
             }
 
@@ -300,16 +326,24 @@ namespace Rythm
             {
                 queuedActions.Remove(key);
             }
+
+            foreach (var action in ToInvokeCache) // invoke *AFTER* removed
+            {
+                action?.Invoke();
+            }
         }
 
 
         public void QueueActionNextBeat(Action action) => QueueActionAfterBeats(action, 0);
+        public void QueueActionNextBer(Action action) => QueueActionAfterBars(action, 0);
+
+     
 
         /// <summary>
         /// Will add an event to be triggered on the beat, or after a certain number of beats happen. <paramref name="beatsTime"/> is measured in <paramref name="beatResolution"/> at <c>0.25 == 1/4 beats</c>
         /// </summary>
         /// <param name="action">The function to be called</param>
-        /// <param name="beatsTime">The beats from now when the <paramref name="action"/> will be invoked</param>
+        /// <param name="beatsTime">The beats from the next after which the <paramref name="action"/> will be invoked</param>
         /// <param name="beatResolution">The sub-division of beat being used</param>
         public void QueueActionAfterBeats(Action action, int beatsTime, float beatResolution = 1)
         {
@@ -319,17 +353,46 @@ namespace Rythm
             }
 
             float target;
-            if (beatsTime > 0)
+            if (beatsTime > 0) // more than one beat
             {
                 target = GetBeatsFromNow(beatsTime, beatResolution);
             }
             else
             {
-                target = GetNextBeat(beatResolution);
+                target = GetNextBeat(beatResolution); // the next beat
             }
 
             AddEvent(action, target);
         }
+
+       
+
+        /// <summary>
+        /// Will add an event to be triggered on the first beat of the next bar, or the first beat a certain number of bars after the next bar.
+        /// </summary>
+        /// <param name="action">The function to be called</param>
+        /// <param name="barsTime">The bars from after the next that the <paramref name="action"/> will be invoked</param>
+        public void QueueActionAfterBars(Action action, int barsTime)
+        {
+            if (!PlayingMusic)
+            {
+                Debug.LogWarning($"Not playing music, using fallback BMP: {noMusicBPM}");
+            }
+
+            float target;
+            if (barsTime > 0) // more than one beat
+            {
+                target = GetBarsFromNow(barsTime);
+            }
+            else
+            {
+                target = GetNextBar(); // the next beat
+            }
+
+            AddEvent(action, target);
+        }
+
+      
 
         /// <summary>
         /// Will add an event to be triggered at a certain beat
@@ -341,8 +404,22 @@ namespace Rythm
             AddEvent(action, targetBeat);
         }
 
+        /// <summary>
+        /// Will add an event to be triggered on the first beat of a specified bar
+        /// </summary>
+        /// <param name="action">The function to be called</param>
+        /// <param name="targetBar">The bar that this will be triggered on</param>
+        public void QueueActionAtExplicitBar(Action action, int targetBar)
+        {
+            var targetBeat = GetFirstBeatOfBar(targetBar);
+            AddEvent(action, targetBeat);
+        }
 
 
+        /// <summary>
+        /// Get the beat <paramref name="beatsTime"/> after the next beat (at <paramref name="beatResolution"/> resolution). Passing <paramref name="beatsTime"/> = 0 will have the same effect as calling <see cref="GetNextBeat(float)"/>
+        /// </summary>
+        /// <returns></returns>
         public float GetBeatsFromNow(int beatsTime, float beatResolution = 1)
         {
             if (beatResolution <= 0)
@@ -361,9 +438,7 @@ namespace Rythm
 
         public float GetNextBeat(float beatResolution = 1)
         {
-
             var beatSplit = Maths.WholeAndFrac(CurrentBeat); // get whole and fractional part
-
 
             var targetFrac = Maths.RoundUpTo(beatSplit.frac, beatResolution); // round up to the nearest
 
@@ -371,10 +446,30 @@ namespace Rythm
             return nextBeat;
         }
 
+        /// <summary>
+        /// Get the first beat of the bar <paramref name="barsTime"/> bars after the next bar. Passing <paramref name="barsTime"/> = 0 will have the same effect as calling <see cref="GetNextBar()"/>
+        /// </summary>
+        public float GetBarsFromNow(int barsTime)
+        {
+            float firstBeatOfnextBar = GetNextBar();
+
+            float beatsOfBarsAfterNext = barsTime * BEATS_IN_A_BAR;
+
+            var target = firstBeatOfnextBar + beatsOfBarsAfterNext; // add on the offset 
+
+            return (float)target;
+        }
+
+        public float GetNextBar()
+        {
+            var nextBeat = GetNextBeat();
+            var nextBeatBarIndex = GetIndexInBar(nextBeat);
+            var beatsAfterNextTilNextBar = (BEATS_IN_A_BAR - nextBeatBarIndex) % BEATS_IN_A_BAR;
+
+            return nextBeat + beatsAfterNextTilNextBar;
+        }
         void AddEvent(Action action, float beat)
         {
-            //Debug.Log($"Queued event for beat {beat}");
-
             if (beat < CurrentBeat)
             {
                 Debug.LogWarning("Beat queued for the past");

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Helper
 {
@@ -48,16 +49,76 @@ namespace Helper
         {
             get
             {
-                if(values.Count == 0)
-                    throw new Exception("Rolling average must have at least one value");
-                
-                float sum = 0;
-                foreach (var value in values)
-                {
-                    sum += value;
-                }
-                return sum/values.Count;
+                return CalclulateMedianAverage();
             }
+        }
+
+        public float SmallestAbsoluteValue
+        {
+            get
+            {
+                return CalculateSmallestAbsolute();
+            }
+        }
+
+        private float CalculateSmallestAbsolute()
+        {
+            if (values.Count == 0)
+                throw new Exception("Rolling average must have at least one value");
+            List<float> l = new List<float>(values);
+
+            for (int i = 0; i < l.Count; i++)
+            {
+                l[i] = Mathf.Abs(l[i]);
+            }
+
+            l.Sort();
+            return l[0];
+        }
+
+        //public void RemoveOutliers()
+        //{
+        //    if (values.Count < 2) return;
+        //    List<float> l = new List<float>(values);
+        //    l.Sort();
+        //    var med = l[l.Count / 2];
+        //    for (int i = l.Count - 1; i >= 0; i--)
+        //    {
+        //        float v = l[i];
+        //        if (Mathf.Abs(v - med) > 3 * med)
+        //        {
+        //            l.RemoveAt(i);
+        //        }
+        //    }
+        //    values.Clear();
+        //    foreach (var v in l)
+        //    {
+        //        values.Enqueue(v);
+        //    }
+        //}
+
+        private float CalcualteMeanAverage()
+        {
+            if (values.Count == 0)
+                throw new Exception("Rolling average must have at least one value");
+
+            float sum = 0;
+            foreach (var value in values)
+            {
+                sum += value;
+            }
+            return sum / values.Count;
+        }
+
+        private float CalclulateMedianAverage()
+        {
+            if (values.Count == 0)
+                throw new Exception("Rolling average must have at least one value");
+
+            List<float> l = new List<float>(values);
+            l.Sort();
+
+            return l[l.Count / 2];
         }
 
         public RollingAverage(int itterations)
@@ -74,6 +135,10 @@ namespace Helper
             values.Enqueue(v);
         }
 
+        public void Reset()
+        {
+            values.Clear();
+        }
     }
 
 
