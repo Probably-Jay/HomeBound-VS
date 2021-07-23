@@ -20,8 +20,13 @@ namespace Tool
         bool overwriteExisting = false;
         bool isSpritesheet = false;
 
-        float paddingX = 8;
-        float paddingY = 8;
+        int sprites = 4;
+
+        int sizeX = 32;
+        int sizeY = 32;
+
+        float paddingX = 0;
+        float paddingY = 0;
 
         float offsetX = 0;
         float offsetY = 0;
@@ -54,6 +59,9 @@ namespace Tool
 
             if (isSpritesheet)
             {
+                sprites = EditorGUILayout.IntField(new GUIContent("Sprites :"), sprites);
+                sizeX = EditorGUILayout.IntField(new GUIContent("Size X:"), sizeX);
+                sizeY = EditorGUILayout.IntField(new GUIContent("Size Y:"), sizeY);
                 paddingX = EditorGUILayout.FloatField(new GUIContent("Padding X:"), paddingX);
                 paddingY = EditorGUILayout.FloatField(new GUIContent("Padding Y:"), paddingY);
                 offsetX = EditorGUILayout.FloatField(new GUIContent("Offset X:"), offsetX);
@@ -63,7 +71,7 @@ namespace Tool
 
             if (GUILayout.Button("Import"))
             {
-                AssetImportPostProcessing.SetUp(isSpritesheet, paddingX, paddingY, offsetX, offsetY);
+                AssetImportPostProcessing.SetUp(isSpritesheet, sprites,sizeX,sizeY, paddingX, paddingY, offsetX, offsetY);
                 CustomAssetImporter.CustomImportAsset(sourcePath, importToFolder, fileExtention, overwriteExisting);
             }
         }
@@ -87,8 +95,7 @@ namespace Tool
             {
                 AssetDatabase.StartAssetEditing();
 
-                
-
+                // get files in dir
                 string[] foundFiles = Directory.GetFiles(sourceDirectoryPath, $"*.{filetype}");
                 if (foundFiles.Length == 0)
                 {
@@ -99,6 +106,7 @@ namespace Tool
 
 
                 bool pathExists = Directory.Exists(localPath);
+
                 if (!pathExists)
                 {
                     Debug.Log($"Directory at {outputDirectory} does not exist, creating {localPath}");
@@ -106,11 +114,12 @@ namespace Tool
                         throw new System.Exception($"Could not create directory at {localPath}");
                 }
                 int count = 0;
+
+                // import each files
                 foreach (string sourcePath in foundFiles)
                 {
-
-
                     var assetPath = ImportFile(overwriteExisting, localPath, sourcePath);
+
                     if (assetPath == null) 
                         continue;
 
@@ -125,6 +134,7 @@ namespace Tool
             finally
             {
                 AssetDatabase.StopAssetEditing();
+                AssetDatabase.Refresh();
                 AssetImportPostProcessing.settingsEnabled = false;
             }
 
@@ -134,7 +144,7 @@ namespace Tool
         {
             var sourceFile = new FileInfo(sourcePath);
 
-            // Ignore invalid paths
+  
             if (!sourceFile.Exists)
             {
                 Debug.LogError($"Specified file at {sourcePath} does not exist or cannot be read");
@@ -157,27 +167,34 @@ namespace Tool
     {
         public static bool settingsEnabled = false;
 
-        public static int spriteWidth = 32;
-        public static float spritePaddingY = 7;
-        public static float spritePaddingX = 8;
+        public static bool isSpriteSheet;
+        public static int sprites;
+        public static int spriteSizeX = 32;
+        public static int spriteSizeY = 32;
+        public static float spritePaddingY = 0;
+        public static float spritePaddingX = 0;
         public static float spriteoffsetY = 0;
         public static float spriteOffsetX = 0;
         public static TextureImporterType textureImportType = TextureImporterType.Sprite;
         public static int pixelsPerUnit = 32;
         public static FilterMode filterMode = FilterMode.Point;
         public static TextureImporterCompression compressionMode = TextureImporterCompression.Uncompressed;
-        public static bool isSpriteSheet;
 
-        internal static void SetUp(bool isSpritesheet, float paddingX, float paddingY, float offsetX, float offsetY)
+        internal static void SetUp(bool isSpritesheet, int sprites, int sizeX, int sizeY, float paddingX, float paddingY, float offsetX, float offsetY)
         {
             AssetImportPostProcessing.isSpriteSheet = isSpritesheet;
+
+            AssetImportPostProcessing.sprites = sprites;
+
+            AssetImportPostProcessing.spriteSizeX = sizeX;
+            AssetImportPostProcessing.spriteSizeY = sizeY;
             AssetImportPostProcessing.spritePaddingX = paddingX;
             AssetImportPostProcessing.spritePaddingY = paddingY;
             AssetImportPostProcessing.spriteoffsetY = offsetX;
             AssetImportPostProcessing.spriteOffsetX = offsetY;
         }
 
-        void OnPostprocessSprites(Texture2D texture, Sprite[] sprites)
+        void OnPostprocessSprites(Texture2D texture, Sprite[] s)
         {
             if (!settingsEnabled)
             {
@@ -192,26 +209,31 @@ namespace Tool
 
             if (isSpriteSheet)
             {
+                Debug.Log("Sprite Sheeting");
+
                 importer.spriteImportMode = SpriteImportMode.Multiple;
 
-                SpriteMetaData[] spritesheet = new SpriteMetaData[4];
+                SpriteMetaData[] spritesheet = new SpriteMetaData[sprites];
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < sprites; i++)
                 {
                     SpriteMetaData sprite = new SpriteMetaData();
 
 
-                    sprite.name = importer.name + $"s_{i.ToString("00")}";
+                    sprite.name = importer.name + $"{importer.name}_s_{i.ToString("00")}";
                     
-                    sprite.rect = new Rect(spriteOffsetX + i * (spriteWidth + spritePaddingX), spriteoffsetY+ spritePaddingY, 32, 32);
+                    sprite.rect = new Rect(spriteOffsetX + i * (spriteSizeX + spritePaddingX), spriteoffsetY+ spritePaddingY, spriteSizeX, spriteSizeY);
 
                     spritesheet[i] = sprite;
                 }
-
+                Debug.Log(spritesheet.Length);
                 importer.spritesheet = spritesheet;
-
-                Debug.Log("Imprt settings applied");
             }
+
+
+            importer.SaveAndReimport();
+                
+            Debug.Log("Import settings applied");
            
         }
 
