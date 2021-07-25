@@ -194,11 +194,12 @@ namespace Dialogue
 
         public void ProgressNewPhraseDirectly(string speaker, float? onBeat = null, bool forceContext = false) => dialogueTyper.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
         public void UnGreyOutHitWord(string text, HitQuality hitQuality, float? onBeat = null, bool forceContext = false) => dialogueTyper.UnGreyOutWord(text, hitQuality, onBeat, forceContext);
+        public void StrikeThroughMissedWord(string word, float? onBeat, bool forceContext) => dialogueTyper.StrikeThroughMissedWord(word, onBeat, forceContext);
 
         public void AddColourRTT(int colour)
         {
             string hex = colour.ToString("X6");
-            string tag = $"<color=#{hex}>";
+            string tag = $"<color=#{Accessibility.ColourBlindHelper.GetColourString(hex)}>";
             dialogueTyper.AddRichTextTag(tag);
         }
 
@@ -206,6 +207,7 @@ namespace Dialogue
         {
             dialogueTyper.AddLinePreview(line);
         }
+
 
         //// Start is called before the first frame update
         //void Start()

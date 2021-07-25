@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312a7c6ab03c95543bf6eabec33b5104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: 
+  description: 
   taskPrerequisites:
   - {fileID: 0}
   onBeginTask:
@@ -80,6 +82,7 @@ Transform:
   m_Children:
   - {fileID: 5822915324421608384}
   - {fileID: 5822915323672644282}
+  - {fileID: 4027385054776781624}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -127,7 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529cffafda023d94083999f394f339db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questName: Example
+  title: 
+  description: 
   tasks: []
   onQuestBegin:
     m_PersistentCalls:
@@ -186,4 +190,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5822915322771884294}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7361113742337817122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4027385054776781624}
+  m_Layer: 0
+  m_Name: LogicSteps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4027385054776781624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361113742337817122}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5822915322771884294}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

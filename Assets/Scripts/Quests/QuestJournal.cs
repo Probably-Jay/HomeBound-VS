@@ -10,12 +10,13 @@ namespace Quests
         [SerializeField] List<Quest> currentQuests = new List<Quest>();
 
 
-        public List<Quest> CurrentQuests { get => currentQuests; set => currentQuests = value; }
+        public List<Quest> Quests { get => currentQuests; set => currentQuests = value; }
 
+        public event Action OnQuestChange;
 
         private void Start()
         {
-            foreach (var quest in CurrentQuests)
+            foreach (var quest in Quests)
             {
                 try
                 {
@@ -31,7 +32,8 @@ namespace Quests
 
         public void ReceiveQuest(Quest quest)
         {
-            CurrentQuests.Add(quest);
+            Quests.Add(quest);
+            OnQuestChange?.Invoke();
             BeginQuest(quest);
         }
 
@@ -44,7 +46,7 @@ namespace Quests
         private void RemoveQuest()
         {
             var toRemove = new List<Quest>();
-            foreach (var quest in CurrentQuests)
+            foreach (var quest in Quests)
             {
                 if (quest.Complete)
                 {
@@ -57,6 +59,8 @@ namespace Quests
             {
                 currentQuests.Remove(quest);
             }
+            OnQuestChange?.Invoke();
+
         }
     }
 }

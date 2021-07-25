@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Quests
 {
+    [System.Serializable]
     [RequireComponent(typeof(BoxCollider2D))]
     public class ColliderQuestStep : SimpleQuestStep
     {

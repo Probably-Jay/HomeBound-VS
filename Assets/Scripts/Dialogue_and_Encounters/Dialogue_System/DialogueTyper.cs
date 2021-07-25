@@ -7,6 +7,8 @@ using TMPro;
 using Rythm;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Accessibility;
+
 
 namespace Dialogue
 {
@@ -22,15 +24,17 @@ namespace Dialogue
     public class DialogueTyper : MonoBehaviour
     {
 
-        public const string greyTag = "<color=#777777>";
-        public const string escapedGreyTag = @"<color=\#777777>";
-        public const string whiteTag = "<color=#FFFFFF>";
-        public const string escapedWhiteTag = @"<color=\#FFFFFF>";
+        public static string lightGreyTag =>         $"<color=#{ColourBlindHelper.GetColourString("888888")}>";
+        public static string escapedlightGreyTag =>  $@"<color=\#{ColourBlindHelper.GetColourString("888888")}>";
+        public static string whiteTag =>             $"<color=#{ColourBlindHelper.GetColourString("FFFFFF")}>";
+        public static string escapedWhiteTag => $@"<color=\#{ColourBlindHelper.GetColourString("FFFFFF")}>";
 
-        public const string tealTag = "<color=#00ffe5>";
-        public const string greeenTag = "<color=#42db5b>"; //#4fff4f
-        public const string amberTag = "<color=#dba542>";
-        public const string redTag = "<color=#d10000z>";
+        public static string nearWhiteTag => $"<color=#{ColourBlindHelper.GetColourString("CCCCCC")}>";
+        public static string darkGreyTag => $"<color=#{ColourBlindHelper.GetColourString("666666")}>";
+        public static string tealTag => $"<color=#{ColourBlindHelper.GetColourString("00FFE5")}>";
+        public static string greeenTag => $"<color=#{ColourBlindHelper.GetColourString("42DB5B")}>"; //#4fff4f
+        public static string amberTag => $"<color=#{ColourBlindHelper.GetColourString("DBA542")}>";
+        public static string redTag => $"<color=#{ColourBlindHelper.GetColourString("D10000")}>";
         
 
 
@@ -220,6 +224,8 @@ namespace Dialogue
             dialogueQueue.Clear();
         }
 
+       
+
         /// <summary>
         /// Queue a phrase to be shown in the box as the user progresses thorough, will enter the queue on a beat
         /// </summary>
@@ -324,6 +330,34 @@ namespace Dialogue
             bufferAndLivePhrase.AddToLiveDirectly(grayedOutText.Text);
         }
 
+        internal void StrikeThroughMissedWord(string word, float? onBeat, bool forceContext)
+        {
+            if ((RythmEngine.TryInstance?.PlayingMusic ?? false) && onBeat.HasValue)
+            {
+                StrikeThroughWordOnbeat(word, onBeat.Value, forceContext);
+                return;
+            }
+
+            StrikeThroughWordDirectly(word);
+        }
+
+
+        private void StrikeThroughWordOnbeat(string word, float beat, bool forceContext)
+        {
+            long? _context = forceContext ? (long?)Context : null;
+            RythmEngine.Instance.QueueActionAtExplicitBeat(() => {
+                StrikeThroughWordDirectly(word, _context);
+            }, beat);
+        }
+        private void StrikeThroughWordDirectly(string word, long? _context = null)
+        {
+            if (_context.HasValue && _context != Context)
+            {
+                Debug.LogError($"Word {word} out of context ({_context} vs {Context})");
+                return;
+            }
+            grayedOutText.StrikeThroughWord(word);
+        }
 
 
         /// <summary>
@@ -626,7 +660,7 @@ namespace Dialogue
             StringBuilder sb = new StringBuilder();
             foreach (var word in words)
             {
-                sb.Append($"{DialogueTyper.greyTag}{word}{DialogueTyper.whiteTag} ");
+                sb.Append($"{DialogueTyper.lightGreyTag}{word}{DialogueTyper.whiteTag} ");
             }
 
             text = sb.ToString();
@@ -643,18 +677,18 @@ namespace Dialogue
            // float st = Time.time;
             float ct = 0;
             word = word.Trim();
-            string pattern = $@"{DialogueTyper.escapedGreyTag}{word}{DialogueTyper.escapedWhiteTag}";
+            string pattern = $@"{DialogueTyper.escapedlightGreyTag}{word}{DialogueTyper.escapedWhiteTag}";
             string hitQualityTag = GetHitQuality(hitQuality);
 
             // float animationFactor = hitQuality != HitQuality.Perfect ? 1 : 1.5f;
             // float animationRate= hitQuality != HitQuality.Perfect ? 1 : 2f/3f;
 
             bool isPerfect = hitQuality == HitQuality.Perfect;
-
-            while (Active && ct < 1)
+            float ainmTime = !isPerfect ? 1 : 15f;
+            while (Active && ct < ainmTime)
             {
                 ct += Time.deltaTime;
-                string replacement = GetReplacement(word, hitQualityTag, ct, isPerfect);
+                string replacement = GetHitReplacement(word, hitQualityTag, ct, isPerfect);
 
                 Regex regex = new Regex(pattern);
 
@@ -668,7 +702,7 @@ namespace Dialogue
             }
         }
 
-        private string GetReplacement(string word, string hitQualityTag, float ct, bool isPerfect)
+        private string GetHitReplacement(string word, string hitQualityTag, float ct, bool isPerfect)
         {
             string percent = GetSizePercent(ct, isPerfect);
             
@@ -705,7 +739,50 @@ namespace Dialogue
 
         private float EvaluateSize(float t, bool isPerfect)
         {
-            return !isPerfect ? curve.Evaluate(t):perfectCurve.Evaluate(t);
+            if (!isPerfect)
+            {
+                return curve.Evaluate(t);
+            }
+            else
+            {
+               // return curve.Evaluate(t) * (1.1f-(Mathf.Sin(t*2*Mathf.PI)*0.1f));
+                return perfectCurve.Evaluate(t);
+            }
+        }
+
+        internal void StrikeThroughWord(string word)
+        {
+            parent.StartCoroutine(StrikeThorughWord(word));
+        }
+
+        private IEnumerator StrikeThorughWord(string word)
+        {
+            float ct = 0;
+            word = word.Trim();
+            string pattern = $@"{DialogueTyper.escapedlightGreyTag}{word}{DialogueTyper.escapedWhiteTag}";
+            while (Active && ct < 1)
+            {
+                ct += Time.deltaTime;
+                string replacement = GetMissReplacement(word, ct);
+
+                Regex regex = new Regex(pattern);
+
+                if (Active)
+                    text = regex.Replace(text, replacement, 1);
+
+                pattern = replacement;
+
+                parent.UpdateGreyedOut();
+                yield return null;
+            }
+        }
+
+        private string GetMissReplacement(string word, float ct)
+        {
+            int count = Mathf.RoundToInt(word.Length * ct);
+            var prev = word.Substring(0,count);
+            var post = word.Substring(count, word.Length-count);
+            return $"{DialogueTyper.nearWhiteTag}<s>{DialogueTyper.darkGreyTag}{prev}</s>{post}{DialogueTyper.whiteTag}{DialogueTyper.whiteTag}";
         }
 
         public void Clear()
@@ -714,7 +791,7 @@ namespace Dialogue
             Active = false;
         }
 
-
+       
     }
 
     internal class BufferAndLivePhrase

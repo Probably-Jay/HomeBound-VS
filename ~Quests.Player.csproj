@@ -53,6 +53,9 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -584,9 +587,15 @@
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\EventListnerQuestStep.cs" />
     <Compile Include="Assets\Scripts\Quests\HelperTaskObjects\SimpleQuestStep.cs" />
     <Compile Include="Assets\Scripts\Quests\IQuestHolder.cs" />
-    <Compile Include="Assets\Scripts\Quests\Internals\Interfaces\QuestTaskCompletable.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\Interfaces\QuestStepCompletable.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\IUIDesrcibable.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\Quest.cs" />
     <Compile Include="Assets\Scripts\Quests\Internals\ScriptableObjects\QuestTask.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\IUISelectable.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestTaskEditor.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestUIElement.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\QuestVeiwUI.cs" />
+    <Compile Include="Assets\Scripts\Quests\Internals\UI\TaskUIElement.cs" />
     <Compile Include="Assets\Scripts\Quests\QuestJournal.cs" />
     <Compile Include="Assets\Scripts\Quests\SingleQuestGiver.cs" />
   </ItemGroup>

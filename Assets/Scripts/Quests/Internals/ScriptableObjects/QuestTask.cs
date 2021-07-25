@@ -7,20 +7,25 @@ using UnityEngine.Events;
 
 namespace Quests
 {
-   // [CreateAssetMenu(fileName = "QuestTask", menuName = "ScriptableObjects/Quests/Task", order = 1)]
-    public class QuestTask : MonoBehaviour
+    public class QuestTask : MonoBehaviour, IUIDesrcibable
     {
- 
-        [SerializeField]  private List<QuestTaskCompletable> taskPrerequisites;
+        [SerializeField] string title;
+        [TextArea(1, 4)]
+        [SerializeField] string description;
+        [SerializeField] public List<SimpleQuestStep> taskPrerequisites;
        
         public bool TaskActive { get; set; }
+        public string Title => title;
+
+        public string Description => description;
         
 
-        public bool TaskComplete => taskPrerequisites.TrueForAll((t) => t.Completed);
+        public bool Complete => taskPrerequisites.TrueForAll((t) => t.Completed);
         public bool AnyTasksCompleted => taskPrerequisites.Any((t) => t.Completed);
 
         public UnityEvent OnCompleteTask { get => onCompleteTask; set => onCompleteTask = value; }
         public UnityEvent OnBeginTask { get => onBeginTask; set => onBeginTask = value; }
+
 
         [SerializeField] private UnityEvent onBeginTask;
         [SerializeField] private UnityEvent onCompleteTask;
@@ -46,7 +51,7 @@ namespace Quests
                 Debug.Log("Quest step completed");
             }
 
-            if (!TaskComplete)
+            if (!Complete)
             {
                 return;
             }
@@ -74,4 +79,12 @@ namespace Quests
             TaskActive = false;
         }
     }
+
+    //[System.Serializable]
+    //public class QuestStep 
+    //{ 
+    //    public int stepOrder;
+    //    public QuestStepCompletable step;
+    //}
+
 }

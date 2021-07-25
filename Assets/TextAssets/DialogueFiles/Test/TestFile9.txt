@@ -1,6 +1,6 @@
 id: test
 
-[REX]: hey [Quest: Eq1]
+[REX]: hey [colour: FF0000] A [colour: 00FF00] B [colour: 0000FF] C [Quest: Eq1]
 [Player]: What's that feeling?[CompleteTask: Eq1_t0]
 [REX]: Let's go[rhythm: demo]
 

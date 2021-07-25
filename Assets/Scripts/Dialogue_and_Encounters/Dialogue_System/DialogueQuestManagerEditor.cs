@@ -75,6 +75,6 @@ namespace HomeboundEditor
             EditorGUI.LabelField(rect, name);
         }
 
-#endif
     }
+#endif
 }

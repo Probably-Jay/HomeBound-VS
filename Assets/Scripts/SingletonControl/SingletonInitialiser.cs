@@ -27,7 +27,11 @@ namespace SingletonManagement
 
         [Header("Context")]
         [SerializeField] GameObject contextController;
-        [SerializeField] bool initaliseContextController;
+        [SerializeField] bool initaliseContextController;  
+        
+        [Header("Accessiblity")]
+        [SerializeField] GameObject AccessiblityManager;
+        [SerializeField] bool initaliseAccessiblityManager;
 
 
         private void Awake()
@@ -48,6 +52,8 @@ namespace SingletonManagement
             SetUpSingleton<Rythm.RythmEngine>(initaliseRythmEngine, rythmEngine);
 
             SetUpSingleton<Game.GameContextController>(initaliseContextController, contextController);
+
+            SetUpSingleton<Accessibility.AccessibilityManager>(initaliseAccessiblityManager, AccessiblityManager);
 
         }
 

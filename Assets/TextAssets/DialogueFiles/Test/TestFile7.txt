@@ -4,7 +4,7 @@ id: test_demo
 
 // this line is a comment
 
-[Stranger]: My name is[pause: 8].[pause: 16].[pause: 16].[pause: 16] [colour: FF00FF][shake: 2]REX.[colour: FFFFFF]
+[Stranger]: My name is[pause: 8].[pause: 16].[pause: 16].[pause: 16] [colour: FF00FF][shake: 0.75]REX.[colour: FFFFFF]
 [Player]: Hello [pause: 16][colour: FF00FF]Rex[colour: FFFFFF], where am I?
 [REX]: You're in the [colour: FF0000]HomeBound Tech Demo![colour: FFFFFF]
 [REX]: You've already figured out [colour: 00FF00]Walking around[colour: FFFFFF] and [colour: 00FF00] interacting[colour: FFFFFF] with things, right?
