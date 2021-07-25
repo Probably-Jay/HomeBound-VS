@@ -58,9 +58,11 @@ using System;
         {
             Game.GameContextController.Instance.PushContext(Game.Context.Rythm);
             dialogueManager.EnterArgument();
-            PassControlToRythm();
+            dialogueManager.RythmControlYeilded();
+            rythmManager.RythmControlReceived();
             InRythmSection = true;
             rythmManager.LoadAndBeginSection(id);
+          //  RythmEngine.Instance.ResumeSongMelody();
         }
 
 
@@ -70,6 +72,7 @@ using System;
             RythmHasControl = false;
             rythmManager.RythmControlYeilded();
             dialogueManager.RythmControlReceived();
+            RythmEngine.Instance.PauseSongMelody();
         }
 
         public void PassControlToDialogue(float? passBack)
@@ -109,19 +112,25 @@ using System;
 
 
         public void PassControlToRythm()
+    {
+        if (passToRyrhmQueued)
         {
-            if (passToRyrhmQueued)
-            {
-                // we have this pass back queued for the future
-                Debug.Log("Pass back queued for the furure");
-                return;
-            }
-            RythmHasControl = true;
-            dialogueManager.RythmControlYeilded();
-            rythmManager.RythmControlReceived();
+            // we have this pass back queued for the future
+            Debug.Log("Pass back queued for the furure");
+            return;
         }
+        RythmHasControl = true;
+        RythmEngine.Instance.QueueActionNextBar(TriggerPassbackOnBar);
+    }
 
-        public void EndRythmSection()
+    private void TriggerPassbackOnBar()
+    {
+        RythmEngine.Instance.ResumeSongMelody();
+        dialogueManager.RythmControlYeilded();
+        rythmManager.RythmControlReceived();
+    }
+
+    public void EndRythmSection()
         {
             RythmHasControl = false;
             InRythmSection = false;
@@ -139,7 +148,6 @@ using System;
 
         public void UnGreyOutHitWord(string word, NoteSystem.HitQuality hitQuality, float? beatWhenDisplayed = null)
         {
-           // word += ' ';
             if (beatWhenDisplayed != null)
             {
                 dialogueManager.UnGreyOutHitWord(word, hitQuality, beatWhenDisplayed);

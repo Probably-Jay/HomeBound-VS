@@ -184,7 +184,7 @@ namespace Rythm
                 }
             }
 
-            private bool PlayingSeperateMelody => mode == Mode.RhythmSection;
+            private bool PlayingSeperateMelody => mode == Mode.RhythmSection && CurrentMelody.AudioSource.isPlaying;
 
             private Stack<SourceAndSong> activeSources = new Stack<SourceAndSong>();
             private Queue<SourceAndSong> inactiveSources = new Queue<SourceAndSong>();

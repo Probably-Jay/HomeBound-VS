@@ -248,19 +248,32 @@ namespace Rythm
                 if (invokeAllQueedActionsOnSongChange)
                 {
                     Debug.LogWarning($"There are actions queued while changing the song! Invoking all");
-                    InvokeAllActions();
+                    InvokeAllActions(debug: true);
                 }
                 else
                 {
                     Debug.LogError($"There are actions queued while changing the song! Discarding all");
+                    ClearAllActions(debug: true);
                 }
 
-                queuedActions.Clear();
+                
             }
 
         }
 
-        private void InvokeAllActions()
+        private void ClearAllActions(bool debug)
+        {
+            if (debug)
+            {
+                foreach (var action in queuedActions)
+                {
+                    Debug.Log($"Deleting: {action.Value.Target}.{action.Value.Method}");
+                }
+            }
+            queuedActions.Clear();
+        }
+
+        private void InvokeAllActions(bool debug = false)
         {
             int count = 0;
             while (queuedActions.Count > 0)
@@ -286,6 +299,10 @@ namespace Rythm
 
                 foreach (var action in ToInvokeCache) // we need to make sure it's removed *BEFORE* it's invoked
                 {
+                    if (debug)
+                    {
+                        Debug.Log($"Invoking: {action.Target}.{action.Method}");
+                    }
                     action?.Invoke();
                 }
 
@@ -335,7 +352,7 @@ namespace Rythm
 
 
         public void QueueActionNextBeat(Action action) => QueueActionAfterBeats(action, 0);
-        public void QueueActionNextBer(Action action) => QueueActionAfterBars(action, 0);
+        public void QueueActionNextBar(Action action) => QueueActionAfterBars(action, 0);
 
      
 

@@ -12725,7 +12725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainDialogueIDs:
-  - test_demo
+  - test
   - test_8
   runMainOnlyOnce: 1
   backupDialogueIDs: []
