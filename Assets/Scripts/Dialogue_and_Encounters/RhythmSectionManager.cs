@@ -102,13 +102,13 @@ public class RhythmSectionManager : MonoBehaviour
                 throw new Exception("notesection is empty");
             if(noteSection.song == null)
                 throw new Exception("notesection.song is null");
-            if(noteSection.song.backingRhythmSong.audioClip == null)
+            if(noteSection.song.backingSong.audioClip == null)
                 throw new Exception("notesection.song has no audio clip, did you forget to re-import the music files you fucking moron?");            
-            if(noteSection.song.melodySong.audioClip== null)
+            if(noteSection.song.melodyRhythmSong.audioClip== null)
                 throw new Exception("notesection.song has no audio clip, did you forget to re-import the music files you fucking moron?");
-            if(noteSection.song.backingRhythmSong.BPM == 0)
+            if(noteSection.song.backingSong.BPM == 0)
                 throw new Exception("notesection.backingRhythmSong.song has no BPM");            
-            if(noteSection.song.melodySong.BPM == 0)
+            if(noteSection.song.melodyRhythmSong.BPM == 0)
                 throw new Exception("notesection.melodySong.song has no BPM"); 
         }
         catch (Exception e)

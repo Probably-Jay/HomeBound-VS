@@ -11,8 +11,8 @@ namespace Rythm
     [CreateAssetMenu(fileName = "SplitSong", menuName = "ScriptableObjects/Rhythm/SplitSong", order = 1)]
     public class SplitRythmSong : ScriptableObject
     {
-        public RythmSong melodySong;
-        public RythmSong backingRhythmSong;
+        public RythmSong melodyRhythmSong;
+        public RythmSong backingSong;
     }
 
 }

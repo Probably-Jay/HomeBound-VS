@@ -110,7 +110,7 @@ namespace Rythm
         /// </summary>
         public void StartRhythmSection(SplitRythmSong music)
         {
-            multiAudioSource.PushNewSplitClip(music, music.backingRhythmSong.beginAtSample, music.melodySong.beginAtSample);
+            multiAudioSource.PushNewSplitClip(music, music.melodyRhythmSong.beginAtSample, music.backingSong.beginAtSample);
         }
 
         public void PauseMelody()
@@ -165,24 +165,24 @@ namespace Rythm
                 }
             }
 
-            private SourceAndSong CurrentMelody 
-            {
-                get
-                {
-                    if(mode != Mode.RhythmSection)
-                    {
-                        throw new Exception("There is no seperate melody as you are not in a rhythm section");
-                    }
+            //private SourceAndSong CurrentMelody 
+            //{
+            //    get
+            //    {
+            //        if(mode != Mode.RhythmSection)
+            //        {
+            //            throw new Exception("There is no seperate melody as you are not in a rhythm section");
+            //        }
 
-                    return melody;
-                }
-                set
-                {
-                    melody = value;
-                }
-            }
+            //        return melody;
+            //    }
+            //    set
+            //    {
+            //        melody = value;
+            //    }
+            //}
 
-            private bool PlayingSeperateMelody => mode == Mode.RhythmSection && CurrentMelody.AudioSource.isPlaying;
+          //  private bool PlayingSeperateMelody => mode == Mode.RhythmSection && CurrentMelody.AudioSource.isPlaying;
 
             private Stack<SourceAndSong> activeSources = new Stack<SourceAndSong>();
             private Queue<SourceAndSong> inactiveSources = new Queue<SourceAndSong>();
@@ -220,7 +220,7 @@ namespace Rythm
                 return CurrentSong;
             }
 
-            public RythmSong PushNewClip(RythmSong newSong, int fromSample = 0, bool play = true )
+            public RythmSong PushNewClip(RythmSong newSong, int fromSample = 0, bool play = true, bool pausePrevious = true )
             {
                 if (mode != Mode.SinlgeTrackSong)
                 {
@@ -236,7 +236,7 @@ namespace Rythm
                 if(play)
                     parentBehaviour.StartCoroutine(PlayNewSong(newSongAndSource));
 
-                if(oldSource != null)
+                if(pausePrevious && oldSource != null)
                     parentBehaviour.StartCoroutine(PauseSong(oldSource));
 
                 return CurrentSong;
@@ -280,13 +280,15 @@ namespace Rythm
             public void PauseClip() => parentBehaviour.StartCoroutine(PauseSong(CurrentTop));
             public void PauseClipMelodyClip()
             {
-                CurrentMelody.InstantPause();//parentBehaviour.StartCoroutine(PauseSong(melody));
+                // CurrentMelody.InstantPause();//parentBehaviour.StartCoroutine(PauseSong(melody));
+                CurrentTop.InstantPause();
             }
 
             public void ResumeClip() => parentBehaviour.StartCoroutine(ResumeSong(CurrentTop));
             internal void ResumeMelodyClip()
             {
-                CurrentMelody.InstantPlay();//parentBehaviour.StartCoroutine(ResumeSong(melody));
+                //  CurrentMelody.InstantPlay();//parentBehaviour.StartCoroutine(ResumeSong(melody));
+                CurrentTop.InstantPlay();
             }
 
             ///<summary>Set current top to <paramref name="songAndSource"/></summary>
@@ -309,11 +311,11 @@ namespace Rythm
                 OnChangedMusic?.Invoke(CurrentSong);
             }
 
-            public void PushNewSplitClip(SplitRythmSong music, int beginAtSample, int melodyBeginAtSample)
+            public void PushNewSplitClip(SplitRythmSong music, int beginAtSample, int backingBeginAtSample)
             {
-                PushNewClip(music.melodySong, beginAtSample, play: false);
-                CurrentMelody = CurrentTop;
-                PushNewClip(music.backingRhythmSong, melodyBeginAtSample);
+                PushNewClip(music.backingSong, backingBeginAtSample);
+             //   CurrentMelody = CurrentTop;
+                PushNewClip(music.melodyRhythmSong, beginAtSample, pausePrevious: false);
                 mode = Mode.RhythmSection;
             }
 

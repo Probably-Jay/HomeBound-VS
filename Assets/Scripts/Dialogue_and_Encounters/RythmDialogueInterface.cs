@@ -82,7 +82,7 @@ public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterfa
     public void PassControlToDialogue(float? passBack)
     {
         if (dialogueManager.ThisHasControl)
-        {
+            {
             Debug.LogError("Dialogue already has control");
         }
         PassControlToDialogue();

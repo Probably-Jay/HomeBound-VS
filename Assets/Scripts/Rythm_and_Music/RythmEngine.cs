@@ -27,11 +27,11 @@ namespace Rythm
         {
             get
             {
-                if (!PlayingMusic)
-                {
-                    //  Debug.LogError("Not playing music");
-                    return Time.time * NoMusicBPS;
-                }
+                //if (!PlayingMusic)
+                //{
+                //    //  Debug.LogError("Not playing music");
+                //    return Time.time * NoMusicBPS;
+                //}
                 return SampleOffset + (TimeInSong * BPS);
             }
         }
@@ -191,8 +191,14 @@ namespace Rythm
 
         private void UpdateCurrentSampleEstimate()
         {
+            if (!PlayingMusic) return;
             var ds = Mathf.RoundToInt(Time.unscaledDeltaTime * FrequencyOfClip);
             currentEstimatedSample += ds;
+        }
+
+        private void FixedUpdate()
+        {
+            Debug.Log(currentEstimatedSample);
         }
 
         public override void Initialise()
@@ -345,6 +351,7 @@ namespace Rythm
 
             foreach (var action in ToInvokeCache) // invoke *AFTER* removed
             {
+                //Debug.LogWarning($"Invoking {action.Target}.{action.Method} at {frameCurrentBeat}");
                 action?.Invoke();
             }
         }
