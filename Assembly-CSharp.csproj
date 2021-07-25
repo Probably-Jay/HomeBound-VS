@@ -685,6 +685,10 @@
       <Project>{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}</Project>
       <Name>~InteractableInterface</Name>
     </ProjectReference>
+    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
+      <Project>{B1FD1A2C-C177-539C-2EB0-6F4E9E204FD6}</Project>
+      <Name>~Dialogue_And_Encounters</Name>
+    </ProjectReference>
     <ProjectReference Include="~World.csproj">
       <Project>{2FC02305-3629-9C2F-DF84-BC25314168D0}</Project>
       <Name>~World</Name>
@@ -708,10 +712,6 @@
     <ProjectReference Include="~Quests.csproj">
       <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
       <Name>~Quests</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
-      <Project>{B1FD1A2C-C177-539C-2EB0-6F4E9E204FD6}</Project>
-      <Name>~Dialogue_And_Encounters</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
