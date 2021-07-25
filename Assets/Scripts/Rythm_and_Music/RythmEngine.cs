@@ -113,7 +113,6 @@ namespace Rythm
                 return;
             }
 
-
             int difference = currentEstimatedSample - CurrentMusicSample;
 
             if(Mathf.Abs(difference) > SecondsToSamples(3))

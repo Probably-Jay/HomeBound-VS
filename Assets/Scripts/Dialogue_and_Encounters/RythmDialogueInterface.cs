@@ -62,7 +62,8 @@ using System;
             rythmManager.RythmControlReceived();
             InRythmSection = true;
             rythmManager.LoadAndBeginSection(id);
-          //  RythmEngine.Instance.ResumeSongMelody();
+        //  RythmEngine.Instance.ResumeSongMelody();
+
         }
 
 
@@ -72,7 +73,8 @@ using System;
             RythmHasControl = false;
             rythmManager.RythmControlYeilded();
             dialogueManager.RythmControlReceived();
-            RythmEngine.Instance.PauseSongMelody();
+
+          //  RythmEngine.Instance.PauseSongMelody();
         }
 
         public void PassControlToDialogue(float? passBack)
@@ -120,12 +122,13 @@ using System;
             return;
         }
         RythmHasControl = true;
-        RythmEngine.Instance.QueueActionNextBar(TriggerPassbackOnBar);
+        TriggerPassbackOnBar();
+      //  RythmEngine.Instance.QueueActionNextBar(TriggerPassbackOnBar);
     }
 
     private void TriggerPassbackOnBar()
     {
-        RythmEngine.Instance.ResumeSongMelody();
+      //  RythmEngine.Instance.ResumeSongMelody();
         dialogueManager.RythmControlYeilded();
         rythmManager.RythmControlReceived();
     }

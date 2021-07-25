@@ -12,6 +12,11 @@ namespace Helper
         /// Get an enumerable list of all enum values of a particular type
         /// </summary>
         public static T[] GetEnumValues<T>() => (T[])System.Enum.GetValues(typeof(T));
+        //public static T Last<T>(this List<T> l)
+        //{
+        //    int len = l.Count;
+        //    return len > 0 ? l[len - 1] : throw new Exception("List must have at least one element to ");
+        //} 
     }
 
     public static class Maths 

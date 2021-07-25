@@ -132,11 +132,7 @@ namespace Rythm
         {
             float a = RythmEngine.Instance.SamplesToSeconds(difference);
             Debug.LogWarning($"Re-syncing music. Jumping {difference} samples ({a}s)");
-            if(Mathf.Abs(difference) < 400)
-            {
-                int b = 0;
-                b++;
-            }
+
             multiAudioSource.SyncSongTime(sample);
         }
 
@@ -148,8 +144,10 @@ namespace Rythm
         {
             [SerializeField] private AnimationCurve fadeInMusicCurve;
             [SerializeField] private AnimationCurve fadeOutMusicCurve;
-            public AudioSource CurrentSongSource => !PlayingSeperateMelody ? CurrentTop?.AudioSource : CurrentMelody.AudioSource;
-            public RythmSong CurrentSong => !PlayingSeperateMelody ? CurrentTop?.RythmSong : CurrentMelody.RythmSong;
+            //    public AudioSource CurrentSongSource => !PlayingSeperateMelody ? CurrentTop?.AudioSource : CurrentMelody.AudioSource;
+            public AudioSource CurrentSongSource => CurrentTop?.AudioSource ;
+            //   public RythmSong CurrentSong => !PlayingSeperateMelody ? CurrentTop?.RythmSong : CurrentMelody.RythmSong;
+            public RythmSong CurrentSong => CurrentTop?.RythmSong;
 
             public event Action<RythmSong> OnChangedMusic;
 
