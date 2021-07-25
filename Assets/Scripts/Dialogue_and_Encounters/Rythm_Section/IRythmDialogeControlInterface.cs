@@ -10,5 +10,5 @@ public interface IRythmDialogeControlInterface
     void PassControlToDialogue(float? onBeat);
     void PassControlToRythm();
     void EndRythmSection();
-
+    void OpponentPhraseCompleted();
 }

@@ -158,7 +158,7 @@ namespace Dialogue
         internal void EnterArgument()
         {
             dialogueContextController.EnterArgument();
-            dialogueContextController.OnTypedPhrase += ReleaseControl;
+            dialogueContextController.OnTypedPhrase += PhraseCompleted;
         }
 
         internal void RythmControlReceived()
@@ -173,6 +173,12 @@ namespace Dialogue
             dialogueContextController.MutateDialogeMode(DialogueMode.Encounter_PlayerSpeak);
         }
 
+        private void PhraseCompleted()
+        {
+            if (!HasControl) return;
+            rythmDialogeControlInterface.OpponentPhraseCompleted();
+        }
+
         internal void ReleaseControl()
         {
             if (!HasControl)
@@ -185,9 +191,11 @@ namespace Dialogue
 
         internal void LeaveArgument()
         {
-            dialogueContextController.OnTypedPhrase -= ReleaseControl;
+            dialogueContextController.OnTypedPhrase -= PhraseCompleted;
             dialogueContextController.LeaveArgument();
         }
+
+       
 
         /// <summary>
         /// Set the output mode. <see cref="Dialogue.DialogueMode.None"/> will leave the mode unchanged
