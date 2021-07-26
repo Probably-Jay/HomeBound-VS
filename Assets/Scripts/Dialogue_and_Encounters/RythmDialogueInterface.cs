@@ -86,33 +86,33 @@ public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterfa
             Debug.LogError("Dialogue already has control");
         }
         PassControlToDialogue();
-        //if (passBack.HasValue)
-        //    QueuePassBackToRythm(passBack.Value);
+        if (passBack.HasValue)
+            QueuePassBackToRythm(passBack.Value);
     }
 
-    //private void QueuePassBackToRythm(float passBack)
-    //{
-    //    if (passToRyrhmQueued)
-    //    {
-    //        Debug.LogError("Already has pasback queued");
-    //    }
-    //    passToRyrhmQueued = true;
-    //    Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(PassControlToRythmOnBeat, passBack);
-    //}
+    private void QueuePassBackToRythm(float passBack)
+    {
+        if (passToRyrhmQueued)
+        {
+            Debug.LogError("Already has pasback queued");
+        }
+        passToRyrhmQueued = true;
+        Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(PassControlToRythmOnBeat, passBack);
+    }
 
-    //private void PassControlToRythmOnBeat()
-    //{
-    //    if (!dialogueManager.ReadyToPassToRythm)
-    //    {
-    //        Debug.LogError("Not ready to pass to rythm");
-    //    }
-    //    if (!passToRyrhmQueued)
-    //    {
-    //        Debug.LogError("This pass back was not queued!");
-    //    }
-    //    passToRyrhmQueued = false;
-    //    PassControlToRythm();
-    //}
+    private void PassControlToRythmOnBeat()
+    {
+        //if (!dialogueManager.ReadyToPassToRythm)
+        //{
+        //    Debug.LogError("Not ready to pass to rythm");
+        //}
+        //if (!passToRyrhmQueued)
+        //{
+        //    Debug.LogError("This pass back was not queued!");
+        //}
+        //passToRyrhmQueued = false;
+        //PassControlToRythm();
+    }
 
     public void OpponentPhraseCompleted()
     {
