@@ -8,7 +8,7 @@ public interface IRythmDialogeControlInterface
     bool RythmHasControl { get; }
     void StartNewRythm(string id);
     void PassControlToDialogue(float? onBeat);
-    void PassControlToRythm();
+  //  void DialogueReadyToPassControlToRythm();
     void EndRythmSection();
-    void OpponentPhraseCompleted();
+    void OpponentPhraseCompletedPauseMusic();
 }

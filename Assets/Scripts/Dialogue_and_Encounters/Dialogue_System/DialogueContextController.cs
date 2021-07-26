@@ -28,7 +28,7 @@ namespace Dialogue
     [RequireComponent(typeof(DialogueTyper))]
     public class DialogueContextController : MonoBehaviour
     {
-        DialogueTyper dialogueTyper;
+        public DialogueTyper dialogueTyper { get; private set; }
 
         public event Action OnReachedEndOfQueue;
         public event Action OnTypedPhrase;

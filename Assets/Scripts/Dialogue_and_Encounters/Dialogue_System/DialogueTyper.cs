@@ -55,7 +55,9 @@ namespace Dialogue
         public float RandomTypingDelayDelta { get => randomDelayDelta; set => randomDelayDelta = value; }
         [SerializeField, Range(0, 0.75f)] float randomDelayDelta = 0.04f;
 
-        [SerializeField] KeyCode nextPhraseKey = KeyCode.RightArrow;
+        [SerializeField] private KeyCode nextPhraseKey;
+        public KeyCode NextPhraseKey { get => nextPhraseKey; private set => nextPhraseKey = value; }
+
         private Coroutine textCoroutine;
         Coroutine typingCoroutine;
 
@@ -132,7 +134,7 @@ namespace Dialogue
         public void SetContinueDisplayShow(bool show)
         {
             continuedisplay.gameObject.SetActive(show);
-            continuedisplay.text = show ? $"Press {nextPhraseKey}" : "";
+            continuedisplay.text = show ? $"Press {NextPhraseKey}" : "";
         }
 
         public void StartNewNormal()
@@ -440,7 +442,7 @@ namespace Dialogue
 
         private IEnumerator WaitForInput()
         {
-            yield return new WaitUntil(() => Input.GetKeyDown(nextPhraseKey));
+            yield return new WaitUntil(() => Input.GetKeyDown(NextPhraseKey));
         }
 
         private IEnumerator WaitForDialogueEnqueue()

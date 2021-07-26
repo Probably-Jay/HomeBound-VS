@@ -196,10 +196,10 @@ namespace Rythm
             currentEstimatedSample += ds;
         }
 
-        private void FixedUpdate()
-        {
-            Debug.Log(currentEstimatedSample);
-        }
+        //private void FixedUpdate()
+        //{
+        //    Debug.Log(currentEstimatedSample);
+        //}
 
         public override void Initialise()
         {

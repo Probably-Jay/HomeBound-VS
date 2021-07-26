@@ -10,7 +10,7 @@ namespace Dialogue
     {
 
         ConversationHandler conversationHandler;
-        DialogueContextController dialogueContextController;
+        public DialogueContextController DialogueContextController { get; private set; }
         //    RythmDialogueInterface rythmInterface;
         IRythmDialogeControlInterface rythmDialogeControlInterface;
         DialogueQuestManager dialogueQuestController;
@@ -30,7 +30,7 @@ namespace Dialogue
         private void Awake()
         {
             conversationHandler = GetComponent<ConversationHandler>();
-            dialogueContextController = GetComponent<DialogueContextController>();
+            DialogueContextController = GetComponent<DialogueContextController>();
             rythmDialogeControlInterface = GetComponent<RythmDialogueInterface>();
             dialogueQuestController = GetComponentInChildren<DialogueQuestManager>();
             dialogueQuestTaskController = GetComponentInChildren<DialogueQuestTaskManager>();
@@ -51,15 +51,16 @@ namespace Dialogue
 
         private void OnEnable()
         {
-            dialogueContextController.OnReachedEndOfQueue += InvokeQueuDepleated;
+            DialogueContextController.OnReachedEndOfQueue += InvokeQueuDepleated;
         }
 
         private void OnDisable()
         {
-            dialogueContextController.OnReachedEndOfQueue -= InvokeQueuDepleated;
+            DialogueContextController.OnReachedEndOfQueue -= InvokeQueuDepleated;
         }
 
-      
+     
+
 
         void InvokeQueuDepleated() => OnQueueDepleated?.Invoke();
 
@@ -99,8 +100,8 @@ namespace Dialogue
 
         private void StartNewConversation(Conversation conversation) 
         {
-            dialogueContextController.ResetDialogeModeTo(conversation.initialMode);
-            dialogueContextController.StartNewConversation();
+            DialogueContextController.ResetDialogeModeTo(conversation.initialMode);
+            DialogueContextController.StartNewConversation();
             currentConversation = StartCoroutine(QueueConversation(conversation));
 
         }
@@ -109,7 +110,7 @@ namespace Dialogue
         {
             if(currentConversation != null)
                 StopCoroutine(currentConversation);
-            dialogueContextController.StopConversation();
+            DialogueContextController.StopConversation();
         }
 
 
@@ -123,12 +124,12 @@ namespace Dialogue
                 //    dialogueContextController.ReturnToPreviousMode();
                 //    return;
                 //}
-                dialogueContextController.MutateDialogeMode(mode); 
+                DialogueContextController.MutateDialogeMode(mode); 
             }; 
-            conversation.OnSetColour += (colour) => dialogueContextController.AddColourRTT(colour);
+            conversation.OnSetColour += (colour) => DialogueContextController.AddColourRTT(colour);
             conversation.OnTriggerRythmSection += (id) => rythmDialogeControlInterface.StartNewRythm(id);
-            conversation.OnPause += (value) => dialogueContextController.PauseTyping(value);
-            conversation.OnShake += (value) => dialogueContextController.Shake(value);
+            conversation.OnPause += (value) => DialogueContextController.PauseTyping(value);
+            conversation.OnShake += (value) => DialogueContextController.Shake(value);
             conversation.OnBeginQuest += (id) => dialogueQuestController.PassQuest(id);
             conversation.OnCompleteQuestStep += (id) => dialogueQuestTaskController.CompleteQuestTaskStep(id);
             conversation.OnUnCompleteQuestStep += (id) => dialogueQuestTaskController.UnCompleteTaskStep(id);
@@ -139,7 +140,7 @@ namespace Dialogue
                 {
                     Debug.LogWarning($"You may be queueing this dialogue more than once in {conversation.conversationID}");
                 }
-                dialogueContextController.QueuePhrase(phrase);
+                DialogueContextController.QueuePhrase(phrase);
             }
 
             yield break;
@@ -149,7 +150,7 @@ namespace Dialogue
 
         public void AddLinePreview(string line)
         {
-            dialogueContextController.AddLinePreview(line);
+            DialogueContextController.AddLinePreview(line);
         }
 
 
@@ -157,42 +158,42 @@ namespace Dialogue
 
         internal void EnterArgument()
         {
-            dialogueContextController.EnterArgument();
-            dialogueContextController.OnTypedPhrase += PhraseCompleted;
+            DialogueContextController.EnterArgument();
+            DialogueContextController.OnTypedPhrase += PhraseCompleted;
         }
 
         internal void RythmControlReceived()
         {
             ReadyToPassToRythm = false;
-            dialogueContextController.ProgressArgument();
+            DialogueContextController.ProgressArgument();
         }
 
         internal void RythmControlYeilded()
         {
-            dialogueContextController.ClearBox();
-            dialogueContextController.MutateDialogeMode(DialogueMode.Encounter_PlayerSpeak);
+            DialogueContextController.ClearBox();
+            DialogueContextController.MutateDialogeMode(DialogueMode.Encounter_PlayerSpeak);
         }
 
         private void PhraseCompleted()
         {
             if (!HasControl) return;
-            rythmDialogeControlInterface.OpponentPhraseCompleted();
+            rythmDialogeControlInterface.OpponentPhraseCompletedPauseMusic();
         }
 
-        internal void ReleaseControl()
-        {
-            if (!HasControl)
-            {
-                return;
-            }
-            ReadyToPassToRythm = true;
-            rythmDialogeControlInterface.PassControlToRythm();
-        }
+        //internal void ReleaseControl()
+        //{
+        //    if (!HasControl)
+        //    {
+        //        return;
+        //    }
+        //    ReadyToPassToRythm = true;
+        //    rythmDialogeControlInterface.DialogueReadyToPassControlToRythm();
+        //}
 
         internal void LeaveArgument()
         {
-            dialogueContextController.OnTypedPhrase -= PhraseCompleted;
-            dialogueContextController.LeaveArgument();
+            DialogueContextController.OnTypedPhrase -= PhraseCompleted;
+            DialogueContextController.LeaveArgument();
         }
 
        
@@ -207,7 +208,7 @@ namespace Dialogue
             {
                 return;
             }
-            dialogueContextController.MutateDialogeMode(newDialogueMode);
+            DialogueContextController.MutateDialogeMode(newDialogueMode);
         }
 
         /// <summary>
@@ -221,7 +222,7 @@ namespace Dialogue
         {
             AssertRythmSectionHasControl();
             SetTypingMode(newDialogueMode);
-            dialogueContextController.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
+            DialogueContextController.ProgressNewPhraseDirectly(speaker, onBeat, forceContext);
         }
 
         /// <summary>
@@ -233,12 +234,12 @@ namespace Dialogue
         internal void UnGreyOutHitWord(string text, NoteSystem.HitQuality hitQuality, float? onBeat = null, bool forceContext = false)
         {
             AssertRythmSectionHasControl();
-            dialogueContextController.UnGreyOutHitWord(text, (Dialogue.HitQuality)(int)hitQuality, onBeat, forceContext);
+            DialogueContextController.UnGreyOutHitWord(text, (Dialogue.HitQuality)(int)hitQuality, onBeat, forceContext);
         }
         internal void StrikeThroughMissedWord(string word, float? onBeat = null, bool forceContext = false)
         {
             AssertRythmSectionHasControl();
-            dialogueContextController.StrikeThroughMissedWord(word, onBeat, forceContext);
+            DialogueContextController.StrikeThroughMissedWord(word, onBeat, forceContext);
         }
 
         private void AssertRythmSectionHasControl()

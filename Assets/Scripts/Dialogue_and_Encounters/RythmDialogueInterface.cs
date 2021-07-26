@@ -26,10 +26,10 @@ public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterfa
     {
         get
         {
-            if (inRythmSection && !RythmEngine.Instance.PlayingMusic)
-            {
-                throw new Exception("Cannot be in rhythm section if music is not playing");
-            }
+            //if (inRythmSection && !RythmEngine.Instance.PlayingMusic)
+            //{
+            //    throw new Exception("Cannot be in rhythm section if music is not playing");
+            //}
             return inRythmSection;
         }
 
@@ -44,7 +44,9 @@ public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterfa
     }
 
     private bool inRythmSection = false;
-    private bool passBackEnabled;
+    private bool dialogueReadyToReleaseControl;
+    private bool rhythmReadyToReceiveControl;
+    private bool playerFinishedReading;
 
     public bool RythmHasControl { get; private set; } = false;
 
@@ -54,7 +56,28 @@ public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterfa
         dialogueManager = GetComponent<DialogueManager>();
     }
 
+    private void Update()
+    {
+        if (!InRythmSection)
+        {
+            return;
+        }
+        if (RythmHasControl)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(dialogueManager.DialogueContextController.dialogueTyper.NextPhraseKey))
+        {
 
+            if (!dialogueReadyToReleaseControl)
+            {
+                Debug.LogError($" Not ready to release ");
+                return;
+            }
+            playerFinishedReading = true;
+            ResumeMusic();
+        }
+    }
     public void StartNewRythm(string id)
     {
         Game.GameContextController.Instance.PushContext(Game.Context.Rythm);
@@ -70,14 +93,6 @@ public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterfa
     }
 
 
-    private void PassControlToDialogue()
-    {
-        AssertInRythmSection();
-        RythmHasControl = false;
-        rythmManager.RythmControlYeilded();
-        dialogueManager.RythmControlReceived();
-
-    }
 
     public void PassControlToDialogue(float? passBack)
     {
@@ -85,9 +100,20 @@ public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterfa
             {
             Debug.LogError("Dialogue already has control");
         }
-        PassControlToDialogue();
+        rhythmReadyToReceiveControl = false;
+        dialogueReadyToReleaseControl = false;
+        playerFinishedReading = false;
+        TriggerPassControlToDialogue();
         if (passBack.HasValue)
             QueuePassBackToRythm(passBack.Value);
+    }
+    private void TriggerPassControlToDialogue()
+    {
+        AssertInRythmSection();
+        RythmHasControl = false;
+        rythmManager.RythmControlYeilded();
+        dialogueManager.RythmControlReceived();
+
     }
 
     private void QueuePassBackToRythm(float passBack)
@@ -97,46 +123,70 @@ public class RythmDialogueInterface : MonoBehaviour, IRythmDialogeControlInterfa
             Debug.LogError("Already has pasback queued");
         }
         passToRyrhmQueued = true;
-        Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(PassControlToRythmOnBeat, passBack);
+        Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(ReachedBeatWherePassBackShouldHappen, passBack);
+        Debug.LogWarning("Passback Queued");
     }
 
-    private void PassControlToRythmOnBeat()
+    private void ReachedBeatWherePassBackShouldHappen()
     {
-        //if (!dialogueManager.ReadyToPassToRythm)
-        //{
-        //    Debug.LogError("Not ready to pass to rythm");
-        //}
-        //if (!passToRyrhmQueued)
-        //{
-        //    Debug.LogError("This pass back was not queued!");
-        //}
-        //passToRyrhmQueued = false;
-        //PassControlToRythm();
+        if (!dialogueReadyToReleaseControl)
+        {
+            Debug.LogError("Pass back queued to happen too early");
+        }
+        rhythmReadyToReceiveControl = true;
+        if (playerFinishedReading)
+        {
+            PassControlToRhythm(immediate: true);
+        }
     }
 
-    public void OpponentPhraseCompleted()
+    public void OpponentPhraseCompletedPauseMusic()
     {
         Debug.Log("Phrase completed");
         RythmEngine.Instance.PauseSongMelody();
-        passBackEnabled = true;
+        dialogueReadyToReleaseControl = true;
     }
 
-    public void PassControlToRythm()
-    {
-        //if (passToRyrhmQueued)
-        //{
-        //    // we have this pass back queued for the future
-        //    Debug.Log("Pass back queued for the furure");
-        //    return;
-        //}
-        RythmHasControl = true;
-        TriggerPassbackOnBar();
-        //  RythmEngine.Instance.QueueActionNextBar(TriggerPassbackOnBar);
-    }
-
-    private void TriggerPassbackOnBar()
+    public void ResumeMusic()
     {
         RythmEngine.Instance.ResumeSongMelody();
+    }
+
+    private void PassControlToRhythm(bool immediate)
+    {
+        AssertInRythmSection();
+        if(!dialogueReadyToReleaseControl || !rhythmReadyToReceiveControl)
+        {
+            Debug.LogError("Passback not ready");
+            return;
+        }
+
+        if (immediate)
+        {
+            TriggerPassControlToRhythm();
+        }
+        else
+        {
+            RythmEngine.Instance.QueueActionNextBar(TriggerPassControlToRhythm);
+        }
+    }
+
+    //public void DialogueReadyToPassControlToRythm()
+    //{
+    //    //if (passToRyrhmQueued)
+    //    //{
+    //    //    // we have this pass back queued for the future
+    //    //    Debug.Log("Pass back queued for the furure");
+    //    //    return;
+    //    //}
+    //    RythmHasControl = true;
+    //    TriggerPassbackOnBar();
+    //    //  RythmEngine.Instance.QueueActionNextBar(TriggerPassbackOnBar);
+    //}
+
+    private void TriggerPassControlToRhythm()
+    {
+        RythmHasControl = true;
         dialogueManager.RythmControlYeilded();
         rythmManager.RythmControlReceived();
     }
