@@ -75,6 +75,8 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSection.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSpawner.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\RhythmInitialise.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\StressPoint.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\StressPointRing.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordNote.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordUI.cs" />
     <None Include="Assets\Scripts\Dialogue_and_Encounters\~Dialogue_And_Encounters.asmdef" />
