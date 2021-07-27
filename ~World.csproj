@@ -68,7 +68,6 @@
     <Compile Include="Assets\Scripts\World\Floors.cs" />
     <Compile Include="Assets\Scripts\World\Interactable.cs" />
     <Compile Include="Assets\Scripts\World\PlayerCharacterController.cs" />
-    <Compile Include="Assets\Scripts\World\Stress.cs" />
     <None Include="Assets\Scripts\World\~World.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -66,19 +66,19 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueInstance.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RhythmSectionManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\HitDetection.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\HitZone.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\IRythmDialogeControlInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\Lane.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\NoteDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\NoteSection.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\NoteSpawner.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\RhythmInitialise.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\StressPoint.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\StressPointRing.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\WordNote.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\WordUI.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RythmDialogueInterface.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitDetection.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitZone.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\IRythmDialogeControlInterface.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\Lane.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteDialogueInterface.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSection.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSpawner.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\RhythmInitialise.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\StressPoint.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\StressPointRing.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordNote.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordUI.cs" />
     <None Include="Assets\Scripts\Dialogue_and_Encounters\~Dialogue_And_Encounters.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -653,6 +653,10 @@
     <ProjectReference Include="~Dialogue_System.csproj">
       <Project>{7DB04697-AB7A-3DD9-8E6A-B1E9583A07B9}</Project>
       <Name>~Dialogue_System</Name>
+    </ProjectReference>
+    <ProjectReference Include="~stress.csproj">
+      <Project>{4C2797DF-7DBD-00D7-64BB-CEFE087E3272}</Project>
+      <Name>~stress</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

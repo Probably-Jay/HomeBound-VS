@@ -11,10 +11,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{3585FC61-A2F1-4609-F688-AB0E8F8B4F77}</ProjectGuid>
+    <ProjectGuid>{4C2797DF-7DBD-00D7-64BB-CEFE087E3272}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>~stress</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -62,45 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ChangeScene.cs" />
-    <Compile Include="Assets\ExampleQuestLogic.cs" />
-    <Compile Include="Assets\PointOfIntrestManager.cs" />
-    <Compile Include="Assets\_TempOpener.cs" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile8.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile6.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb1.txt" />
-    <None Include="Assets\NoteSongs\NoteSheets\notesheet 1.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d2.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
-    <None Include="Assets\NoteSongs\NoteSheets\testSHeet.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile7.txt" />
-    <None Include="Assets\NoteSongs\NoteSheets\notesheet.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\NoteSongs\NoteSheets\DanceSheet.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile9.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d3.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+    <Compile Include="Assets\Scripts\stress\Stress.cs" />
+    <None Include="Assets\Scripts\stress\~stress.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -283,6 +246,21 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>E:/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>E:/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>E:/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -629,98 +607,17 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>E:/Unity/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>E:/github/HomeBound-VS/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="~Game.csproj">
       <Project>{7D78C81D-0FD2-D4F7-4933-6287F7CF5652}</Project>
       <Name>~Game</Name>
-    </ProjectReference>
-    <ProjectReference Include="~SingletonControl.csproj">
-      <Project>{3FFCABBE-8023-336E-FAA0-7D152DFA442B}</Project>
-      <Name>~SingletonControl</Name>
-    </ProjectReference>
-    <ProjectReference Include="Rythm.csproj">
-      <Project>{A405DFF5-69F4-D895-29C6-2000F8AF12A1}</Project>
-      <Name>Rythm</Name>
-    </ProjectReference>
-    <ProjectReference Include="~InteractableInterface.csproj">
-      <Project>{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}</Project>
-      <Name>~InteractableInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
-      <Project>{B1FD1A2C-C177-539C-2EB0-6F4E9E204FD6}</Project>
-      <Name>~Dialogue_And_Encounters</Name>
-    </ProjectReference>
-    <ProjectReference Include="~World.csproj">
-      <Project>{2FC02305-3629-9C2F-DF84-BC25314168D0}</Project>
-      <Name>~World</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Core.csproj">
-      <Project>{354EAF47-F608-D8B1-D75E-1AFE6B6D692A}</Project>
-      <Name>~Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="~CameraControl.csproj">
-      <Project>{34A124F9-42B7-FA37-AF8F-855D6953560F}</Project>
-      <Name>~CameraControl</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Dialogue_System.csproj">
-      <Project>{7DB04697-AB7A-3DD9-8E6A-B1E9583A07B9}</Project>
-      <Name>~Dialogue_System</Name>
-    </ProjectReference>
-    <ProjectReference Include="~UI.csproj">
-      <Project>{6CC47064-18D1-3BAC-74CE-BBC9B438A12A}</Project>
-      <Name>~UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="~EditorAssembly.csproj">
-      <Project>{64CB1BC0-235D-19F7-DA5F-57D6CCF19472}</Project>
-      <Name>~EditorAssembly</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Quests.csproj">
-      <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
-      <Name>~Quests</Name>
-    </ProjectReference>
-    <ProjectReference Include="~stress.csproj">
-      <Project>{4C2797DF-7DBD-00D7-64BB-CEFE087E3272}</Project>
-      <Name>~stress</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum stressPolarity
+{
+    Stress,
+    Destress
+}
 public class StressPointRing : MonoBehaviour
 {
     int stressPoints;
@@ -9,6 +14,15 @@ public class StressPointRing : MonoBehaviour
     [SerializeField] int minStressPoints = -6;
     [SerializeField] StressPoint[] stressPointNodules = new StressPoint[6];
     [SerializeField] StressPoint[] destressPointNodules = new StressPoint[6];
+    [SerializeField] Sprite[] sprites = new Sprite[2];
+    [SerializeField] SpriteRenderer sR;
+    [SerializeField] bool debugKeyPresses;
+    stressPolarity flipDirection;
+    bool isFlipping=false;
+    bool hasSwapped = false;
+    float flipTimer=0f;
+    [SerializeField] float flipSpeed=100f;
+    [SerializeField] Stress stressSystem;
     
     // Start is called before the first frame update
     void Start()
@@ -32,7 +46,49 @@ public class StressPointRing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isFlipping)
+        {
+            if (!hasSwapped)
+            {
+                flipTimer += Time.deltaTime;
+                if (flipTimer*flipSpeed > 1)
+                {
+                    flipTimer = 1/flipSpeed;
+                    if (flipDirection == stressPolarity.Stress)
+                    {
+                        sR.sprite = sprites[1];
+                    }
+                    else
+                    {
+                        sR.sprite = sprites[0];
+                    }
+                    hasSwapped = true;
+                }
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, Mathf.Rad2Deg * Mathf.Asin(flipTimer*flipSpeed), 0));
+            }
+            else
+            {
+                flipTimer -= Time.deltaTime;
+                if (flipTimer < 0)
+                {
+                    flipTimer = 0f;
+                    isFlipping = false;
+                }
+                float radianRotation = Mathf.Asin(flipTimer) * flipSpeed;
+                float degreeRotation = Mathf.Rad2Deg * radianRotation;
+                Quaternion temprotation = Quaternion.Euler(new Vector3(0, degreeRotation, 0));
+                this.transform.rotation = temprotation;
+                
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.I) && debugKeyPresses)
+        {
+            AddStressPoints(1);
+        }
+        if (Input.GetKeyDown(KeyCode.K) && debugKeyPresses)
+        {
+            RemoveStressPoints(1);
+        }
     }
     public void ChangeStressPoints(int numberOfPoints)
     {
@@ -70,7 +126,7 @@ public class StressPointRing : MonoBehaviour
             if (stressPoints < 0)
             {
                 ClearAllNodules(destressPointNodules);
-                FlipRing();
+                FlipRing(stressPolarity.Stress);
                 for (int i = 0; i < tempSP; i++)
                 {
                     stressPointNodules[i].Appear();
@@ -82,6 +138,10 @@ public class StressPointRing : MonoBehaviour
                 {
                     stressPointNodules[i].Appear();
                 }
+                if ((stressPoints < 1)&& sR.sprite == sprites[0])
+                {
+                    FlipRing(stressPolarity.Stress);
+                }
             }
             
         }
@@ -89,13 +149,15 @@ public class StressPointRing : MonoBehaviour
         {
             for (int i = tempSP; i > stressPoints; i--)
             {
-                destressPointNodules[i].Disappear();
+                destressPointNodules[Mathf.Abs(i)].Disappear();
             }
         }
         stressPoints = tempSP;
         if (stressPoints == maxStressPoints)
         {
             AddStress();
+            RemoveStressPoints(6);
+
         }
     }
     public void RemoveStressPoints(int? numberOfPoints)
@@ -120,7 +182,7 @@ public class StressPointRing : MonoBehaviour
             if (stressPoints>0)
             {
                 ClearAllNodules(stressPointNodules);
-                FlipRing();
+                FlipRing(stressPolarity.Destress);
                 for (int i = 0; i > tempSP; i--)
                 {
                     destressPointNodules[Mathf.Abs(i)].Appear();
@@ -130,7 +192,11 @@ public class StressPointRing : MonoBehaviour
             {
                 for (int i = stressPoints; i > tempSP; i--)
                 {
-                    destressPointNodules[i].Appear();
+                    destressPointNodules[Mathf.Abs(i)].Appear();
+                }
+                if ((stressPoints > -1)&&sR.sprite==sprites[1])
+                {
+                    FlipRing(stressPolarity.Destress);
                 }
             }
             
@@ -139,13 +205,14 @@ public class StressPointRing : MonoBehaviour
         {
             for (int i = tempSP; i < stressPoints; i++)
             {
-                destressPointNodules[i].Disappear();
+                stressPointNodules[Mathf.Abs(i)].Disappear();
             }
         }
         stressPoints = tempSP;
         if (stressPoints == minStressPoints)
         {
             RemoveStress();
+            AddStressPoints(6);
         }
     }
     void ClearAllNodules(StressPoint[] ring)
@@ -158,14 +225,21 @@ public class StressPointRing : MonoBehaviour
     }
     void AddStress()
     {
-
+        stressSystem.AddStress();
     }
     void RemoveStress()
     {
-
+        stressSystem.RemoveStress();
     }
-    void FlipRing()
+    void FlipRing(stressPolarity direction)
     {
-
+        if (!(isFlipping && flipDirection == direction))
+        {
+            flipTimer = 0f;
+            flipDirection = direction;
+            isFlipping = true;
+            hasSwapped = false;
+        }
     }
+
 }
