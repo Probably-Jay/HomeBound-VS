@@ -1,0 +1,10 @@
+a,16,0,Raleigh's
+a,18,0,leaving,
+a,20,1,<br>they're
+0.5,2,coming
+a,22,1,to
+0.5,2,live
+a,24,2,with
+0.5,0,us
+>,30,35
+],40

@@ -1,14 +1,8 @@
 id: c1_Tut
 [Rex]: Ok, we're here.
 [Ember]: I can't belive [colour: #008080]Raleigh[colour: #FFFFFF] lives somewhere like this.
+[Iris]: 
 [Artemis]: Well, hopefully not for much longer, right?
-[You]: They've still not told their parents that they're leaving home, right?
+[Iris]: They've still not told their parents that they're leaving home, right?
 [Artemis]: No, I think they're leaving it 'till the last possible moment.
-[Rex]: [Complete_task: qT_0]How are you feeling?
-[You]: I'm kinda worried.[pause: 4].[pause: 4].[pause: 4] I've never done something like this before.
-[Rex]: 
-[You]: 
-[You]: 
-[You]: 
-[You]: 
-[You]: 
+[Rex]: [Complete_task: qT_0]How are you feeling? // onto your's zap

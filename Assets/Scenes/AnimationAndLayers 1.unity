@@ -10277,12 +10277,12 @@ PrefabInstance:
     - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
         type: 3}
@@ -12537,6 +12537,23 @@ PrefabInstance:
       propertyPath: rDI
       value: 
       objectReference: {fileID: 1478533509}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: sheets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: sheets.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a807f79615608494ab4b4f4e25d276d2,
+        type: 2}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: identifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: identifications.Array.data[1]
+      value: test2
+      objectReference: {fileID: 0}
     - target: {fileID: 1913506035618416047, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
       propertyPath: RDI
@@ -12725,7 +12742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainDialogueIDs:
-  - test
+  - rhythm
   - test_8
   runMainOnlyOnce: 1
   backupDialogueIDs: []
@@ -15905,7 +15922,7 @@ PrefabInstance:
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
       propertyPath: test.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
@@ -15952,6 +15969,11 @@ PrefabInstance:
       propertyPath: test.Array.data[8]
       value: 
       objectReference: {fileID: 4900000, guid: 9c24cd80e3f1df04893dce3381e6f4cd, type: 3}
+    - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
+        type: 3}
+      propertyPath: test.Array.data[9]
+      value: 
+      objectReference: {fileID: 4900000, guid: 9a696c02a0964b44b8f7cf6f465b2506, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b480b27924a49d4293442265c49d470, type: 3}
 --- !u!1001 &7109823209076664135

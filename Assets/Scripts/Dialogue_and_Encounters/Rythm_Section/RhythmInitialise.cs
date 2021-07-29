@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NoteSystem;
 using System.Linq;
+using System;
 namespace RhythmSectionLoading {
     enum CommandType
     {
@@ -85,75 +86,182 @@ namespace RhythmSectionLoading {
             toDialogues.Clear();
             otherCommands.Clear();
             noteSheetLines = text.text.Split('\n');
-            foreach (string line in noteSheetLines)
+            for (int i = 0; i < noteSheetLines.Length; i++)
             {
-                if (line[0] == '>') // pass to dialogue
+                string line = noteSheetLines[i];
+
+                if (line == null || line == "")
                 {
-                    string passBeatString = line.Split(',')[1];
-                    string returnBeatString = line.Split(',')[2];
-                    float passBeat = float.Parse(passBeatString);
-                    float returnBeat = float.Parse(returnBeatString);
-                    toDialogues.Add(new PassToDialogue());
-                    toDialogues[toDialogues.Count - 1].Initialise(passBeat, returnBeat);
+                    continue;
                 }
-                else if (line[0] == ']') // end section
+
+                try
                 {
-                    string onbeatString = line.Split(',')[1];
-                    float onBeat = float.Parse(onbeatString);
-                    otherCommands.Add(new OtherCommand());
-                    otherCommands[otherCommands.Count - 1].Initialise(onBeat, CommandType.EndSection);
+                    ParseLine(line);
                 }
-                else if (line[0]=='a')//anchor points/absolute points
+                catch
                 {
-                    //Debug.Log(line); //40,1,hello
-                    string hitbeatString = line.Split(',')[1]; //40
-                    string laneString = line.Split(',')[2];//1
-                    string temp1 = line.Remove(0, line.IndexOf(',') + 1);//1,hello
-                    string temp2 = temp1.Remove(0, line.IndexOf(',') + 1);//1,hello                                //Debug.Log(temp1);
-                    string word = temp2.Remove(0, temp1.IndexOf(',') + 1);//hello
-                    word = word.Replace("\r", "");
-                    //Debug.Log(word);
-                    notes.Add(new Note());
-                    float hitBeat;
-                    try
-                    {
-                        hitBeat =float.Parse(hitbeatString);
-                    }
-                    catch
-                    {
-                        string possibleError = "";
-                        if (hitbeatString == ">")
-                        {
-                            possibleError = " did you try to make a pass command absolute?";
-                        }
-                        throw new System.Exception("Attempted to parse \"" + hitbeatString + "\" as a climax beat." + possibleError);
-                    }
-                    int lane = int.Parse(laneString);
-                    notes[notes.Count - 1].Initialise(hitBeat, lane, word);
-                    //Debug.Log(word);
-                    //Debug.Log("Note Read: "+hitbeatString + "," + laneString + "," + word);
-                }
-                else
-                {
-                    string relativeHitBeatString = line.Split(',')[0]; //40
-                    string laneString = line.Split(',')[1];//1
-                    string temp1 = line.Remove(0, line.IndexOf(',') + 1);//1,hello
-                                                                         //Debug.Log(temp1);
-                    string word = temp1.Remove(0, temp1.IndexOf(',') + 1);//hello
-                    word = word.Replace("\r", "");
-                    //Debug.Log(word);
-                    notes.Add(new Note());
-                    if (notes.Count < 2)
-                    {
-                        throw new System.Exception("Relative note attempted to parse as first note. Please use an absolute note as the first note");
-                    }
-                    float hitBeat = float.Parse(relativeHitBeatString)+notes[notes.Count-2].climaxBeat;
-                    int lane = int.Parse(laneString);
-                    notes[notes.Count - 1].Initialise(hitBeat, lane, word);
+                    Debug.LogError($"Error reading line {i} in notesection {text.name}");
+                    throw;
                 }
             }
 
         }
+
+        private void ParseLine(string line)
+        {
+            if (line.Length == 0)
+            {
+                throw new Exception("Line is empty");
+            }
+
+            var segments = line.Split(',');
+
+            if (segments.Length < 2)
+            {
+                throw new Exception("Not enough segments, possibly missing comma");
+            }
+
+
+            if (line[0] == '>') // pass to dialogue
+            {
+                ParsePassToDialogue(line, segments);
+            }
+            else if (line[0] == ']') // end section
+            {
+                ParseEndSection(line, segments);
+            }
+            else if (line[0] == 'a')//anchor points/absolute points
+            {
+                ParseAbsolute(line, segments);
+            }
+            else
+            {
+                ParseRelative(line, segments);
+            }
+        }
+
+        private void ParseRelative(string line, string[] segments)
+        {
+            string relativeHitBeatString = segments[0]; //40
+            string laneString = segments[1];//1
+
+            string temp1 = line.Remove(0, line.IndexOf(',') + 1);//1,hello
+                                                                 //Debug.Log(temp1);
+            string word = temp1.Remove(0, temp1.IndexOf(',') + 1);//hello
+
+            word = word.Replace("\r", "");
+
+            notes.Add(new Note());
+            if (notes.Count < 2)
+            {
+                throw new System.Exception("Relative note attempted to parse as first note. Please use an absolute note as the first note");
+            }
+
+            float beat;
+            int lane;
+            try
+            {
+                beat = float.Parse(relativeHitBeatString);
+                lane = int.Parse(laneString);
+            }
+            catch 
+            {
+                Debug.LogError("Could not parse floats / floats in section");
+                throw;
+            }
+            float hitBeat = beat + notes[notes.Count - 2].climaxBeat;
+            notes[notes.Count - 1].Initialise(hitBeat, lane, word);
+        }
+
+        private void ParseAbsolute(string line, string[] segments)
+        {
+
+            if (segments.Length < 3)
+            {
+                throw new Exception("Not enough segments, possibly missing comma");
+            }
+
+            string hitbeatString = segments[1]; //40
+            string laneString = segments[2];//1
+
+            string temp1 = line.Remove(0, line.IndexOf(',') + 1);//1,hello
+            string temp2 = temp1.Remove(0, line.IndexOf(',') + 1);//1,hello                               
+            string word = temp2.Remove(0, temp1.IndexOf(',') + 1);//hello
+
+            if(word.Length == 0)
+            {
+                throw new Exception("No text in section");
+            }
+
+            word = word.Replace("\r", "");
+
+            notes.Add(new Note());
+            float hitBeat;
+            int lane;
+            try
+            {
+                hitBeat = float.Parse(hitbeatString);
+                lane = int.Parse(laneString);
+            }
+            catch
+            {
+                string possibleError = "";
+                if (hitbeatString == ">")
+                {
+                    possibleError = " did you try to make a pass command absolute?";
+                }
+                Debug.LogError("Attempted to parse \"" + hitbeatString + "\" as a climax beat." + possibleError);
+                throw;
+            }
+            notes[notes.Count - 1].Initialise(hitBeat, lane, word);
+
+        }
+
+        private void ParseEndSection(string line, string[] segments)
+        {
+           
+            string onbeatString = segments[1];
+            float onBeat;
+            try
+            {
+                onBeat = float.Parse(onbeatString);
+            }
+            catch
+            {
+                Debug.LogError("Could not parse floats in end section");
+                throw;
+            }
+            otherCommands.Add(new OtherCommand());
+            otherCommands[otherCommands.Count - 1].Initialise(onBeat, CommandType.EndSection);
+        }
+
+        private void ParsePassToDialogue(string line, string[] segments)
+        {
+          
+            if(segments.Length < 3)
+            {
+                throw new Exception("Not enough segments, possibly missing comma");
+            }
+
+            string passBeatString = segments[1];
+            string returnBeatString = segments[2];
+            float passBeat;
+            float returnBeat;
+            try
+            {
+                passBeat = float.Parse(passBeatString);
+                returnBeat = float.Parse(returnBeatString);
+            }
+            catch
+            {
+                Debug.LogError("Could not parse floats in pass to dialogue");
+                throw;
+            }
+            toDialogues.Add(new PassToDialogue());
+            toDialogues[toDialogues.Count - 1].Initialise(passBeat, returnBeat);
+        }
+
         List<string> SplitSectionIntoStringLines(List<Note> notes, List<PassToDialogue> passes,List<OtherCommand> commands)
         {
             List<string> secLines = new List<string> { };
@@ -257,6 +365,10 @@ namespace RhythmSectionLoading {
         {
             for (int i = 0; i < sectionLines.Count; i++)
             {
+                if(noteLines[i].Count < 1)
+                {
+                    return;
+                }
 
                 float targetBeat = noteLines[i][0].climaxBeat - leadTime;
                 if (targetBeat < 0)
