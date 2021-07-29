@@ -64,9 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ChangeScene.cs" />
-    <Compile Include="Assets\ExampleQuestLogic.cs" />
-    <Compile Include="Assets\PointOfIntrestManager.cs" />
     <Compile Include="Assets\_TempOpener.cs" />
+    <Compile Include="Assets\~Junk\ExampleQuestLogic.cs" />
+    <Compile Include="Assets\~Junk\PointOfIntrestManager.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />
@@ -658,6 +658,10 @@
       <Project>{12254B1C-66B3-9ED5-14A2-2A80DA24795F}</Project>
       <Name>~InteractableInterface</Name>
     </ProjectReference>
+    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
+      <Project>{37ADB69F-2BC0-6E37-C496-D010A5C1DD3E}</Project>
+      <Name>~Dialogue_And_Encounters</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{E65D7C90-708E-4520-E46F-39CF15504CE2}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
@@ -710,6 +714,10 @@
       <Project>{F832C290-00E2-4BD8-AF49-5BF2976401F3}</Project>
       <Name>~UI</Name>
     </ProjectReference>
+    <ProjectReference Include="~EditorAssembly.csproj">
+      <Project>{5615BEA0-42DE-890E-B603-EAB17A648789}</Project>
+      <Name>~EditorAssembly</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{9C8C14C4-A5F3-7F72-36ED-614AB85EA7F0}</Project>
       <Name>Unity.TextMeshPro</Name>
@@ -721,14 +729,6 @@
     <ProjectReference Include="~Quests.csproj">
       <Project>{5213AF14-5A46-1582-F36F-A63410B31E04}</Project>
       <Name>~Quests</Name>
-    </ProjectReference>
-    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
-      <Project>{37ADB69F-2BC0-6E37-C496-D010A5C1DD3E}</Project>
-      <Name>~Dialogue_And_Encounters</Name>
-    </ProjectReference>
-    <ProjectReference Include="~EditorAssembly.csproj">
-      <Project>{5615BEA0-42DE-890E-B603-EAB17A648789}</Project>
-      <Name>~EditorAssembly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

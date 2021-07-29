@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c9c8e4f40c45a46a89ea0233f446c7, type: 3}
   m_Name: DanceSection_Melody
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 93812d074eeb81e44b511c60f6acb054, type: 3}
+  audioClip: {fileID: 8300000, guid: 9ace6eee79c07904fade1e53c8b44b16, type: 3}
   BPM: 120
   offset: 0
+  pickupBeats: 0
   beginAtTime: 0
