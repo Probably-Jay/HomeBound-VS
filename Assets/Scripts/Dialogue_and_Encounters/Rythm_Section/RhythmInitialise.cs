@@ -152,6 +152,11 @@ namespace RhythmSectionLoading {
 
             word = word.Replace("\r", "");
 
+            if (word.Length == 0 || word == "\n")
+            {
+                throw new Exception("No text in section");
+            }
+
             notes.Add(new Note());
             if (notes.Count < 2)
             {
@@ -170,8 +175,18 @@ namespace RhythmSectionLoading {
                 Debug.LogError("Could not parse floats / floats in section");
                 throw;
             }
+            ValidateLane(lane);
             float hitBeat = beat + notes[notes.Count - 2].climaxBeat;
             notes[notes.Count - 1].Initialise(hitBeat, lane, word);
+        }
+
+        private static void ValidateLane(int lane)
+        {
+            if (lane < 0 || lane >= 3)
+            {
+                throw new Exception($"Lane {lane} out of range");
+            }
+           
         }
 
         private void ParseAbsolute(string line, string[] segments)
@@ -189,12 +204,13 @@ namespace RhythmSectionLoading {
             string temp2 = temp1.Remove(0, line.IndexOf(',') + 1);//1,hello                               
             string word = temp2.Remove(0, temp1.IndexOf(',') + 1);//hello
 
-            if(word.Length == 0)
+            word = word.Replace("\r", "");
+
+            if(word.Length == 0 || word == "\n")
             {
                 throw new Exception("No text in section");
             }
 
-            word = word.Replace("\r", "");
 
             notes.Add(new Note());
             float hitBeat;
@@ -214,6 +230,8 @@ namespace RhythmSectionLoading {
                 Debug.LogError("Attempted to parse \"" + hitbeatString + "\" as a climax beat." + possibleError);
                 throw;
             }
+            ValidateLane(lane);
+
             notes[notes.Count - 1].Initialise(hitBeat, lane, word);
 
         }
