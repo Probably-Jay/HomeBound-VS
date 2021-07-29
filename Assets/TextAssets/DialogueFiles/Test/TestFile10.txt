@@ -1,6 +1,6 @@
 id: rhythm
 
-[Rex]: Okay, I'll be Raleigh's parents. [rhythm: test2]
+[Rex]: Okay, I'll be Raleigh's parents. [pause: 16]Ready? [pause: 48] [rhythm: tutorial_1]
 
 
 //[Iris]: Raleigh's leaving, they're coming to live with us
@@ -17,9 +17,8 @@ id: rhythm
 
 //[Iris]: If you actually cared about them, you'd trust them enough to let them decide.
 
-[Rex]: That was great, you're really good at that
 
-
+[Rex]: That was great, you're really good at that!
 [Rex]: And you know, if all else fails we go with plan B
 [Iris]: Grab them and run?
 [Rex]: Grab them and run.

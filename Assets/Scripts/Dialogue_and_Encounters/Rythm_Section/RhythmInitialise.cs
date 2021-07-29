@@ -86,6 +86,7 @@ namespace RhythmSectionLoading {
             toDialogues.Clear();
             otherCommands.Clear();
             noteSheetLines = text.text.Split('\n');
+
             for (int i = 0; i < noteSheetLines.Length; i++)
             {
                 string line = noteSheetLines[i];
@@ -101,7 +102,7 @@ namespace RhythmSectionLoading {
                 }
                 catch
                 {
-                    Debug.LogError($"Error reading line {i} in notesection {text.name}");
+                    Debug.LogError($"Error reading line {i+1} in notesection {text.name}");
                     throw;
                 }
             }

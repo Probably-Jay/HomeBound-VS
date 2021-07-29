@@ -9593,6 +9593,21 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 788265583}
+    - target: {fileID: 2533711652629958715, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958716, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_text
+      value: 'Hi '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958716, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 82.03489
+      objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.size
@@ -9822,6 +9837,76 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469033, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -678
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469033, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_text
+      value: Rex
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 26.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -7.64093
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -42.78894
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5892957
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5330188
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 26.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294940296
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652857469034, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
@@ -12552,7 +12637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: identifications.Array.data[1]
-      value: test2
+      value: tutorial_1
       objectReference: {fileID: 0}
     - target: {fileID: 1913506035618416047, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
