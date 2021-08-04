@@ -307,7 +307,7 @@ namespace Overworld {
             {
                 if (!dirStack.Contains(walkingDirection)&!clearedMovement)
                 {
-                    Debug.Log("missed keydown");
+                    Debug.LogWarning("missed keydown");
                     dirStack.Add(walkingDirection);
                 }
             }
@@ -315,7 +315,7 @@ namespace Overworld {
             {
                 if (dirStack.Contains(walkingDirection))
                 {
-                    Debug.Log("missed keyup");
+                    Debug.LogWarning("missed keyup");
                     dirStack.Remove(walkingDirection);
                 }
             }

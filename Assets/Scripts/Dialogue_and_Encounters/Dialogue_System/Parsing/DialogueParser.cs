@@ -208,17 +208,22 @@ namespace Dialogue
             ,Quest
             ,CompleteTask
             ,UncompleteTask
+            ,i
+            ,_i
+            ,b
+            ,_b
         }
 
         private string ParseInlineInstructions(Conversation conversation, DialoguePhrase phrase, string body, int lineNumber, GroupCollection header)
         {
-            if (body.Count((c) => c == '[') != body.Count((c) => c == ']'))
+            int instructionsCount = body.Count((c) => c == '[');
+            if (instructionsCount != body.Count((c) => c == ']'))
             {
                 throw new Exception($"Phrase {lineNumber} inline instructions malformed, open close missmatch");
             }
 
             MatchCollection instructionsGroups = Regex.Matches(body, @"\[([ #\w\:]+(?:.\d+)?)\]");
-
+            Debug.Log($"{instructionsCount}, {instructionsGroups.Count}");
 
             int matchIndex = 0;
             foreach (Match match in instructionsGroups)
@@ -230,22 +235,11 @@ namespace Dialogue
 
 
                 bool found = false;
-                foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
+                found = ParseParamaterInstruction(conversation, phrase, matchIndex, match);
+
+                if (!found)
                 {
-                    var instruction = Regex.Match(match.Value, $@"\[({iName}: (?<{iName}>[#\w]+(?:.\d+)?))\]");
-
-                    if (!instruction.Success)
-                    {
-                        continue;
-                    }
-
-                    if (instruction.Groups[iName.ToString()].Value != "")
-                    {
-                        Action instructionAction = GetInstruction(conversation, iName, instruction);
-                        phrase.AddInstruction(matchIndex, instructionAction);
-                        found = true;
-                        break;
-                    }
+                    found = ParseParamaterlessInstruction(conversation, phrase, matchIndex, match);
                 }
 
                 if (!found)
@@ -257,57 +251,103 @@ namespace Dialogue
                 body = escapedPattern.Replace(body, $"[{matchIndex}]", 1);
 
                 matchIndex++;
-            } 
+            }
 
             return body;
 
         }
 
-      
 
-        private Action GetInstruction(Conversation conversation, Instructions iName, Match instruction)
+        private bool ParseParamaterInstruction(Conversation conversation, DialoguePhrase phrase, int matchIndex, Match match)
         {
-            string value = instruction.Groups[iName.ToString()].Value;
+            bool found = false;
+            foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
+            {
+                var instruction = Regex.Match(match.Value, $@"\[({iName}: (?<{iName}>[#\w]+(?:.\d+)?))\]");
 
+                if (!instruction.Success)
+                {
+                    continue;
+                }
+
+                string paramaterValue = instruction.Groups[iName.ToString()].Value;
+                if (paramaterValue != "")
+                {
+                    Action instructionAction = GetInstruction(conversation, iName, instruction, paramaterValue);
+                    phrase.AddInstruction(matchIndex, instructionAction);
+                    found = true;
+                    break;
+                }
+            }
+
+            return found;
+        }
+
+
+        private bool ParseParamaterlessInstruction(Conversation conversation, DialoguePhrase phrase, int matchIndex, Match match)
+        {
+            bool found = false;
+            foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
+            {
+                var instruction = Regex.Match(match.Value, $@"\[({iName})\]");
+
+                if (!instruction.Success)
+                {
+                    continue;
+                }
+
+
+                Action instructionAction = GetInstruction(conversation, iName, instruction, null);
+                phrase.AddInstruction(matchIndex, instructionAction);
+                found = true;
+                break;
+                
+            }
+
+            return found;
+        }
+
+        private Action GetInstruction(Conversation conversation, Instructions iName, Match instruction, string paramaterValue)
+        {
             switch (iName)
             {
                 case Instructions.mode:
                     {
-                        var v = int.Parse(value);
+                        var v = int.Parse(paramaterValue);
                         Action changeMode = () => conversation.SetDialougeMode((DialogueMode)v);
                         return changeMode;
                     }
 
                 case Instructions.colour:
                     {
-                        var v = int.Parse(value, System.Globalization.NumberStyles.HexNumber);
+                        var v = int.Parse(paramaterValue, System.Globalization.NumberStyles.HexNumber);
                         Action changeColour = () => conversation.SetColour(v);
                         return changeColour;
                     }
 
                 case Instructions.debug:
                     {
-                        Action changeMode = () => Debug.Log($"Inline debug: {value}. Conversation: {conversation.conversationID}");
+                        Action changeMode = () => Debug.Log($"Inline debug: {paramaterValue}. Conversation: {conversation.conversationID}");
                         return changeMode;
                     }
 
                 case Instructions.rhythm:
                     {
-                        Action startRyhtmSection = () => conversation.StartRyhtmSection(value);
+                        Action startRyhtmSection = () => conversation.StartRyhtmSection(paramaterValue);
 
                         return startRyhtmSection;
                     }
 
                 case Instructions.pause:
                     {
-                        int v = int.Parse(value);
+                        int v = int.Parse(paramaterValue);
                         Action pause = () => conversation.Pause(v);
                         return pause;
                     }
 
                 case Instructions.shake:
                     {
-                        float v = float.Parse(value);
+                        float v = float.Parse(paramaterValue);
                         Action shake = () => conversation.Shake(v);
 
                         return shake;
@@ -315,23 +355,51 @@ namespace Dialogue
 
                 case Instructions.Quest:
                     {
-                        Action beginQuest = () => conversation.BeginQuest(value);
+                        Action beginQuest = () => conversation.BeginQuest(paramaterValue);
 
-                        return beginQuest; 
+                        return beginQuest;
                     }
 
                 case Instructions.CompleteTask:
                     {
-                        Action completeQuestStep = () => conversation.CompleteQuestStep(value);
+                        Action completeQuestStep = () => conversation.CompleteQuestStep(paramaterValue);
 
                         return completeQuestStep;
                     }
 
                 case Instructions.UncompleteTask:
                     {
-                        Action unCompleteQuestStep = () => conversation.UnCompleteQuestStep(value);
+                        Action unCompleteQuestStep = () => conversation.UnCompleteQuestStep(paramaterValue);
 
                         return unCompleteQuestStep;
+                    }
+
+                case Instructions.i:
+                    {
+                        Action italicise = () => conversation.Italicise();
+
+                        return italicise;
+                    }
+
+                case Instructions._i:
+                    {
+                        Action unItalicise = () => conversation.UnItalicise();
+
+                        return unItalicise;
+                    }
+
+                case Instructions.b:
+                    {
+                        Action bold = () => conversation.Bold();
+
+                        return bold;
+                    }
+
+                case Instructions._b:
+                    {
+                        Action unBold = () => conversation.UnBold();
+
+                        return unBold;
                     }
 
                 default: throw new Exception("Instruction name exists but no code handles this case");

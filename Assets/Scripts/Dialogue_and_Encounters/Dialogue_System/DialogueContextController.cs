@@ -162,6 +162,8 @@ namespace Dialogue
             dialogueTyper.StartNewRythm(); 
         }
 
+       
+
         public void ProgressArgument()
         {
             MutateDialogeMode(DialogueMode.Encounter_OpponentSpeak);
@@ -202,6 +204,28 @@ namespace Dialogue
             string tag = $"<color=#{Accessibility.ColourBlindHelper.GetColourString(hex)}>";
             dialogueTyper.AddRichTextTag(tag);
         }
+        public void ItaliciseRTT()
+        {
+            string tag = @"<i>";
+            dialogueTyper.AddRichTextTag(tag);
+        }
+        public void UnItaliciseRTT()
+        {
+            string tag = @"</i>";
+            dialogueTyper.AddRichTextTag(tag);
+        }
+        public void BoldRTT()
+        {
+            string tag = @"<b>";
+            dialogueTyper.AddRichTextTag(tag);
+        }
+
+        public void UnBoldRTT()
+        {
+            string tag = @"</b>";
+            dialogueTyper.AddRichTextTag(tag);
+        }
+
 
         public void AddLinePreview(string line)
         {

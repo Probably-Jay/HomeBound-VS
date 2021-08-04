@@ -42,6 +42,18 @@ namespace Dialogue
 
         public event Action<string> OnUnCompleteQuestStep;
         public void UnCompleteQuestStep(string id) => OnUnCompleteQuestStep?.Invoke(id);
+
+        public event Action OnItalicise;
+        public void Italicise() => OnItalicise?.Invoke();        
+        
+        public event Action OnUnItalicise;
+        public void UnItalicise() => OnUnItalicise?.Invoke();       
+        
+        public event Action OnBold;
+        public void Bold() => OnBold?.Invoke();        
+        
+        public event Action OnUnBold;
+        public void UnBold() => OnUnBold?.Invoke();
     }
 
 
