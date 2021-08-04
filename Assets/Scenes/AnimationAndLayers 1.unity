@@ -12450,8 +12450,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainDialogueIDs:
-  - rhythm
-  - test_8
+  - test_demo
+  - test_demo
   runMainOnlyOnce: 1
   backupDialogueIDs: []
 --- !u!1 &1408021672

@@ -132,6 +132,10 @@ namespace Dialogue
             conversation.OnBeginQuest += (id) => dialogueQuestController.PassQuest(id);
             conversation.OnCompleteQuestStep += (id) => dialogueQuestTaskController.CompleteQuestTaskStep(id);
             conversation.OnUnCompleteQuestStep += (id) => dialogueQuestTaskController.UnCompleteTaskStep(id);
+            conversation.OnItalicise += () => dialogueContextController.ItaliciseRTT();
+            conversation.OnUnItalicise += () => dialogueContextController.UnItaliciseRTT();
+            conversation.OnBold += () => dialogueContextController.BoldRTT();
+            conversation.OnUnBold += () => dialogueContextController.UnBoldRTT();
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)
             {
