@@ -10,6 +10,7 @@ namespace Game
     public enum Context
     {
         None
+        ,PreTutorial
         ,Explore
         ,Dialogue
         ,Rythm
@@ -18,7 +19,7 @@ namespace Game
 
     public class GameContextController : SingletonManagement.Singleton<GameContextController>
     {
-        [SerializeField] Context defaultFirstContext = Context.Explore;
+        [SerializeField] Context defaultFirstContext;
 
         new public static GameContextController Instance => SingletonManagement.Singleton<GameContextController>.Instance;
 
@@ -29,7 +30,7 @@ namespace Game
 
         private void Start()
         {
-            PushContext(defaultFirstContext,Context.None);
+            PushContext(defaultFirstContext, Context.None);
         }
 
         private readonly Stack<Context> contextStack = new Stack<Context>();

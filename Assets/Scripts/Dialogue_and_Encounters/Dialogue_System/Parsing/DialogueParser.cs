@@ -223,7 +223,12 @@ namespace Dialogue
             }
 
             MatchCollection instructionsGroups = Regex.Matches(body, @"\[([ #\w\:]+(?:.\d+)?)\]");
-            Debug.Log($"{instructionsCount}, {instructionsGroups.Count}");
+
+            if(instructionsCount != instructionsGroups.Count)
+            {
+                throw new Exception($"Body possibly contains instructions that have not been caught by the parser: {instructionsCount} detected vs {instructionsGroups.Count} found.");
+            }
+           
 
             int matchIndex = 0;
             foreach (Match match in instructionsGroups)

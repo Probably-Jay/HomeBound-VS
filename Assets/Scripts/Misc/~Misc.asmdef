@@ -1,0 +1,16 @@
+{
+    "name": "~Misc",
+    "references": [
+        "GUID:0faf6e3b9789ca64ea166765fb5a4c1c",
+        "GUID:6aac11a11a06dbc49b43825cd198f3f4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
