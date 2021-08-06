@@ -140,6 +140,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentQuests: []
+--- !u!114 &3289027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546810f8c1e1a6543873870f1e6dc7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStress: 6
+  stress: 0
+  fullyStressed: 0
 --- !u!1 &31880467
 GameObject:
   m_ObjectHideFlags: 0
@@ -13393,12 +13408,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695339184}
   m_CullTransparentMesh: 0
---- !u!212 &1757723379 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6753365914865516129, guid: 47d4d415203b7f043a9aad41af47ee68,
-    type: 3}
-  m_PrefabInstance: {fileID: 6753365914145842660}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1872004166
 GameObject:
   m_ObjectHideFlags: 0
@@ -16091,31 +16100,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5114763223823944083, guid: 47d4d415203b7f043a9aad41af47ee68,
         type: 3}
-      propertyPath: sR
+      propertyPath: stressSystem
       value: 
-      objectReference: {fileID: 1757723379}
-    - target: {fileID: 5114763223823944083, guid: 47d4d415203b7f043a9aad41af47ee68,
-        type: 3}
-      propertyPath: flipSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114763223823944083, guid: 47d4d415203b7f043a9aad41af47ee68,
-        type: 3}
-      propertyPath: debugKeyPresses
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114763223823944083, guid: 47d4d415203b7f043a9aad41af47ee68,
-        type: 3}
-      propertyPath: sprites.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: f652aee2dd5375d489fae2bae68d1a12,
-        type: 3}
-    - target: {fileID: 5114763223823944083, guid: 47d4d415203b7f043a9aad41af47ee68,
-        type: 3}
-      propertyPath: sprites.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 2de97a4cf371b5140ba2f4bba1a89330,
-        type: 3}
+      objectReference: {fileID: 3289027}
     - target: {fileID: 5897947636984767081, guid: 47d4d415203b7f043a9aad41af47ee68,
         type: 3}
       propertyPath: m_SortingOrder

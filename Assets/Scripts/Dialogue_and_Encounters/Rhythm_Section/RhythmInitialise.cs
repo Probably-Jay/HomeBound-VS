@@ -257,7 +257,10 @@ namespace RhythmSectionLoading {
         {
             for (int i = 0; i < sectionLines.Count; i++)
             {
-
+                if (noteLines[i].Count < 1)
+                {
+                    return;
+                }
                 float targetBeat = noteLines[i][0].climaxBeat - leadTime;
                 if (targetBeat < 0)
                 {

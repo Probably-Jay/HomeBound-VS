@@ -692,6 +692,13 @@ MonoBehaviour:
   - {fileID: 6825829422946870730}
   - {fileID: 6050928068722439673}
   - {fileID: 1234425271499199735}
+  sprites:
+  - {fileID: 21300000, guid: f652aee2dd5375d489fae2bae68d1a12, type: 3}
+  - {fileID: 21300000, guid: 2de97a4cf371b5140ba2f4bba1a89330, type: 3}
+  sR: {fileID: 6753365914865516129}
+  debugKeyPresses: 1
+  flipSpeed: 3
+  stressSystem: {fileID: 0}
 --- !u!1 &7756368027660861749
 GameObject:
   m_ObjectHideFlags: 0
