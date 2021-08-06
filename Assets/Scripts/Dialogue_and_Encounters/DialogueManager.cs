@@ -74,6 +74,7 @@ namespace Dialogue
 
         internal void BeginConversation(string conversationID)
         {
+            conversationID = conversationID.ToLowerInvariant();
 
             AssertContainsConversation(conversationID);
 
@@ -93,7 +94,7 @@ namespace Dialogue
             }
         }
 
-        public bool ContainsConversation(string conversationID) => conversationHandler.Conversations.ContainsKey(conversationID);
+        public bool ContainsConversation(string conversationID) => conversationHandler.Conversations.ContainsKey(conversationID.ToLowerInvariant());
 
 
 

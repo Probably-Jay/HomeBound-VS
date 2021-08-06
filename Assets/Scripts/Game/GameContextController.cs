@@ -45,7 +45,6 @@ namespace Game
         public event Action<Context, Context> OnContextChange;
         private void InvokeContextChange(Context previousContext)
         {
-
             if (previousContext == CurrentContext)
             {
                 Debug.LogWarning("Switching to context same as current context");
@@ -72,7 +71,6 @@ namespace Game
             var prevContext = CurrentContext;
             contextStack.Pop();
             PushContext(newContext, prevContext);
-
         }
 
         /// <summary>
@@ -87,6 +85,7 @@ namespace Game
             }
             var prevContext = CurrentContext;
             contextStack.Pop();
+            Debug.Log($"Switching from {prevContext} to {CurrentContext}");
             InvokeContextChange(prevContext);
         }
 
@@ -103,6 +102,7 @@ namespace Game
 
         private void PushContext(Context context, Context prevContext)
         {
+            Debug.Log($"Switching from {prevContext} to {context}");
             contextStack.Push(context);
             InvokeContextChange(prevContext);
         }

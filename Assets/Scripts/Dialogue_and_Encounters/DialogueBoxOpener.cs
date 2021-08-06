@@ -53,6 +53,7 @@ public class DialogueBoxOpener : MonoBehaviour
 
     internal void StartDialogue(string id)
     {
+        id = id.ToLowerInvariant();
         dialogeBoxParent.SetActive(true);
         DialogeBox.BeginConversation(id);
         Game.GameContextController.Instance.PushContext(Game.Context.Dialogue);

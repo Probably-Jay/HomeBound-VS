@@ -25,8 +25,7 @@ public class PlayerTutorialMovementDisable : MonoBehaviour
             case Context.PreTutorial:
                 if (mutationComplete)
                 {
-                    RevertContextMutation();
-                    Destroy(this);
+                    RevertContextMutationAndDestroyNextFrame();
                 }
                 break;
         }
@@ -45,9 +44,15 @@ public class PlayerTutorialMovementDisable : MonoBehaviour
         GameContextController.Instance.MutateContext(Context.PreTutorial);
         mutationComplete = true;
     }
-    private void RevertContextMutation()
+    private void RevertContextMutationAndDestroyNextFrame()
     {
-        GameContextController.Instance.MutateContext(Context.Explore);
+        StartCoroutine(RevertContextMutationAndDestroy()); // dumb hack
     }
 
+    private IEnumerator RevertContextMutationAndDestroy()
+    {
+        yield return null;
+        GameContextController.Instance.MutateContext(Context.Explore);
+        Destroy(this);
+    }
 }

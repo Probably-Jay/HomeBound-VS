@@ -658,6 +658,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BridgeBarrier.cs" />
     <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
   </ItemGroup>
@@ -668,7 +669,8 @@
     <None Include="Assets\NoteSongs\NoteSheets\notesheet 1.txt" />
     <None Include="Assets\NoteSongs\NoteSheets\notesheet.txt" />
     <None Include="Assets\NoteSongs\NoteSheets\testSHeet.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d2.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d3.txt" />
@@ -679,6 +681,7 @@
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile6.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile8.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile9.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Test\t.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

@@ -22,7 +22,7 @@ namespace Dialogue
 
             var metadata = ParseMetadata(metadataLine);
 
-            conversation.conversationID = metadata["id"].Value;
+            conversation.conversationID = metadata["id"].Value.ToLowerInvariant();
 
             var mode = GetMode(metadata["mode"].Value);
 
@@ -42,7 +42,7 @@ namespace Dialogue
                     continue;
                 }
 
-                var header = ParseHeader(line, lineNumber: i);
+                var header = ParseHeader(line, lineNumber: i + 1);
 
                 if (header == null) // reached [end]
                 {
@@ -71,7 +71,7 @@ namespace Dialogue
             string speaker = header["name"].Value;
 
 
-            phrase.PhraseID = conversation.conversationID +"."+ i.ToString();
+            phrase.PhraseID = (conversation.conversationID +"."+ i.ToString()).ToLowerInvariant();
             phrase.Speaker = speaker;
             phrase.Phrase = new System.Text.StringBuilder(body);
 
@@ -147,18 +147,18 @@ namespace Dialogue
 
             if (!headerGroup.Success)
             {
-                throw new System.Exception($"Phrase {lineNumber} instructions malformed");
+                throw new System.Exception($"Phrase {lineNumber} header malformed");
             }
 
             if (!headerGroup.Groups["name"].Success)
             {
-                throw new System.Exception($"Phrase {lineNumber} does not have name");
+                throw new System.Exception($"Phrase {lineNumber} header does not have name");
             }
 
             string value = headerGroup.Groups["mode"].Value;
             if (!headerGroup.Groups["mode"].Success && value != "")
             {
-                throw new System.Exception($"Phrase {lineNumber} mode parsed incorectly");
+                throw new System.Exception($"Phrase {lineNumber} header mode parsed incorectly");
             }
 
             return headerGroup.Groups;
@@ -175,7 +175,7 @@ namespace Dialogue
 
             line = line.Substring(header.Length);
 
-            Match bodyGroup = Regex.Match(line, @"^(?<body>[ \w',\.\?\!<>=""\/\(\)\[\]\#:]+)\r$");  
+            Match bodyGroup = Regex.Match(line, @"^(?<body>[ \w',\.\?\!\$\&\*\₩\%\^\£<>=""\/\(\)\[\]\#:]+)\r$");  
 
             if (!bodyGroup.Success)
             {

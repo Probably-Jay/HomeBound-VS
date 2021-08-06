@@ -165,6 +165,7 @@ namespace Interactables
             {
                 return;
             }
+            entered = true;
             InvokeEnterInteractable();
         }
 
@@ -179,6 +180,7 @@ namespace Interactables
                 Debug.LogWarning("Triggered count is not 0");
             }
             InvokeExitInteractable();
+            entered = false;
             DeactivateUI();
         }
 
@@ -206,7 +208,6 @@ namespace Interactables
 
         void InvokeEnterInteractable()
         {
-            entered = true;
             for (int i = interactableTriggers.Count - 1; i >= 0; i--)
             {
                 IInteractableTriggered triggered = GetITriggered(i);
@@ -215,7 +216,6 @@ namespace Interactables
         }
         void InvokeExitInteractable()
         {
-            entered = false;
             for (int i = interactableTriggers.Count - 1; i >= 0; i--)
             {
                 IInteractableTriggered triggered = GetITriggered(i);

@@ -1,0 +1,25 @@
+﻿id: c1_tut
+[Rex]: hey 'ris, you okay? You look a little spaced out there.
+[Iris]: Yeah.. sorry I should be fine... it's beautiful here, isn't it?
+[Rex]: hmm... yeah. It's not really my jam but it has a kinda peaceful charm.
+[Iris]: If it weren't for Raleigh's accounts of the locals, I'd almost want to settle down here.
+[Rex]: you're [i]sure[_i] you're okay?
+[Iris]: ... Sorry, just, looking at this place, being rejuvenated by its beauty, I have to remind myself that it's all skin deep. It puts me on edge a little.
+[Rex]: oh $&#!... well, this is [i]technically[_i] a holiday, why not just let that $&#! slip your mind and just enjoy this [i]liminal space[_i]?
+[Iris]: I don't think that's what liminal means...
+[Rex]: [i]*laugh*[_i] you know what I mean
+[Iris]: Yeah, sorry, it's just, I'm worried that if I do, when we have to talk to Raleigh's parents... or anyone else who clocks me... I won't be able to take the dissonance.
+[Rex]: that's totally fair, I'm not exactly chill with the thought of having to deal with these ₩?%*&#$ either.
+[Iris]: ....Yeah...
+[Rex]: but obviously, you know being all stressed about it isn't going to help you in those encounters.
+[Iris]: I'm just not really sure... what I would even say...
+[Rex]: it's been a while since you've been confronted about that kinda thing, huh?
+[Iris]: Thankfully so.
+[Rex]: yeah no totally....
+[Rex]: well uh... there's something you could do that might help... but only if you're up for something kinda dorky...
+[Iris]: Rex, I'm sure you have a playlist for this and I'm certain it works for you, it's just not really my taste in music.
+[Rex]: first of all, wow, and I actually do have a [i]transcendent[_i] anxiety playlist, that you [i]will[_i] listen to someday, but that's not what I was suggesting.
+[Iris]: *laughs a little* Okay, okay, what is it that you had in mind?
+[Rex]: don't laugh, but I thought we might try practicing a tense conversation, so you're ready for them!
+[Iris]: Well, I'm not sure it'll be the same, but I'm sure 
+[end]

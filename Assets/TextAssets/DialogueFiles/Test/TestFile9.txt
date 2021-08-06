@@ -1,5 +1,5 @@
 id: test
-
+[REX]: 0abcdefghijkmlnopqrstuvwxyz1abcdefghijkmlnopqrstuvwxyz2abcdefghijkmlnopqrstuvwxyz3abcdefghijkmlnopqrstuvwxyz4abcdefghijkmlnopqrstuvwxyz35bcdefghijkmlnopqrstuvwxyz6abcdefghijkmlnopqrstuvwxyz7abcdefghijkmlnopqrstuvwxyz8abcdefghijkmlnopqrstuvwxyz9abcdefghijkmlnopqrstuvwxyzAabcdefghijkmlnopqrstuvwxyzBabcdefghijkmlnopqrstuvwxyz
 [REX]: hey [colour: FF0000] A [colour: 00FF00] B [colour: 0000FF] C [Quest: Eq1]
 [Player]: What's that feeling?[CompleteTask: Eq1_t0]
 [REX]: Let's go[rhythm: demo]
