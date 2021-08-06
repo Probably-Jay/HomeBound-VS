@@ -22,6 +22,10 @@ namespace Game
 
         new public static GameContextController Instance => SingletonManagement.Singleton<GameContextController>.Instance;
 
+        [SerializeField] bool fullyStressed;
+
+        public bool FullyStressed { get => fullyStressed; set => fullyStressed = value; }
+
         public override void Initialise()
         {
             base.InitSingleton();
