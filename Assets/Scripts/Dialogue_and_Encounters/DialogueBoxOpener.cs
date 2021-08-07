@@ -59,4 +59,16 @@ public class DialogueBoxOpener : MonoBehaviour
         Game.GameContextController.Instance.PushContext(Game.Context.Dialogue);
         OnBoxOpen?.Invoke();
     }
+
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseBox();
+        }
+    }
+
+#endif
 }

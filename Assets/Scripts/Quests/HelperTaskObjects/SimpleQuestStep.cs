@@ -26,7 +26,24 @@ namespace Quests
 
         public void UnCompleteStep() => Completed = false;
 
+#if UNITY_EDITOR
+        bool completedLastCheck;
+        private void OnValidate()
+        {
+            if (completedLastCheck == completed) return;
 
+            if (completed)
+            {
+                CompleteStep();
+            }
+            else
+            {
+                UnCompleteStep();
+            }
+
+            completedLastCheck = completed;
+        }
+#endif
 
     }
 }
