@@ -21,6 +21,7 @@ namespace Quests
                 try
                 {
                     quest.Validate();
+                    BeginQuest(quest);
                 }
                 catch (System.Exception)
                 {

@@ -12,7 +12,7 @@ namespace Interactables
     [RequireComponent(typeof(BoxCollider2D))]
     public class Interactable : MonoBehaviour
     {
-        const float facintDirectionSensitivity = -0.9f;
+        const float facingDirectionSensitivity = -0.9f;
         [SerializeField] string InteractionName = "Interact";
         [SerializeField] KeyCode interactKey = KeyCode.E;
         [SerializeField] bool canBeInteractedWith = true;
@@ -32,14 +32,15 @@ namespace Interactables
         bool CanBeInteracted => canBeInteractedWith && interactableActivated && triggeredCount == 0;
         bool interactableActivated;
         private int triggeredCount = 0;
+        private bool entered;
 
-        private bool InInteractioinRange => UIParentObject.activeInHierarchy; // implicit state, defined by if "interact (E)" ui is visible
+        private bool InteractUIIsEnabled => UIParentObject.activeInHierarchy; // implicit state, defined by if "interact (E)" ui is visible
 
 
         private void Awake()
         {
             UIDisplay = GetComponentInChildren<TMP_Text>();
-            UIDisplay.text = $"{InteractionName} ({interactKey.ToString()})";
+            UIDisplay.text = $"{InteractionName} ({interactKey})";
 
             UIParentObject.SetActive(false);
 
@@ -77,9 +78,6 @@ namespace Interactables
             }
            
         }
-
-
-
 
         private void OnDisable()
         {
@@ -124,18 +122,11 @@ namespace Interactables
             interactableActivated = false;
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (!collision.CompareTag("Player"))
-            {
-                return;
-            }
-            DeactivateUI();
-        }
+
 
         private void Update()
         {
-            if (CanBeInteracted && InInteractioinRange && Input.GetKeyDown(interactKey))
+            if (CanBeInteracted && InteractUIIsEnabled && Input.GetKeyDown(interactKey))
             {
                 HandleInteraction();
             }
@@ -148,10 +139,14 @@ namespace Interactables
                 return;
             }
 
-
             if (!collision.CompareTag("Player"))
             {
                 return;
+            }
+
+            if (!entered)
+            {
+                InvokeEnterInteractable();
             }
 
             if (!PlayerFacingUs(collision.gameObject))
@@ -164,18 +159,29 @@ namespace Interactables
 
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
+            if (!other.CompareTag("Player"))
+            {
+                return;
+            }
+            entered = true;
             InvokeEnterInteractable();
         }
 
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            if(triggeredCount > 0)
+            if (!other.CompareTag("Player"))
+            {
+                return;
+            }
+            if (triggeredCount > 0)
             {
                 Debug.LogWarning("Triggered count is not 0");
             }
             InvokeExitInteractable();
+            entered = false;
+            DeactivateUI();
         }
 
         private void HandleInteraction()
@@ -205,7 +211,7 @@ namespace Interactables
             for (int i = interactableTriggers.Count - 1; i >= 0; i--)
             {
                 IInteractableTriggered triggered = GetITriggered(i);
-                triggered.Trigger();
+                triggered.EnteredTriggerZone();
             }
         }
         void InvokeExitInteractable()
@@ -213,7 +219,7 @@ namespace Interactables
             for (int i = interactableTriggers.Count - 1; i >= 0; i--)
             {
                 IInteractableTriggered triggered = GetITriggered(i);
-                triggered.Trigger();
+                triggered.ExitedTriggerZone();
             }
         }
 
@@ -256,7 +262,7 @@ namespace Interactables
 
             var allignment = Vector2.Dot(usToPlayer, playerFacing);
 
-            return allignment < facintDirectionSensitivity; // if us to player is oposite direction to player is facing
+            return allignment < facingDirectionSensitivity; // if us to player is oposite direction to player is facing
         }
 
         public void TestFunction()

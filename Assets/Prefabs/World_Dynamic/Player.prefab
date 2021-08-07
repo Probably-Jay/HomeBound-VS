@@ -82,27 +82,27 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0
-          outSlope: -0
+          inSlope: -4.012905
+          outSlope: -4.012905
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.028548745
         - serializedVersion: 3
           time: 1
-          value: 0.13703698
-          inSlope: -2
-          outSlope: -2
+          value: 0.0045776367
+          inSlope: -0.34467405
+          outSlope: -0.34467405
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.12566477
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_AttackTime: 0
       m_SustainTime: 0.2
-      m_DecayTime: 0.7
+      m_DecayTime: 1.2
       m_ScaleWithImpact: 1
       m_HoldForever: 0
     m_ImpactRadius: 100
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74d6064b9b6f2d4ba9a5d2a88e7939e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 0}
+  source: {fileID: 788265583}
 --- !u!1 &882036883
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 2510833938084673247}
   - component: {fileID: 6569488831994251738}
   - component: {fileID: 2510833937013443673}
+  - component: {fileID: 3289021}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -401,3 +402,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3289021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510833938084673232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90cb01db4453004a9c80046f8642634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentQuests: []

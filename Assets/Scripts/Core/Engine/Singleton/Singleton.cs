@@ -70,7 +70,7 @@ namespace SingletonManagement
 
 
         /// <summary>
-        /// *The deriving class must impliment a <see cref="InitSingleton"/> call inside <see cref="T.Initialise"/>*
+        /// *The deriving class must impliment a <see cref="InitSingleton"/> call inside <see cref="Initialise"/>*
         /// </summary>
         public abstract void Initialise();
 

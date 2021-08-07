@@ -10,6 +10,7 @@ namespace Game
     public enum Context
     {
         None
+        ,PreTutorial
         ,Explore
         ,Dialogue
         ,Rythm
@@ -18,7 +19,7 @@ namespace Game
 
     public class GameContextController : SingletonManagement.Singleton<GameContextController>
     {
-        [SerializeField] Context defaultFirstContext = Context.Explore;
+        [SerializeField] Context defaultFirstContext;
 
         new public static GameContextController Instance => SingletonManagement.Singleton<GameContextController>.Instance;
 
@@ -33,7 +34,7 @@ namespace Game
 
         private void Start()
         {
-            PushContext(defaultFirstContext,Context.None);
+            PushContext(defaultFirstContext, Context.None);
         }
 
         private readonly Stack<Context> contextStack = new Stack<Context>();
@@ -48,7 +49,6 @@ namespace Game
         public event Action<Context, Context> OnContextChange;
         private void InvokeContextChange(Context previousContext)
         {
-
             if (previousContext == CurrentContext)
             {
                 Debug.LogWarning("Switching to context same as current context");
@@ -75,7 +75,6 @@ namespace Game
             var prevContext = CurrentContext;
             contextStack.Pop();
             PushContext(newContext, prevContext);
-
         }
 
         /// <summary>
@@ -90,6 +89,7 @@ namespace Game
             }
             var prevContext = CurrentContext;
             contextStack.Pop();
+            Debug.Log($"Switching from {prevContext} to {CurrentContext}");
             InvokeContextChange(prevContext);
         }
 
@@ -106,6 +106,7 @@ namespace Game
 
         private void PushContext(Context context, Context prevContext)
         {
+            Debug.Log($"Switching from {prevContext} to {context}");
             contextStack.Push(context);
             InvokeContextChange(prevContext);
         }

@@ -121,12 +121,26 @@ namespace Overworld {
                 case Context.Rythm:
                     DeactivateMovement();
                     break;
+                case Context.None:
+                    DeactivateMovement();
+                    break;
+                case Context.PreTutorial:
+                    DeactivateMovement();
+                    break;
             }
         }
 
-        private void ActivateMovement() => canWalk = true;
+        private void ActivateMovement()
+        {
+            Debug.Log("Walking enabled");
+            canWalk = true;
+        }
 
-        private void DeactivateMovement() => canWalk = false;
+        private void DeactivateMovement()
+        {
+            Debug.Log("Walking disabled");
+            canWalk = false;
+        }
 
         void Awake()
         {
@@ -142,6 +156,7 @@ namespace Overworld {
         // Update is called twice per frame
         void Update()
         {
+            if (!canWalk) return;
             //check and update the dirStack based on keys pressed/released
             GatherInput();
             UpdateAnimation();
@@ -185,6 +200,7 @@ namespace Overworld {
             {
                 return;
             }
+
             if (!gridBasedMovement)
             {
                 if (hasWalkingInput)
@@ -375,6 +391,6 @@ namespace Overworld {
                 default: { return false; }
             }
         }
-        
+
     }
 }
