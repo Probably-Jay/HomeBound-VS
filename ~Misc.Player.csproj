@@ -59,6 +59,9 @@
     <Reference Include="~Game">
       <HintPath>Library/ScriptAssemblies/~Game.dll</HintPath>
     </Reference>
+    <Reference Include="~Dialogue_And_Encounters">
+      <HintPath>Library/ScriptAssemblies/~Dialogue_And_Encounters.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -587,6 +590,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Misc\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\Misc\ExampleQuestLogic.cs" />
     <Compile Include="Assets\Scripts\Misc\PlayerTutorialMovementDisable.cs" />
     <Compile Include="Assets\Scripts\Misc\_TempOpener.cs" />
   </ItemGroup>

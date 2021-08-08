@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Misc\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\Misc\ExampleQuestLogic.cs" />
     <Compile Include="Assets\Scripts\Misc\PlayerTutorialMovementDisable.cs" />
     <Compile Include="Assets\Scripts\Misc\_TempOpener.cs" />
     <None Include="Assets\Scripts\Misc\~Misc.asmdef" />
@@ -616,6 +617,10 @@
     <ProjectReference Include="~Game.csproj">
       <Project>{41F7CEBF-7F01-D2DE-B85B-182DCD0C801B}</Project>
       <Name>~Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="~Dialogue_And_Encounters.csproj">
+      <Project>{B1FD1A2C-C177-539C-2EB0-6F4E9E204FD6}</Project>
+      <Name>~Dialogue_And_Encounters</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{11EBBDD7-E2FD-F626-966F-35718B89FB30}</Project>

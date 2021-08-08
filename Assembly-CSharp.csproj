@@ -63,8 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BridgeBarrier.cs" />
-    <Compile Include="Assets\ExampleQuestLogic.cs" />
     <Compile Include="Assets\PointOfIntrestManager.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -75,15 +73,15 @@
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile8.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile6.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb1.txt" />
-    <None Include="Assets\NoteSongs\NoteSheets\notesheet 1.txt" />
+    <None Include="Assets\MusicAssets\NoteSheets\notesheet 1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d2.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
-    <None Include="Assets\NoteSongs\NoteSheets\testSHeet.txt" />
+    <None Include="Assets\MusicAssets\NoteSheets\testSHeet.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestDemo.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
-    <None Include="Assets\NoteSongs\NoteSheets\notesheet.txt" />
+    <None Include="Assets\MusicAssets\NoteSheets\notesheet.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -95,9 +93,9 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile10.txt" />
-    <None Include="Assets\NoteSongs\NoteSheets\Tutorial.txt" />
+    <None Include="Assets\MusicAssets\NoteSheets\Tutorial.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\NoteSongs\NoteSheets\DanceSheet.txt" />
+    <None Include="Assets\MusicAssets\NoteSheets\DanceSheet.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile9.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -685,6 +683,10 @@
     <ProjectReference Include="Unity.Rider.Editor.csproj">
       <Project>{6BF72B46-561B-B03B-7463-12627BE78CB4}</Project>
       <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="~Misc.csproj">
+      <Project>{B3F2D50E-322B-54C4-48C7-057A66A0D7F4}</Project>
+      <Name>~Misc</Name>
     </ProjectReference>
     <ProjectReference Include="~World.csproj">
       <Project>{0C7C2D92-76DE-BE2B-D33A-0760D128D27A}</Project>
