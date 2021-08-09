@@ -1917,7 +1917,7 @@ GameObject:
   m_Layer: 0
   m_Name: Barrier
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5067,7 +5067,7 @@ GameObject:
   - component: {fileID: 2018461164}
   - component: {fileID: 2018461165}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: OpenBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5503,6 +5503,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4453736236123749434, guid: 3c1b4070c9b572a4d860880d725ba1e2,
         type: 3}
+      propertyPath: title
+      value: Get Raleigh
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453736236123749434, guid: 3c1b4070c9b572a4d860880d725ba1e2,
+        type: 3}
+      propertyPath: description
+      value: This step cannot be completed yet
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453736236123749434, guid: 3c1b4070c9b572a4d860880d725ba1e2,
+        type: 3}
       propertyPath: taskPrerequisites.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5610,6 +5620,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729162139850504164, guid: 3c1b4070c9b572a4d860880d725ba1e2,
+        type: 3}
+      propertyPath: title
+      value: Raleigh The Troops
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729162139850504164, guid: 3c1b4070c9b572a4d860880d725ba1e2,
+        type: 3}
+      propertyPath: description
+      value: 'Your friend Raleigh is trying to leave home.
+
+        They need some
+        help confronting their parents about this.
+
+        Get Raleigh, and get
+        the hell outa here!'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1b4070c9b572a4d860880d725ba1e2, type: 3}
