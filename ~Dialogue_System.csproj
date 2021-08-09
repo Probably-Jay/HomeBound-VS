@@ -650,6 +650,10 @@
       <Project>{6CC47064-18D1-3BAC-74CE-BBC9B438A12A}</Project>
       <Name>~UI</Name>
     </ProjectReference>
+    <ProjectReference Include="~InteractableInterface.csproj">
+      <Project>{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}</Project>
+      <Name>~InteractableInterface</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>

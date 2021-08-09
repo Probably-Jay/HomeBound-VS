@@ -179,7 +179,7 @@ namespace Dialogue
 
             if (!bodyGroup.Success)
             {
-                throw new System.Exception($"Phrase {lineNumber} body malformed");
+                throw new System.Exception($"Phrase {lineNumber} body malformed, did you miss an \"[end]\" tag?");
             }
 
             if (!bodyGroup.Groups["body"].Success)

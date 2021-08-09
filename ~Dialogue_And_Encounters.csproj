@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\BaseDialogue.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueBoxOpener.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueInstance.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueManager.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\WordNote.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\WordUI.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RythmDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\SimpleDialogue.cs" />
     <None Include="Assets\Scripts\Dialogue_and_Encounters\~Dialogue_And_Encounters.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

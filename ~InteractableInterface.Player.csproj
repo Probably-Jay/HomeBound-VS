@@ -581,6 +581,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\InteractableInterface\IInteractableTriggered.cs" />
+    <Compile Include="Assets\Scripts\InteractableInterface\ISimpleDialogue.cs" />
     <Compile Include="Assets\Scripts\InteractableInterface\SimpleInteractableTriggered.cs" />
   </ItemGroup>
   <ItemGroup>

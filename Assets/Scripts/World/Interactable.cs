@@ -16,6 +16,7 @@ namespace Interactables
         [SerializeField] string InteractionName = "Interact";
         [SerializeField] KeyCode interactKey = KeyCode.E;
         [SerializeField] bool canBeInteractedWith = true;
+        [SerializeField] bool directional = true;
 
  
         [Header("All triggers must be of type \"" + nameof(SimpleInteractableTriggered) +"\" or impliment \"" + nameof(IInteractableTriggered)+ "\"")]
@@ -149,7 +150,7 @@ namespace Interactables
                 InvokeEnterInteractable();
             }
 
-            if (!PlayerFacingUs(collision.gameObject))
+            if (directional && !PlayerFacingUs(collision.gameObject))
             {
                 DeactivateUI();
                 return;
