@@ -71,6 +71,9 @@
     <Reference Include="~Dialogue_System">
       <HintPath>Library/ScriptAssemblies/~Dialogue_System.dll</HintPath>
     </Reference>
+    <Reference Include="~stress">
+      <HintPath>Library/ScriptAssemblies/~stress.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -602,17 +605,19 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueInstance.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RhythmSectionManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\HitDetection.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\HitZone.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\IRythmDialogeControlInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\Lane.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\NoteDialogueInterface.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\NoteSection.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\NoteSpawner.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\RhythmInitialise.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\StressPoint.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\StressPointRing.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\WordNote.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\WordUI.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RythmDialogueInterface.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitDetection.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\HitZone.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\IRythmDialogeControlInterface.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\Lane.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteDialogueInterface.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSection.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\NoteSpawner.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\RhythmInitialise.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordNote.cs" />
-    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rythm_Section\WordUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Dialogue_and_Encounters\~Dialogue_And_Encounters.asmdef" />

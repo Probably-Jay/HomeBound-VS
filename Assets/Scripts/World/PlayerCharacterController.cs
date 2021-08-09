@@ -132,13 +132,11 @@ namespace Overworld {
 
         private void ActivateMovement()
         {
-            Debug.Log("Walking enabled");
             canWalk = true;
         }
 
         private void DeactivateMovement()
         {
-            Debug.Log("Walking disabled");
             canWalk = false;
         }
 

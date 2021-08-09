@@ -22,4 +22,30 @@
 [Iris]: *laughs a little* Okay, okay, what is it that you had in mind?
 [Rex]: don't laugh, but I thought we might try practicing a tense conversation, so you're ready for them!
 [Iris]: Well, I'm not sure it'll be the same, but I'm sure 
+
+// rhythm section
+[Rex]: Okay, I'll be Raleigh's parents. [pause: 16]Ready? [pause: 48] [rhythm: tutorial_1]
+
+
+//[Iris]: Raleigh's leaving, they're coming to live with us
+
+[Rex]: OI OI, not on ma' wotch they aren't.
+
+//[Iris]: They're an adult, they can make their own choices!
+
+[Rex]: But that's ma baby you're talkin aboot!
+
+//[Iris]: You can't control them forever, they need to make their own way.
+
+[Rex]: Well, um... they don't know what's best for them. I doo. A'm their dad.
+
+//[Iris]: If you actually cared about them, you'd trust them enough to let them decide.
+
+// end rhythm
+
+[Rex]: That was great, you're really good at that!
+[Rex]: And you know, if all else fails we go with plan B
+[Iris]: Grab them and run?
+[Rex]: Grab them and run.
+
 [end]
