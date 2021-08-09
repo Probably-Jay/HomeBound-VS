@@ -15,7 +15,8 @@ public class PlayerTutorialMovementDisable : MonoBehaviour
     }
     private void OnDisable()
     {
-        GameContextController.Instance.OnContextChange -= Instance_OnContextChange;
+        if(GameContextController.InstanceExists)
+            GameContextController.Instance.OnContextChange -= Instance_OnContextChange;
     }
 
     private void Instance_OnContextChange(Context currentContext, Context _)

@@ -56,6 +56,9 @@
     <Reference Include="~Game">
       <HintPath>Library/ScriptAssemblies/~Game.dll</HintPath>
     </Reference>
+    <Reference Include="~Core">
+      <HintPath>Library/ScriptAssemblies/~Core.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>

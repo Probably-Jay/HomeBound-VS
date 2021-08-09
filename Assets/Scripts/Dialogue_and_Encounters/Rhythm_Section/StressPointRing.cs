@@ -16,7 +16,7 @@ public class StressPointRing : MonoBehaviour
     [SerializeField] StressPoint[] destressPointNodules = new StressPoint[6];
     [SerializeField] Sprite[] sprites = new Sprite[2];
     [SerializeField] SpriteRenderer sR;
-    [SerializeField] bool debugKeyPresses;
+    [SerializeField] bool debugKeyPresses = false;
     stressPolarity flipDirection;
     bool isFlipping=false;
     bool hasSwapped = false;
@@ -29,31 +29,33 @@ public class StressPointRing : MonoBehaviour
     {
         ClearAllNodules(stressPointNodules);
         ClearAllNodules(destressPointNodules);
-        AddStressPoints(1);
-        Debug.Log(stressPoints);
-        AddStressPoints(1);
-        Debug.Log(stressPoints);
-        AddStressPoints(3);
-        Debug.Log(stressPoints);
-        AddStressPoints(3);
-        Debug.Log("SP:"+stressPoints);
-        RemoveStressPoints(4);
-        RemoveStressPoints(4);
-        Debug.Log(stressPoints);
-
     }
 
     // Update is called once per frame
     void Update()
+    {
+        Animate();
+
+        if (Input.GetKeyDown(KeyCode.I) && debugKeyPresses)
+        {
+            AddStressPoints(1);
+        }
+        if (Input.GetKeyDown(KeyCode.K) && debugKeyPresses)
+        {
+            RemoveStressPoints(1);
+        }
+    }
+
+    private void Animate()
     {
         if (isFlipping)
         {
             if (!hasSwapped)
             {
                 flipTimer += Time.deltaTime;
-                if (flipTimer*flipSpeed > 1)
+                if (flipTimer * flipSpeed > 1)
                 {
-                    flipTimer = 1/flipSpeed;
+                    flipTimer = 1 / flipSpeed;
                     if (flipDirection == stressPolarity.Stress)
                     {
                         sR.sprite = sprites[1];
@@ -64,7 +66,7 @@ public class StressPointRing : MonoBehaviour
                     }
                     hasSwapped = true;
                 }
-                this.transform.rotation = Quaternion.Euler(new Vector3(0, Mathf.Rad2Deg * Mathf.Asin(flipTimer*flipSpeed), 0));
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, Mathf.Rad2Deg * Mathf.Asin(flipTimer * flipSpeed), 0));
             }
             else
             {
@@ -78,18 +80,11 @@ public class StressPointRing : MonoBehaviour
                 float degreeRotation = Mathf.Rad2Deg * radianRotation;
                 Quaternion temprotation = Quaternion.Euler(new Vector3(0, degreeRotation, 0));
                 this.transform.rotation = temprotation;
-                
+
             }
         }
-        if (Input.GetKeyDown(KeyCode.I) && debugKeyPresses)
-        {
-            AddStressPoints(1);
-        }
-        if (Input.GetKeyDown(KeyCode.K) && debugKeyPresses)
-        {
-            RemoveStressPoints(1);
-        }
     }
+
     public void ChangeStressPoints(int numberOfPoints)
     {
         if (numberOfPoints > 0)
@@ -105,18 +100,17 @@ public class StressPointRing : MonoBehaviour
             throw new System.Exception("Change stress points called with 0, please specify a negative or positive numberOfPoints to change by");
         }
     }
-    public void AddStressPoints(int? numberOfPoints)
+
+    public void AddStressPoint() => AddStressPoints(1);
+
+    public void AddStressPoints(int numberOfPoints)
     {
-        if (numberOfPoints == null)
-        {
-            AddStressPoints(1);
-            return;
-        }
         if(numberOfPoints <0)
         {
             throw new System.Exception("AddStressPoints called with a negative integer, please use RemoveStressPoints");
         }
-        int tempSP = stressPoints + (int)numberOfPoints;
+
+        int tempSP = stressPoints + numberOfPoints;
         if (tempSP > maxStressPoints)
         {
             tempSP = maxStressPoints;
@@ -160,18 +154,19 @@ public class StressPointRing : MonoBehaviour
 
         }
     }
-    public void RemoveStressPoints(int? numberOfPoints)
+
+           
+    public void RemoveStressPoint() => RemoveStressPoints(1);
+
+    public void RemoveStressPoints(int numberOfPoints)
     {
-        if (numberOfPoints == null)
-        {
-            RemoveStressPoints(1);
-            return;
-        }
+      
         if (numberOfPoints < 0)
         {
             throw new System.Exception("RemoveStressPoints called with a negative integer, please use AddStressPoints");
         }
-        int tempSP = stressPoints - (int)numberOfPoints;
+
+        int tempSP = stressPoints - numberOfPoints;
         
         if (tempSP < minStressPoints)
         {

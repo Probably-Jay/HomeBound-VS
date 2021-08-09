@@ -140,11 +140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentQuests: []
---- !u!114 &3289027
+--- !u!114 &3289027 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3100408968343794373, guid: 8334a3159b5f6ee44a96720fe78bb153,
+    type: 3}
+  m_PrefabInstance: {fileID: 2510833937013443671}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3289020}
   m_Enabled: 1
@@ -152,9 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546810f8c1e1a6543873870f1e6dc7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStress: 6
-  stress: 0
-  fullyStressed: 0
 --- !u!1 &31880467
 GameObject:
   m_ObjectHideFlags: 0
@@ -11723,6 +11720,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AssetsPPU: 100
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!114 &1187329221 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1187329221, guid: 53792fb9ef3c88248b3e2af711a4da52,
