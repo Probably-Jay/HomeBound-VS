@@ -31,7 +31,7 @@ namespace GameItems
         {
             var centerTileIndex = obsticalsMap.WorldToCell(this.transform.position);
             tileLocations = new List<Vector3Int>();
-            for (int i = -extremityHeight; i < extremityHeight; i++)
+            for (int i = -extremityHeight; i < extremityHeight + 1; i++)
             {
                 tileLocations.Add(centerTileIndex + (i * Vector3Int.up));
             }

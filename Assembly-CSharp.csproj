@@ -67,6 +67,7 @@
     <Compile Include="Assets\PointOfIntrestManager.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\t.txt" />

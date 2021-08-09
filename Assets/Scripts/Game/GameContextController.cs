@@ -14,6 +14,7 @@ namespace Game
         ,Explore
         ,Dialogue
         ,Rythm
+        ,OverStressed
     }
 
 
@@ -23,9 +24,8 @@ namespace Game
 
         new public static GameContextController Instance => SingletonManagement.Singleton<GameContextController>.Instance;
 
-        [SerializeField] bool fullyStressed;
-
-        public bool FullyStressed { get => fullyStressed; set => fullyStressed = value; }
+        public bool OverStressed { get; private set; }
+        public event Action OnStressedStateChanged;
 
         public override void Initialise()
         {
@@ -66,7 +66,7 @@ namespace Game
             PushContext(context, prevContext);
         }
 
-       
+
         /// <summary>
         /// Change the current context into a new context without affecting the stack
         /// </summary>
@@ -110,5 +110,30 @@ namespace Game
             contextStack.Push(context);
             InvokeContextChange(prevContext);
         }
+
+
+        public void SetStressed()
+        {
+            if (OverStressed) return;
+            //PushContext(Context.OverStressed);
+            SetStressed(true);
+        }
+
+
+        public void SetUnstressed()
+        {
+            if(!OverStressed)
+            {
+                throw new Exception($"Cannot destress when not stressed");
+            }
+            //ReturnToPreviousContext();
+            SetStressed(false);
+        }
+        private void SetStressed(bool v)
+        {
+            OverStressed = v;
+            OnStressedStateChanged?.Invoke();
+        }
+
     }
 }

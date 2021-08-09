@@ -32,7 +32,7 @@ namespace Tests
         {
             dialogueLoader = new DialogueLoader();
 
-            dialogueLoader.Load(Game.TextAssetFolders.Test);
+            dialogueLoader.Load(Game.TextAssetFolders.Main);
 
 
             dialogueParser = new DialogueParser();
@@ -42,7 +42,7 @@ namespace Tests
         [Test]
         public void ParseMetadataCorrectly()
         {
-            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Main, TestName3);
 
 
             var conversation = dialogueParser.TryParse(rawTestText);
@@ -55,7 +55,7 @@ namespace Tests
         [Test]
         public void ParseTestFileHeaderSpeakerCorrectly()
         {
-            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Main, TestName3);
 
 
             var conversation = dialogueParser.TryParse(rawTestText);
@@ -68,7 +68,7 @@ namespace Tests
         [Test]
         public void ParseTestFileHeaderDefaultModeCorrectly()
         {
-            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Main, TestName3);
 
 
             var conversation = dialogueParser.TryParse(rawTestText);
@@ -81,7 +81,7 @@ namespace Tests
         [Test]
         public void ParseTestFileHeaderExplicitModeCorrectly()
         {
-            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName4);
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Main, TestName4);
 
 
             var conversation = dialogueParser.TryParse(rawTestText);
@@ -94,7 +94,7 @@ namespace Tests
         [Test]
         public void ParseTestFileBodyCorrectly()
         {
-            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Test, TestName3);
+            rawTestText = dialogueLoader.GetRawData(Game.TextAssetFolders.Main, TestName3);
 
 
             var conversation = dialogueParser.TryParse(rawTestText);

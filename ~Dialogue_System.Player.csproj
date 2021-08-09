@@ -74,6 +74,9 @@
     <Reference Include="~UI">
       <HintPath>Library/ScriptAssemblies/~UI.dll</HintPath>
     </Reference>
+    <Reference Include="~InteractableInterface">
+      <HintPath>Library/ScriptAssemblies/~InteractableInterface.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>

@@ -7,7 +7,7 @@ namespace Game
     public enum TextAssetFolders
     {
         None
-        ,Test
+        ,Main
     }
 
     

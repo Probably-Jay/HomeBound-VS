@@ -6,7 +6,7 @@ using System;
 
 namespace Dialogue
 {
-    public class DialogueInstance : MonoBehaviour, IInteractableTriggered
+    public class DialogueInstance : BaseDialogue, IInteractableTriggered
     {
 
         private bool HasBackupDialogue => backupDialogueIDs.Count > 0;
@@ -20,27 +20,21 @@ namespace Dialogue
         [SerializeField] private List<string> mainDialogueIDs;
         [SerializeField] private bool runMainOnlyOnce = false;
         [SerializeField] private List<string> backupDialogueIDs;
-        DialogueBoxOpener opener;
         int mainIDIndex;
         int backupIDIndex;
-        private bool triggeredAction;
-
-        public event Action OnTriggered;
-        public event Action OnPostTriggered;
-        public event Action<MonoBehaviour> OnDisconnectFromInteractTrigger;
 
         private void Awake()
         {
-            opener = FindObjectOfType<DialogueBoxOpener>();
+            FindOpener();
             Debug.Assert(opener != null, $"{this.ToString()} cannot find type {nameof(DialogueBoxOpener)} within the scene");
 
-            if(mainDialogueIDs.Count == 0)
+            if (mainDialogueIDs.Count == 0)
             {
                 Debug.LogError($"{this.ToString()} does not contain any dialogue.", this);
                 throw new System.Exception($"{this.ToString()} does not contain any dialogue.");
             }
 
-            if(!RunMainOnlyOnce && backupDialogueIDs.Count > 0)
+            if (!RunMainOnlyOnce && backupDialogueIDs.Count > 0)
             {
                 Debug.LogError($"{this.ToString()} contains backup dialogue that can never be reached.", this);
                 throw new System.Exception($"{this.ToString()} contains backup dialogue that can never be reached.");
@@ -71,7 +65,7 @@ namespace Dialogue
             }
         }
 
-        private void TriggerDialogue()
+        protected override void TriggerDialogue()
         {
             if (mainIDIndex < mainDialogueIDs.Count)
             {
@@ -106,39 +100,6 @@ namespace Dialogue
 
             DisconnectFromInteractTrigger();
         }
-
-
-        private void StartDialogue(string id)
-        {
-            opener.StartDialogue(id);
-        }
-
-        public void Trigger()
-        {
-            OnTriggered?.Invoke();
-            TriggerDialogue();
-            triggeredAction = true; // catch for the post trigger
-        }
-
-        private void Opener_OnBoxClose()
-        {
-            if (triggeredAction)
-            {
-                OnPostTriggered?.Invoke();
-                triggeredAction = false;
-            }
-
-        }
-
-        public void DisconnectFromInteractTrigger()
-        {
-            OnDisconnectFromInteractTrigger?.Invoke(this);
-            Component.Destroy(this);
-        }
-
-
-        public void EnteredTriggerZone() { }
-        public void ExitedTriggerZone() { }
 
         public void ClearMainDialogues()
         {

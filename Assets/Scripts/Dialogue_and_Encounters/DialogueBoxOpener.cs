@@ -48,7 +48,7 @@ public class DialogueBoxOpener : MonoBehaviour
 
             dialogeBoxParent.SetActive(false);
         }
-        DialogeBox.Load(Game.TextAssetFolders.Test);
+        DialogeBox.Load(Game.TextAssetFolders.Main);
     }
 
     internal void StartDialogue(string id)

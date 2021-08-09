@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game;
 using UnityEngine;
@@ -10,11 +11,14 @@ namespace Dialogue
         Dictionary<TextAssetFolders, List<TextAsset>> virtualFolders = new Dictionary<TextAssetFolders, List<TextAsset>>();
 
         [SerializeField] List<TextAsset> test;
+        public event Action OnLoad;
 
         private void Awake()
         {
-            virtualFolders.Add(TextAssetFolders.Test, test);
+            virtualFolders.Add(TextAssetFolders.Main, test);
         }
+
+
 
         public Dictionary<string, string> RawFileData { get; } = new Dictionary<string, string>();
 
@@ -29,6 +33,13 @@ namespace Dialogue
             {
                 RawFileData.Add(asset.name, asset.text);
             }
+
+            OnLoad?.Invoke();
+        }
+
+        public void Register(ISimpleDialogue text)
+        {
+            RawFileData.Add(text.Title, text.Text);
         }
 
         public void Unload(string folder)

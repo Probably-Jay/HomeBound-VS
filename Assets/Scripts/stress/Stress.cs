@@ -11,17 +11,6 @@ public class Stress : MonoBehaviour
     public bool FullyStressed { get => fullyStressed; private set => fullyStressed = value; }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void AddStress()
     {
         if (stress < maxStress)
@@ -30,7 +19,7 @@ public class Stress : MonoBehaviour
             if (stress == maxStress)
             {
                 fullyStressed = true;
-                Game.GameContextController.Instance.FullyStressed = true;
+                Game.GameContextController.Instance.SetStressed();
             }
         }
 
@@ -43,7 +32,7 @@ public class Stress : MonoBehaviour
             if (stress < maxStress)
             {
                 fullyStressed = false;
-                Game.GameContextController.Instance.FullyStressed = false;
+                Game.GameContextController.Instance.SetUnstressed();
             }
         }
     }
