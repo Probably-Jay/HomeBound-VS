@@ -1,0 +1,4 @@
+﻿id: c1_house_gen
+[Iris]: [i]knock... [pause: 16]knock... [pause: 16]knock... [pause: 64] [_i]
+[Game]: No one comes to the door
+[end]
