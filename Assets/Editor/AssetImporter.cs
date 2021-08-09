@@ -16,6 +16,7 @@ namespace Tool
         string sourcePath = "";
         string importToFolder = CustomAssetImporter.DefaultPath;
         string fileExtention = "png";
+        string nameModifier = "";
 
         bool overwriteExisting = false;
         bool isSpritesheet = false;
@@ -53,6 +54,7 @@ namespace Tool
 
             importToFolder = EditorGUILayout.TextField(new GUIContent("Import to folder:"), importToFolder);
             fileExtention = EditorGUILayout.TextField(new GUIContent("File Type: (blank for any)"), fileExtention);
+         //   nameModifier = EditorGUILayout.TextField(new GUIContent("Name modifier:"), nameModifier);
 
             overwriteExisting = EditorGUILayout.Toggle("Overwite existing files", overwriteExisting);
             isSpritesheet = EditorGUILayout.Toggle("sprite sheet", isSpritesheet);
@@ -71,7 +73,7 @@ namespace Tool
 
             if (GUILayout.Button("Import"))
             {
-                AssetImportPostProcessing.SetUp(isSpritesheet, sprites,sizeX,sizeY, paddingX, paddingY, offsetX, offsetY);
+                AssetImportPostProcessing.SetUp(nameModifier, isSpritesheet, sprites, sizeX, sizeY, paddingX, paddingY, offsetX, offsetY);
                 CustomAssetImporter.CustomImportAsset(sourcePath, importToFolder, fileExtention, overwriteExisting);
             }
         }
@@ -167,6 +169,7 @@ namespace Tool
     {
         public static bool settingsEnabled = false;
 
+        public static string nameModifier;
         public static bool isSpriteSheet;
         public static int sprites;
         public static int spriteSizeX = 32;
@@ -180,8 +183,10 @@ namespace Tool
         public static FilterMode filterMode = FilterMode.Point;
         public static TextureImporterCompression compressionMode = TextureImporterCompression.Uncompressed;
 
-        internal static void SetUp(bool isSpritesheet, int sprites, int sizeX, int sizeY, float paddingX, float paddingY, float offsetX, float offsetY)
+        internal static void SetUp(string nameModifier, bool isSpritesheet, int sprites, int sizeX, int sizeY, float paddingX, float paddingY, float offsetX, float offsetY)
         {
+            AssetImportPostProcessing.nameModifier = nameModifier;
+
             AssetImportPostProcessing.isSpriteSheet = isSpritesheet;
 
             AssetImportPostProcessing.sprites = sprites;
@@ -202,6 +207,7 @@ namespace Tool
             }
 
             var importer = assetImporter as TextureImporter;
+        //    importer.assetBundleName = $"{importer.assetBundleName}{(nameModifier == "" ? "" : $"_{nameModifier}")}";
             importer.textureType = textureImportType;
             importer.spritePixelsPerUnit = pixelsPerUnit;
             importer.filterMode = filterMode;
@@ -220,7 +226,7 @@ namespace Tool
                     SpriteMetaData sprite = new SpriteMetaData();
 
 
-                    sprite.name = importer.name + $"{importer.name}_s_{i.ToString("00")}";
+                    sprite.name = $"{importer.assetBundleName}_s_{i.ToString("00")}";
                     
                     sprite.rect = new Rect(spriteOffsetX + i * (spriteSizeX + spritePaddingX), spriteoffsetY+ spritePaddingY, spriteSizeX, spriteSizeY);
 

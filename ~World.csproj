@@ -630,6 +630,10 @@
       <Project>{9BF3F4B7-CC0E-45FB-45F5-2B647A2A932B}</Project>
       <Name>~InteractableInterface</Name>
     </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{444E6EE2-C90E-964E-C2B2-93BF064C044E}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
       <Name>UnityEditor.UI</Name>
