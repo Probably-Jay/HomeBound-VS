@@ -78,11 +78,12 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\MusicAssets\NoteSheets\testSHeet.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-new.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestDemo.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\notesheet.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-old.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />

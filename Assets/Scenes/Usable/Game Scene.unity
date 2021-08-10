@@ -2772,75 +2772,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883835724}
   m_CullTransparentMesh: 0
---- !u!1001 &896072548
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832394, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8828829650089832396, guid: efe6e47e411f8474c9072dd817056e1c,
-        type: 3}
-      propertyPath: m_Name
-      value: Interactable
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: efe6e47e411f8474c9072dd817056e1c, type: 3}
 --- !u!4 &923553815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6753365914865516130, guid: 47d4d415203b7f043a9aad41af47ee68,
@@ -4670,7 +4601,7 @@ MonoBehaviour:
   text: '[Game]: [i]You look out over the water[_i]
 
     [Game]: You feel your [colour:
-    #111111]stress[colour: #FFFFFF] lessen [stress: -1]'
+    #0099FF]stress[colour: #FFFFFF] lessen! [stress: -1]'
 --- !u!4 &1725856853
 Transform:
   m_ObjectHideFlags: 0
@@ -5998,7 +5929,7 @@ PrefabInstance:
         type: 3}
       propertyPath: test.Array.data[0]
       value: 
-      objectReference: {fileID: 4900000, guid: e7fc067b0eab4ee45b0cd73f2063fe2e, type: 3}
+      objectReference: {fileID: 4900000, guid: b4439203d922c6847802f5aac10df30a, type: 3}
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
       propertyPath: test.Array.data[1]
@@ -6118,6 +6049,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rex
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
+        type: 3}
+      propertyPath: mainDialogueIDs.Array.data[0]
+      value: c1_tut
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b60ab711821ed0478f0db66573eb7d9, type: 3}

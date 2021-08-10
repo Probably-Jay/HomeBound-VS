@@ -269,7 +269,7 @@ namespace Dialogue
             bool found = false;
             foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
             {
-                var instruction = Regex.Match(match.Value, $@"\[({iName}: (?<{iName}>[\-#\w]+(?:.\d+)?))\]");
+                var instruction = Regex.Match(match.Value, $@"\[({iName}: #?(?<{iName}>[\-\w]+(?:.\d+)?))\]");
 
                 if (!instruction.Success)
                 {
