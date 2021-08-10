@@ -671,9 +671,13 @@
     <None Include="Assets\MusicAssets\NoteSheets\notesheet.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\testSHeet.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Karen.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Raleigh.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-new.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-old.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\General\overstresed start.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\General\overstresed.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d2.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d3.txt" />

@@ -71,6 +71,7 @@
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\t.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Raleigh.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile8.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile6.txt" />
@@ -80,11 +81,11 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\MusicAssets\NoteSheets\testSHeet.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\overstresed.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\General\overstresed.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-new.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestDemo.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\overstresed 1.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\General\overstresed start.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\notesheet.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-old.txt" />
@@ -106,6 +107,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d3.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Karen.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
