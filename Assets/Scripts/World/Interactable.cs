@@ -17,6 +17,7 @@ namespace Interactables
         [SerializeField] KeyCode interactKey = KeyCode.E;
         [SerializeField] bool canBeInteractedWith = true;
         [SerializeField] bool directional = true;
+        private bool triggerInstantly = false;
 
  
         [Header("All triggers must be of type \"" + nameof(SimpleInteractableTriggered) +"\" or impliment \"" + nameof(IInteractableTriggered)+ "\"")]
@@ -127,10 +128,15 @@ namespace Interactables
 
         private void Update()
         {
-            if (CanBeInteracted && InteractUIIsEnabled && Input.GetKeyDown(interactKey))
+            if (CanBeInteracted && InteractUIIsEnabled && GetIfShouldTriggerInteraction())
             {
                 HandleInteraction();
             }
+        }
+
+        private bool GetIfShouldTriggerInteraction()
+        {
+            return triggerInstantly || Input.GetKeyDown(interactKey);
         }
 
         private void OnTriggerStay2D(Collider2D collision)

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Dialogue
 {
-    public class SimpleDialogue : BaseDialogue, ISimpleDialogue, Interactables.IInteractableTriggered
+    public class SimpleDialogue : BaseDialogue, ISimpleDialogue
     {
 
         [TextArea(3,40)]
