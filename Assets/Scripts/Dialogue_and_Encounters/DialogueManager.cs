@@ -15,6 +15,7 @@ namespace Dialogue
         IRythmDialogeControlInterface rythmDialogeControlInterface;
         DialogueQuestManager dialogueQuestController;
         DialogueQuestTaskManager dialogueQuestTaskController;
+        Stress playerStress;
 
         private Coroutine currentConversation;
 
@@ -34,6 +35,7 @@ namespace Dialogue
             rythmDialogeControlInterface = GetComponent<RythmDialogueInterface>();
             dialogueQuestController = GetComponentInChildren<DialogueQuestManager>();
             dialogueQuestTaskController = GetComponentInChildren<DialogueQuestTaskManager>();
+            playerStress = GameObject.FindObjectOfType<Stress>();
         }
 
 
@@ -137,6 +139,7 @@ namespace Dialogue
             conversation.OnUnItalicise += () => dialogueContextController.UnItaliciseRTT();
             conversation.OnBold += () => dialogueContextController.BoldRTT();
             conversation.OnUnBold += () => dialogueContextController.UnBoldRTT();
+            conversation.OnStress += (v) => playerStress.AlterStress(v);
 
             foreach (DialoguePhrase phrase in conversation.dialoguePhrases)
             {

@@ -10,6 +10,26 @@ public class Stress : MonoBehaviour
 
     public bool FullyStressed { get => fullyStressed; private set => fullyStressed = value; }
 
+    /// <summary>
+    /// This funciton is foe werha add one there u go
+    /// </summary>
+    public void AlterStress(int v)
+    {
+        if (v > 0)
+        {
+            for (int i = 0; i < v; i++)
+            {
+                AddStress();
+            }
+        }
+        else if (v < 0)
+        {
+            for (int i = 0; i < Mathf.Abs(v); i++)
+            {
+                RemoveStress();
+            }
+        }
+    }
 
     public void AddStress()
     {
@@ -29,7 +49,7 @@ public class Stress : MonoBehaviour
         if (stress > 0)
         {
             stress--;
-            if (stress < maxStress)
+            if (fullyStressed && stress < maxStress)
             {
                 fullyStressed = false;
                 Game.GameContextController.Instance.SetUnstressed();
