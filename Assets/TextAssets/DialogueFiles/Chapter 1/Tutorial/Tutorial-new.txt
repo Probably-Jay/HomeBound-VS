@@ -1,0 +1,58 @@
+﻿id: c1_tut
+[GAME]: Press W, A, S, or D to wander around.
+
+[GAME]: Press E to talk
+
+[ARTEMIS]: I quite like this place, I like the trees here. Whats this place called again?
+[IRIS]: [colour: #1b9d2a]Forest Hill.[colour: FFFFFF] My friend lives here... somewhere.
+[EMBER]: Iris can I ask what we're doing here? When we left you were upset so I didn't push it but we've been travelling for ages.
+[EMBER]: I know you, you must have a good reason but... I don't know what it is.
+[IRIS]: Yeah... well I met somebody online, they are called Raleigh. We got to talking ages ago about the best growth conditions for Aloe Vera.
+[IRIS]: Anyway, we became quite good friends. Spoke about ourselves and who we are, mentioned to them I'm taking 'vitahers', and that got us talking about LGBT stuff.
+[IRIS]: Raleigh, well Raleigh is still finding themself. They are finding what describes their feelings most. I think I was helping them... at least I hope so.
+[IRIS]: Anyway, they went quiet for a few weeks - no problem, some times people get busy right? Well...I don't think it was quite that simple.
+[IRIS]: When Raleigh next messaged me they were asking all these questions...questions about conversion, about 'treatment' options, about being sent away for...correction...
+[EMBER]: ...oh...
+[IRIS]: [i]tearing up[_i] I tried to help them, I tried but...
+[EMBER]: So thats why we're here, to make sure Raleigh is okay? To make sure Raleigh knows they aren't alone?
+[IRIS]: [i]wiping away tearsdrops from her cheek[_i] I just, I need to make sure they know, they know they are perfect. They don't need 'treatment'.
+[REX]: I'll join you then darlin'. I'll makes sure we see your friend.
+[ARTEMIS]: [i]Quietly to Iris[_i] I...Can I...Do you mind if I just wait here? I just...this is making me quite...umm...anxious.
+[IRIS]: Oh of course, yes I didn't think, you should just stay here. Ember, can you stay with Artie?
+[EMBER]: [i]rolls eyes[_i] Suuuuuure. I'll hold 'Arties' hand. To precious to be help their friends out...
+[IRIS]: [i]stern[_i]  Ember. You're crossing a line...
+
+[GAME]: Sometimes you will need to stand up for yourself, and these conversations are difficult, important and influential.
+
+[GAME]: Press Q, W, and E to talk along with the beat.
+
+// id:Tutorial_Rhythm_Section
+// [ARTEMIS]: Ember, you don't have to stay with me. I don't mind if you want to go with Iris and Rex.
+// [EMBER]: No no no, lets just sit here while our friends go out of their way to help others. I'm sure sitting here is helpful too.
+// [ARTEMIS]: I struggle with my anxiety, I cannot control it and while I accept others don't have to help me, I would ask you at least respect me.
+// [EMBER]: Of course I respect you but god damn, sometimes your anxiety means nobody else can get on with their life! Sitting still with you doesn't help anything.
+// [ARTEMIS]: It helps me! Sometimes helping myself is the best thing to do! Sometimes, forcing myself is worse than stepping back, not just for me but for everybody. 
+// [EMBER]: Our friends are going to help somebody through what could be one of the hardest parts of their lives and you want to sit here in the grass looking at trees?
+// [ARTEMIS]: I realise somebody needs help, but I trust in our friends to be the help they need. I will support them from here and do my best. Can you do your best to support me? As my friend?
+// 
+// [end of rhythm section]
+
+[GAME]: If you make too many mistakes in these conversations, the conversation will end and you'll become stress. Keep to the beat and you'll be okay!
+
+[EMBER]: ...
+[ARTEMIS]: ...
+[EMBER]: ...
+[ARTEMIS]: ...
+[REX]: ...Oh the suspense...
+[IRIS]: Rex, you are not helping.
+[EMBER]: Okay Art, I'll stay here with you.
+[ARTEMIS]: Thank you Ember, I do appreciate it.
+[EMBER]: You are my friend Artie, I really do care for you. I didn't mean to snap.
+[IRIS]: Right, you two stay here, Rex shall we?
+[REX]: We shall.
+[REX]: [i]whispers to Ember[_i] and you, look after Artemis.
+[EMBER]: Yeah, I will.
+
+[IRIS]: Let's go [colour: #f2ff00]Find Raleighs Home[colour: FFFFFF], make sure they are okay.
+
+[end]
