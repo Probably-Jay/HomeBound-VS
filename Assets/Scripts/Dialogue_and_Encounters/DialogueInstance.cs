@@ -6,7 +6,7 @@ using System;
 
 namespace Dialogue
 {
-    public class DialogueInstance : BaseDialogue, IInteractableTriggered
+    public class DialogueInstance : BaseDialogue
     {
 
         private bool HasBackupDialogue => backupDialogueIDs.Count > 0;
@@ -133,7 +133,7 @@ namespace Dialogue
         public void SetMainDialogue(string dialogeID)
         {
             ClearMainDialogues();
-            mainDialogueIDs = new List<string>() { dialogeID};
+            mainDialogueIDs = new List<string>() { dialogeID };
         }    
         public void SetMainDialogue(IEnumerable<string> dialogeIDs)
         {
@@ -153,6 +153,26 @@ namespace Dialogue
 
         public void ResetMainDialogueIndex() => mainIDIndex = 0;
         public void ResetBackupDialogueIndex() => backupIDIndex = 0;
+
+        public void AlterMainDialogueIndex(int delta)
+        {
+            var temp = mainIDIndex + delta;
+            if (temp < 0 || temp >= mainDialogueIDs.Count)
+            {
+                throw new Exception($"Index set to {temp} is invalid");
+            }
+            mainIDIndex = temp;
+        }        
+        
+        public void AlterBackupDialogueIndex(int delta)
+        {
+            var temp = mainIDIndex + delta;
+            if (temp < 0 || temp >= mainDialogueIDs.Count)
+            {
+                throw new Exception($"Index set to {temp} is invalid");
+            }
+            backupIDIndex = temp;
+        }
 
     }
 }

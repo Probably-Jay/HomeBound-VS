@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Dialogue
 {
 
-    public abstract class BaseDialogue : MonoBehaviour
+    public abstract class BaseDialogue : MonoBehaviour, Interactables.IInteractableTriggered
     {
         protected DialogueBoxOpener opener;
         protected bool triggeredAction;
@@ -22,8 +22,8 @@ namespace Dialogue
         }
 
 
-        public void EnteredTriggerZone() { }
-        public void ExitedTriggerZone() { }
+        public virtual void EnteredTriggerZone() { }
+        public virtual void ExitedTriggerZone() { }
 
         public void Trigger()
         {
@@ -39,9 +39,7 @@ namespace Dialogue
                 OnPostTriggered?.Invoke();
                 triggeredAction = false;
             }
-
         }
-
 
 
         protected void StartDialogue(string id)

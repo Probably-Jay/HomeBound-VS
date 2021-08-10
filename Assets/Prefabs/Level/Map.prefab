@@ -7858,7 +7858,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -7912,12 +7912,12 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 7
     m_Data: {fileID: 21300000, guid: 51eeada0e298831459bc7ee0fe8fc22e, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 4d6c7f2146d0fd24ba4b35b7a57f8a0d, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 8
     m_Data:
@@ -133409,6 +133409,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street 2 house 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &1158162171782756904 stripped
@@ -133483,6 +133488,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Street 2 house 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
@@ -133559,6 +133569,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street 2 house 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &1971613959061643542 stripped
@@ -133633,6 +133648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Street 2 house 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
@@ -133709,6 +133729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street 2 house 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &2154808909812667630 stripped
@@ -133783,6 +133808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635907783738227482, guid: 869e9b5f6c4782141b31830ac81130c8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8292750460339539037, guid: 869e9b5f6c4782141b31830ac81130c8,
         type: 3}
@@ -133864,6 +133894,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street 2 house 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &518414634475306812 stripped
@@ -133938,6 +133973,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Street 2 house 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
@@ -134014,6 +134054,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street 2 house 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &577713842819329341 stripped
@@ -134088,6 +134133,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
@@ -134164,6 +134214,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &3474520827322823452 stripped
@@ -134238,6 +134293,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Street 2 house 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
@@ -134314,6 +134374,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street 2 house 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &6904277700667871702 stripped
@@ -134388,6 +134453,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Street 2 house 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
@@ -134464,6 +134534,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street 2 house 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &4733363486156877216 stripped
@@ -134538,6 +134613,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Street 2 house 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
@@ -134614,6 +134694,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street 2 house 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}
 --- !u!4 &8227291379883027656 stripped
@@ -134688,6 +134773,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Street 2 house 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918202483448586770, guid: bedd3bf04d72e8f4081db2c79eae0f75,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedd3bf04d72e8f4081db2c79eae0f75, type: 3}

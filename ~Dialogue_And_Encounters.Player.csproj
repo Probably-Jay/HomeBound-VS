@@ -605,6 +605,7 @@
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueBoxOpener.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueInstance.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_and_Encounters\KarensDialogue.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\RhythmSectionManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\HitDetection.cs" />
     <Compile Include="Assets\Scripts\Dialogue_and_Encounters\Rhythm_Section\HitZone.cs" />
