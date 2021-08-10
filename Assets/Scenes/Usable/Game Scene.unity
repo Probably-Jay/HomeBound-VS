@@ -1464,7 +1464,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325691668}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
@@ -4675,7 +4675,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef389a83505969d449ffe652f6e5cb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '[Game]: [i]You look out over the water[_i]'
+  text: '[Game]: [i]You look out over the water[_i]
+
+    [Game]: You feel your [colour:
+    #111111]stress[colour: #FFFFFF] lessen [stress: -1]'
 --- !u!4 &1725856853
 Transform:
   m_ObjectHideFlags: 0
@@ -4733,7 +4736,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 10.303935}
+  m_Size: {x: 1, y: 10}
   m_EdgeRadius: 0
 --- !u!1 &1769122316
 GameObject:
@@ -5081,6 +5084,11 @@ PrefabInstance:
       propertyPath: partnerDoor
       value: 
       objectReference: {fileID: 142701526}
+    - target: {fileID: 1274911885100531984, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4163563891201687744, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
         type: 3}
       propertyPath: m_Name
@@ -5096,6 +5104,11 @@ PrefabInstance:
       propertyPath: partnerDoor
       value: 
       objectReference: {fileID: 142701526}
+    - target: {fileID: 7983289365865469783, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7983289367499177984, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
         type: 3}
       propertyPath: m_Name
@@ -5155,6 +5168,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983289367723662491, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273724650511734694, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4e57e015314074ba9c0a8dbdf7250d, type: 3}
@@ -5889,6 +5912,16 @@ PrefabInstance:
       propertyPath: floorHandler
       value: 
       objectReference: {fileID: 8162047}
+    - target: {fileID: 3100408968343794373, guid: 8334a3159b5f6ee44a96720fe78bb153,
+        type: 3}
+      propertyPath: stress
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100408968343794373, guid: 8334a3159b5f6ee44a96720fe78bb153,
+        type: 3}
+      propertyPath: maxStress
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8334a3159b5f6ee44a96720fe78bb153, type: 3}
 --- !u!4 &2510833937013443678 stripped
