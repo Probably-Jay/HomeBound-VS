@@ -54,6 +54,9 @@ namespace Dialogue
         
         public event Action OnUnBold;
         public void UnBold() => OnUnBold?.Invoke();
+
+        public event Action<int> OnStress;
+        internal void Stress(int v) => OnStress?.Invoke(v);
     }
 
 

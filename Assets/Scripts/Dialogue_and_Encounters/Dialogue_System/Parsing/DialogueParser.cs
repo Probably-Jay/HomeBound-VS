@@ -175,7 +175,7 @@ namespace Dialogue
 
             line = line.Substring(header.Length);
 
-            Match bodyGroup = Regex.Match(line, @"^(?<body>[ \w',\.\?\!\$\&\*\₩\%\^\£<>=""\/\(\)\[\]\#:]+)\r$");  
+            Match bodyGroup = Regex.Match(line, @"^(?<body>[ \w'\-,\.\?\!\$\&\*\₩\%\^\£<>=""\/\(\)\[\]\#:]+)\r?$");  
 
             if (!bodyGroup.Success)
             {
@@ -212,6 +212,7 @@ namespace Dialogue
             ,_i
             ,b
             ,_b
+            ,stress
         }
 
         private string ParseInlineInstructions(Conversation conversation, DialoguePhrase phrase, string body, int lineNumber, GroupCollection header)
@@ -268,7 +269,7 @@ namespace Dialogue
             bool found = false;
             foreach (var iName in Helper.Utility.GetEnumValues<Instructions>())
             {
-                var instruction = Regex.Match(match.Value, $@"\[({iName}: (?<{iName}>[#\w]+(?:.\d+)?))\]");
+                var instruction = Regex.Match(match.Value, $@"\[({iName}: (?<{iName}>[\-#\w]+(?:.\d+)?))\]");
 
                 if (!instruction.Success)
                 {
@@ -405,6 +406,14 @@ namespace Dialogue
                         Action unBold = () => conversation.UnBold();
 
                         return unBold;
+                    }
+
+                case Instructions.stress:
+                    {
+                        int v = int.Parse(paramaterValue);
+                        Action stress = () => conversation.Stress(v);
+
+                        return stress;
                     }
 
                 default: throw new Exception("Instruction name exists but no code handles this case");
