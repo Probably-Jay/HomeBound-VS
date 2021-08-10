@@ -28,7 +28,7 @@ public class DialogueBoxOpener : MonoBehaviour
         DialogeBox.OnQueueDepleated -= CloseBox;
     }
 
-    private void CloseBox()
+    public void CloseBox()
     {
         DialogeBox.Close();
         Game.GameContextController.Instance.ReturnToPreviousContext();

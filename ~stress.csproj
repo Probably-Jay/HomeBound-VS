@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\stress\Stress.cs" />
+    <Compile Include="Assets\Scripts\stress\StressIndicator.cs" />
     <None Include="Assets\Scripts\stress\~stress.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

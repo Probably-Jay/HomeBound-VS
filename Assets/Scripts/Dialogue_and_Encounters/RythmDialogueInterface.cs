@@ -20,6 +20,7 @@ using System;
         public Controler InControl { get; private set; }
         DialogueManager dialogueManager;
         [SerializeField] RhythmSectionManager rythmManager;
+        [SerializeField] DialogueBoxOpener dialogueBoxOpener;
 
         bool passToRyrhmQueued = false;
         public bool InRythmSection
@@ -127,6 +128,12 @@ using System;
             InRythmSection = false;
             dialogueManager.LeaveArgument();
             Game.GameContextController.Instance.ReturnToPreviousContext();
+            if (Game.GameContextController.Instance.OverStressed)
+            {
+            dialogueManager.StopCurrentConversation();
+            dialogueManager.BeginConversation("overstressed_interrupt");
+                    //dialogueBoxOpener.CloseBox();
+            }
         }
 
         private void AssertInRythmSection()

@@ -7,9 +7,19 @@ public class Stress : MonoBehaviour
     [SerializeField] int maxStress = 6;
     [SerializeField] int stress;
     [SerializeField] private bool fullyStressed=false;
+    [SerializeField] StressIndicator indicator;
+    [SerializeField] bool debugNoIndicator;
 
     public bool FullyStressed { get => fullyStressed; private set => fullyStressed = value; }
 
+    private void Awake()
+    {
+        if ((indicator == null)&&(!debugNoIndicator))
+        {
+            Debug.LogWarning("Stress indicator not assigned, perfoming automatic search.");
+            indicator = GameObject.FindObjectOfType<StressIndicator>();
+        }
+    }
     /// <summary>
     /// This funciton is foe werha add one there u go
     /// </summary>
@@ -41,6 +51,8 @@ public class Stress : MonoBehaviour
                 fullyStressed = true;
                 Game.GameContextController.Instance.SetStressed();
             }
+            if (debugNoIndicator) { return; }
+            indicator.UpdateIndication(stress);
         }
 
     }
@@ -54,6 +66,8 @@ public class Stress : MonoBehaviour
                 fullyStressed = false;
                 Game.GameContextController.Instance.SetUnstressed();
             }
+            if (debugNoIndicator) { return; }
+            indicator.UpdateIndication(stress);
         }
     }
 }

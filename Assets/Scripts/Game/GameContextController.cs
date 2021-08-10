@@ -14,7 +14,6 @@ namespace Game
         ,Explore
         ,Dialogue
         ,Rythm
-        ,OverStressed
     }
 
 

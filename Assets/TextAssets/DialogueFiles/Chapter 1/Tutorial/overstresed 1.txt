@@ -1,0 +1,3 @@
+﻿id: overstressed_start
+[Iris]: [i] I can't deal with that right now, I need to calm down. [_i]
+[end]

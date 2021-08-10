@@ -1,0 +1,3 @@
+﻿id: overstressed_interrupt
+[Game]: [colour: #FFFF00][i] Iris has become too stressed to continue this conversation. [_i][colour: #FFFFFF]
+[end]

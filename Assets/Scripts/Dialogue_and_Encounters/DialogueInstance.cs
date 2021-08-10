@@ -20,6 +20,7 @@ namespace Dialogue
         [SerializeField] private List<string> mainDialogueIDs;
         [SerializeField] private bool runMainOnlyOnce = false;
         [SerializeField] private List<string> backupDialogueIDs;
+        [SerializeField] bool StressRelieving;
         int mainIDIndex;
         int backupIDIndex;
 
@@ -44,10 +45,12 @@ namespace Dialogue
         private void OnEnable()
         {
             opener.OnBoxClose += Opener_OnBoxClose;
+            opener.OnBoxClose += ProgressMainId;
         }
 
         private void OnDisable()
         {
+            opener.OnBoxClose -= ProgressMainId;
             opener.OnBoxClose -= Opener_OnBoxClose;
         }
 
@@ -67,10 +70,15 @@ namespace Dialogue
 
         protected override void TriggerDialogue()
         {
+            if (Game.GameContextController.Instance.OverStressed &!StressRelieving)
+            {
+                StartDialogue("overstressed_start");
+                return;
+            }
             if (mainIDIndex < mainDialogueIDs.Count)
             {
                 StartDialogue(mainDialogueIDs[mainIDIndex]);
-                mainIDIndex++;
+                //mainIDIndex++;
 
                 if (SeenAllMainDialogue)
                 {
@@ -110,6 +118,13 @@ namespace Dialogue
         {
             backupDialogueIDs.Clear();
             ResetBackupDialogueIndex();
+        }
+        internal void ProgressMainId()
+        {
+            if (!Game.GameContextController.Instance.OverStressed)
+            {
+                mainIDIndex++;
+            }
         }
 
         public void AddMainDialogueElement(string dialogeID) => mainDialogueIDs.Add(dialogeID);
