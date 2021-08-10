@@ -2807,11 +2807,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: dspRing
       objectReference: {fileID: 0}
-    - target: {fileID: 6753365914865516128, guid: 47d4d415203b7f043a9aad41af47ee68,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6753365914865516130, guid: 47d4d415203b7f043a9aad41af47ee68,
         type: 3}
       propertyPath: m_RootOrder
@@ -5027,6 +5022,32 @@ PrefabInstance:
       propertyPath: partnerDoor
       value: 
       objectReference: {fileID: 142701526}
+    - target: {fileID: 7662305365867672269, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[1].m_Data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662305365867672269, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[3].m_Data
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d6c7f2146d0fd24ba4b35b7a57f8a0d,
+        type: 3}
+    - target: {fileID: 7662305365867672269, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[1].m_RefCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662305365867672269, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[3].m_RefCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662305365867672269, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[3].second.m_TileSpriteIndex
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7983289365865469783, guid: 6a4e57e015314074ba9c0a8dbdf7250d,
         type: 3}
       propertyPath: m_IsActive
