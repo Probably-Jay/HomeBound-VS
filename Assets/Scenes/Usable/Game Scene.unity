@@ -5937,7 +5937,7 @@ PrefabInstance:
         type: 3}
       propertyPath: test.Array.data[0]
       value: 
-      objectReference: {fileID: 4900000, guid: e7fc067b0eab4ee45b0cd73f2063fe2e, type: 3}
+      objectReference: {fileID: 4900000, guid: b4439203d922c6847802f5aac10df30a, type: 3}
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
       propertyPath: test.Array.data[1]
@@ -6061,7 +6061,7 @@ PrefabInstance:
     - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
         type: 3}
       propertyPath: mainDialogueIDs.Array.data[0]
-      value: c1_tut_old
+      value: c1_tut
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b60ab711821ed0478f0db66573eb7d9, type: 3}
