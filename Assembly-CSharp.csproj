@@ -686,6 +686,10 @@
       <Project>{36BD2383-2582-DC41-659B-73277EB7EDAF}</Project>
       <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="~stress.csproj">
+      <Project>{4C2797DF-7DBD-00D7-64BB-CEFE087E3272}</Project>
+      <Name>~stress</Name>
+    </ProjectReference>
     <ProjectReference Include="~Misc.csproj">
       <Project>{B3F2D50E-322B-54C4-48C7-057A66A0D7F4}</Project>
       <Name>~Misc</Name>
@@ -741,10 +745,6 @@
     <ProjectReference Include="~Quests.csproj">
       <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
       <Name>~Quests</Name>
-    </ProjectReference>
-    <ProjectReference Include="~stress.csproj">
-      <Project>{4C2797DF-7DBD-00D7-64BB-CEFE087E3272}</Project>
-      <Name>~stress</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
