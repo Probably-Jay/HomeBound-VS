@@ -19,6 +19,10 @@ public class Stress : MonoBehaviour
             Debug.LogWarning("Stress indicator not assigned, perfoming automatic search.");
             indicator = GameObject.FindObjectOfType<StressIndicator>();
         }
+        if (!debugNoIndicator) {
+            indicator.UpdateIndication(stress);
+                }
+
     }
     /// <summary>
     /// This funciton is foe werha add one there u go
