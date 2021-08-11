@@ -32,7 +32,7 @@ namespace Dialogue
             triggeredAction = true; // catch for the post trigger
         }
 
-        protected void Opener_OnBoxClose()
+        protected virtual void Opener_OnBoxClose()
         {
             if (triggeredAction)
             {

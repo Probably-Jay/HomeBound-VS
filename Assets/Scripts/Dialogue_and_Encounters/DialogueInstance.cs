@@ -45,16 +45,21 @@ namespace Dialogue
         private void OnEnable()
         {
             opener.OnBoxClose += Opener_OnBoxClose;
-            opener.OnBoxClose += ProgressMainId;
         }
 
         private void OnDisable()
         {
-            opener.OnBoxClose -= ProgressMainId;
             opener.OnBoxClose -= Opener_OnBoxClose;
         }
 
-      
+        protected override void Opener_OnBoxClose()
+        {
+            if (triggeredAction)
+            {
+                base.Opener_OnBoxClose();
+                ProgressMainId();
+            }
+        }
 
         private void Start()
         {
