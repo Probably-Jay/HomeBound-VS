@@ -131,6 +131,11 @@ namespace NoteSystem {
         }
         public void Remove()
         {
+            if (!hasMissed)
+            {
+                HitQuality hitQuality= HitDetection.CheckHit(climaxBeat, Rythm.RythmEngine.Instance.CurrentBeat);
+                rSM.AddSubstress(hitQuality);
+            }
             wordUI.Remove();
             Destroy(gameObject);
         }
@@ -138,6 +143,8 @@ namespace NoteSystem {
         {
             hasMissed = true;
             rSM.Strikethrough(this);
+            rSM.AddSubstress(HitQuality.Miss);
+
         }
     }
 
