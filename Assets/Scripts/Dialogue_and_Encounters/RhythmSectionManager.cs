@@ -13,6 +13,7 @@ public class RhythmSectionManager : MonoBehaviour
     [SerializeField] RhythmInitialise sectionLoader;
     [SerializeField] RythmDialogueInterface rDI;
     [SerializeField] bool debugStartOnStart;
+    [SerializeField] StressPointRing substressRing;
     public bool HasControl => rDI.RythmHasControl;
     private float time=0;
 
@@ -124,6 +125,34 @@ public class RhythmSectionManager : MonoBehaviour
     public void Strikethrough(NoteSystem.WordNote note)
     {
         rDI.StrikeThrough(note);
+    }
+
+    public void AddSubstress(NoteSystem.HitQuality hitQuality)
+    {
+        switch (hitQuality)
+        {
+            case NoteSystem.HitQuality.Miss:
+                substressRing.AddStressPoints(2);
+                break;
+            case NoteSystem.HitQuality.Early:
+                substressRing.AddStressPoints(1);
+                break;
+            case NoteSystem.HitQuality.Late:
+                substressRing.AddStressPoints(1);
+                break;
+            case NoteSystem.HitQuality.Good:
+                
+                break;
+            case NoteSystem.HitQuality.Great:
+                substressRing.RemoveStressPoint();
+                break;
+
+            case NoteSystem.HitQuality.Perfect:
+                substressRing.RemoveStressPoints(3);
+                break;
+            default:
+                break;
+        }
     }
 
 }
