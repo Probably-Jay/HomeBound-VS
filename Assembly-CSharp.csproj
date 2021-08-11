@@ -67,7 +67,9 @@
     <Compile Include="Assets\~Junk\PointOfIntrestManager.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Pub.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Church.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\t.txt" />
@@ -98,6 +100,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House 1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile10.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\Tutorial.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

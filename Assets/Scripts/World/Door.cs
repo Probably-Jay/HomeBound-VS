@@ -37,7 +37,7 @@ namespace Overworld
             grid = FindObjectOfType<Grid>();
             if(partnerDoor == null || partnerDoor == this)
             {
-                Debug.LogError($"Door {name} has no partner door");
+                Debug.LogError($"Door {name} has no partner door",gameObject);
             }
             col = GetComponent<BoxCollider2D>();
             UpdateLock();
