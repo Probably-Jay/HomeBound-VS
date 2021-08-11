@@ -217,6 +217,7 @@ namespace Overworld {
                 if (hasWalkingInput&&((currentDirection==direction)||myRb.velocity==Vector2.zero))
                 {
                     //if i'm just setting off, set the travelling direction to the direction pressed
+                    
                     if (myRb.velocity == Vector2.zero)
                     {
                         currentDirection = direction;
@@ -227,9 +228,11 @@ namespace Overworld {
                     if (WillPassGridCentre(currentDirection, grid.WorldToCell(this.transform.position)))
                     {
                         destinationCentre = grid.GetCellCenterWorld((grid.WorldToCell(this.transform.position) + new Vector3Int(Mathf.FloorToInt(DirectionTools.DirectionToVector(currentDirection).x), Mathf.FloorToInt(DirectionTools.DirectionToVector(currentDirection).y), 0)));
-                        if (!CheckGround(grid.WorldToCell(destinationCentre)) || CheckWall(grid.WorldToCell(destinationCentre)))
+                        Collider2D boxHit = Physics2D.OverlapBox(destinationCentre, new Vector2(0.99f, 0.99f), 0f);
+                        if (!CheckGround(grid.WorldToCell(destinationCentre)) || CheckWall(grid.WorldToCell(destinationCentre))||(boxHit!=null&boxHit.tag!="Player"&boxHit.gameObject.name!="Camera Bounds"))
                         {
-                            
+                            Debug.Log(boxHit.tag);
+                            Debug.Log(boxHit.gameObject.name);
                             destinationCentre = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                             this.transform.position = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                             Stop();
