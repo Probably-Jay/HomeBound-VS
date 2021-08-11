@@ -587,6 +587,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\stress\Stress.cs" />
+    <Compile Include="Assets\Scripts\stress\StressIndicator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\stress\~stress.asmdef" />

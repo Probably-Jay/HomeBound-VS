@@ -1,5 +1,113 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2018461163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018461164}
+  - component: {fileID: 2018461165}
+  m_Layer: 0
+  m_Name: OpenBridge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2018461164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018461163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2777128966304290407}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2018461165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018461163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdf586ee48f4ea498f6a6ca2c0ab449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+--- !u!1 &5026679691533412114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843307662381868833}
+  - component: {fileID: 3154705669363931658}
+  m_Layer: 0
+  m_Name: BridgeOpens (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1843307662381868833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026679691533412114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4729162139850504165}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3154705669363931658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026679691533412114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312a7c6ab03c95543bf6eabec33b5104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Get Raleigh
+  description: This step cannot be completed yet
+  taskPrerequisites:
+  - {fileID: 2018461165}
+  onBeginTask:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleteTask:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: UnBlock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1256079103798033759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,6 +115,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3215751315843760485, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: title
+      value: Get Raleigh
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215751315843760485, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: description
+      value: This step cannot be completed yet
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215751315843760485, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: taskPrerequisites.Array.data[0]
+      value: 
+      objectReference: {fileID: 2018461165}
+    - target: {fileID: 3215751315843760485, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: onCompleteTask.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215751315843760485, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: onCompleteTask.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215751315843760485, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: onCompleteTask.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215751315843760485, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: onCompleteTask.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215751315843760485, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: onCompleteTask.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075300730540462051, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: m_Name
+      value: BridgeOpens
+      objectReference: {fileID: 0}
     - target: {fileID: 5822915322771884294, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
         type: 3}
       propertyPath: m_RootOrder
@@ -67,5 +220,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainQuest
       objectReference: {fileID: 0}
+    - target: {fileID: 5822915323672644283, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: title
+      value: Raleigh The Troops
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822915323672644283, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+        type: 3}
+      propertyPath: description
+      value: 'Your friend Raleigh is trying to leave home.
+
+        They need some
+        help confronting their parents about this.
+
+        Get Raleigh, and get
+        the hell outa here!'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 240b8afc93d2a3e43a36b07aae80c8ad, type: 3}
+--- !u!4 &4729162139850504165 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5822915323672644282, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256079103798033759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2777128966304290407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4027385054776781624, guid: 240b8afc93d2a3e43a36b07aae80c8ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256079103798033759}
+  m_PrefabAsset: {fileID: 0}
