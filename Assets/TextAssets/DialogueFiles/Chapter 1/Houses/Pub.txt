@@ -1,0 +1,3 @@
+﻿id: c1_pub
+[Game]: [i]There is no way you would feel safe in there[_i]
+[end]

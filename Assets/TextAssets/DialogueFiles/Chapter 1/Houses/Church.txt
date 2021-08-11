@@ -1,0 +1,4 @@
+﻿id: c1_church
+[Game]: [i]Raleigh talks a lot about this church...[_i]
+[Game]: [i]You really don't feel like going inside.[_i]
+[end]

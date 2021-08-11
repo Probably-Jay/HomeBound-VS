@@ -1,0 +1,6 @@
+﻿id: c1_house_first
+[Game]: [i]You're not sure if this is Raleigh's house...[_i]
+[Iris]: [i]knock... [pause: 16]knock... [pause: 16]knock... [pause: 64] [_i]
+[Game]: No one comes to the door
+[Game]: It looks like they live somwhere else
+[end]

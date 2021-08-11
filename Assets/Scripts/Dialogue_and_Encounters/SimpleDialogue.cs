@@ -37,7 +37,15 @@ namespace Dialogue
         {
             opener.OnBoxClose -= Opener_OnBoxClose;
             serialiser.OnLoad -= Register;
+        }
 
+        protected override void Opener_OnBoxClose()
+        {
+            base.Opener_OnBoxClose();
+            if (triggeredAction)
+            {
+                DisconnectFromInteractTrigger();
+            }
         }
 
         protected override void TriggerDialogue()

@@ -138,6 +138,7 @@ namespace Overworld {
         private void DeactivateMovement()
         {
             canWalk = false;
+            Stop();
         }
 
         void Awake()
