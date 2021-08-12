@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\TempDisabler.cs" />
     <Compile Include="Assets\~Junk\PointOfIntrestManager.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -74,6 +75,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\t.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Meet Raleigh.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Karen 2.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile8.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile6.txt" />
@@ -89,6 +91,7 @@
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestDemo.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\General\overstresed start.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Karen 1 cont.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\notesheet.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-old.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -753,6 +756,10 @@
     <ProjectReference Include="~Quests.csproj">
       <Project>{9DCCAF3D-1E6A-CAEE-1123-231FF3224F61}</Project>
       <Name>~Quests</Name>
+    </ProjectReference>
+    <ProjectReference Include="~QuestLogic.csproj">
+      <Project>{F58A1FB6-099C-73FD-7666-0B0D09E2F9F1}</Project>
+      <Name>~QuestLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

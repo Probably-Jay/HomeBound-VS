@@ -13,7 +13,8 @@ namespace Dialogue
         public bool RunMainOnlyOnce { get => runMainOnlyOnce; set => runMainOnlyOnce = value; }
         private bool SeenAllMainDialogue => mainIDIndex >= mainDialogueIDs.Count;
 
-        public event Action OnBegunLastMainMainDialogue;
+
+        public event Action OnEndedLastMainMainDialogue;
 
 
 
@@ -21,6 +22,7 @@ namespace Dialogue
         [SerializeField] private bool runMainOnlyOnce = false;
         [SerializeField] private List<string> backupDialogueIDs;
         [SerializeField] bool StressRelieving;
+       /* [SerializeField] */ bool DisconnectWhenCompleted = true;
         int mainIDIndex;
         int backupIDIndex;
 
@@ -57,7 +59,10 @@ namespace Dialogue
             if (triggeredAction)
             {
                 base.Opener_OnBoxClose();
-                ProgressMainId();
+                if (mainIDIndex < mainDialogueIDs.Count)
+                    ProgressMainId();
+                else
+                    ProgressBackupID();
             }
         }
 
@@ -80,19 +85,13 @@ namespace Dialogue
                 StartDialogue("overstressed_start");
                 return;
             }
+
             if (mainIDIndex < mainDialogueIDs.Count)
             {
                 StartDialogue(mainDialogueIDs[mainIDIndex]);
                 //mainIDIndex++;
 
-                if (SeenAllMainDialogue)
-                {
-                    OnBegunLastMainMainDialogue?.Invoke();
-                    if (RunMainOnlyOnce && !HasBackupDialogue) // prevent needing to press again to clear
-                    {
-                        DisconnectFromInteractTrigger();
-                    }
-                }
+               
                 return;
             }
 
@@ -107,12 +106,15 @@ namespace Dialogue
             {
                 int index = backupIDIndex % backupDialogueIDs.Count;
                 StartDialogue(backupDialogueIDs[index]);
-                backupIDIndex++;
+                ProgressBackupID();
                 return;
             }
 
-            DisconnectFromInteractTrigger();
+            if (DisconnectWhenCompleted)
+                DisconnectFromInteractTrigger();
         }
+
+
 
         public void ClearMainDialogues()
         {
@@ -129,7 +131,20 @@ namespace Dialogue
             if (!Game.GameContextController.Instance.OverStressed)
             {
                 mainIDIndex++;
+                if (SeenAllMainDialogue)
+                {
+                    OnEndedLastMainMainDialogue?.Invoke();
+                    if (RunMainOnlyOnce && !HasBackupDialogue && DisconnectWhenCompleted) // prevent needing to press again to clear
+                    {
+                        DisconnectFromInteractTrigger();
+                    }
+                }
             }
+        }
+
+        private void ProgressBackupID()
+        {
+            backupIDIndex++;
         }
 
         public void AddMainDialogueElement(string dialogeID) => mainDialogueIDs.Add(dialogeID);

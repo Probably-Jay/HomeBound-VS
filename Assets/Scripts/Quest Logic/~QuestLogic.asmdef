@@ -1,8 +1,10 @@
 {
-    "name": "~Quests",
+    "name": "~QuestLogic",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:ad65988aed4ae8e49950d3ebe93498da"
+        "GUID:0faf6e3b9789ca64ea166765fb5a4c1c",
+        "GUID:ad65988aed4ae8e49950d3ebe93498da",
+        "GUID:26d25eef61c18d240b28073df0da76d7",
+        "GUID:9d2c1b56f18753645b519dbf54e19238"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Dialogue
 {
-
+    [System.Obsolete("Depracated",true)]
     public class KarensDialogue : BaseDialogue
     {
         [SerializeField] string dialogue;

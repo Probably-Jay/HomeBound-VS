@@ -228,11 +228,11 @@ namespace Overworld {
                     if (WillPassGridCentre(currentDirection, grid.WorldToCell(this.transform.position)))
                     {
                         Collider2D[] hits = DetectColliders();
+
                         if (!CheckGround(grid.WorldToCell(destinationCentre)) || CheckWall(grid.WorldToCell(destinationCentre)) || (hits.Length > 0))
                         {
                             if (hits.Length > 0)
                             {
-                                Debug.Log(hits[0].tag);
                                 Debug.Log(hits[0].gameObject.name);
                             }
                             destinationCentre = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
@@ -264,9 +264,7 @@ namespace Overworld {
                             destinationCentre = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                             this.transform.position = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                             Stop();
-                            //Debug.Log(grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position)));
-                            //Debug.Log(this.transform.position);
-                            //Debug.Log("how is this not working");
+
                         }
                         else
                         {
@@ -299,6 +297,7 @@ namespace Overworld {
             Vector3Int nextCellPosition = currentCellPosition + new Vector3Int(Mathf.FloorToInt(direction.x), Mathf.FloorToInt(direction.y), 0);
             destinationCentre = grid.GetCellCenterWorld(nextCellPosition);
 
+
             var hits = new Collider2D[5];
             ContactFilter2D contactFilter = new ContactFilter2D()
             {
@@ -306,6 +305,7 @@ namespace Overworld {
             };
             _ = Physics2D.OverlapBox(destinationCentre, new Vector2(0.99f, 0.99f), 0f, contactFilter, hits);
             var lhits = new List<Collider2D>(hits);
+
             for (int i = lhits.Count - 1; i >= 0; i--)
             {
                 var hit = lhits[i];
@@ -325,6 +325,7 @@ namespace Overworld {
                     continue;
                 }
             }
+            
             return lhits.ToArray();
         }
 

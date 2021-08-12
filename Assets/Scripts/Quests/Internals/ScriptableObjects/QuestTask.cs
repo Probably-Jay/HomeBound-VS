@@ -48,7 +48,7 @@ namespace Quests
 
             if (AnyTasksCompleted)
             {
-                Debug.Log("Quest step completed");
+                Debug.Log($"Quest step completed");
             }
 
             if (!Complete)
@@ -63,6 +63,10 @@ namespace Quests
         {
             foreach (var preRequisite in taskPrerequisites)
             {
+                if(preRequisite == null)
+                {
+                    throw new Exception($"Task {name} pre-requisite is null");
+                }
                 preRequisite.OnCompleted += CheckAndTriggerTaskComplete;
             }
         }

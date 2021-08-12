@@ -1,0 +1,30 @@
+﻿id: c1_karen_2
+[MUM]: Right, you've seen Raleigh, he's perfectly fine, time for you two to say your goodbyes and leave.
+[RALEIGH]: Mum...Dad...I...can we talk? I don't think I want to go to this school...
+
+// rhythtm section goes here
+
+[RALEIGH]: ...Mum...that 'unnatural rubbish' is me. You're saying you don't want me in your home.
+[MUM]: If you go to that school and get help, become the nice respectable man we raised you to be, then there won't be a problem here.
+[RALEIGH]: And if I don't go to that school, if I don't become this person you want me to be, will I still be able to call this home?
+[MUM]: No. This is my house. This is my home. If you can't respect that then perhaps...perhaps you should leave.
+[RALEIGH]: Respect...respect your home? I'm your child. This is supposed to be my home too. Why can you respect me as well?
+[RALEIGH]: Dad? Do you feel the same way? Do you want me to leave too?
+[MUM]: Your father and I are in complete agreement. You are doing as you're told.
+[REX]: [i]Loudly[_i][b]ALL RIGHT LADY...[_b]
+[MUM]: [i] As loudly[_i][b]HOW DARE YOU INTER..[_b]
+[IRIS]: Rex! We shouldn't...
+[REX]: No Ris! We should! They didn't ask you lady, they asked their father. They asked their father have you decided you don't love your child enough to respect who they are without wanting to change them?!
+[DAD]: I...ummm...Raleigh, son, no not son...ummm...[pause: 64]
+[MUM]: [i]glares at Dad, seething with anger[_i]
+[DAD]: ...Raleigh...you should probably either go to this school...or move out.
+[RALEIGH]: ...[pause: 64]
+[RALEIGH]: I'll pack up my stuff now.
+[MUM]: [i]smug with triumph[_i] Good boy, you'll go to the school.
+[RALEIGH]: No Mum, I won't. I love you both, and I always will, but I think this is where we part. Iris, if you have space, can I come with you for a while?
+[IRIS]: Of course you can, we have plenty of room for you.
+[MUM]: [i]Rage seething forward[_i] You choose these freaks over us? Fine. Then get out now. Leave. You'll come crawling back here. You'll regret this for the rest of your life.
+[RALEIGH]: [i]Tears rolling down their cheeks[_i] I think there will be regret here, but I don't think it will be mine.[CompleteTask: mq_ttrm2]
+
+
+[end]

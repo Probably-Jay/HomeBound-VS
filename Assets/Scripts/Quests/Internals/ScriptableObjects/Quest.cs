@@ -84,6 +84,11 @@ namespace Quests
 
             foreach (var task in Tasks)
             {
+                if (!task.gameObject.activeInHierarchy)
+                {
+                    Debug.LogError($"Task {task.name} is not active");
+                    continue;
+                }
                 task.Init();
                 task.OnCompleteTask.AddListener(Progress);
             }

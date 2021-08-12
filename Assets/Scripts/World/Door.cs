@@ -13,7 +13,9 @@ namespace Overworld
         [SerializeField] WalkingDirection entryDirection;
         [SerializeField] Grid grid;
         [SerializeField] bool stopsMovement;
-        [SerializeField] bool locked;
+        [SerializeField] private bool locked;
+
+        public event Action OnEnterDoor;
 
         BoxCollider2D col;
 
@@ -21,12 +23,19 @@ namespace Overworld
 
         public void SetLocked(bool value)
         {
+            partnerDoor.LockPartner(value);
+            locked = value;
+            UpdateLock();
+        }
+        internal void LockPartner(bool value)
+        {
             locked = value;
             UpdateLock();
         }
 
         private void UpdateLock()
         {
+            col = col != null ? col : GetComponent<BoxCollider2D>();
             col.isTrigger = !locked;
         }
 
@@ -40,7 +49,7 @@ namespace Overworld
                 Debug.LogError($"Door {name} has no partner door",gameObject);
             }
             col = GetComponent<BoxCollider2D>();
-            UpdateLock();
+            SetLocked(locked);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -50,14 +59,23 @@ namespace Overworld
                 PlayerCharacterController controller = other.gameObject.GetComponent<PlayerCharacterController>();
                 if (controller.FacingDirection == DirectionTools.OppositeDirection(entryDirection))
                 {
-                    partnerDoor.BringPlayerThruDoor(controller);
-                    if (stopsMovement)
-                    {
-                        controller.RequireNewButtonPressToMove();
-                    }
+                    if (Locked || partnerDoor.Locked)
+                        return;
+                    GoThroughDoor(controller);
                 }
             }
         }
+
+        private void GoThroughDoor(PlayerCharacterController controller)
+        {
+            OnEnterDoor?.Invoke();
+            partnerDoor.BringPlayerThruDoor(controller);
+            if (stopsMovement)
+            {
+                controller.RequireNewButtonPressToMove();
+            }
+        }
+
         public void BringPlayerThruDoor(PlayerCharacterController player)
         {
             Vector3 ejectionSpace = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position) + Vector3Int.FloorToInt(DirectionTools.DirectionToVector(entryDirection)));

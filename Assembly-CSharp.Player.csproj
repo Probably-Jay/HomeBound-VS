@@ -107,6 +107,9 @@
     <Reference Include="~Quests">
       <HintPath>Library/ScriptAssemblies/~Quests.dll</HintPath>
     </Reference>
+    <Reference Include="~QuestLogic">
+      <HintPath>Library/ScriptAssemblies/~QuestLogic.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/PlaybackEngines/WebGLSupport/Managed/UnityEngine.dll</HintPath>
     </Reference>
@@ -661,6 +664,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\TempDisabler.cs" />
     <Compile Include="Assets\~Junk\PointOfIntrestManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -674,7 +678,9 @@
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House 1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Pub.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Karen 1 cont.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Karen 1.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Karen 2.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Meet Raleigh.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-new.txt" />
