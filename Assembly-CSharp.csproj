@@ -69,6 +69,7 @@
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Pub.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Raleigh Back With friends.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Church.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />

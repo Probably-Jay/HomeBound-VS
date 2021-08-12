@@ -27,6 +27,9 @@ namespace QuestLogic
             TryTeleportRaleigh();
         }
 
+        /// <summary>
+        /// The player leaves raleigh and they teleport when off screen
+        /// </summary>
         private void TryTeleportRaleigh()
         {
             if (!teleportEnabled)
@@ -41,7 +44,8 @@ namespace QuestLogic
 
         private void TeleportRaleigh()
         {
-            raleigh.gameObject.SetActive(false);
+            raleigh.MoveBackToGroup();
+            Destroy(gameObject);
         }
     }
 }

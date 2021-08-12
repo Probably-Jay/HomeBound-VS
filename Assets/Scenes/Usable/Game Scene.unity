@@ -2164,7 +2164,7 @@ PrefabInstance:
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: displayTasks.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
@@ -2183,6 +2183,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
+      propertyPath: displayTasks.Array.data[3].id
+      value: mq_R_BWF
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
       propertyPath: displayTasks.Array.data[0].task
       value: 
       objectReference: {fileID: 1765980347187079418}
@@ -2196,6 +2201,11 @@ PrefabInstance:
       propertyPath: displayTasks.Array.data[2].task
       value: 
       objectReference: {fileID: 1337430208}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: displayTasks.Array.data[3].task
+      value: 
+      objectReference: {fileID: 842446069}
     - target: {fileID: 4174316436918520209, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: playerQuestJournal
@@ -2287,6 +2297,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ca60d0b043ee74fbe1b30b757db7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &408787193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 408787194}
+  m_Layer: 0
+  m_Name: RaleighPosition 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &408787194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408787193}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6, y: -10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 906213979}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522641551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3159,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropdown: {fileID: 0}
+--- !u!1 &842446067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 842446068}
+  - component: {fileID: 842446069}
+  m_Layer: 0
+  m_Name: Task Return to friends
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &842446068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842446067}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1962365579}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &842446069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842446067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdf586ee48f4ea498f6a6ca2c0ab449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
 --- !u!1 &883835724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,6 +3367,7 @@ Transform:
   - {fileID: 1934437057}
   - {fileID: 1294614052}
   - {fileID: 596042243}
+  - {fileID: 408787194}
   m_Father: {fileID: 25470161}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3307,6 +3392,18 @@ PrefabInstance:
       propertyPath: downstairsPos
       value: 
       objectReference: {fileID: 1294614052}
+    - target: {fileID: 1225166138, guid: 3bee3d9ec9d3fb947af420f26e297a6c, type: 3}
+      propertyPath: withFriendsPos
+      value: 
+      objectReference: {fileID: 408787194}
+    - target: {fileID: 1225166138, guid: 3bee3d9ec9d3fb947af420f26e297a6c, type: 3}
+      propertyPath: withFriendsString
+      value: c1_raleigh_BWF
+      objectReference: {fileID: 0}
+    - target: {fileID: 1225166138, guid: 3bee3d9ec9d3fb947af420f26e297a6c, type: 3}
+      propertyPath: skipMissedDialogue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3177001822461797785, guid: 3bee3d9ec9d3fb947af420f26e297a6c,
         type: 3}
       propertyPath: m_Name
@@ -5808,7 +5905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raleigh: {fileID: 1225166138}
   player: {fileID: 3289026}
-  teleportDistance: 50
+  teleportDistance: 20
 --- !u!1 &1824723900
 GameObject:
   m_ObjectHideFlags: 0
@@ -6457,6 +6554,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4e57e015314074ba9c0a8dbdf7250d, type: 3}
+--- !u!1 &1962365578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1962365579}
+  - component: {fileID: 1962365580}
+  m_Layer: 0
+  m_Name: Return to friends
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1962365579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962365578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 842446068}
+  m_Father: {fileID: 6423081038328929010}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1962365580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962365578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312a7c6ab03c95543bf6eabec33b5104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Get Raleigh
+  description: This step cannot be completed yet
+  taskPrerequisites:
+  - {fileID: 842446069}
+  onBeginTask:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleteTask:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1963057878
 GameObject:
   m_ObjectHideFlags: 0
@@ -7384,13 +7535,18 @@ PrefabInstance:
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
       propertyPath: test.Array.size
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
         type: 3}
       propertyPath: test.Array.data[13]
       value: 
       objectReference: {fileID: 4900000, guid: 75cc17d5278eeb349899fcd6683d82c4, type: 3}
+    - target: {fileID: 6323923316185907637, guid: 0b480b27924a49d4293442265c49d470,
+        type: 3}
+      propertyPath: test.Array.data[14]
+      value: 
+      objectReference: {fileID: 4900000, guid: 500136da8343c9749af588b5afdba660, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b480b27924a49d4293442265c49d470, type: 3}
 --- !u!4 &4760889553927796161 stripped
@@ -7555,6 +7711,7 @@ Transform:
   - {fileID: 985107197}
   - {fileID: 727508893}
   - {fileID: 1935039438}
+  - {fileID: 1962365579}
   m_Father: {fileID: 6423081037428169038}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

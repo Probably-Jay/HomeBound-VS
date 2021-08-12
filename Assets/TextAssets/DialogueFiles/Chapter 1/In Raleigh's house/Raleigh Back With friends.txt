@@ -1,0 +1,6 @@
+﻿id: c1_raleigh_BWF
+[EMBER]: You're back!
+[IRIS]: Yeah we're back, hope we weren't too long.
+[EMBER]: Nah not at all, Art was just running through what birds we're hearing, so yeah...actually, yeah you took too long.
+[ARTEMIS]: There is a very nice collared dove nearby, though she is a bit loud for my tastes. [CompleteTask: mq_R_BWF]
+[end]
