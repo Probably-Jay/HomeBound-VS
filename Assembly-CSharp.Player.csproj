@@ -682,6 +682,8 @@
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Karen 1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Karen 2.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Meet Raleigh.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Raleigh Outside.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Raleigh cont.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-new.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-old.txt" />

@@ -256,9 +256,9 @@ MonoBehaviour:
   mainDialogueIDs:
   - c1_karen
   runMainOnlyOnce: 1
-  backupDialogueIDs: []
+  backupDialogueIDs:
+  - c1_karen_1_cont
   StressRelieving: 0
-  DisconnectWhenCompleted: 0
 --- !u!212 &5584012553331565001
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
   newPos: {fileID: 0}
   lookRight: {fileID: 4425723728703088314, guid: 47b706de95b58cb4785e85ac3994a26e,
     type: 3}
-  newDialogueID: 
+  newDialogueID: c1_karen_2
 --- !u!1 &3686310260509342568
 GameObject:
   m_ObjectHideFlags: 0

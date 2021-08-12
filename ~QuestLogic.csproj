@@ -67,6 +67,8 @@
     <Compile Include="Assets\Scripts\Quest Logic\Karen.cs" />
     <Compile Include="Assets\Scripts\Quest Logic\Raleigh.cs" />
     <Compile Include="Assets\Scripts\Quest Logic\RaleighHousePeopleMover.cs" />
+    <Compile Include="Assets\Scripts\Quest Logic\RalieghOutsideMover.cs" />
+    <Compile Include="Assets\Scripts\Quest Logic\ReleighDistanceTeleporter.cs" />
     <None Include="Assets\Scripts\Quest Logic\~QuestLogic.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

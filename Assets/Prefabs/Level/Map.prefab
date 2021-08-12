@@ -142770,7 +142770,7 @@ PrefabInstance:
     - target: {fileID: 3297346842381867824, guid: 869e9b5f6c4782141b31830ac81130c8,
         type: 3}
       propertyPath: stopsMovement
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3677022754985572749, guid: 869e9b5f6c4782141b31830ac81130c8,
         type: 3}
@@ -144091,7 +144091,7 @@ PrefabInstance:
     - target: {fileID: 7881420196280775691, guid: 63aac8f118e269c4c8fe532e744c4610,
         type: 3}
       propertyPath: runMainOnlyOnce
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7881420196280775691, guid: 63aac8f118e269c4c8fe532e744c4610,
         type: 3}
@@ -144106,7 +144106,7 @@ PrefabInstance:
     - target: {fileID: 7881420196280775691, guid: 63aac8f118e269c4c8fe532e744c4610,
         type: 3}
       propertyPath: mainDialogueIDs.Array.data[0]
-      value: c1_house_gen
+      value: c1_house_first
       objectReference: {fileID: 0}
     - target: {fileID: 7881420196280775691, guid: 63aac8f118e269c4c8fe532e744c4610,
         type: 3}

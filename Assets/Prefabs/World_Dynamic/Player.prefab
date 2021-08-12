@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 2510833937013443673}
   - component: {fileID: 3289021}
   - component: {fileID: 3100408968343794373}
+  - component: {fileID: 3289027}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -302,7 +303,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 101
+  m_SortingOrder: 2
   m_Sprite: {fileID: -8677055240969258339, guid: 17dccc59e34dcb648abe2f26e5a538a7,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -415,7 +416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90cb01db4453004a9c80046f8642634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuests: []
+  currentQuests:
+  - {fileID: 0}
 --- !u!114 &3100408968343794373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +430,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546810f8c1e1a6543873870f1e6dc7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStress: 6
-  stress: 0
+  maxStress: 8
+  stress: 2
   fullyStressed: 0
+  indicator: {fileID: 0}
+  debugNoIndicator: 0
+--- !u!114 &3289027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510833938084673232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11665da8b68465042af95c19ec111eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  On: 1
