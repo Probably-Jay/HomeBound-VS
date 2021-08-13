@@ -81,6 +81,9 @@ namespace Accessibility
 
         private static Color Get(Color c)
         {
+            return c;
+
+
             if (Mode == ColourBlindMode.Trichromacy)
             {
                 return c;

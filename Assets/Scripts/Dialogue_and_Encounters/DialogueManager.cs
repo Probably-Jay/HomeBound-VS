@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StressSystem;
 
 namespace Dialogue
 {
@@ -15,7 +16,7 @@ namespace Dialogue
         IRythmDialogeControlInterface rythmDialogeControlInterface;
         DialogueQuestManager dialogueQuestController;
         DialogueQuestTaskManager dialogueQuestTaskController;
-        Stress playerStress;
+        StressSystem.Stress playerStress;
 
         private Coroutine currentConversation;
 

@@ -18,6 +18,7 @@ namespace Dialogue
 
 
 
+        [SerializeField] private bool startsEmpty;
         [SerializeField] private List<string> mainDialogueIDs;
         [SerializeField] private bool runMainOnlyOnce = false;
         [SerializeField] private List<string> backupDialogueIDs;
@@ -30,6 +31,11 @@ namespace Dialogue
         {
             FindOpener();
             Debug.Assert(opener != null, $"{this.ToString()} cannot find type {nameof(DialogueBoxOpener)} within the scene");
+
+            if (startsEmpty)
+            {
+                return;
+            }
 
             if (mainDialogueIDs.Count == 0)
             {

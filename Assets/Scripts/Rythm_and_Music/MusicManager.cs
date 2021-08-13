@@ -234,6 +234,7 @@ namespace Rythm
             {
                 var newSource = parentBehaviour.gameObject.AddComponent<AudioSource>();
                 newSource.playOnAwake = false;
+                newSource.loop = true;
                 var sourceAndSong = new SourceAndSong(newSource, fadeInMusicCurve, fadeOutMusicCurve, parentBehaviour);
                 inactiveSources.Enqueue(sourceAndSong);
             }

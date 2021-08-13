@@ -1,0 +1,26 @@
+﻿id: c1_raleigh_BWF
+[EMBER]: You're back!
+[IRIS]: Yeah we're back, hope we weren't too long.
+[EMBER]: Nah not at all, Art was just running through what birds we're hearing, so yeah...actually, yeah you took too long.
+[ARTEMIS]: There is a very nice collared dove nearby, though she is a bit loud for my tastes. 
+[IRIS]: Raleigh, may I introduce you to my friends and roommates. First we have Artemis...
+[ARTEMIS]: Hello Raleigh, I'm Artemis but you can call me Art, or Artie, I don't mind really. I go by they or them. Uhhh not sure what else to say...
+[RALEIGH]: You like doves?
+[ARTEMIS]: Oh I love birds, and plants, and flowers.
+[EMBER]: Our apartment is full to the brim with Aloes this and succulent that, Art really have the greenest of green touches.
+[EMBER]: I'm Ember, she and her are the pronouns I favour though hell, use anything, I don't mind.
+[RALEIGH]: Hey Ember, nice to meet you.
+[IRIS]: and you've met Rex...
+[REX]: Hey kid, I'm Rex. Use they or them with me if ya please. We'll get to know each other soon enough!
+[IRIS]: And we've spoken online loads but I'll introduce myself properly now, I'm Iris, you can use she and her with me.
+[RALEIGH]: Thanks everybody, so uhhh, I'm Raleigh...and if its okay, can I ask you use they and them with me? I'm...I'm non-binary.
+[EVERYONE]: Hello Raleigh.
+[RALEIGH]: Wow...I've never said it out loud before really.
+[IRIS]: You're doing really well.
+[REX]: Yeah kid, you're doing just fine - now please, I beg of you, get me out of here.
+[EMBER]: Ah well...see Rex about that.
+[ARTEMIS]: I was watching this lovely little sparrow sitting up in the tree overthere and while watching it we heard a massive bang from where we came.
+[ARTEMIS]: Turns out a tree has fallen and well, now we're stuck cause that old bridge watcher man closed the bridge and left just before.
+[REX]: ...We're going to be trapped here forever...
+[RALEIGH]: Not quite, I know where he goes after his work. Let me [colour: #f2ff00]Go and talk to Mr Pontem[colour: FFFFFF] at the pub.
+[end]

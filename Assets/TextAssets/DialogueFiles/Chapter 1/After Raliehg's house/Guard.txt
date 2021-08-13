@@ -1,0 +1,29 @@
+﻿id: c1_guard_1
+[MR PONTEM]: zzz zzz zzz zzz zzz
+[RALEIGH]: Hey, Mister Pontem...
+[MR PONTEM]: [i]louder[_i] zzz zzz zzz zzz zzz
+[RALEIGH]: Mister Pontem! Its Raleigh!
+[MR PONTEM]: [i]even louder[_i] ZZZ ZZZ ZZZ ZZZ ZZZ
+[REX]: [i]shouting[_i]PONTEM! WAKE UP!
+[MR PONTEM]: [i]up with a start[_i]AHHHHH!
+[IRIS]: ...
+[REX]: [i]side-eyeing Iris[_i]...
+[REX]: You didn't shout "Rex!", nice self control there darlin'
+[IRIS]: [i]side-eyeing Rex[_i] If I thought it would make any difference I might have. Old dogs, new tricks and all that.
+[REX]: Ha! Darlin' you can teach this old dog new tricks anyday!
+[EMBER]: Ew.
+[MR PONTEM]: What the hell is going on? Who the hell are you lot? Why the hell am I awake?
+[RALEIGH]: Mr Pontem, it's Raleigh, from up the road?
+[MR PONTEM]: Raleigh? You're a good boy, how is your father?
+[RALEIGH]: ...Yeahhh...He is...He is good.
+[MR PONTEM]: Thats good. What seems to be the problem young Raleigh?
+[RALEIGH]: Mr Pontem you closed the bridge.
+[MR PONTEM]: Of course I did, can't leave the bridge open while I'm at the pub.
+[RALEIGH]: Yeah thats the thing, can you leave the pub and reopen the bridge?
+[MR PONTEM]: Why? The South Road is open and I want to drink.
+[RALEIGH]: But the South Road isn't open Mr Pontem, a tree fell. Can you please open the bridge for me and...and my friends?
+[MR PONTEM]:There is a fallen tree? God dammit. Thats my problem to deal with I guess. Yeah okay I'll come open the bridge.
+[RALEIGH]: Thanks Mr Pontem.
+[MR PONTEM]: Yeah yeah.
+
+[end]
