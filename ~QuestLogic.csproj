@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Quest Logic\BridgeMan.cs" />
     <Compile Include="Assets\Scripts\Quest Logic\Karen.cs" />
     <Compile Include="Assets\Scripts\Quest Logic\PortMan.cs" />
     <Compile Include="Assets\Scripts\Quest Logic\Raleigh.cs" />

@@ -26,4 +26,24 @@
 [RALEIGH]: Thanks Mr Pontem.
 [MR PONTEM]: Yeah yeah.[CompleteTask: mq_ob]
 
+[MR PONTEM]: There you go young Raleigh. Say hello to your father from me when you next see him.
+[RALEIGH]: ...Yeah...Okay, I will Mr Pontem.
+[MR PONTEM]: Thats a good lad. Now I'm just going to rest here for a bit before I go get my axe...
+[RALEIGH]: Thank you Mr Pon...
+[MR PONTEM]: [CompleteTask: mq_g_s][i]Loudly as ever[_i]ZZZ ZZZ ZZZ ZZZ ZZZ
+[REX]: Wow.
+[IRIS]: Raleigh darling, are you ready to leave?
+[REX]: Not darlin'
+[IRIS]: REX!
+[REX]: There ya go again darlin', can't help yourself!
+[IRIS]: [i]a stern grumpy expression now on her face[_i] Raleigh. DARLING. Are you ready to leave?
+[RALEIGH]: ...Doesn't seem like I have a huge amount of choice here. No where else to go but away.
+[REX]: Kid, this journey may be your first, but it won't be your last. At least for this one, you've got us.
+[ARTEMIS]: I was scared when I had to leave home, I understand that fear.
+[RALEIGH]: You left home too?
+[REX]: Ah kid, we all have our story. How about this, while we travel we'll talk, soon you'll realise you ain't alone anymore.
+[RALEIGH]: Yeah...yeah that sounds pretty good.
+[MR PONTEM]: [i]Increasingly loud[_i]ZZZ ZZZ ZZZ ZZZ ZZZ
+[REX]: Ah jeez, well no time like the present, lets get gone.
+
 [end]

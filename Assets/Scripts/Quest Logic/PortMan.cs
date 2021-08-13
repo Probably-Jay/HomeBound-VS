@@ -13,7 +13,7 @@ namespace QuestLogic
         Animator animator;
         Interactable interactable;
         DialogueInstance dialogueInstance;
-        Rigidbody2D rb;
+
         
         private void Awake()
         {
@@ -22,7 +22,6 @@ namespace QuestLogic
 
             this.AssignComponent(out interactable);
             this.AssignComponent(out dialogueInstance);
-            this.AssignComponent(out rb);
 
             this.NotNullCheck(dialogue);
         }
@@ -38,5 +37,9 @@ namespace QuestLogic
             animator.SetBool("Awake", true);
         }
 
+        public void Asleep()
+        {
+            animator.SetBool("Awake", false);
+        }
     }
 }
