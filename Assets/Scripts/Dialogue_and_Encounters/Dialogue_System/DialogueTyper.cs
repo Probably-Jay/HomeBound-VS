@@ -374,6 +374,7 @@ namespace Dialogue
             if (!bufferAndLivePhrase.Empty)
             {
                 Debug.LogError("Box is not empty");
+                ClearBox();
             }
             if (!grayedOutText.Empty)
             {

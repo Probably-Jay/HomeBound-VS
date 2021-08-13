@@ -8839,47 +8839,87 @@ PrefabInstance:
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].time
-      value: 0
+      value: 0.020832062
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].time
-      value: 1
+      value: 0.6201249
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].time
+      value: 0.9833374
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 0.41641235
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].value
-      value: 1
+      value: 0.276859
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].value
+      value: 0.9587555
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].inSlope
-      value: 0
+      value: 0.046759736
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].inSlope
-      value: 2
+      value: 0.56793195
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].inSlope
+      value: 0.9120525
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].outSlope
-      value: 0
+      value: 0.046759736
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].outSlope
-      value: 2
+      value: 0.56793195
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].inWeight
+      value: 0.49329445
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[2].outSlope
+      value: 0.9120525
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[0].outWeight
+      value: 0.43585145
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: perfectWhitenCurve.m_Curve.Array.data[1].outWeight
+      value: 0.55439353
       objectReference: {fileID: 0}
     - target: {fileID: 2533711652629958718, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
@@ -10024,7 +10064,7 @@ PrefabInstance:
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: sheets.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: b1e729b8d21a4444784acb467708fc26,
+      objectReference: {fileID: 11400000, guid: 58438b99b864f5b48a042f8c142d8543,
         type: 2}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: sheets.Array.data[1]
@@ -10329,6 +10369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83586deaff5f5847bf6983ddaae0f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startsEmpty: 0
   mainDialogueIDs:
   - test_demo
   runMainOnlyOnce: 1
