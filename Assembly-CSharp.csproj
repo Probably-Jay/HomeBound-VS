@@ -67,12 +67,13 @@
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Pub.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Raleigh Back With friends.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg's house\Raleigh Back With friends.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Church.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Exampleb2.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\t.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg's house\Guard.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Meet Raleigh.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Karen 2.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -86,7 +87,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\General\overstresed.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-new.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh's house\Raleigh Outside.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg's house\Raleigh Outside.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestDemo.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\General\overstresed start.txt" />

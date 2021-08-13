@@ -4,6 +4,7 @@ using UnityEngine;
 using RhythmSectionLoading;
 using System;
 using Rythm;
+using StressSystem;
 
 public class RhythmSectionManager : MonoBehaviour
 {
