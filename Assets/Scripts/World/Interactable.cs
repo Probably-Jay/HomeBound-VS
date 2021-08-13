@@ -15,7 +15,7 @@ namespace Interactables
         const float facingDirectionSensitivity = -0.9f;
         [SerializeField] string InteractionName = "Interact";
         [SerializeField] KeyCode interactKey = KeyCode.E;
-        [SerializeField] bool canBeInteractedWith = true;
+        [SerializeField] bool interactionsEnabled = true;
         [SerializeField] bool directional = true;
         private bool triggerInstantly = false;
 
@@ -31,13 +31,14 @@ namespace Interactables
         GameObject UIParentObject => UIDisplay.transform.parent.gameObject;
 
         // bool canBeInteracted = true;
-        bool CanBeInteracted => canBeInteractedWith && interactableActivated && triggeredCount == 0;
+        bool CanBeInteracted => InteractionsEnabled && interactableActivated && triggeredCount == 0;
         bool interactableActivated;
         private int triggeredCount = 0;
         private bool entered;
 
         private bool InteractUIIsEnabled => UIParentObject.activeInHierarchy; // implicit state, defined by if "interact (E)" ui is visible
 
+        public bool InteractionsEnabled { get => interactionsEnabled; set => interactionsEnabled = value; }
 
         private void Awake()
         {

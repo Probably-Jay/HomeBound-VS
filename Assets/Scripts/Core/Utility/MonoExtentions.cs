@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
+using System;
 
 public static class MonoExtentions
 {
-    public static bool NullCheck<T>(this MonoBehaviour go, T obj, string name = "") where T :  UnityEngine.Object
+    public static bool NullCheck<T>(this MonoBehaviour go, T obj, string name = null, Type type = null) where T :  UnityEngine.Object
     {
-        if(obj == null)
+        if(obj == null || obj.Equals(null))
         {
-            Debug.LogError($"Object {name} is null in {go.name}", go);
+            Debug.LogError($"{(string.IsNullOrEmpty(name) ? "Object " : $"{name} ")}{(type == null ? typeof(T).Name : $"of type {type.Name} ")}is null in {go.name}", go);
             return false;
         }
         return true;
@@ -24,6 +25,17 @@ public static class MonoExtentions
         }
         return true;
     }        
-            
+           
+    public static bool AssignComponent<T>(this MonoBehaviour go, out T cmp) where T : Component
+    {     
+        cmp = go.GetComponent<T>();
+        if (go.NullCheck(cmp, name: "Component", type: typeof(T)))
+        {
+            return true;
+        }
+        return false;
+    }    
+    
+
 
 }
