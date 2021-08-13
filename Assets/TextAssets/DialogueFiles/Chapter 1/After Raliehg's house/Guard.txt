@@ -5,7 +5,7 @@
 [RALEIGH]: Mister Pontem! Its Raleigh!
 [MR PONTEM]: [i]even louder[_i] ZZZ ZZZ ZZZ ZZZ ZZZ
 [REX]: [i]shouting[_i]PONTEM! WAKE UP!
-[MR PONTEM]: [i]up with a start[_i]AHHHHH!
+[MR PONTEM]: [CompleteTask: mq_wubm][i]up with a start[_i]AHHHHH!
 [IRIS]: ...
 [REX]: [i]side-eyeing Iris[_i]...
 [REX]: You didn't shout "Rex!", nice self control there darlin'
@@ -22,8 +22,8 @@
 [RALEIGH]: Yeah thats the thing, can you leave the pub and reopen the bridge?
 [MR PONTEM]: Why? The South Road is open and I want to drink.
 [RALEIGH]: But the South Road isn't open Mr Pontem, a tree fell. Can you please open the bridge for me and...and my friends?
-[MR PONTEM]:There is a fallen tree? God dammit. Thats my problem to deal with I guess. Yeah okay I'll come open the bridge.
+[MR PONTEM]: There is a fallen tree? God dammit. Thats my problem to deal with I guess. Yeah okay I'll come open the bridge.
 [RALEIGH]: Thanks Mr Pontem.
-[MR PONTEM]: Yeah yeah.
+[MR PONTEM]: Yeah yeah.[CompleteTask: mq_ob]
 
 [end]

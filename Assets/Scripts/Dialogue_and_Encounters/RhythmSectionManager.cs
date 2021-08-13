@@ -18,22 +18,17 @@ public class RhythmSectionManager : MonoBehaviour
     public bool HasControl => rDI.RythmHasControl;
     private float time=0;
 
-    // Start is called before the first frame update
-    private void Update()
+    private void ValidateComponents()
     {
-        if (!debugStartOnStart)
-        {
-            return;
-        }
-        time = time + Time.deltaTime;
-        if (time > 1)
-        {
-            rDI.StartNewRythm(identifications[0]);
-            debugStartOnStart = false;
-        }
+        this.NotNullCheck(sectionLoader);
+        this.NotNullCheck(rDI);
+        this.NotNullCheck(substressRing);
     }
+
+
     void Awake()
     {
+        ValidateComponents();
         if (identifications.Count == sheets.Count)
         {
             for (int i = 0; i < identifications.Count; i++)
@@ -46,6 +41,20 @@ public class RhythmSectionManager : MonoBehaviour
             Debug.LogError("Cannot Zip Identifications and Sheets");
         }
         
+    }
+
+    private void Update()
+    {
+        if (!debugStartOnStart)
+        {
+            return;
+        }
+        time = time + Time.deltaTime;
+        if (time > 1)
+        {
+            rDI.StartNewRythm(identifications[0]);
+            debugStartOnStart = false;
+        }
     }
 
 
@@ -142,10 +151,10 @@ public class RhythmSectionManager : MonoBehaviour
                 substressRing.AddStressPoints(1);
                 break;
             case NoteSystem.HitQuality.Good:
-                
+
                 break;
             case NoteSystem.HitQuality.Great:
-                substressRing.RemoveStressPoint();
+                substressRing.RemoveStressPoints(2);
                 break;
 
             case NoteSystem.HitQuality.Perfect:

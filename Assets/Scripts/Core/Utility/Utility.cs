@@ -21,7 +21,9 @@ namespace Helper
         /// <param name="value"></param>
         /// <returns></returns>
         public static float Frac(float value) { return value - Mathf.Floor(value); }
+        public static float GetFrac(this float value) { return value - Mathf.Floor(value); }
         public static float Whole(float value) => Mathf.Floor(value);
+        public static float GetWhole(this float value) => Mathf.Floor(value);
 
         public static (float whole, float frac) WholeAndFrac(float value) { return (Whole(value), Frac(value)); }
 
@@ -35,8 +37,28 @@ namespace Helper
         {
             decimal invFrac = 1 / (decimal)fractionResolution;
             return (float)((decimal)Mathf.Ceil((float)((decimal)value * invFrac)) / invFrac);
+        }        
+        
+        /// <summary>
+        /// Rounds up to the nearest whole number, or fraction at resolution <c>1/<paramref name="fractionResolution"/></c>
+        /// </summary>
+        /// <param name="value">The value to be rounded</param>
+        /// <param name="fractionResolution">Rounds to the nearest <c>1/<paramref name="fractionResolution"/></c>, defaults to whole number</param>
+        /// <returns></returns>
+        public static void RoundUpTo(this ref float value, float fractionResolution = 1)
+        {
+            decimal invFrac = 1 / (decimal)fractionResolution;
+            value = (float)((decimal)Mathf.Ceil((float)((decimal)value * invFrac)) / invFrac);
         }
 
+        public static void RoundUp(this ref float value)
+        {
+            value = Mathf.Ceil(value);
+        }        
+        public static void RoundDown(this ref float value)
+        {
+            value = Mathf.Floor(value);
+        }
     }
 
     public class RollingAverage

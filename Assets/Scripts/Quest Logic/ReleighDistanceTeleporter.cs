@@ -16,8 +16,8 @@ namespace QuestLogic
 
         void Awake()
         {
-            this.NullCheck(raleigh);
-            this.NullCheck(player);
+            this.NotNullCheck(raleigh);
+            this.NotNullCheck(player);
         }
 
         public void EnableTeleport() => teleportEnabled = true;
