@@ -18,11 +18,11 @@ namespace QuestLogic
         {
             dialogueInstance = GetComponent<Dialogue.DialogueInstance>();
             sp = GetComponent<SpriteRenderer>();
-            this.NullCheck(newPos);
-            this.NullCheck(lookRight);
-            this.NullCheck(newDialogueID);
-            this.NullCheck(dialogueInstance);
-            this.NullCheck(sp);
+            this.NotNullCheck(newPos);
+            this.NotNullCheck(lookRight);
+            this.NotNullCheck(newDialogueID);
+            this.NotNullCheck(dialogueInstance);
+            this.NotNullCheck(sp);
         }
 
         internal void MoveDownstairs()

@@ -1018,50 +1018,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d239c768c79ee724cb18000a47300c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &89558846
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 89558847}
-  - component: {fileID: 89558848}
-  m_Layer: 0
-  m_Name: Bridge man logic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &89558847
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89558846}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6423081037854622600}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &89558848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89558846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe72db2e092fd9498a0917a95c608fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portMan: {fileID: 0}
 --- !u!1 &107508113
 GameObject:
   m_ObjectHideFlags: 3
@@ -1147,6 +1103,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &123157733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5114763223823944083, guid: 47d4d415203b7f043a9aad41af47ee68,
+    type: 3}
+  m_PrefabInstance: {fileID: 995950794}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da96b143073b82640a6a6f1b88041e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &140985877
@@ -2112,12 +2080,22 @@ PrefabInstance:
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: displayTasks.Array.size
-      value: 5
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: displayTasks.Array.data[3].id
+      value: mq_r_bwf
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: displayTasks.Array.data[4].id
       value: mq_wubm
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: displayTasks.Array.data[5].id
+      value: mq_ob
       objectReference: {fileID: 0}
     - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
@@ -2144,6 +2122,11 @@ PrefabInstance:
       propertyPath: displayTasks.Array.data[4].task
       value: 
       objectReference: {fileID: 288426716}
+    - target: {fileID: 4054652620613423467, guid: 047080c6aa3bbed459b9053570908dcf,
+        type: 3}
+      propertyPath: displayTasks.Array.data[5].task
+      value: 
+      objectReference: {fileID: 2018461165}
     - target: {fileID: 4174316436918520209, guid: 047080c6aa3bbed459b9053570908dcf,
         type: 3}
       propertyPath: playerQuestJournal
@@ -4744,6 +4727,10 @@ PrefabInstance:
       propertyPath: rDI
       value: 
       objectReference: {fileID: 1478533509}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: substressRing
+      value: 
+      objectReference: {fileID: 123157733}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: sheets.Array.size
       value: 2
@@ -7375,7 +7362,7 @@ PrefabInstance:
     - target: {fileID: 3931048460815990001, guid: d03b10307b0afa94f9aeb88f6427478d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3931048460815990001, guid: d03b10307b0afa94f9aeb88f6427478d,
         type: 3}
@@ -7385,7 +7372,7 @@ PrefabInstance:
     - target: {fileID: 3931048460815990001, guid: d03b10307b0afa94f9aeb88f6427478d,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3931048460815990001, guid: d03b10307b0afa94f9aeb88f6427478d,
         type: 3}
@@ -7440,7 +7427,7 @@ PrefabInstance:
     - target: {fileID: 3931048460815990001, guid: d03b10307b0afa94f9aeb88f6427478d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 79
+      value: -113
       objectReference: {fileID: 0}
     - target: {fileID: 3931048460815990001, guid: d03b10307b0afa94f9aeb88f6427478d,
         type: 3}
@@ -7669,7 +7656,6 @@ Transform:
   m_Children:
   - {fileID: 6423081037854622600}
   - {fileID: 6423081038328929010}
-  - {fileID: 8760729754353949600}
   m_Father: {fileID: 522641552}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7703,7 +7689,6 @@ Transform:
   - {fileID: 985173084}
   - {fileID: 1674955912}
   - {fileID: 1799438012}
-  - {fileID: 89558847}
   m_Father: {fileID: 6423081037428169038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7741,6 +7726,7 @@ Transform:
   - {fileID: 1935039438}
   - {fileID: 1962365579}
   - {fileID: 2305814}
+  - {fileID: 8760729754353949600}
   m_Father: {fileID: 6423081037428169038}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8156,8 +8142,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2018461164}
-  m_Father: {fileID: 6423081037428169038}
-  m_RootOrder: 2
+  m_Father: {fileID: 6423081038328929010}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8828829649691418280 stripped
 Transform:

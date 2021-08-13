@@ -13,16 +13,18 @@ namespace QuestLogic
         Animator animator;
         Interactable interactable;
         DialogueInstance dialogueInstance;
+        Rigidbody2D rb;
         
         private void Awake()
         {
-            animator = GetComponent<Animator>();
+            
             this.AssignComponent(out animator);
 
             this.AssignComponent(out interactable);
             this.AssignComponent(out dialogueInstance);
+            this.AssignComponent(out rb);
 
-            this.NullCheck(dialogue, nameof(dialogue));
+            this.NotNullCheck(dialogue);
         }
 
         public void AddDialogue()

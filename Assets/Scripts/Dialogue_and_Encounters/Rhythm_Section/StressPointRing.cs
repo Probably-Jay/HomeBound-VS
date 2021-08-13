@@ -104,7 +104,7 @@ namespace StressSystem
             }
         }
 
-        public void AddStressPoint() => AddStressPoints(1);
+        public void AddStressPoints() => AddStressPoints(1);
 
         public void AddStressPoints(int numberOfPoints)
         {
@@ -159,7 +159,7 @@ namespace StressSystem
         }
 
 
-        public void RemoveStressPoint() => RemoveStressPoints(1);
+        public void RemoveStressPoints() => RemoveStressPoints(1);
 
         public void RemoveStressPoints(int numberOfPoints)
         {

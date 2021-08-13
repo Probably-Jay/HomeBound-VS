@@ -22,5 +22,5 @@
 [ARTEMIS]: I was watching this lovely little sparrow sitting up in the tree overthere and while watching it we heard a massive bang from where we came.
 [ARTEMIS]: Turns out a tree has fallen and well, now we're stuck cause that old bridge watcher man closed the bridge and left just before.
 [REX]: ...We're going to be trapped here forever...
-[RALEIGH]: Not quite, I know where he goes after his work. Let me [colour: #f2ff00]Go and talk to Mr Pontem[colour: FFFFFF] at the pub.
+[RALEIGH]: Not quite, I know where he goes after his work. Let me [colour: #f2ff00]Go and talk to Mr Pontem[colour: FFFFFF] at the pub.[CompleteTask: mq_r_bwf]
 [end]

@@ -24,6 +24,6 @@
 [RALEIGH]: But the South Road isn't open Mr Pontem, a tree fell. Can you please open the bridge for me and...and my friends?
 [MR PONTEM]: There is a fallen tree? God dammit. Thats my problem to deal with I guess. Yeah okay I'll come open the bridge.
 [RALEIGH]: Thanks Mr Pontem.
-[MR PONTEM]: Yeah yeah.
+[MR PONTEM]: Yeah yeah.[CompleteTask: mq_ob]
 
 [end]
