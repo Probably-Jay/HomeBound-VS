@@ -596,6 +596,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\World\BridgeBarrier.cs" />
+    <Compile Include="Assets\Scripts\World\CowControl.cs" />
     <Compile Include="Assets\Scripts\World\Door.cs" />
     <Compile Include="Assets\Scripts\World\Floor.cs" />
     <Compile Include="Assets\Scripts\World\FloorHandler.cs" />

@@ -130,9 +130,8 @@ using System;
             Game.GameContextController.Instance.ReturnToPreviousContext();
             if (Game.GameContextController.Instance.OverStressed)
             {
-            dialogueManager.StopCurrentConversation();
-            dialogueManager.BeginConversation("overstressed_interrupt");
-                    //dialogueBoxOpener.CloseBox();
+                dialogueManager.StopCurrentConversation();
+                dialogueManager.BeginConversation("overstressed_interrupt");
             }
         }
 

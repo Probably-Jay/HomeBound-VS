@@ -120,6 +120,7 @@ namespace Dialogue
 
         private IEnumerator QueueConversation(Conversation conversation)
         {
+            conversation.ClearEvents();
             conversation.OnSetDialogueMode += (mode) =>
             {
                 //if (mode == DialogueMode.None)
@@ -154,7 +155,7 @@ namespace Dialogue
             yield break;
         }
 
-   
+    
 
         public void AddLinePreview(string line)
         {

@@ -664,12 +664,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CowControl.cs" />
     <Compile Include="Assets\TempDisabler.cs" />
     <Compile Include="Assets\~Junk\PointOfIntrestManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\DanceSheet.txt" />
+    <None Include="Assets\MusicAssets\NoteSheets\Karen.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\Tutorial.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\notesheet 1.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\notesheet.txt" />

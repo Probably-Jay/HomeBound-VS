@@ -61,6 +61,7 @@ namespace RhythmSectionLoading {
 
         public void LoadAndBeginSectionNotes(TextAsset section)
         {
+            CleanUpLanes();
             SwitchOnLanes();
             noteSheet = section;
             ReadSection(noteSheet);
@@ -71,8 +72,17 @@ namespace RhythmSectionLoading {
 
         }
 
+        private void CleanUpLanes()
+        {
+            foreach (var lane in lanes)
+            {
+                lane.ClearNotesInChannel();
+            }
+        }
+
         public void EndSection()
         {
+            CleanUpLanes();
             SwitchOffLanes();
             noteSheet = null;
             notes.Clear();

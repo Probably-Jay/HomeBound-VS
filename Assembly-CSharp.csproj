@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CowControl.cs" />
     <Compile Include="Assets\TempDisabler.cs" />
     <Compile Include="Assets\~Junk\PointOfIntrestManager.cs" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\Example_d1.txt" />

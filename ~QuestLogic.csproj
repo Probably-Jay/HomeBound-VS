@@ -64,7 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Quest Logic\BridgeMan.cs" />
+    <Compile Include="Assets\Scripts\Quest Logic\FadeToBlackController.cs" />
+    <Compile Include="Assets\Scripts\Quest Logic\GameComplete.cs" />
     <Compile Include="Assets\Scripts\Quest Logic\Karen.cs" />
     <Compile Include="Assets\Scripts\Quest Logic\PortMan.cs" />
     <Compile Include="Assets\Scripts\Quest Logic\Raleigh.cs" />
@@ -630,13 +631,13 @@
       <Project>{B1FD1A2C-C177-539C-2EB0-6F4E9E204FD6}</Project>
       <Name>~Dialogue_And_Encounters</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{9AEDA807-B0E1-291B-31CD-C332D19F9DD2}</Project>
       <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

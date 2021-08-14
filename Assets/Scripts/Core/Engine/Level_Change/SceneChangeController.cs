@@ -18,7 +18,7 @@ namespace SceneChange
         // ,Settings
 
         , Game
-        //    , Credits
+        , Credits
     }
     /// <summary>
     /// Class which controls the switching of scenes
@@ -31,7 +31,7 @@ namespace SceneChange
         //   [SerializeField] int SettingsBuildIndex;
 
         [SerializeField] int GameBuildIndex;
-        //  [SerializeField] int CreditsBuildIndex;
+        [SerializeField] int CreditsBuildIndex;
 
         private void CreateBuildIndexDictionary()
         {
@@ -39,7 +39,7 @@ namespace SceneChange
             // sceneBuildIndexesDictionary.Add(Scenes.Settings, SettingsBuildIndex);
 
             sceneBuildIndexesDictionary.Add(Scenes.Game, GameBuildIndex);
-            //  sceneBuildIndexesDictionary.Add(Scenes.Credits, CreditsBuildIndex);
+            sceneBuildIndexesDictionary.Add(Scenes.Credits, CreditsBuildIndex);
         }
 
         [SerializeReference] GameObject LoadingScreen;
@@ -116,7 +116,11 @@ namespace SceneChange
         /// Will asynchornously load the scene at the enumvalue provided and enter that scene
         /// </summary>
         /// <param name="scene">Enum value of the scene to load</param>
-        public void ChangeScene(Scenes scene) => StartCoroutine(LoadSceneAsyncCoroutine(sceneBuildIndexesDictionary[scene]));
+        public void ChangeScene(Scenes scene)
+        {
+            int sceneBuildIndex = sceneBuildIndexesDictionary[scene];
+            StartCoroutine(LoadSceneAsyncCoroutine(sceneBuildIndex));
+        }
 
         /// <summary>
         /// Prefer <see cref="ChangeScene"/> for saftey, but this overload allows passing build indexes directly

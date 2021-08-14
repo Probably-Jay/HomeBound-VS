@@ -629,13 +629,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{9AEDA807-B0E1-291B-31CD-C332D19F9DD2}</Project>
       <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{18010AC0-E4C2-70C2-0B89-F4C4E863B9FE}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
       <Project>{3827BD03-3FF5-7806-4376-88B54DD7A291}</Project>

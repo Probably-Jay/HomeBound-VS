@@ -29,6 +29,10 @@ namespace NoteSystem
             notesInChannel.Add(note);
         }
 
+        public void ClearNotesInChannel()
+        {
+            notesInChannel.Clear();
+        }
 
         void Update()
         {
