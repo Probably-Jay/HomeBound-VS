@@ -11,8 +11,8 @@
 [RALEIGH]: Respect...respect your home? I'm your child. This is supposed to be my home too. Why can you respect me as well?
 [RALEIGH]: Dad? Do you feel the same way? Do you want me to leave too?
 [MUM]: Your father and I are in complete agreement. You are doing as you're told.
-[REX]: [i]Loudly[_i][b]ALL RIGHT LADY...[_b]
-[MUM]: [i] As loudly[_i][b]HOW DARE YOU INTER..[_b]
+[REX]: [i]Loudly[_i] [b]ALL RIGHT LADY...[_b]
+[MUM]: [i] As loudly[_i] [b]HOW DARE YOU INTER..[_b]
 [IRIS]: Rex! We shouldn't...
 [REX]: No Ris! We should! They didn't ask you lady, they asked their father. They asked their father have you decided you don't love your child enough to respect who they are without wanting to change them?!
 [DAD]: I...ummm...Raleigh, son, no not son...ummm...[pause: 64]

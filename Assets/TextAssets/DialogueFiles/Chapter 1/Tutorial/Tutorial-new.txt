@@ -16,43 +16,43 @@
 [IRIS]: [i]tearing up[_i] I tried to help them, I tried but...
 [EMBER]: So thats why we're here, to make sure Raleigh is okay? To make sure Raleigh knows they aren't alone?
 [IRIS]: [i]wiping away tearsdrops from her cheek[_i] I just, I need to make sure they know, they know they are perfect. They don't need 'treatment'.
-[REX]: I'll join you then darlin'. I'll makes sure we see your friend.
-[ARTEMIS]: [i]Quietly to Iris[_i] I...Can I...Do you mind if I just wait here? I just...this is making me quite...umm...anxious.
-[IRIS]: Oh of course, yes I didn't think, you should just stay here. Ember, can you stay with Artie?
-[EMBER]: [i]rolls eyes[_i] Suuuuuure. I'll hold 'Arties' hand. To precious to be help their friends out...
-[IRIS]: [i]stern[_i]  Ember. You're crossing a line...
+[REX]: I'll join you then darlin'. I'll makes sure we see your friend. Think that'll help?
+[Iris]: Yeah, sorry, it's just, I'm worried that if I do, when we have to talk to Raleigh's parents... or anyone else who clocks me... I won't be able to take the dissonance.
+[Rex]: well uh... there's something you could do that might help... but only if you're up for something kinda dorky...
+[Iris]: Um, okay, what is it that you had in mind?
+[Rex]: don't laugh, but I thought we might try practicing a tense conversation, so you're ready for them!
+[Iris]: Well, I'm not sure it'll be the same, but I'm sure 
 
-[GAME]: Sometimes you will need to stand up for yourself, and these conversations are difficult, important and influential.
+[Rex]: Okay, I'll be Raleigh's parents. [pause: 16]Ready? [pause: 48] [rhythm: tutorial_1]
 
-[GAME]: Press Q, W, and E to talk along with the beat.
+// rhythm section
 
-// id:Tutorial_Rhythm_Section
-// [ARTEMIS]: Ember, you don't have to stay with me. I don't mind if you want to go with Iris and Rex.
-// [EMBER]: No no no, lets just sit here while our friends go out of their way to help others. I'm sure sitting here is helpful too.
-// [ARTEMIS]: I struggle with my anxiety, I cannot control it and while I accept others don't have to help me, I would ask you at least respect me.
-// [EMBER]: Of course I respect you but god damn, sometimes your anxiety means nobody else can get on with their life! Sitting still with you doesn't help anything.
-// [ARTEMIS]: It helps me! Sometimes helping myself is the best thing to do! Sometimes, forcing myself is worse than stepping back, not just for me but for everybody. 
-// [EMBER]: Our friends are going to help somebody through what could be one of the hardest parts of their lives and you want to sit here in the grass looking at trees?
-// [ARTEMIS]: I realise somebody needs help, but I trust in our friends to be the help they need. I will support them from here and do my best. Can you do your best to support me? As my friend?
-// 
-// [end of rhythm section]
+//[Iris]: Raleigh's leaving, they're coming to live with us
 
-[GAME]: If you make too many mistakes in these conversations, the conversation will end and you'll become stress. Keep to the beat and you'll be okay!
+[Rex]: OI OI, not on ma' wotch they aren't.
 
-[EMBER]: ...
-[ARTEMIS]: ...
-[EMBER]: ...
-[ARTEMIS]: ...
-[REX]: ...Oh the suspense...
-[IRIS]: Rex, you are not helping.
-[EMBER]: Okay Art, I'll stay here with you.
-[ARTEMIS]: Thank you Ember, I do appreciate it.
-[EMBER]: You are my friend Artie, I really do care for you. I didn't mean to snap.
-[IRIS]: Right, you two stay here, Rex shall we?
-[REX]: We shall.
-[REX]: [i]whispers to Ember[_i] and you, look after Artemis.
+//[Iris]: They're an adult, they can make their own choices!
+
+[Rex]: But that's ma baby you're talkin aboot!
+
+//[Iris]: You can't control them forever, they need to make their own way.
+
+[Rex]: Well, um... they don't know what's best for them. I doo. A'm their dad.
+
+//[Iris]: If you actually cared about them, you'd trust them enough to let them decide.
+
+// end rhythm
+
+[Rex]: That was great, you're really good at that!
+[Rex]: And you know, if all else fails we go with plan B
+[Iris]: Grab them and run?
+[Rex]: Grab them and run.
+
+[REX]: And Ember, you stay here and look after Artemis.
+[REX]: Let's not crowd the parents too much.
 [EMBER]: Yeah, I will.
+[ARTEMIS]: Good luck!
 
-[IRIS]: Let's go [colour: #f2ff00]Find Raleighs Home[colour: FFFFFF], make sure they are okay.
+[IRIS]: Let's go [colour: #f2ff00]Find Raleighs Home[colour: FFFFFF].
 
 [end]

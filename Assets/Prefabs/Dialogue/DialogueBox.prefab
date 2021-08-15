@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6d926275c234d43945cabca0bcc961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayQuests: []
+  playerQuestJournal: {fileID: 0}
 --- !u!114 &4054652620613423467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +64,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayTasks:
-  - id: Eq_0
+  - id: mq_ttrm
+    task: {fileID: 0}
+  - id: mq_ttr
+    task: {fileID: 0}
+  - id: mq_ttrm2
+    task: {fileID: 0}
+  - id: mq_R_BWF
     task: {fileID: 0}
 --- !u!1 &2533711652629958714
 GameObject:
@@ -108,7 +116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -3, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2533711652629958717
@@ -138,7 +146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 'Hi '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 13ec790dc7bdfc849ad5370f43d67409, type: 2}
   m_sharedMaterial: {fileID: -1195645134121464243, guid: 13ec790dc7bdfc849ad5370f43d67409,
@@ -202,7 +210,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 89.52345, y: 65.722176, z: 89.15415, w: 31.716064}
+  m_margin: {x: 89.52345, y: 65.722176, z: 82.03489, w: 31.716064}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -242,6 +250,39 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.091302216
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perfectWhitenCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2.5
+      inSlope: 0.12958309
+      outSlope: 0.12958309
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.2
+      value: 1.75
+      inSlope: -4.456791
+      outSlope: -4.456791
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17014271
+      outWeight: 0.03330037
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -2.8040369
+      outSlope: -2.8040369
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.091199815
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -302,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rythmManager: {fileID: 0}
+  dialogueBoxOpener: {fileID: 0}
 --- !u!114 &221069934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -749, y: -42}
+  m_AnchoredPosition: {x: -678, y: -33}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2533711652857469035
@@ -466,7 +508,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Rex
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 13ec790dc7bdfc849ad5370f43d67409, type: 2}
   m_sharedMaterial: {fileID: -1195645134121464243, guid: 13ec790dc7bdfc849ad5370f43d67409,
@@ -476,8 +518,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294940296
+  m_fontColor: {r: 0.5330188, g: 0.5892957, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -494,15 +536,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
-  m_fontSizeBase: 21
+  m_fontSize: 26.3
+  m_fontSizeBase: 26.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 4
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -530,7 +572,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -42.78894, w: -7.64093}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -47,7 +47,6 @@ namespace HomeboundEditor
             SerializedProperty element = list.serializedProperty.GetArrayElementAtIndex(index); // The element in the list
 
 
-            int a;
 
             EditorGUI.LabelField(new Rect(rect.x, rect.y, 50, EditorGUIUtility.singleLineHeight), "Quest ID:");
 

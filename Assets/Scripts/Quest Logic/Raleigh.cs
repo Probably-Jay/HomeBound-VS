@@ -23,12 +23,12 @@ namespace QuestLogic
         void Awake()
         {
             dialogueInstance = GetComponent<Dialogue.DialogueInstance>();
-            this.NullCheck(downstairsPos);
-            this.NullCheck(outsidePos);
-            this.NullCheck(withFriendsPos);
-            this.NullCheck(outsideString);
-            this.NullCheck(withFriendsString);
-            this.NullCheck(dialogueInstance);
+            this.NotNullCheck(downstairsPos);
+            this.NotNullCheck(outsidePos);
+            this.NotNullCheck(withFriendsPos);
+            this.NotNullCheck(outsideString);
+            this.NotNullCheck(withFriendsString);
+            this.NotNullCheck(dialogueInstance);
         }
 
         internal void MoveDownstairs()

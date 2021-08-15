@@ -212,7 +212,7 @@ namespace Rythm
                 var cacheofQueuedActions = new SortedDictionary<float, Action>(queuedActions);
                 foreach (var action in cacheofQueuedActions)
                 {
-
+                    Debug.Log($"Invoking: {action.Value.Method.Name} on {action.Value.Target}. {StackTraceUtility.ExtractStackTrace()}");
                     action.Value?.Invoke();
                     ToRemoveCache.Add(action.Key);
                 }

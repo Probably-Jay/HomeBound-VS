@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenuIndex: 0
   GameBuildIndex: 1
+  CreditsBuildIndex: 2
   LoadingScreen: {fileID: 3972033511406594021}
   waitForAnimationToEnd: 0
 --- !u!114 &3972033512130617816

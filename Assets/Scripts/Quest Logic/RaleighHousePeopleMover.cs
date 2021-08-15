@@ -15,9 +15,9 @@ namespace QuestLogic
 
         private void Awake()
         {
-            this.NullCheck(raliegh);
-            this.NullCheck(karen);
-            this.NullCheck(dad);
+            this.NotNullCheck(raliegh);
+            this.NotNullCheck(karen);
+            this.NotNullCheck(dad);
         }
 
         public void MoveRalieghDownstairsAndRepositionParents()

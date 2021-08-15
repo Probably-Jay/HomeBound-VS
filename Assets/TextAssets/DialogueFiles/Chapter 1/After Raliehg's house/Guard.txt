@@ -1,0 +1,49 @@
+﻿id: c1_guard_1
+[MR PONTEM]: zzz zzz zzz zzz zzz
+[RALEIGH]: Hey, Mister Pontem...
+[MR PONTEM]: [i]louder[_i] zzz zzz zzz zzz zzz
+[RALEIGH]: Mister Pontem! Its Raleigh!
+[MR PONTEM]: [i]even louder[_i] ZZZ ZZZ ZZZ ZZZ ZZZ
+[REX]: [i]shouting[_i]PONTEM! WAKE UP!
+[MR PONTEM]: [CompleteTask: mq_wubm][i]up with a start[_i]AHHHHH!
+[IRIS]: ...
+[REX]: [i]side-eyeing Iris[_i]...
+[REX]: You didn't shout "Rex!", nice self control there darlin'
+[IRIS]: [i]side-eyeing Rex[_i] If I thought it would make any difference I might have. Old dogs, new tricks and all that.
+[REX]: Ha! Darlin' you can teach this old dog new tricks anyday!
+[EMBER]: Ew.
+[MR PONTEM]: What the hell is going on? Who the hell are you lot? Why the hell am I awake?
+[RALEIGH]: Mr Pontem, it's Raleigh, from up the road?
+[MR PONTEM]: Raleigh? You're a good boy, how is your father?
+[RALEIGH]: ...Yeahhh...He is...He is good.
+[MR PONTEM]: Thats good. What seems to be the problem young Raleigh?
+[RALEIGH]: Mr Pontem you closed the bridge.
+[MR PONTEM]: Of course I did, can't leave the bridge open while I'm at the pub.
+[RALEIGH]: Yeah thats the thing, can you leave the pub and reopen the bridge?
+[MR PONTEM]: Why? The South Road is open and I want to drink.
+[RALEIGH]: But the South Road isn't open Mr Pontem, a tree fell. Can you please open the bridge for me and...and my friends?
+[MR PONTEM]: There is a fallen tree? God dammit. Thats my problem to deal with I guess. Yeah okay I'll come open the bridge.
+[RALEIGH]: Thanks Mr Pontem.
+[MR PONTEM]: Yeah yeah.[CompleteTask: mq_ob]
+
+[MR PONTEM]: There you go young Raleigh. Say hello to your father from me when you next see him.
+[RALEIGH]: ...Yeah...Okay, I will Mr Pontem.
+[MR PONTEM]: Thats a good lad. Now I'm just going to rest here for a bit before I go get my axe...
+[RALEIGH]: Thank you Mr Pon...
+[MR PONTEM]: [CompleteTask: mq_g_s][i]Loudly as ever[_i]ZZZ ZZZ ZZZ ZZZ ZZZ
+[REX]: Wow.
+[IRIS]: Raleigh darling, are you ready to leave?
+[REX]: Not darlin'
+[IRIS]: REX!
+[REX]: There ya go again darlin', can't help yourself!
+[IRIS]: [i]a stern grumpy expression now on her face[_i] Raleigh. DARLING. Are you ready to leave?
+[RALEIGH]: ...Doesn't seem like I have a huge amount of choice here. No where else to go but away.
+[REX]: Kid, this journey may be your first, but it won't be your last. At least for this one, you've got us.
+[ARTEMIS]: I was scared when I had to leave home, I understand that fear.
+[RALEIGH]: You left home too?
+[REX]: Ah kid, we all have our story. How about this, while we travel we'll talk, soon you'll realise you ain't alone anymore.
+[RALEIGH]: Yeah...yeah that sounds pretty good.
+[MR PONTEM]: [i]Increasingly loud[_i]ZZZ ZZZ ZZZ ZZZ ZZZ
+[REX]: Ah jeez, well no time like the present, lets get gone.
+
+[end]

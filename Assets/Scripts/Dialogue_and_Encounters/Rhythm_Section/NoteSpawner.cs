@@ -9,7 +9,7 @@ public class NoteSpawner : MonoBehaviour
     [SerializeField] GameObject wordNotePrefab;
     [SerializeField] Canvas canvas;
     private RhythmSectionManager rSM;
-    private StressPointRing stressPointRing;
+    private StressSystem.StressPointRing stressPointRing;
 
     public void SpawnNote(string word, float climaxBeat, NoteSystem.Lane lane, float ? spawnBeat = null)
     {

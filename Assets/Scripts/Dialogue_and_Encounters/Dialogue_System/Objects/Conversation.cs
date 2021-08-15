@@ -57,6 +57,19 @@ namespace Dialogue
 
         public event Action<int> OnStress;
         internal void Stress(int v) => OnStress?.Invoke(v);
+
+
+        public void ClearEvents()
+        {
+            OnSetDialogueMode = null;
+            OnSetColour = null;
+            OnTriggerRythmSection = null;
+            OnPause = null;
+            OnShake = null;
+            OnBeginQuest = null;
+
+
+        }
     }
 
 

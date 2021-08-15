@@ -11,7 +11,7 @@ namespace QuestLogic
 
         private void Awake()
         {
-            this.NullCheck(raleigh);
+            this.NotNullCheck(raleigh);
         }
 
         public void MoveOutside()

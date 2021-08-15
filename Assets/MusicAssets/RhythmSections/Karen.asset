@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c2713ecfcccf74d8d7dfce2b25c4f1, type: 3}
+  m_Name: Karen
+  m_EditorClassIdentifier: 
+  song: {fileID: 11400000, guid: 6b84f0dbf325cf24694a873fbe7f6947, type: 2}
+  notes: {fileID: 4900000, guid: 4bb8048fcd546c5498477109739ddf5e, type: 3}

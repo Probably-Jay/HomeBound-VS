@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StressSystem;
 
 namespace Dialogue
 {
@@ -15,7 +16,7 @@ namespace Dialogue
         IRythmDialogeControlInterface rythmDialogeControlInterface;
         DialogueQuestManager dialogueQuestController;
         DialogueQuestTaskManager dialogueQuestTaskController;
-        Stress playerStress;
+        StressSystem.Stress playerStress;
 
         private Coroutine currentConversation;
 
@@ -119,6 +120,7 @@ namespace Dialogue
 
         private IEnumerator QueueConversation(Conversation conversation)
         {
+            conversation.ClearEvents();
             conversation.OnSetDialogueMode += (mode) =>
             {
                 //if (mode == DialogueMode.None)
@@ -153,7 +155,7 @@ namespace Dialogue
             yield break;
         }
 
-   
+    
 
         public void AddLinePreview(string line)
         {

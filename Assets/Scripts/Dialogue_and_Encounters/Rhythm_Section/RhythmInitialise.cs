@@ -61,6 +61,7 @@ namespace RhythmSectionLoading {
 
         public void LoadAndBeginSectionNotes(TextAsset section)
         {
+            CleanUpLanes();
             SwitchOnLanes();
             noteSheet = section;
             ReadSection(noteSheet);
@@ -71,8 +72,17 @@ namespace RhythmSectionLoading {
 
         }
 
+        private void CleanUpLanes()
+        {
+            foreach (var lane in lanes)
+            {
+                lane.ClearNotesInChannel();
+            }
+        }
+
         public void EndSection()
         {
+            CleanUpLanes();
             SwitchOffLanes();
             noteSheet = null;
             notes.Clear();
@@ -384,18 +394,18 @@ namespace RhythmSectionLoading {
         {
             for (int i = 0; i < sectionLines.Count; i++)
             {
-                if(noteLines[i].Count < 1)
+                if (noteLines[i].Count > 0)
                 {
-                    return;
-                }
 
-                float targetBeat = noteLines[i][0].climaxBeat - leadTime;
-                if (targetBeat < 0)
-                {
-                    targetBeat = 0;
+
+                    float targetBeat = noteLines[i][0].climaxBeat - leadTime;
+                    if (targetBeat < 0)
+                    {
+                        targetBeat = 0;
+                    }
+                    string line = sectionLines[i];
+                    Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.ShowPreviewLine(line); }, targetBeat);
                 }
-                string line = sectionLines[i];
-                Rythm.RythmEngine.Instance.QueueActionAtExplicitBeat(() => { rSM.ShowPreviewLine(line); }, targetBeat);
             }
         }
         //this, along with it's accompanying adding method, is deprecated, because as MATT informs me, this is replacable by one system.linq line. : ) I'm fine.
