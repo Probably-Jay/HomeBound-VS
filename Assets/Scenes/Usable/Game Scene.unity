@@ -4119,14 +4119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 50
-  m_RefResolutionX: 960
-  m_RefResolutionY: 540
-  m_UpscaleRT: 0
-  m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
 --- !u!114 &1225166138 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1225166138, guid: 3bee3d9ec9d3fb947af420f26e297a6c,
@@ -4908,7 +4900,7 @@ PrefabInstance:
       objectReference: {fileID: 123157733}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: sheets.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: sheets.Array.data[1]
@@ -4916,12 +4908,21 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: a807f79615608494ab4b4f4e25d276d2,
         type: 2}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: sheets.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 58438b99b864f5b48a042f8c142d8543,
+        type: 2}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: identifications.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: identifications.Array.data[1]
       value: tutorial_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: identifications.Array.data[2]
+      value: karen
       objectReference: {fileID: 0}
     - target: {fileID: 1913506035618416047, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}
@@ -8195,6 +8196,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rex
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
+        type: 3}
+      propertyPath: mainDialogueIDs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
+        type: 3}
+      propertyPath: mainDialogueIDs.Array.data[0]
+      value: c1_karen_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
+        type: 3}
+      propertyPath: mainDialogueIDs.Array.data[1]
+      value: c1_tut
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b60ab711821ed0478f0db66573eb7d9, type: 3}
