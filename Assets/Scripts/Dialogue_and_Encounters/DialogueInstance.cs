@@ -132,7 +132,8 @@ namespace Dialogue
             backupDialogueIDs.Clear();
             ResetBackupDialogueIndex();
         }
-        internal void ProgressMainId()
+
+        public void ProgressMainId()
         {
             if (!Game.GameContextController.Instance.OverStressed)
             {

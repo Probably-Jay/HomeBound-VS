@@ -584,6 +584,7 @@
     <Compile Include="Assets\Scripts\Core\Engine\Level_Change\CrossfadeController.cs" />
     <Compile Include="Assets\Scripts\Core\Engine\Level_Change\SceneChangeController.cs" />
     <Compile Include="Assets\Scripts\Core\Engine\Singleton\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Core\Main_Menu.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\MonoExtentions.cs" />
     <Compile Include="Assets\Scripts\Core\Utility\Utility.cs" />
   </ItemGroup>
