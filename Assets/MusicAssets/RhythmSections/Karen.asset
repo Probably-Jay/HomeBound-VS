@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c2713ecfcccf74d8d7dfce2b25c4f1, type: 3}
   m_Name: Karen
   m_EditorClassIdentifier: 
-  song: {fileID: 11400000, guid: 6b84f0dbf325cf24694a873fbe7f6947, type: 2}
+  song: {fileID: 11400000, guid: b5fd4a98210dc574eb7025ce64f55976, type: 2}
   notes: {fileID: 4900000, guid: 4bb8048fcd546c5498477109739ddf5e, type: 3}

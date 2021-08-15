@@ -8,6 +8,6 @@
 [IRIS]: I promise you, they won't judge you for who you are or what you've gone through.
 [RALEIGH]: ...Yeah, I don't know where to go from here. I guess meeting your 'family' is as good a place to start as any.
 [REX]: You've got us for as long as ya need kid.
-[REX]: [i]Slaps Raleigh on the shoulder[_i] Lets go [colour: #f2ff00]Meet the Troops[colour: FFFFFF] kid.
+[REX]: [i]*Slaps Raleigh on the shoulder*[_i] Lets go [colour: #f2ff00]Meet the Troops[colour: FFFFFF] kid.
 [RALEIGH]: ...ow...
 [end]

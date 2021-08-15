@@ -10,16 +10,32 @@ namespace GameItems
         [SerializeField] Tile barrier;
         [SerializeField] Tilemap obsticalsMap;
         [SerializeField] int extremityHeight;
+
+        [SerializeField] GameObject open;
+        [SerializeField] GameObject closed;
+        private Vector3Int centerTileIndex;
         private List<Vector3Int> tileLocations;
+
+        private void Awake()
+        {
+            this.NotNullCheck(barrier);
+            this.NotNullCheck(obsticalsMap);
+            this.NotNullCheck(open);
+            this.NotNullCheck(closed);
+        }
 
         private void Start()
         {
+            open.SetActive(false);
+            closed.SetActive(false);
             GetTileLocations();
             Block();
         }
 
         private void Block()
         {
+            open.SetActive(false);
+            closed.SetActive(true);
             foreach (var tilePos in tileLocations)
             {
                 var tile = Instantiate(barrier);
@@ -29,7 +45,7 @@ namespace GameItems
 
         private void GetTileLocations()
         {
-            var centerTileIndex = obsticalsMap.WorldToCell(this.transform.position);
+            centerTileIndex = obsticalsMap.WorldToCell(this.transform.position);
             tileLocations = new List<Vector3Int>();
             for (int i = -extremityHeight; i < extremityHeight + 1; i++)
             {
@@ -39,11 +55,14 @@ namespace GameItems
 
         public void UnBlock()
         {
-            foreach (var tilePos in tileLocations)
-            {
-                obsticalsMap.SetTile(tilePos, null);
-            }
-            Destroy(this.gameObject);
+            open.SetActive(true);
+            closed.SetActive(false);
+            //foreach (var tilePos in tileLocations)
+            //{
+            //    obsticalsMap.SetTile(tilePos, null);
+            //}
+            obsticalsMap.SetTile(centerTileIndex, null);
+            //Destroy(this.gameObject);
         }
     }
 }

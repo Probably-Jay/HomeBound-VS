@@ -41,7 +41,8 @@ namespace Rythm
         public float TimeInSong => (float)currentEstimatedSample / FrequencyOfClip;
         private float FrequencyOfClip => (float)MusicManager.CurrentClipFrequency;
 
-        public float DurationOfSong => (float)MusicManager.CurrentClipSamples / (float)MusicManager.CurrentClipFrequency;
+        public int SamplesInSong => MusicManager.CurrentClipSamples;
+        public float DurationOfSong => (float)SamplesInSong / (float)MusicManager.CurrentClipFrequency;
         public float PercentThroughSong => TimeInSong / DurationOfSong;
         public float BPS => BPM / 60f;
         public float DurationOfBeat => BeatToSeconds(1);
@@ -68,6 +69,7 @@ namespace Rythm
 
         int CurrentMusicSample => MusicManager.CurrentSample;
 
+
         int currentEstimatedSample;
         int cachedMusicSample;
 
@@ -87,17 +89,17 @@ namespace Rythm
 
             UpdateCurrentSampleEstimate();
 
-            if(cachedMusicSample == CurrentMusicSample)
+            if (cachedMusicSample == CurrentMusicSample)
             {
                 return;
             }
 
 
-            int difference = currentEstimatedSample - CurrentMusicSample;
+            int difference = CalculateEstimateDifference();
 
             rollingAverageSamplesOff.Record(difference);
 
-            if(!rollingAverageSamplesOff.ReachedAccuracy)
+            if (!rollingAverageSamplesOff.ReachedAccuracy)
             {
                 return;
             }
@@ -111,6 +113,12 @@ namespace Rythm
 
             cachedMusicSample = CurrentMusicSample;
 
+        }
+
+        private int CalculateEstimateDifference()
+        {
+            int normalisedEstimate = currentEstimatedSample % SamplesInSong;
+            return normalisedEstimate - CurrentMusicSample;
         }
 
         public int SecondsToSamples(float s) => Mathf.RoundToInt((float)FrequencyOfClip * s);
@@ -145,7 +153,7 @@ namespace Rythm
         {
             var ds = Mathf.RoundToInt(Time.deltaTime * FrequencyOfClip);
             currentEstimatedSample += ds;
-            currentEstimatedSample %= MusicManager.CurrentClipSamples;
+            //currentEstimatedSample %= MusicManager.CurrentClipSamples;
         }
 
         public override void Initialise()

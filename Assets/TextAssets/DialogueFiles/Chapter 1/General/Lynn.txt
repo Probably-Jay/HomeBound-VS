@@ -1,5 +1,5 @@
 ﻿id: c1_lynn
-[Iris]: Hi, you don't happen to know where Raliegh lives, do you?
+[Iris]: Hi, you don't happen to know where Raleigh lives, do you?
 [Stranger]: Raleigh, Karen's son? Um, yes.. [pause: 8]ma'am,[pause: 8] It's [colour: #00FF22] Number 2 Forrestside road[colour: #FFFFFF]
 [Stranger]: Straight up north, second right, can't miss it.
 [Iris]: Thank you so much.

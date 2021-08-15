@@ -5,7 +5,7 @@
 [IRIS]: Anyway, I'm not here as a tourist. Raleigh, I need to make sure you're okay. The last conversations we had were...worrying.
 [RALEIGH]: Yeah, listen Iris, everything is fine, I...Mum and Dad have found me some...well they know a good school that might...
 [IRIS]: Raleigh, its okay, you can talk to me.
-[RALEIGH]: [i] quietly, so nobody else could here[_i] I tried to talk to them, I tried to explain to them, I tried to tell them, that I'm not...I'm not...
+[RALEIGH]: [i]*quietly, so nobody else could hear*[_i] I tried to talk to them, I tried to explain to them, I tried to tell them, that I'm not...I'm not...
 [REX]: Okay, breathe kid, breathe...what did you try to tell them?
 [RALEIGH]: I tried...I tried to tell them I'm non-binary. I don't feel like a guy, I don't feel anything like a guy, but not a woman either, just, I feel like I'm something...different.
 [REX]: Welcome to the no beanie club kid, we have t-shirts.
@@ -13,14 +13,14 @@
 [RALEIGH]: And some...tomorrow they are taking me to the bus station in the next town over, they are sending me to this school that helps...'lost souls'.
 [IRIS]: Do you want to go? Do you think you're 'lost'?
 [RALEIGH]: ...I...They are my parents, they want whats best for me.
-[IRIS]: [i]tearing up[_i] Oh, no darling...Rex, can you...?
+[IRIS]: [i]*tearing up*[_i] Oh, no darling...Rex, can you...?
 [REX]: Yeah, Kid, parents often mean well but they aren't you, they can't feel how you feel or go through what you're going through.
 [REX]: They may mean no harm, but they might not know whats best. They can't understand you entirely, doubly so when you aren't understanding you entirely.
 [IRIS]: Raleigh, be honest with us, if you want to go then we'll leave and wish you well, if not...well we can try to help.
 [RALEIGH]: Iris...I...I don't want to go. I don't want them to send me away. Iris...I'm scared.
-[IRIS]: [i]tears beading up on her cheeks[_i] Oh darling, I know, we're here for you.
-[REX]: [i]stroppy[_i] Ris, quit calling them darling. I'm 'darling' - They are 'kid'.
-[IRIS]: [i]tearing up ends quickly, turning to a stern expression[_i] Oh shut it Rex. How can you be so helpful and yet, a collasal pain in the...
-[REX]: [i]interupting Iris[_i] Right kid! You need to stand up for yourself. We can be here for you but we can't this conversation for you.
+[IRIS]: [i]*tears beading up on her cheeks*[_i] Oh darling, I know, we're here for you.
+[REX]: [i]*stroppy*[_i] Ris, quit calling them darling. I'm 'darling' - They are 'kid'.
+[IRIS]: [i]*tearing up ends quickly, turning to a stern expression*[_i] Oh shut it Rex. How can you be so helpful and yet, a collasal pain in the...
+[REX]: [i]*interupting Iris*[_i] Right kid! You need to stand up for yourself. We can be here for you but we can't this conversation for you.
 [IRIS]: We'll be right here with you, right by your side.[CompleteTask: mq_ttr]
 [end]

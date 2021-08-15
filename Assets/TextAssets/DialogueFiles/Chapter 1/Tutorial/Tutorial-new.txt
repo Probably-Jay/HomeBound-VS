@@ -1,26 +1,23 @@
 ﻿id: c1_tut
-[GAME]: Press W, A, S, or D to wander around.
-
-[GAME]: Press E to talk
 
 [ARTEMIS]: I quite like this place, I like the trees here. Whats this place called again?
 [IRIS]: [colour: #1b9d2a]Forest Hill.[colour: FFFFFF] My friend lives here... somewhere.
 [EMBER]: Iris can I ask what we're doing here? When we left you were upset so I didn't push it but we've been travelling for ages.
 [EMBER]: I know you, you must have a good reason but... I don't know what it is.
 [IRIS]: Yeah... well I met somebody online, they are called Raleigh. We got to talking ages ago about the best growth conditions for Aloe Vera.
-[IRIS]: Anyway, we became quite good friends. Spoke about ourselves and who we are, mentioned to them I'm taking 'vitahers', and that got us talking about LGBT stuff.
+[IRIS]: Anyway, we became quite good friends. Spoke about ourselves and who we are, mentioned to them I'm taking 'anti-cis-tamines', and that got us talking about LGBT stuff.
 [IRIS]: Raleigh, well Raleigh is still finding themself. They are finding what describes their feelings most. I think I was helping them... at least I hope so.
 [IRIS]: Anyway, they went quiet for a few weeks - no problem, some times people get busy right? Well...I don't think it was quite that simple.
 [IRIS]: When Raleigh next messaged me they were asking all these questions...questions about conversion, about 'treatment' options, about being sent away for...correction...
 [EMBER]: ...oh...
-[IRIS]: [i]tearing up[_i] I tried to help them, I tried but...
+[IRIS]: [i]*tearing up*[_i] I tried to help them, I tried but...
 [EMBER]: So thats why we're here, to make sure Raleigh is okay? To make sure Raleigh knows they aren't alone?
-[IRIS]: [i]wiping away tearsdrops from her cheek[_i] I just, I need to make sure they know, they know they are perfect. They don't need 'treatment'.
-[REX]: I'll join you then darlin'. I'll makes sure we see your friend. Think that'll help?
+[IRIS]: [i]*wiping away tearsdrops from her cheek*[_i] I just, I need to make sure they know, they know they are perfect. They don't need..[pause: 16] 'treatment'.
+[REX]: I'll join you then darlin'. I'll make sure we see your friend. Think that'll help?
 [Iris]: Yeah, sorry, it's just, I'm worried that if I do, when we have to talk to Raleigh's parents... or anyone else who clocks me... I won't be able to take the dissonance.
-[Rex]: well uh... there's something you could do that might help... but only if you're up for something kinda dorky...
+[Rex]: Well uh... there's something you could do that might help... but only if you're up for something kinda dorky...
 [Iris]: Um, okay, what is it that you had in mind?
-[Rex]: don't laugh, but I thought we might try practicing a tense conversation, so you're ready for them!
+[Rex]: Don't laugh, but I thought we might try practicing a tense conversation, so you're ready for them!
 [Iris]: Well, I'm not sure it'll be the same, but I'm sure 
 
 [Rex]: Okay, I'll be Raleigh's parents. [pause: 16]Ready? [pause: 48] [rhythm: tutorial_1]
@@ -55,4 +52,5 @@
 
 [IRIS]: Let's go [colour: #f2ff00]Find Raleighs Home[colour: FFFFFF].
 
+[GAME]: Press W, A, S, or D to wander around.
 [end]

@@ -231,10 +231,10 @@ namespace Overworld {
 
                         if (!CheckGround(grid.WorldToCell(destinationCentre)) || CheckWall(grid.WorldToCell(destinationCentre)) || (hits.Length > 0))
                         {
-                            if (hits.Length > 0)
-                            {
-                                Debug.Log(hits[0].gameObject.name);
-                            }
+                            //if (hits.Length > 0)
+                            //{
+                            //    Debug.Log(hits[0].gameObject.name);
+                            //}
                             destinationCentre = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                             this.transform.position = grid.GetCellCenterWorld(grid.WorldToCell(this.transform.position));
                             Stop();
