@@ -2,11 +2,11 @@
 [MUM]: Right, you've seen Raleigh, he's perfectly fine, time for you two to say your goodbyes and leave.
 [RALEIGH]: Mum...Dad...I...can we talk? I don't think I want to go to this school... [rhythm: karen]
 //rhythmbegin
-[MUM]:Oh hush Raleigh, it will be good for you. Be the making of you. Full of other young men like yourself to make new friendships with. Time to get rid of some [b]problematic[_b] friends.
-[RALEIGH]: asfjkhsaddjhs
-[RALEIGH]: 
+[MUM]: Oh hush Raleigh, it will be good for you. Be the making of you. Full of other young men like yourself to make new friendships with. Time to get rid of some [b]problematic[_b] friends.
+[RALEIGH]: [colour: #000000] a [colour: #FFFFFF]
+[RALEIGH]: [colour: #000000] a [colour: #FFFFFF]
 [MUM]: Raleigh, we aren't having this discussion. You need to go upstairs now and pack up whatever you need. Be fast now, we need to go to the hairdressers, your hair needs to be proper.
-[RALEIGH]: -
+[RALEIGH]: [colour: #000000] a [colour: #FFFFFF]
 [MUM]: Because its a nonsense and you know it. Its not natural. People are born either men or women and you can't pick and choose what you want. [b]Not.[_b] [b]Natural.[_b]
 [MUM]: Your father and I have raised you! We know whats best for you! This all stops now. These awful people need to leave my home now! This all stops now! There will be no more unnatural rubbish in my home!
 
@@ -33,6 +33,4 @@
 [IRIS]: Of course you can, we have plenty of room for you.
 [MUM]: [i]Rage seething forward[_i] You choose these freaks over us? Fine. Then get out now. Leave. You'll come crawling back here. You'll regret this for the rest of your life.
 [RALEIGH]: [i]Tears rolling down their cheeks[_i] I think there will be regret here, but I don't think it will be mine.[CompleteTask: mq_ttrm2]
-
-
 [end]

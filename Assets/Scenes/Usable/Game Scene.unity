@@ -8199,13 +8199,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
         type: 3}
+      propertyPath: runMainOnlyOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
+        type: 3}
       propertyPath: mainDialogueIDs.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
         type: 3}
       propertyPath: mainDialogueIDs.Array.data[0]
-      value: c1_karen_2
+      value: c1_tut
       objectReference: {fileID: 0}
     - target: {fileID: 7090717100836727026, guid: 9b60ab711821ed0478f0db66573eb7d9,
         type: 3}
