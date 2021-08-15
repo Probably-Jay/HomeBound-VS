@@ -680,6 +680,7 @@
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg&apos;s house\Guard.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg&apos;s house\Raleigh Back With friends.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg&apos;s house\Raleigh Outside.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\General\Lynn.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Church.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House 1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House.txt" />

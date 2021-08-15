@@ -115,6 +115,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\Karen.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\DanceSheet.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\General\Lynn.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Test\TestFile9.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
