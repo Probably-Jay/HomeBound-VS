@@ -12,6 +12,7 @@ namespace QuestLogic
         [SerializeField] Transform downstairsPos;
         [SerializeField] Transform outsidePos;
         [SerializeField] Transform withFriendsPos;
+    //    [SerializeField] string downstairsString;
         [SerializeField] string outsideString;
         [SerializeField] string withFriendsString;
 
@@ -22,27 +23,28 @@ namespace QuestLogic
         // Start is called before the first frame update
         void Awake()
         {
-            dialogueInstance = GetComponent<Dialogue.DialogueInstance>();
+            this.AssignComponent(out dialogueInstance);
             this.NotNullCheck(downstairsPos);
             this.NotNullCheck(outsidePos);
             this.NotNullCheck(withFriendsPos);
+          //  this.NotNullCheck(downstairsString);
             this.NotNullCheck(outsideString);
             this.NotNullCheck(withFriendsString);
-            this.NotNullCheck(dialogueInstance);
         }
 
         internal void MoveDownstairs()
         {
             transform.position = downstairsPos.position;
+           // dialogueInstance.AddMainDialogueElement(downstairsString);
+          //  dialogueInstance.AddBackupDialogueElement(downstairsString);
         }
 
         internal void MoveOutside()
         {
             transform.position = outsidePos.position;
-            if (skipMissedDialogue)
-            {
-                ResetDialogue();
-            }
+
+            ResetDialogue();
+            
             dialogueInstance.AddMainDialogueElement(outsideString);
         }
 

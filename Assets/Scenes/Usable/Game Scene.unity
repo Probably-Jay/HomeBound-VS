@@ -4071,6 +4071,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5787211395440589939, guid: 3bee3d9ec9d3fb947af420f26e297a6c,
+        type: 3}
+      propertyPath: StressRelieving
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bee3d9ec9d3fb947af420f26e297a6c, type: 3}
 --- !u!1 &953309887
@@ -5768,7 +5773,7 @@ PrefabInstance:
       objectReference: {fileID: 123157733}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: sheets.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: sheets.Array.data[1]
@@ -5776,12 +5781,21 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: a807f79615608494ab4b4f4e25d276d2,
         type: 2}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: sheets.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 58438b99b864f5b48a042f8c142d8543,
+        type: 2}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: identifications.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
       propertyPath: identifications.Array.data[1]
       value: tutorial_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750068221, guid: e37b34db3b0a1694a9515b58e7c6d5d4, type: 3}
+      propertyPath: identifications.Array.data[2]
+      value: karen
       objectReference: {fileID: 0}
     - target: {fileID: 1913506035618416047, guid: e37b34db3b0a1694a9515b58e7c6d5d4,
         type: 3}

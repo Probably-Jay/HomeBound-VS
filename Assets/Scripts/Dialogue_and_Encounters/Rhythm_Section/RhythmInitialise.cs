@@ -290,23 +290,28 @@ namespace RhythmSectionLoading {
             toDialogues.Add(new PassToDialogue());
             toDialogues[toDialogues.Count - 1].Initialise(passBeat, returnBeat);
         }
-
-        List<string> SplitSectionIntoStringLines(List<Note> notes, List<PassToDialogue> passes,List<OtherCommand> commands)
+        //splits the currently loaded notesection into strings representing the individual lines said by the character ready to be previewed
+        List<string> SplitSectionIntoStringLines(List<Note> notes, List<PassToDialogue> passes, List<OtherCommand> commands)
         {
             List<string> secLines = new List<string> { };
             List<float> lineEnds = new List<float> { };
             foreach (PassToDialogue pass in passes)
             {
-                lineEnds.Add(pass.returnBeat);          
+                lineEnds.Add(pass.returnBeat);          //>,1,2
             }
-            foreach(OtherCommand command in commands)
+            foreach (OtherCommand command in commands)
             {
                 if (command.type == CommandType.EndSection)
                 {
                     lineEnds.Add(command.onBeat);
                 }
             }
+            var unsortedLines = new List<float> (lineEnds);
             lineEnds.Sort();
+            if (!Enumerable.SequenceEqual(lineEnds, unsortedLines)){
+                Debug.LogError("sortedlistaaaaaaaaaaaaaaa");
+
+            }
             foreach(int end in lineEnds)
             {
                 secLines.Add("");
@@ -319,7 +324,7 @@ namespace RhythmSectionLoading {
                     if (note.climaxBeat < lineEnds[i])
                     {
                         secLines[i] += note.word + " ";
-                        i = lineEnds.Count;
+                        i = lineEnds.Count; //break - this is a break
                     }
                 }
             }

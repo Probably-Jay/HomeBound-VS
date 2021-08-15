@@ -38,7 +38,9 @@ namespace Rythm
 
         private void Awake()
         {
-            multiAudioSource.Init(this, GetComponent<AudioSource>());
+            this.AssignComponent(out AudioSource source);
+            source.loop = true;
+            multiAudioSource.Init(this, source);
         }
 
         private void Start()
