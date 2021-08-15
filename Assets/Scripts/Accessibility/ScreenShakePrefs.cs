@@ -17,9 +17,9 @@ namespace Accessibility
 
         private void Awake()
         {
-            slider = GetComponentInChildren<Slider>();
+            this.AssignComponentInChildren(out slider);
+            this.AssignComponentInChildren(out toggle);
             sliderParent = slider.transform.parent.gameObject;
-            toggle = GetComponentInChildren<Toggle>();
         }
         private void Start()
         {

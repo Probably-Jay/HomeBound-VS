@@ -14,6 +14,16 @@ public static class MonoExtentions
             return true;
         }
         return false;
+    }        
+    
+    public static bool AssignComponentInChildren<T>(this MonoBehaviour go, out T cmp) where T : Component
+    {     
+        cmp = go.GetComponentInChildren<T>();
+        if (go.NotNullCheck(cmp))
+        {
+            return true;
+        }
+        return false;
     }    
 
     public static bool NotNullCheck<T>(this MonoBehaviour go, T obj) where T :  UnityEngine.Object
