@@ -107,6 +107,9 @@
     <Reference Include="~Quests">
       <HintPath>Library/ScriptAssemblies/~Quests.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.dll</HintPath>
     </Reference>
@@ -310,6 +313,9 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -658,6 +664,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CowControl.cs" />
     <Compile Include="Assets\Main_Menu.cs" />
     <Compile Include="Assets\TempDisabler.cs" />
     <Compile Include="Assets\~Junk\PointOfIntrestManager.cs" />
@@ -665,10 +672,14 @@
   <ItemGroup>
     <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\DanceSheet.txt" />
+    <None Include="Assets\MusicAssets\NoteSheets\Karen.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\Tutorial.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\notesheet 1.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\notesheet.txt" />
     <None Include="Assets\MusicAssets\NoteSheets\testSHeet.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg&apos;s house\Guard.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg&apos;s house\Raleigh Back With friends.txt" />
+    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\After Raliehg&apos;s house\Raleigh Outside.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\Church.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House 1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Houses\House.txt" />
@@ -677,8 +688,6 @@
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Karen 1.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Karen 2.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Meet Raleigh.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Raleigh Back With friends.txt" />
-    <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Raleigh Outside.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\In Raleigh&apos;s house\Raleigh cont.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial End.txt" />
     <None Include="Assets\TextAssets\DialogueFiles\Chapter 1\Tutorial\Tutorial-new.txt" />
