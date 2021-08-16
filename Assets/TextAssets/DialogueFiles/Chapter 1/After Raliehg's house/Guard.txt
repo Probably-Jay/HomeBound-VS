@@ -14,7 +14,7 @@
 [EMBER]: Ew.
 [MR PONTEM]: What the hell is going on? Who the hell are you lot? Why the hell am I awake?
 [RALEIGH]: Mr Pontem, it's Raleigh, from up the road?
-[MR PONTEM]: Raleigh? You're a good boy, how is your father?
+[MR PONTEM]: Raleigh? What a good lad, how is your father?
 [RALEIGH]: ...Yeahhh...He is...He is good.
 [MR PONTEM]: Thats good. What seems to be the problem young Raleigh?
 [RALEIGH]: Mr Pontem you closed the bridge.
@@ -28,7 +28,7 @@
 
 [MR PONTEM]: There you go young Raleigh. Say hello to your father from me when you next see him.
 [RALEIGH]: ...Yeah...Okay, I will Mr Pontem.
-[MR PONTEM]: Thats a good lad. Now I'm just going to rest here for a bit before I go get my axe...
+[MR PONTEM]: Thats a boy. Now I'm just going to rest here for a bit before I go get my axe...
 [RALEIGH]: Thank you Mr Pon...
 [MR PONTEM]: [CompleteTask: mq_g_s][i]*Loudly as ever*[_i] ZZZ ZZZ ZZZ ZZZ ZZZ
 [REX]: Wow.

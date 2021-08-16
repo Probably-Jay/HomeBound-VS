@@ -28,7 +28,7 @@
 [DAD]: ...Raleigh...you should probably either go to this school...or move out.
 [RALEIGH]: ...[pause: 64]
 [RALEIGH]: I'll pack up my stuff now.
-[MUM]: [i]*smug with triumph*[_i] Good boy, you'll go to the school.
+[MUM]: [i]*smug with triumph*[_i] Good, you'll go to the school.
 [RALEIGH]: No Mum, I won't. I love you both, and I always will, but I think this is where we part. Iris, if you have space, can I come with you for a while?
 [IRIS]: Of course you can, we have plenty of room for you.
 [MUM]: [i]*Rage seething forward*[_i] You choose these freaks over us? Fine. Then get out now. Leave. You'll come crawling back here. You'll regret this for the rest of your life.

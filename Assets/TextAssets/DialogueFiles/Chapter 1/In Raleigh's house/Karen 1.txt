@@ -1,7 +1,7 @@
 ﻿id: c1_karen
 [IRIS]: Hello Ma'am. Can I ask, does Raleigh live here? We're their friends.
 [MUM]: I know all of Raleighs friends, you aren't his friends. I'd remember two like you...
-[IRIS]: Aahhhh...yes...Well we know Raleigh from online. [i]they[_i], met me a little while ago. Can I speak to Raleigh? You can tell them it's Iris.
+[IRIS]: Aahhhh...yes...Well we know Raleigh from online. [i]They[_i] met me a little while ago. Can I speak to Raleigh? You can tell them it's Iris.
 [MUM]: No you can't talk to him. He doesn't know you two. He doesn't need friends like you making this nonsense worse.
 [IRIS]: Non...Non-sense?...I'm sorry, I'm not sure what you mean.
 [MUM]: It doesn't matter. My husband and I are going to deal with Raleigh. We're his parents. We know what's best for him.

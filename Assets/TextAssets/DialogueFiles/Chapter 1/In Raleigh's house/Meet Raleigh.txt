@@ -1,14 +1,14 @@
 ﻿id: c1_raleigh_meet
 [RALEIGH]: Iris? Wow, you've come to Forest Hill.
-[IRIS]: Yeah Raleigh, I've come to visit. First let me introduce Rex, their one of my dearest friends are roommate.
+[IRIS]: Yeah Raleigh, I've come to visit. First let me introduce Rex, their one of my dearest friends and roommate.
 [REX]: Whats up kid.
 [IRIS]: Anyway, I'm not here as a tourist. Raleigh, I need to make sure you're okay. The last conversations we had were...worrying.
 [RALEIGH]: Yeah, listen Iris, everything is fine, I...Mum and Dad have found me some...well they know a good school that might...
 [IRIS]: Raleigh, its okay, you can talk to me.
 [RALEIGH]: [i]*quietly, so nobody else could hear*[_i] I tried to talk to them, I tried to explain to them, I tried to tell them, that I'm not...I'm not...
 [REX]: Okay, breathe kid, breathe...what did you try to tell them?
-[RALEIGH]: I tried...I tried to tell them I'm non-binary. I don't feel like a guy, I don't feel anything like a guy, but not a woman either, just, I feel like I'm something...different.
-[REX]: Welcome to the no beanie club kid, we have t-shirts.
+[RALEIGH]: I tried...I tried to tell them I'm non-binary. I don't feel like a guy, I don't feel anything like a guy, I'm no woman but...
+[REX]: Welcome to the NB club kid, we have t-shirts.
 [IRIS]: Rex! No jokes! Okay, Raleigh, I understand, we've all been through that conversation with parents, it didn't go well?
 [RALEIGH]: And some...tomorrow they are taking me to the bus station in the next town over, they are sending me to this school that helps...'lost souls'.
 [IRIS]: Do you want to go? Do you think you're 'lost'?
