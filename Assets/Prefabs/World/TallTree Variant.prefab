@@ -23,6 +23,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: TallTree Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5788069502875546380, guid: b254827c8bbdf0f4bb3a02c55106cd3e,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788069502875546380, guid: b254827c8bbdf0f4bb3a02c55106cd3e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7139772977450841429, guid: b254827c8bbdf0f4bb3a02c55106cd3e,
         type: 3}
       propertyPath: m_RootOrder
@@ -31,12 +41,12 @@ PrefabInstance:
     - target: {fileID: 7139772977450841429, guid: b254827c8bbdf0f4bb3a02c55106cd3e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 7139772977450841429, guid: b254827c8bbdf0f4bb3a02c55106cd3e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 77
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7139772977450841429, guid: b254827c8bbdf0f4bb3a02c55106cd3e,
         type: 3}
